@@ -15,6 +15,9 @@ import {
   useBreakpointValue,
   SimpleGrid,
   AvatarBadge,
+  Square,
+  Flex,
+  Circle,
 } from "@chakra-ui/react";
 // import { HiCash, HiLocationMarker, HiShieldCheck } from "react-icons/hi";
 import { Card } from "./Card";
@@ -31,39 +34,44 @@ export const ActiveProject = (props: { projects: ProjectProps[] }) => {
   const iconColor = useColorModeValue("indigo.500", "indigo.200");
   const headerTextSize = useBreakpointValue({ base: "xs", lg: "sm" });
   return (
-    <Box as="section" pt={{ base: "4", md: "8" }} pb={{ base: "12", md: "24" }}>
-      <Text size={headerTextSize} fontWeight="medium">
-        Active Project
+    <Box as="section" pt={{ base: "50", md: "100" }} pb={{ base: "12", md: "24" }}>
+      <Text size={headerTextSize} fontSize="36px" fontWeight="bold">
+        Current Project
       </Text>
-      <Card>
-        <SimpleGrid columns={3} spacing={10}>
-          <Box>
-            <Image
-              src={project.imageUrl}
-              alt="project"
-              width="400"
-              height="310"
-              layout="responsive"
-              objectFit="cover"
-            />
+      <Card p={0} mt={10}>
+        <Flex>
+          <Box borderRadius={useBreakpointValue({ base: "md", md: "xl" })} minW={400} minH={310} backgroundColor={'black'}>
+            <Flex  alignItems={'center'} height={310}>
+              <Image
+                src={project.imageUrl}
+                alt="project"
+                width="400"
+                height={'100%'}
+                layout={'fixed'}
+              />
+            </Flex>
           </Box>
-          <Box>
+          <Box mr="10" ml="10">
             <Stack
               spacing={{ base: "1", md: "2" }}
               direction={{ base: "column", md: "row" }}
             >
-              <Image
-                src={project.avatarUrl}
-                alt="project"
-                width="60"
-                height="60"
-              />
+              <Circle boxShadow='xl'  ml="-8" mb="2" >
+                <Circle m="2" overflow={'hidden'}>
+                  <Image
+                    src={project.avatarUrl}
+                    alt="project"
+                    width="60"
+                    height="60"
+                  />
+                </Circle>
+              </Circle>
             </Stack>
             <Stack
               spacing={{ base: "1", md: "2" }}
               direction={{ base: "column", md: "row" }}
             >
-              <Text as="h2" fontWeight="bold" fontSize="xl">
+              <Text as="h2" fontWeight="bold" fontSize="24px">
                 {project.name}
               </Text>
               <CircleWavyCheck size={24} />
@@ -107,6 +115,7 @@ export const ActiveProject = (props: { projects: ProjectProps[] }) => {
               </Stack>
               <Stack align="flex-start" spacing="4">
                 <Button
+                  w={'100%'}
                   colorScheme="indigo"
                   rightIcon={<CaretRight size={20} />}
                 >
@@ -115,7 +124,7 @@ export const ActiveProject = (props: { projects: ProjectProps[] }) => {
               </Stack>
             </Stack>
           </Box>
-        </SimpleGrid>
+        </Flex>
       </Card>
     </Box>
   );
