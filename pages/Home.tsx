@@ -3,6 +3,7 @@ import { ActiveProject } from "./components/ActiveProject";
 import { Projects } from "./components/Projects";
 import { useGetProjects } from "./hooks/projects";
 import { HowItWorks } from "./components/HowItWorks";
+import { Box } from "@chakra-ui/react";
 export interface TeamMemberProps {
   id: number;
   name: string;
@@ -29,12 +30,15 @@ const Home = () => {
   if (isLoading) return <>Loading...</>;
   return (
     <>
-      <Hero />
-      <ActiveProject
-        projects={data.filter((project: ProjectProps) => project.active)}
-      />
-      <Projects projects={data} />
-      <HowItWorks />
+
+      <Box pr={123} pl={123}>
+            <Hero />
+            <ActiveProject
+              projects={data.filter((project: ProjectProps) => project.active)}
+            />
+            <Projects projects={data} />
+            <HowItWorks />
+      </Box>
     </>
   );
 };

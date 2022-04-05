@@ -68,52 +68,58 @@ export const ActiveProject = (props: { projects: ProjectProps[] }) => {
               spacing={{ base: "1", md: "2" }}
               direction={{ base: "column", md: "row" }}
             >
-              <Text as="h2" fontWeight="bold" fontSize="24px">
+              <Text as="h2" mr={'10px'} fontWeight="bold" fontSize="2xl">
                 {project.name}
               </Text>
-              <CircleWavyCheck size={24} />
+              <Image
+                    src={'/check.svg'}
+                    alt="check"
+                    width={'16px'}
+                    height={'16px'}
+                  />
             </Stack>
             <Text mt="2">{project.description}</Text>
             <Wrap
               shouldWrapChildren
               mt="5"
+              fontWeight={700}
               color={useColorModeValue("gray.600", "gray.300")}
             >
               {project.tags && project.tags.map((tag) => (
-                <Tag key={tag} color="inherit" px="3">
+                <Tag backgroundColor={"indigo.100"} key={tag} color="inherit" px="3">
                   {tag}
                 </Tag>
               ))}
             </Wrap>
           </Box>
           <Box>
-            <Stack spacing="10">
+            <Stack minW={190} spacing="10">
               <VStack align="flex-start" spacing="1 ">
-                <Text fontSize="sm" fontWeight="subtle">
+                <Text fontSize="xs" fontWeight="700">
                   {" "}
-                  Time Left
+                  TIME LEFT
                 </Text>
                 <Text fontSize="md" color="emphasized">
                   14 days
                 </Text>
               </VStack>
-              <VStack align="flex-start" spacing="1">
-                <Text fontSize="sm" fontWeight="subtle">
+              <Stack align="flex-start" spacing="1">
+                <Text fontSize="xs" fontWeight="700">
                   TOKENOMICS
                 </Text>
-                <Text fontSize="md" color="emphasized">
-                  $12,3456,678 raised
+                <Text mt={14} fontSize="md" color="emphasized">
+                  <b>$12,3456,678 </b> raised
                 </Text>
-              </VStack>
-              <Stack align="flex-start" spacing="4">
-                <Text color="emphasized" fontSize="md">
-                  3,526 supporters
+                <Text mt={14} color="emphasized" fontSize="md">
+                  <b>3,526</b> supporters
                 </Text>
                 {project.verified && <CircleWavyCheck size={24} />}
               </Stack>
               <Stack align="flex-start" spacing="4">
                 <Button
                   w={'100%'}
+                  h={'48px'}
+                  size={'md'}
                   colorScheme="indigo"
                   rightIcon={<CaretRight size={20} />}
                   onClick={() => router.push(`/project/${project.id}`)}

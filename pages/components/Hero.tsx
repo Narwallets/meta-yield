@@ -34,11 +34,11 @@ export const Hero = () => (
           direction={{ base: "column", sm: "row" }}
           justify="center"
         >
-          <Button variant="secondary-on-accent" size="lg">
+          <Button colorScheme={'indigo'}  size="lg">
             Connect Wallet
           </Button>
           <Link href="#how-it-works">
-          <Button variant="primary-on-accent" size="lg">
+          <Button variant="secondary-on-accent"  size="lg">
             How it works
           </Button>
           </Link>

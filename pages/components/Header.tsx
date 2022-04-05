@@ -76,7 +76,7 @@ export const Header: React.FC<ButtonProps> = (props) => {
               {isDesktop && (
                 <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
                   <Link>
-                    <Button fontWeight={600} fontSize={'16px'}  color={colors.indigo[500]} aria-current="page" variant="nav">
+                    <Button fontWeight={600} fontSize={'md'}  color={colors.indigo[500]} aria-current="page" variant="nav">
                       {" "}
                       Projects{" "}
                     </Button>
@@ -119,7 +119,7 @@ export const Header: React.FC<ButtonProps> = (props) => {
                 {signInAccountId}
               </a>
             ) : (
-              <Button  onClick={() => onConnect()}>Connect Wallet</Button>
+              <Button colorScheme="indigo" onClick={() => onConnect()}>Connect Wallet</Button>
             )}
           </Flex>
         </Container>
