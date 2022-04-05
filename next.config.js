@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     disableStaticImages: true,
-    domains: ['images.unsplash.com', 'twitter.com', 'pbs.twimg.com']
+    domains: ['3621490034-files.gitbook.io', 'twitter.com', 'pbs.twimg.com', 'pembrock.finance']
   },
   env: {
     CONTRACT_ID: 'dev-1647362531405-23502905659580',

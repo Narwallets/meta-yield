@@ -1,22 +1,30 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text, Stack } from "@chakra-ui/react";
 import * as React from "react";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectGrid } from "./ProjectGrid";
-import { ProjectProps } from "./Home";
+import { ProjectProps } from "../Home";
 export const Projects = (props: { projects: ProjectProps[] }) => {
   const { projects } = props;
   return (
     <Box
-      maxW="7xl"
       mx="auto"
       px={{ base: "4", md: "8", lg: "12" }}
       py={{ base: "6", md: "8", lg: "12" }}
+      as="section"
+      id="projects"
     >
-      <ProjectGrid>
-        {projects.filter((project: ProjectProps) => !project.active).map((project: ProjectProps) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </ProjectGrid>
+      <Stack spacing="10">
+        <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
+          Other Projects
+        </Text>
+        <ProjectGrid>
+          {projects
+            .filter((project: ProjectProps) => !project.active)
+            .map((project: ProjectProps) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+        </ProjectGrid>
+      </Stack>
     </Box>
   );
 };

@@ -53,20 +53,30 @@ export const Header: React.FC<ButtonProps> = (props) => {
 
   return (
     <Box as="section" pb={{ base: "12", md: "24" }}>
-      <Box as="nav" bg="bg-surface">
+      <Box as="nav" alignContent="flex-end">
         <Container py={{ base: "3", lg: "4" }}>
           <Flex justify="space-between">
-            <HStack spacing="4">
-              <Heading>Meta Yield</Heading>
+            <HStack spacing="4" align="flex-end">
+              <Link href="/">
+                <Text fontSize="2xl" fontWeight="bold">
+                  MetaYield
+                </Text>
+              </Link>
               {isDesktop && (
-                <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
-                  <Link>
+                <ButtonGroup variant="link" spacing="3">
+                  <Link href="#latest">
+                    <Button aria-current="page" variant="nav">
+                      {" "}
+                      Latest{" "}
+                    </Button>
+                  </Link>
+                  <Link href="#projects">
                     <Button aria-current="page" variant="nav">
                       {" "}
                       Projects{" "}
                     </Button>
                   </Link>
-                  <Link>
+                  <Link href="#how-it-works">
                     <Button variant="nav"> How it works </Button>
                   </Link>
                 </ButtonGroup>
@@ -74,7 +84,6 @@ export const Header: React.FC<ButtonProps> = (props) => {
             </HStack>
             {isDesktop ? (
               <HStack spacing="4">
-                <Text>stNEAR $12.66</Text>
                 {signInAccountId ? (
                   <a
                     href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}

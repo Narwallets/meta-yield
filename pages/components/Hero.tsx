@@ -6,19 +6,25 @@ import {
   Stack,
   Text,
   useBreakpointValue,
+  Link
 } from "@chakra-ui/react";
 import * as React from "react";
 
 export const Hero = () => (
-  <Box as="section" bg="bg-accent" color="on-accent">
-    <Container py={{ base: "12", md: "24" }}>
+  <Box
+    as="section"
+    bg="bg-accent"
+    color="on-accent"
+    maxWidth="1xl"
+    mx="auto"
+    p={{ base: "6", md: "8" }}
+    py={{ base: "12", md: "24" }}
+  >
+    <Container >
       <Stack spacing={{ base: "8", md: "10" }}>
         <Stack spacing={{ base: "4", md: "5" }} align="center">
           <Heading size={useBreakpointValue({ base: "sm", md: "md" })}>
-            Stake.
-          </Heading>
-          <Heading size={useBreakpointValue({ base: "sm", md: "md" })}>
-            Support.
+            Stake. Support.
           </Heading>
           <Heading size={useBreakpointValue({ base: "sm", md: "md" })}>
             Earn.
@@ -41,9 +47,11 @@ export const Hero = () => (
           <Button variant="secondary-on-accent" size="lg">
             Connect Wallet
           </Button>
+          <Link href="#how-it-works">
           <Button variant="primary-on-accent" size="lg">
             How it works
           </Button>
+          </Link>
         </Stack>
       </Stack>
     </Container>
