@@ -71,12 +71,14 @@ export const ActiveProject = (props: { projects: ProjectProps[] }) => {
               <Text as="h2" mr={'10px'} fontWeight="bold" fontSize="2xl">
                 {project.name}
               </Text>
-              <Image
-                    src={'/check.svg'}
-                    alt="check"
-                    width={'16px'}
-                    height={'16px'}
-                  />
+              {
+                project.verified &&  <Image
+                                            src={'/check.svg'}
+                                            alt="check"
+                                            width={'16px'}
+                                            height={'16px'}
+                                          />
+              }
             </Stack>
             <Text mt="2">{project.description}</Text>
             <Wrap
@@ -113,7 +115,6 @@ export const ActiveProject = (props: { projects: ProjectProps[] }) => {
                 <Text mt={14} color="emphasized" fontSize="md">
                   <b>3,526</b> supporters
                 </Text>
-                {project.verified && <CircleWavyCheck size={24} />}
               </Stack>
               <Stack align="flex-start" spacing="4">
                 <Button
