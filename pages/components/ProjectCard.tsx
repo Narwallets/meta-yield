@@ -12,11 +12,14 @@ import {
   useBreakpointValue,
   useColorModeValue,
   Wrap,
-  Tag
+  Tag,
+  Circle,
 } from "@chakra-ui/react";
 import * as React from "react";
 import { FavouriteButton } from "./FavouriteButton";
-import { CircleWavyCheck } from "phosphor-react";
+import { CaretRight, CircleWavyCheck } from "phosphor-react";
+import { truncateText } from "../utils/textHandlers";
+import { useRouter } from "next/router";
 interface Props {
   project: any;
   rootProps?: StackProps;
@@ -24,7 +27,18 @@ interface Props {
 
 export const ProjectCard = (props: Props) => {
   const { project, rootProps } = props;
-  const { name, imageUrl, motto, avatarUrl, verified, active, description, tags } = project;
+  const router = useRouter();
+  const {
+    id,
+    name,
+    imageUrl,
+    motto,
+    avatarUrl,
+    verified,
+    active,
+    description,
+    tags,
+  } = project;
   return (
     <Stack spacing={useBreakpointValue({ base: "4", md: "5" })} {...rootProps}>
       <Box position="relative">
@@ -33,56 +47,83 @@ export const ProjectCard = (props: Props) => {
             src={imageUrl}
             alt={name}
             draggable="false"
+            objectFit='contain'
             fallback={<Skeleton />}
             borderRadius={useBreakpointValue({ base: "md", md: "xl" })}
           />
         </AspectRatio>
-        <FavouriteButton
+        {
+        /*<FavouriteButton
           position="absolute"
           top="4"
           right="4"
           aria-label={`Add ${name} to your favourites`}
-        />
+        /> */
+        }
       </Box>
       <Stack>
-        <Stack spacing="1">
+        <Stack p={5} position={'relative'}  spacing="1">
+          <Stack >
+              <Circle position={'absolute'} backgroundColor={'white'} maxH={'65px'} maxW={'65px'} boxShadow='xl'  top="-50px" left="20px" >
+                <Circle maxW={'60px'} m="2" overflow={'hidden'}>
+                  <Image
+                    src={avatarUrl}
+                    alt="project"
+                    width="48px"
+                    height="48px"
+                  />
+                </Circle>
+              </Circle>
+          </Stack>
           <Stack
             spacing={{ base: "1", md: "2" }}
             direction={{ base: "column", md: "row" }}
           >
             <Text
+              mt={5}
               fontWeight="medium"
+              fontSize={'lg'}
               color={useColorModeValue("gray.700", "gray.400")}
             >
               {name}
             </Text>
-            <CircleWavyCheck size={24} />
+            {
+                verified &&  <Image
+                                            src={'/check.svg'}
+                                            alt="check"
+                                            width={'16px'}
+                                            height={'16px'}
+                                          />
+              }
           </Stack>
-          <Text mt="2">
-              {description}
-            </Text>
-            <Wrap
+          <Stack             spacing={{ base: "1", md: "2" }}>
+          <Text>{truncateText(description, 150)}</Text>
+
+          </Stack>
+          <Wrap
               shouldWrapChildren
-              mt="5"
+              fontWeight={700}
               color={useColorModeValue("gray.600", "gray.300")}
             >
-              {tags.map((tag: string) => (
-                <Tag key={tag} color="inherit" px="3">
+              {tags && tags.map((tag: string) => (
+                <Tag backgroundColor={"indigo.100"} key={tag} color="inherit" px="3">
                   {tag}
                 </Tag>
               ))}
-            </Wrap>
+          </Wrap>
         </Stack>
-        <HStack>
-          <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.400")}>
-            to define fundraising info : tokenomics, total amount raised, supporters
-          </Text>
-        </HStack>
       </Stack>
       <Stack align="center">
-        <Button colorScheme="blue" isFullWidth>
-          Fund Now
-        </Button>
+        <Button
+            w={'150px'}
+            h={'48px'}
+            size={'md'}
+            colorScheme="indigo"
+            rightIcon={<CaretRight size={20} />}
+            onClick={() => router.push(`/project/${id}`)}
+          >
+            Fund Now
+          </Button>
       </Stack>
     </Stack>
   );

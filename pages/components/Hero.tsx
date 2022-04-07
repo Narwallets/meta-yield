@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   useBreakpointValue,
+  Link
 } from "@chakra-ui/react";
 import * as React from "react";
 
@@ -33,12 +34,14 @@ export const Hero = () => (
           direction={{ base: "column", sm: "row" }}
           justify="center"
         >
-          <Button variant="secondary-on-accent" size="lg">
+          <Button colorScheme={'indigo'}  size="lg">
             Connect Wallet
           </Button>
-          <Button variant="primary-on-accent" size="lg">
+          <Link href="#how-it-works">
+          <Button variant="secondary-on-accent"  size="lg">
             How it works
           </Button>
+          </Link>
         </Stack>
       </Stack>
     </Container>
