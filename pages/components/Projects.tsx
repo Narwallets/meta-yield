@@ -10,7 +10,7 @@ export const Projects = (props: {}) => {
   return (
     <Box
       mx="auto"
-      px={{ base: "4", md: "8", lg: "12" }}
+      
       py={{ base: "6", md: "8", lg: "12" }}
       as="section"
       id="projects"

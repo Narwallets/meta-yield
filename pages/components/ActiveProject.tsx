@@ -18,6 +18,7 @@ import {
   Square,
   Flex,
   Circle,
+  AspectRatio,
 } from "@chakra-ui/react";
 import { Card } from "./Card";
 import Image from "next/image";
@@ -25,9 +26,11 @@ import Link from "next/link";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
 import { ProjectProps } from "../Home";
 import { useRouter } from "next/router";
+import { truncateText } from "../utils/textHandlers";
 import { useGetProjects } from "../hooks/projects";
 import { getActiveProjects, getProjectDetails } from "../../lib/near";
 import moment from "moment";
+
 export const ActiveProject = (props: {}) => {
   const { data, isLoading } = useGetProjects();
   const [projectData, setProjectData] = useState<ProjectProps | undefined>(
@@ -158,7 +161,9 @@ export const ActiveProject = (props: {}) => {
                 <Text mt={14} color="emphasized" fontSize="md">
                   <b>{projectData?.kickstarter?.total_supporters}</b> supporters
                 </Text>
-                {projectData?.verified && <CircleWavyCheck size={24} />}
+                { 
+                  // projectData?.verified && <CircleWavyCheck size={24} />
+                }
               </Stack>
               <Stack align="flex-start" spacing="4">
                 <Button
