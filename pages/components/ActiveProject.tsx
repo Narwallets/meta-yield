@@ -18,6 +18,7 @@ import {
   Square,
   Flex,
   Circle,
+  AspectRatio,
 } from "@chakra-ui/react";
 import { Card } from "./Card";
 import Image from "next/image";
@@ -25,6 +26,7 @@ import Link from "next/link";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
 import { ProjectProps } from "../Home";
 import { useRouter } from "next/router";
+import { truncateText } from "../utils/textHandlers";
 export const ActiveProject = (props: { projects: ProjectProps[] }) => {
   const project = props.projects[0];
   const avatarColor = useColorModeValue("white", "gray.700");
@@ -38,14 +40,13 @@ export const ActiveProject = (props: { projects: ProjectProps[] }) => {
       <Card p={0} mt={10}>
         <Flex>
           <Box borderRadius={useBreakpointValue({ base: "md", md: "xl" })} minW={400} minH={310} backgroundColor={'black'}>
-            <Flex  alignItems={'center'} height={310}>
+            <Flex position="relative" alignItems={'center'} height={310}>
               <Image
-                src={project.imageUrl}
-                alt="project"
-                width="400"
-                height={'100%'}
-                layout={'fixed'}
-              />
+                  src={project.imageUrl}
+                  alt="project"
+                  layout='fill'
+                  objectFit='contain'
+                />              
             </Flex>
           </Box>
           <Box mr="10" ml="10">
@@ -80,7 +81,7 @@ export const ActiveProject = (props: { projects: ProjectProps[] }) => {
                                           />
               }
             </Stack>
-            <Text mt="2">{project.description}</Text>
+            <Text mt="2">{ truncateText(project.description, 250) }</Text>
             <Wrap
               shouldWrapChildren
               mt="5"

@@ -27,7 +27,8 @@ export interface ProjectProps {
 
 const Home = () => {
   const { data, isLoading } = useGetProjects();
-  if (isLoading) return <>Loading...</>;
+   /* space to add a loader*/
+  if (isLoading) return <></> 
   return (
     <>
 

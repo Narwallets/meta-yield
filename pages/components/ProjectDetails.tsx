@@ -27,6 +27,7 @@ import {
   Spacer,
   Input,
   Center,
+  Circle,
 } from "@chakra-ui/react";
 import { Card } from "./Card";
 // import Image from "next/image";
@@ -52,27 +53,35 @@ const ProjectDetails = (props: { id: number }) => {
   }, [data, props]);
   if (!project) return <>Loading...</>;
   return (
-    <Box as="section" mx="auto" p={{ base: "6", md: "8" }}>
+    <Box pr={123} pl={123} as="section" mx="auto" >
       <SimpleGrid columns={2} spacing={30}>
         <Box>
           <Stack
             spacing={{ base: "1", md: "2" }}
             direction={{ base: "column", md: "row" }}
           >
-            <Image src={project.avatarUrl} alt="project" boxSize="60px" />
-            <Text as="h2" fontWeight="bold" fontSize="xl">
+            <Circle position={'relative'} backgroundColor={'white'} maxH={'55px'} maxW={'55px'} mr={2} boxShadow='xl' >
+              <Circle maxW={'60px'} m="2" overflow={'hidden'}>
+                <Image
+                  src={project.avatarUrl}
+                  alt="project"
+                  width="48px"
+                  height="48px"
+                />
+              </Circle>
+            </Circle>
+          
+            <Text as="h2" fontWeight="bold" fontSize="4xl">
               {project.name}
             </Text>
-            {project.verified && (
-              <>
-                <CircleWavyCheck size={24} />{" "}
-                <Wrap shouldWrapChildren mt="5" color={tagsColor}>
-                  <Tag key="verified" color="inherit" px="3">
-                    Verified Project
-                  </Tag>
-                </Wrap>
-              </>
-            )}
+            {
+                project.verified &&  <Image
+                                            src={'/check.svg'}
+                                            alt="check"
+                                            width={'16px'}
+                                            height={'16px'}
+                                          />
+              }
           </Stack>
           <Text mt="2">{project.motto}</Text>
           <Wrap shouldWrapChildren mt="5" color={tagsColor}>
@@ -84,6 +93,8 @@ const ProjectDetails = (props: { id: number }) => {
               ))}
           </Wrap>
           <Stack
+            mt={5}
+            mb={10}
             direction={{ base: "column", md: "row" }}
             spacing={{ base: "3", md: "10" }}
             align="flex-start"
