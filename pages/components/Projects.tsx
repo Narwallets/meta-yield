@@ -3,8 +3,10 @@ import * as React from "react";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectGrid } from "./ProjectGrid";
 import { ProjectProps } from "../Home";
-export const Projects = (props: { projects: ProjectProps[] }) => {
-  const { projects } = props;
+import { useGetProjects } from "../hooks/projects";
+export const Projects = (props: {}) => {
+  const { data, isLoading } = useGetProjects();
+  if (isLoading) return <>Loading...</>;
   return (
     <Box
       mx="auto"
@@ -18,7 +20,7 @@ export const Projects = (props: { projects: ProjectProps[] }) => {
           Other Projects
         </Text>
         <ProjectGrid>
-          {projects
+          {data
             .filter((project: ProjectProps) => !project.active)
             .map((project: ProjectProps) => (
               <ProjectCard key={project.id} project={project} />
