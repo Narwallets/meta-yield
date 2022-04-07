@@ -1,6 +1,6 @@
-export const getConfig = async (env: string)  => {
+export const getConfig = (env: string)  => {
   const CONTRACT_NAME =
-    process.env.CONTRACT_NAME || "dev-1647362531405-23502905659580";
+    process.env.CONTRACT_NAME || "katherine_fundraising.testnet";
   switch (env) {
     case "production":
     case "mainnet":
