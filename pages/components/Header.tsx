@@ -16,27 +16,17 @@ import {
   ButtonGroup,
   Spacer,
   Square,
-  Image
+  Image,
 } from "@chakra-ui/react";
-import { WalletConnection } from "near-api-js";
-import {
-  METAPOOL_CONTRACT_ID,
-  gas,
-  getWallet,
-  getMetapoolContract,
-  getStNearPrice,
-} from "../../lib/util";
+import { getWallet, getBalance } from "../../lib/near";
 import colors from "../colors";
-
+import { useStore } from "../stores/wallet";
 export const Header: React.FC<ButtonProps> = (props) => {
-  const [wallet, setWallet] = useState<WalletConnection>();
+  const { wallet, setWallet } = useStore();
   const [signInAccountId, setSignInAccountId] = useState(null);
+  const [stNearBalance, setStNearBalance] = useState<number>(0);
+
   const isDesktop = useBreakpointValue({ base: false, lg: true });
-  const getPrice = async () => {
-    return await getStNearPrice(wallet!, {
-      accountId: signInAccountId,
-    });
-  };
 
   const onConnect = async () => {
     const tempWallet = await getWallet();
@@ -47,8 +37,9 @@ export const Header: React.FC<ButtonProps> = (props) => {
   useEffect(() => {
     (async () => {
       try {
-        // await wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
-        // await getPrice();
+        if (wallet) {
+          setStNearBalance(await getBalance(wallet!));
+        }
       } catch (e) {
         console.log(e);
       }
@@ -60,54 +51,69 @@ export const Header: React.FC<ButtonProps> = (props) => {
       <Box as="nav" alignContent="flex-end">
         <Container py={{ base: "3", lg: "4" }}>
           <Flex justify="space-between">
-            
-            <Square minW='45px'>
+            <Square minW="45px">
               <Image
-                boxSize='25px'
-                objectFit='cover'
-                src='/logo.png'
-                alt='Dan Abramov'
+                boxSize="25px"
+                objectFit="cover"
+                src="/logo.png"
+                alt="logo"
               />
             </Square>
-            <Square fontSize={'24px'} ><Link href="/"><b>Meta Yield</b></Link></Square>
-            <Spacer/>
+            <Square fontSize={"24px"}>
+              <Link href="/">
+                <b>Meta Yield</b>
+              </Link>
+            </Square>
+            <Spacer />
             <HStack spacing="4">
-              
               {isDesktop && (
                 <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
                   <Link>
-                    <Button fontWeight={600} fontSize={'md'}  color={colors.indigo[500]} aria-current="page" variant="nav">
+                    <Button
+                      fontWeight={600}
+                      fontSize={"md"}
+                      color={colors.indigo[500]}
+                      aria-current="page"
+                      variant="nav"
+                    >
                       {" "}
                       Projects{" "}
                     </Button>
                   </Link>
                   <Link href="#how-it-works">
-                    <Button fontWeight={600} fontSize={'16px'} variant="nav"> How it works </Button>
+                    <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                      {" "}
+                      How it works{" "}
+                    </Button>
                   </Link>
                 </ButtonGroup>
               )}
             </HStack>
             {isDesktop ? (
               <HStack spacing="4">
-                <Square minW='30px'>
-                  <Image
-                    boxSize='20px'
-                    objectFit='cover'
-                    src='/st-logo.png'
-                    alt='Dan Abramov'
-                  />
-                </Square>
-                <Text color={colors.indigo[500]} fontWeight={600} >stNEAR</Text> <Text> $12.66</Text>
                 {signInAccountId ? (
-                  <a
-                    href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {signInAccountId}
-                  </a>
+                  <>
+                    <Square minW="30px">
+                      <Image
+                        boxSize="20px"
+                        objectFit="cover"
+                        src="/st-logo.png"
+                        alt="stnear"
+                      />
+                    </Square>
+                    <Text>{stNearBalance.toFixed(5)}</Text>
+                    <a
+                      href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {signInAccountId}
+                    </a>
+                  </>
                 ) : (
-                  <Button colorScheme="indigo" onClick={() => onConnect()}>Connect Wallet</Button>
+                  <Button colorScheme="indigo" onClick={() => onConnect()}>
+                    Connect Wallet
+                  </Button>
                 )}
               </HStack>
             ) : signInAccountId ? (
@@ -119,7 +125,9 @@ export const Header: React.FC<ButtonProps> = (props) => {
                 {signInAccountId}
               </a>
             ) : (
-              <Button colorScheme="indigo" onClick={() => onConnect()}>Connect Wallet</Button>
+              <Button colorScheme="indigo" onClick={() => onConnect()}>
+                Connect Wallet
+              </Button>
             )}
           </Flex>
         </Container>
