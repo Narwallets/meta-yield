@@ -22,7 +22,7 @@ import {
   Tab,
   TabPanel,
   Avatar,
-  Progress,
+  Link,
   Flex,
   Spacer,
   Input,
@@ -54,20 +54,21 @@ const FundingSummary = (props: { id: number }) => {
   if (!project) return <>Loading...</>;
   return (
     <Box as="section" p={{ base: "3", md: "10" }}>
-      <Button
-        colorScheme="indigo"
-        leftIcon={<CaretLeft size={20} />}
+      <Link
+        color="indigo.500"
+        fontSize={'sm'}
         onClick={() => router.push(`/project/${project.id}`)}
       >
-        Back to project
-      </Button>
+        <Flex><CaretLeft size={20} /> Back to project</Flex> 
+      </Link>
       <Text
+        mt="22"
         fontSize="3xl"
         lineHeight="9"
         fontWeight="semibold"
         color="gray.500"
       >
-        Funding Summary
+        Staking summary
       </Text>
       <SimpleGrid columns={2} spacing={30}>
         <Box>
@@ -219,7 +220,7 @@ const FundingSummary = (props: { id: number }) => {
             </Card>
 
             <Stack align="center">
-              <Button colorScheme="blue" isFullWidth size="lg">
+              <Button colorScheme="blue" isFullWidth size="lg" onClick={() => router.push(`/project/success/${project.id}`)} >
                 Invest {amountToFund} stNEAR from {}
               </Button>
             </Stack>
