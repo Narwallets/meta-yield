@@ -3,8 +3,6 @@ export const decodeJsonRpcData = (data: any) => {
   for (let i = 0; i < data.length; i++) {
     res += String.fromCharCode(data[i]);
   }
-  console.log(res);
-  console.log(JSON.parse(res));
   return JSON.parse(res);
 };
 

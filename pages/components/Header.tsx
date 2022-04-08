@@ -18,7 +18,7 @@ import {
   Square,
   Image,
 } from "@chakra-ui/react";
-import { getWallet, getBalance } from "../../lib/near";
+import { getWallet, getBalance, METAPOOL_CONTRACT_ID } from "../../lib/near";
 import colors from "../colors";
 import { useStore } from "../stores/wallet";
 export const Header: React.FC<ButtonProps> = (props) => {
@@ -29,9 +29,7 @@ export const Header: React.FC<ButtonProps> = (props) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   const onConnect = async () => {
-    const tempWallet = await getWallet();
-    setWallet(tempWallet);
-    setSignInAccountId(tempWallet.getAccountId());
+    wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
   };
 
   useEffect(() => {
@@ -45,6 +43,14 @@ export const Header: React.FC<ButtonProps> = (props) => {
       }
     })();
   }, [wallet]);
+
+  useEffect(() => {
+    (async () => {
+      const tempWallet = await getWallet();
+      setWallet(tempWallet);
+      setSignInAccountId(tempWallet.getAccountId());
+    })();
+  }, []);
 
   return (
     <Box as="section" pb={{ base: "12", md: "24" }}>
