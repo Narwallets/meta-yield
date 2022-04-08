@@ -1,12 +1,12 @@
 import {
   Box,
-  Button,
   Container,
-  Heading,
+  Image,
   Stack,
   Text,
   HStack,
-  useBreakpointValue,
+  Spacer,
+  Flex,
 } from "@chakra-ui/react";
 import * as React from "react";
 
@@ -21,19 +21,27 @@ export const HowItWorks = () => (
   >
     <Container>
       <Stack spacing={{ base: "8", md: "10" }} align="center">
-        <Text fontSize="xl" lineHeight="7" fontWeight="semibold">
-          How It Works
-        </Text>
-        <Text
-          fontSize="6xl"
-          lineHeight="none"
-          fontWeight="extrabold"
-          color="indigo.600"
-        >
-          Fund to earn.
-        </Text>
-        <HStack spacing={{ base: "8", md: "10" }} align="center">
+        <Flex flexDirection={'column'} alignItems={'center'} mb={'50px'}>
+          <Text fontSize="xl" lineHeight="7" fontWeight="semibold">
+            How It Works
+          </Text>
+          <Text
+            fontSize="6xl"
+            lineHeight="none"
+            fontWeight="extrabold"
+            color="indigo.600"
+          >
+            Fund to earn.
+          </Text>
+        </Flex>
+        <HStack  spacing={{ base: "8", md: "10" }} align="center">
           <Stack>
+              <Image
+                src={'/connectwallet.svg'}
+                alt="project"
+                width="72px"
+                height={"72px"}
+              />
             <Text fontSize="2xl" lineHeight="8" fontWeight="semibold">
               Connect your wallet
             </Text>
@@ -42,6 +50,12 @@ export const HowItWorks = () => (
             </Text>
           </Stack>
           <Stack>
+            <Image
+              src={'/stakenear.svg'}
+              alt="project"
+              width="72px"
+              height={"72px"}
+            />
             <Text fontSize="2xl" lineHeight="8" fontWeight="semibold">
               Stake NEAR tokens
             </Text>
@@ -50,6 +64,12 @@ export const HowItWorks = () => (
             </Text>
           </Stack>
           <Stack>
+            <Image
+              src={'/earntokens.svg'}
+              alt="project"
+              width="72px"
+              height={"72px"}
+            />
             <Text fontSize="2xl" lineHeight="8" fontWeight="semibold">
               Fund crypto projects
             </Text>
@@ -58,6 +78,12 @@ export const HowItWorks = () => (
             </Text>
           </Stack>
           <Stack>
+            <Image
+              src={'/fundprojects.svg'}
+              alt="project"
+              width="72px"
+              height={"72px"}
+            />
             <Text fontSize="2xl" lineHeight="8" fontWeight="semibold">
               Earn new tokens
             </Text>

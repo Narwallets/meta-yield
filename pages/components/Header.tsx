@@ -86,7 +86,7 @@ export const Header: React.FC<ButtonProps> = (props) => {
                       Projects{" "}
                     </Button>
                   </Link>
-                  <Link href="#how-it-works">
+                  <Link href="/#how-it-works">
                     <Button fontWeight={600} fontSize={"16px"} variant="nav">
                       {" "}
                       How it works{" "}
