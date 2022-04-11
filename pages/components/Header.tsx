@@ -92,6 +92,12 @@ export const Header: React.FC<ButtonProps> = (props) => {
                       How it works{" "}
                     </Button>
                   </Link>
+                  <Link href="/dashboard">
+                    <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                      {" "}
+                      Dashboard{" "}
+                    </Button>
+                  </Link>
                 </ButtonGroup>
               )}
             </HStack>
