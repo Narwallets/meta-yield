@@ -1,65 +1,88 @@
 import React, { useEffect, useState } from "react";
-import { HStack, Stack, Text, Progress, Flex, Spacer, Tag } from "@chakra-ui/react";
+import {
+  HStack,
+  Stack,
+  Text,
+  Flex,
+  Spacer,
+  Tag,
+  Container,
+  Progress,
+  Box,
+} from "@chakra-ui/react";
 import { Card } from "./Card";
-export const GoalsProgressCard = () => {
+import { KickstarterProps } from "../types/project.types";
+import { Goal } from "./Goal";
+import { useGoal } from "../hooks/useGoal";
+import moment from "moment";
+export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
+  const kickstarter = props.kickstarter;
+  const [currentGoalId, { setGoalId }] = useGoal({
+    maxGoal: kickstarter.goals.length,
+    initialGoal: kickstarter.goals[0].id,
+  });
+  const [goal, setGoal] = useState(kickstarter.goals[0]);
+  const [goalRaised, setGoalRaised] = useState(0);
+  const [goalProgress, setGoalProgress] = useState(0);
+  const getGoalStatus = () => {
+    const [currentFundingGoal] = kickstarter.goals.filter(
+      (g) => parseInt(g.desired_amount) > kickstarter.total_deposited
+    );
+    const desiredAmount = parseInt(currentFundingGoal.desired_amount);
+    if (moment().valueOf() > kickstarter.close_timestamp) {
+      if (kickstarter.total_deposited < desiredAmount) {
+        return "Timeout";
+      } else return "Completed";
+    } 
+    return "In Progress";
+  };
+  useEffect(() => {
+    const goal = kickstarter.goals.find((g) => g.id === currentGoalId);
+    if (goal) {
+      const goalDesiredAmount = parseInt(goal.desired_amount);
+      const raised =
+        currentGoalId === 0
+          ? kickstarter.total_deposited
+          : goalDesiredAmount - kickstarter.total_deposited;
+      setGoal(goal);
+      setGoalRaised(raised);
+      setGoalProgress((goalRaised * 100) / goalDesiredAmount);
+    }
+  }, [currentGoalId, kickstarter.goals]);
   return (
     <Card>
-      <Stack spacing="6">
-        <Flex>
-          {" "}
-          <Text fontSize="sm" fontWeight="subtle">
-            PROGRESS
-          </Text>
-          <Spacer />{" "}
-          <Tag
-            size="md"
-            borderRadius="full"
-            variant="solid"
-            colorScheme="orange"
-          >
-            Timeout
-          </Tag>
-        </Flex>
-          <Stack>
-            <Progress
-              colorScheme="indigo"
-              value={100}
-             size="lg"
-            />
-            <Text fontSize="sm" fontWeight="subtle">
-              LOW CAP
-            </Text>
-            <Text fontSize="xxs" fontWeight="bold">
-              15.000
-            </Text>
+      <Text>GOALS</Text>
+      <Container py={{ base: "4", md: "8" }}>
+        <Stack>
+          <Stack spacing="0" direction={{ base: "column", md: "row" }}>
+            {kickstarter.goals.map((goal) => (
+              <Goal
+                key={goal.id}
+                cursor="pointer"
+                onClick={() => setGoalId(goal.id)}
+                kickstarterGoal={goal}
+                isActive={currentGoalId === goal.id}
+                isCompleted={currentGoalId > goal.id}
+                isFirstGoal={goal.id === 0}
+                isLastGoal={kickstarter.goals.length === goal.id + 1}
+              />
+            ))}
           </Stack>
-          <Stack>
-            <Progress
-              colorScheme="indigo"
-              value={20}
-              size="lg"
-            />
-            <Text fontSize="sm" fontWeight="subtle">
-              MID CAP
-            </Text>
-            <Text fontSize="xxs" fontWeight="bold">
-              25.000
-            </Text>
-          </Stack>
-          <Stack>
-            <Progress
-              colorScheme="indigo"
-              value={0}
-              size="lg"
-            />
-            <Text fontSize="sm" fontWeight="subtle">
-              TOP CAP
-            </Text>
-            <Text fontSize="xxs" fontWeight="bold">
-              55.000
-            </Text>
-          </Stack>
-      </Stack>
+          <Progress colorScheme="indigo" value={goalProgress} size="lg" />
+        </Stack>
+      </Container>
+      <Flex>
+        <Box>
+          <HStack>
+            <Text>{goal.name}</Text>
+            <Text>${(goalRaised / 10 ** 24).toFixed(2)}</Text>
+          </HStack>
+        </Box>
+        <Spacer />
+        <Box>
+          <Tag>{getGoalStatus()}</Tag>
+        </Box>
+      </Flex>
     </Card>
   );
 };
