@@ -25,18 +25,16 @@ export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
   const [goalRaised, setGoalRaised] = useState(0);
   const [goalProgress, setGoalProgress] = useState(0);
   const getGoalStatus = () => {
-    const totalAmountDesired = kickstarter.goals
-      .map((g) => parseInt(g.desired_amount))
-      .reduce((sum: number, current: number) => sum + current);
-    if (kickstarter.close_timestamp > moment().valueOf()) {
-      if (kickstarter.total_deposited < totalAmountDesired) {
+    const [currentFundingGoal] = kickstarter.goals.filter(
+      (g) => parseInt(g.desired_amount) > kickstarter.total_deposited
+    );
+    const desiredAmount = parseInt(currentFundingGoal.desired_amount);
+    if (moment().valueOf() > kickstarter.close_timestamp) {
+      if (kickstarter.total_deposited < desiredAmount) {
         return "Timeout";
-      } else "Completed";
-    } else {
-      if (kickstarter.total_deposited < totalAmountDesired) {
-        return "In Progress";
-      } else "Completed";
-    }
+      } else return "Completed";
+    } 
+    return "In Progress";
   };
   useEffect(() => {
     const goal = kickstarter.goals.find((g) => g.id === currentGoalId);
