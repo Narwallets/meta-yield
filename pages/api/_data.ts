@@ -62,7 +62,7 @@ export const data = [
     ],
   },
   {
-    id: 2,
+    id: 1,
     name: "Metamon",
     slug: "metamon",
     motto: "Capture, evolve and battle!",
@@ -87,9 +87,43 @@ export const data = [
     <li>The huge buzz around farming on Ethereum, BSC, Terra, and Avalanche brings NEAR a clear opportunity to attract new users and bring greater value to existing ones.</li>
     <li>There is currently no opportunity for users to get loans for farming on NEAR. Yet.</li>
     </ul>`,
+    team: [
+      {
+        id:1,
+        name: "Igor Stadnyk",
+        bio: "Founder and CEO with a software development background and a proven track record of launching and leading blockchain projects since 2012. Corgi devotee and Lead Rocker at PembRock.",
+        avatarUrl:
+          "	https://pembrock.finance/static/Igor_Stadnyk-e3b4eec08e68b0074fd34e2732a6fd38.png",
+          handle: "@igor"
+      },
+      {
+        id:2,
+        name: "Vitalii Dmytrenko",
+        bio: "CTO and Core Developer with more than 2 decades of experience in software and hardware development, reverse engineering and cybersecurity research. Cypherpunk. Web3 & DeFi advocate.",
+        avatarUrl:
+          "https://pembrock.finance/static/Vitalii_Dmytrenko-6162eb5af90f048468b5cfe71b3daf89.png",
+          handle:"@vitalii"
+      },
+      {
+        id:3,
+        name: "Oleksandr Molotsylo",
+        bio: "Front End Lead Developer with over 10 years of experience developing in different programming languages. Blockchain fan for the last 4 years. Mentor, JS and ReactJS teacher.",
+        avatarUrl:
+          "https://pembrock.finance/static/Oleksandr_Molotsylo-d5fd00dc84fa48eb563b3e0880e78563.png",
+          handle: "@Oleksandr"
+      },
+      {
+        id:4,
+        name: "Ivan Skrypachov",
+        bio: "Project Manager with 5+ years in Product IT. Guided by gained experience, Ivan smoothly manages teams of up to 30 people and builds processes from scratch. SCRUM guru.",
+        avatarUrl:
+          "https://pembrock.finance/static/Ivan_Skrypachov-729265f8d7e8a60828d0a45270bb3060.png",
+          handle:"@ivan"
+      },
+    ],
   },
   {
-    id: 4,
+    id: 2,
     name: "Battlemon",
     slug: "battlemon",
     motto: "Battle NFT PVP third-person shooter P2E Rent2E.",
@@ -114,9 +148,43 @@ export const data = [
     <li>The huge buzz around farming on Ethereum, BSC, Terra, and Avalanche brings NEAR a clear opportunity to attract new users and bring greater value to existing ones.</li>
     <li>There is currently no opportunity for users to get loans for farming on NEAR. Yet.</li>
     </ul>`,
+    team: [
+      {
+        id:1,
+        name: "Igor Stadnyk",
+        bio: "Founder and CEO with a software development background and a proven track record of launching and leading blockchain projects since 2012. Corgi devotee and Lead Rocker at PembRock.",
+        avatarUrl:
+          "	https://pembrock.finance/static/Igor_Stadnyk-e3b4eec08e68b0074fd34e2732a6fd38.png",
+          handle: "@igor"
+      },
+      {
+        id:2,
+        name: "Vitalii Dmytrenko",
+        bio: "CTO and Core Developer with more than 2 decades of experience in software and hardware development, reverse engineering and cybersecurity research. Cypherpunk. Web3 & DeFi advocate.",
+        avatarUrl:
+          "https://pembrock.finance/static/Vitalii_Dmytrenko-6162eb5af90f048468b5cfe71b3daf89.png",
+          handle:"@vitalii"
+      },
+      {
+        id:3,
+        name: "Oleksandr Molotsylo",
+        bio: "Front End Lead Developer with over 10 years of experience developing in different programming languages. Blockchain fan for the last 4 years. Mentor, JS and ReactJS teacher.",
+        avatarUrl:
+          "https://pembrock.finance/static/Oleksandr_Molotsylo-d5fd00dc84fa48eb563b3e0880e78563.png",
+          handle: "@Oleksandr"
+      },
+      {
+        id:4,
+        name: "Ivan Skrypachov",
+        bio: "Project Manager with 5+ years in Product IT. Guided by gained experience, Ivan smoothly manages teams of up to 30 people and builds processes from scratch. SCRUM guru.",
+        avatarUrl:
+          "https://pembrock.finance/static/Ivan_Skrypachov-729265f8d7e8a60828d0a45270bb3060.png",
+          handle:"@ivan"
+      },
+    ],
   },
   {
-    id: 5,
+    id: 3,
     name: "Bearverse",
     slug: "bearverse",
     motto:
@@ -142,6 +210,40 @@ export const data = [
     <li>The huge buzz around farming on Ethereum, BSC, Terra, and Avalanche brings NEAR a clear opportunity to attract new users and bring greater value to existing ones.</li>
     <li>There is currently no opportunity for users to get loans for farming on NEAR. Yet.</li>
     </ul>`,
+    team: [
+      {
+        id:1,
+        name: "Igor Stadnyk",
+        bio: "Founder and CEO with a software development background and a proven track record of launching and leading blockchain projects since 2012. Corgi devotee and Lead Rocker at PembRock.",
+        avatarUrl:
+          "	https://pembrock.finance/static/Igor_Stadnyk-e3b4eec08e68b0074fd34e2732a6fd38.png",
+          handle: "@igor"
+      },
+      {
+        id:2,
+        name: "Vitalii Dmytrenko",
+        bio: "CTO and Core Developer with more than 2 decades of experience in software and hardware development, reverse engineering and cybersecurity research. Cypherpunk. Web3 & DeFi advocate.",
+        avatarUrl:
+          "https://pembrock.finance/static/Vitalii_Dmytrenko-6162eb5af90f048468b5cfe71b3daf89.png",
+          handle:"@vitalii"
+      },
+      {
+        id:3,
+        name: "Oleksandr Molotsylo",
+        bio: "Front End Lead Developer with over 10 years of experience developing in different programming languages. Blockchain fan for the last 4 years. Mentor, JS and ReactJS teacher.",
+        avatarUrl:
+          "https://pembrock.finance/static/Oleksandr_Molotsylo-d5fd00dc84fa48eb563b3e0880e78563.png",
+          handle: "@Oleksandr"
+      },
+      {
+        id:4,
+        name: "Ivan Skrypachov",
+        bio: "Project Manager with 5+ years in Product IT. Guided by gained experience, Ivan smoothly manages teams of up to 30 people and builds processes from scratch. SCRUM guru.",
+        avatarUrl:
+          "https://pembrock.finance/static/Ivan_Skrypachov-729265f8d7e8a60828d0a45270bb3060.png",
+          handle:"@ivan"
+      },
+    ],
   },
 ];
 

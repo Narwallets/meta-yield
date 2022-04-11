@@ -32,36 +32,37 @@ import {
 import { Card } from "./Card";
 // import Image from "next/image";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps, TeamMemberProps } from "../Home";
+import { ProjectProps, TeamMemberProps } from "../types/project.types";
 import { useGetProjects } from "../hooks/projects";
 import parse from "html-react-parser";
 import { RewardsCalculator } from "./RewardsCalculator";
 import { useRouter } from "next/router";
 import { GoalsProgressCard } from "./GoalsProgressCard";
 import { FundingStatusCard } from "./FundingStatusCard";
-const ProjectDetails = (props: { id: number }) => {
+const ProjectDetails = (props: { data: any }) => {
   const router = useRouter();
-  const { data, isLoading } = useGetProjects();
-  const [project, setProject] = useState<ProjectProps | undefined>(undefined);
+  const project = props.data;
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const totalRaisedSize = useBreakpointValue({ base: "sm", md: "md" });
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
-  useEffect(() => {
-    if (data) {
-      setProject(data.find((p: ProjectProps) => p.id === props.id));
-    }
-  }, [data, props]);
   if (!project) return <>Loading...</>;
   return (
-    <Box pr={123} pl={123} as="section" mx="auto" >
+    <Box pr={123} pl={123} as="section" mx="auto">
       <SimpleGrid columns={2} spacing={30}>
         <Box>
           <Stack
             spacing={{ base: "1", md: "2" }}
             direction={{ base: "column", md: "row" }}
           >
-            <Circle position={'relative'} backgroundColor={'white'} maxH={'55px'} maxW={'55px'} mr={2} boxShadow='xl' >
-              <Circle maxW={'60px'} m="2" overflow={'hidden'}>
+            <Circle
+              position={"relative"}
+              backgroundColor={"white"}
+              maxH={"55px"}
+              maxW={"55px"}
+              mr={2}
+              boxShadow="xl"
+            >
+              <Circle maxW={"60px"} m="2" overflow={"hidden"}>
                 <Image
                   src={project.avatarUrl}
                   alt="project"
@@ -70,23 +71,23 @@ const ProjectDetails = (props: { id: number }) => {
                 />
               </Circle>
             </Circle>
-          
+
             <Text as="h2" fontWeight="bold" fontSize="4xl">
               {project.name}
             </Text>
-            {
-                project.verified &&  <Image
-                                            src={'/check.svg'}
-                                            alt="check"
-                                            width={'16px'}
-                                            height={'16px'}
-                                          />
-              }
+            {project.verified && (
+              <Image
+                src={"/check.svg"}
+                alt="check"
+                width={"16px"}
+                height={"16px"}
+              />
+            )}
           </Stack>
           <Text mt="2">{project.motto}</Text>
           <Wrap shouldWrapChildren mt="5" color={tagsColor}>
             {project.tags &&
-              project.tags.map((tag) => (
+              project.tags.map((tag: string) => (
                 <Tag key={tag} color="inherit" px="3">
                   {tag}
                 </Tag>
@@ -174,8 +175,8 @@ const ProjectDetails = (props: { id: number }) => {
           borderRadius="lg"
         >
           <Stack spacing={{ base: "3", md: "10" }}>
-            <FundingStatusCard />
-            <GoalsProgressCard />
+            <FundingStatusCard kickstarter={project.kickstarter} />
+            <GoalsProgressCard kickstarter={project.kickstarter}/>
             <Stack align="center">
               <Button
                 colorScheme="blue"
@@ -186,7 +187,7 @@ const ProjectDetails = (props: { id: number }) => {
                 Fund Now
               </Button>
             </Stack>
-            <RewardsCalculator />
+            <RewardsCalculator kickstarter={project.kickstarter} />
           </Stack>
         </Box>
       </SimpleGrid>

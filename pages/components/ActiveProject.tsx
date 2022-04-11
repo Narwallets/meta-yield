@@ -24,46 +24,42 @@ import { Card } from "./Card";
 import Image from "next/image";
 import Link from "next/link";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps } from "../Home";
+import { ProjectProps } from "../types/project.types";
 import { useRouter } from "next/router";
 import { truncateText } from "../utils/textHandlers";
-import { useGetProjects } from "../hooks/projects";
-import { getActiveProjects, getProjectDetails } from "../../lib/near";
+import { useGetProjectDetails, useGetProjects } from "../hooks/projects";
+import {
+  getActiveProjects,
+  getKickstarters,
+  getProjectDetails,
+} from "../../lib/near";
 import moment from "moment";
 
-export const ActiveProject = (props: {}) => {
-  const { data, isLoading } = useGetProjects();
-  const [projectData, setProjectData] = useState<ProjectProps | undefined>(
+export const ActiveProject = (props: {data: ProjectProps}) => {
+  const projectData = props.data;
+  // const { data, isLoading } = useGetProjects();
+  // const {data: projectData, isLoading} = useGetProjectDetails(0)
+  // const [projectData, setProjectData] = useState<ProjectProps | undefined>(
     undefined
-  );
+  // );
   const avatarColor = useColorModeValue("white", "gray.700");
   const iconColor = useColorModeValue("indigo.500", "indigo.200");
   const tagColor = useColorModeValue("gray.600", "gray.300");
   const borderRadius = useBreakpointValue({ base: "md", md: "xl" });
   const router = useRouter();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        if (!isLoading) {
-          const activeProjects = await getActiveProjects();
-          console.log("actives ", activeProjects.active);
-          const [active] = data.filter(
-            (p: ProjectProps) => p.id == activeProjects.active[0].id
-          );
-          if (active) {
-            const projectDetails = await getProjectDetails(active.id);
-            console.log("details", projectDetails);
-            setProjectData({ ...active, kickstarter: projectDetails });
-          }
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, [data, isLoading]);
-
-  if (isLoading || !projectData) return <>Loading...</>;
+  if (!projectData)
+    return (
+      <Box
+        as="section"
+        pt={{ base: "50", md: "100" }}
+        pb={{ base: "12", md: "24" }}
+      >
+        <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
+          No Active Project
+        </Text>
+      </Box>
+    );
   return (
     <Box
       as="section"
@@ -124,7 +120,7 @@ export const ActiveProject = (props: {}) => {
             <Text mt="2">{projectData?.description}</Text>
             <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor}>
               {projectData?.tags &&
-                projectData?.tags.map((tag) => (
+                projectData?.tags.map((tag: string) => (
                   <Tag
                     backgroundColor={"indigo.100"}
                     key={tag}

@@ -37,29 +37,47 @@ import { Card } from "./Card";
 import { Alien } from "phosphor-react";
 // import Image from "next/image";
 import { CaretLeft, CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps, TeamMemberProps } from "../Home";
+import { ProjectProps, TeamMemberProps } from "../types/project.types";
 import { useGetProjects } from "../hooks/projects";
 import { useRouter } from "next/router";
-const FundingSummary = (props: { id: number }) => {
+import moment from "moment";
+const FundingSummary = (props: { data: ProjectProps }) => {
   const router = useRouter();
-  const { data, isLoading } = useGetProjects();
-  const [project, setProject] = useState<ProjectProps | undefined>(undefined);
+  const project = props.data;
   const [amountToFund, setAmountToFund] = useState<number>(0);
+  const [fundingNeeded, setFundingNeeded] = useState<number | undefined>(
+    undefined
+  );
+  const [lockUpPeriod, setLockUpPeriod] = useState<number | undefined>(
+    undefined
+  );
   const handleChange = (event: any) => setAmountToFund(event.target.value);
+
   useEffect(() => {
-    if (data) {
-      setProject(data.find((p: ProjectProps) => p.id === props.id));
+    const totalAmountDesired = project.kickstarter?.goals
+      .map((g) => parseInt(g.desired_amount))
+      .reduce((sum: number, current: number) => sum + current);
+    if (totalAmountDesired) {
+      setFundingNeeded(totalAmountDesired / 10 ** 24);
     }
-  }, [data, props]);
+    const lockup = moment(project.kickstarter?.close_timestamp).diff(
+      moment(project.kickstarter?.open_timestamp),
+      "days"
+    );
+    setLockUpPeriod(lockup);
+  }, [project]);
+
   if (!project) return <>Loading...</>;
   return (
     <Box as="section" p={{ base: "3", md: "10" }}>
       <Link
         color="indigo.500"
-        fontSize={'sm'}
+        fontSize={"sm"}
         onClick={() => router.push(`/project/${project.id}`)}
       >
-        <Flex><CaretLeft size={20} /> Back to project</Flex> 
+        <Flex>
+          <CaretLeft size={20} /> Back to project
+        </Flex>
       </Link>
       <Text
         mt="22"
@@ -90,14 +108,14 @@ const FundingSummary = (props: { id: number }) => {
                 <Box>
                   <Text>FUNDING NEEDED</Text>
                   <Text fontSize="2xl" lineHeight="8" fontWeight="bold">
-                    $123,4356
+                    {fundingNeeded}
                   </Text>
                 </Box>
                 <Spacer />
                 <Box>
                   <Text>LOCKUP PERIOD</Text>
                   <Text fontSize="2xl" lineHeight="8" fontWeight="bold">
-                    3 month/s
+                    {lockUpPeriod} days
                   </Text>
                 </Box>
               </Flex>
@@ -161,26 +179,6 @@ const FundingSummary = (props: { id: number }) => {
                           fontWeight="semibold"
                           color="gray.500"
                         >
-                          Tokens stNEAR after Lockup period
-                        </Text>
-                        <Spacer />
-                        <Text
-                          fontSize="md"
-                          lineHeight="6"
-                          fontWeight="bold"
-                          color="gray.900"
-                        >
-                          0
-                        </Text>
-                      </Flex>
-                      <Divider />
-                      <Flex>
-                        <Text
-                          fontSize="md"
-                          lineHeight="6"
-                          fontWeight="semibold"
-                          color="gray.500"
-                        >
                           $GLA Tokens (Rewards)
                         </Text>
                         <Spacer />
@@ -210,7 +208,7 @@ const FundingSummary = (props: { id: number }) => {
                           fontWeight="bold"
                           color="gray.900"
                         >
-                          April 15th, 2022
+                          {moment(project.kickstarter?.close_timestamp).format("MMMM Do, YYYY")}
                         </Text>
                       </Flex>
                     </Stack>
@@ -220,7 +218,12 @@ const FundingSummary = (props: { id: number }) => {
             </Card>
 
             <Stack align="center">
-              <Button colorScheme="blue" isFullWidth size="lg" onClick={() => router.push(`/project/success/${project.id}`)} >
+              <Button
+                colorScheme="blue"
+                isFullWidth
+                size="lg"
+                onClick={() => router.push(`/project/success/${project.id}`)}
+              >
                 Invest {amountToFund} stNEAR from {}
               </Button>
             </Stack>

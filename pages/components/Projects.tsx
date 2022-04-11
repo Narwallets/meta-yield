@@ -2,15 +2,14 @@ import { Box, Text, Stack } from "@chakra-ui/react";
 import * as React from "react";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectGrid } from "./ProjectGrid";
-import { ProjectProps } from "../Home";
+import { ProjectProps } from "../types/project.types";
 import { useGetProjects } from "../hooks/projects";
-export const Projects = (props: {}) => {
-  const { data, isLoading } = useGetProjects();
-  if (isLoading) return <>Loading...</>;
+export const Projects = (props: { data: ProjectProps[] }) => {
+  // const { data, isLoading } = useGetProjects();
+  const data = props.data;
   return (
     <Box
       mx="auto"
-      
       py={{ base: "6", md: "8", lg: "12" }}
       as="section"
       id="projects"
@@ -20,11 +19,9 @@ export const Projects = (props: {}) => {
           Other Projects
         </Text>
         <ProjectGrid>
-          {data
-            .filter((project: ProjectProps) => !project.active)
-            .map((project: ProjectProps) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
+          {data.map((project: ProjectProps) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
         </ProjectGrid>
       </Stack>
     </Box>

@@ -9,7 +9,10 @@ import {
   Tag,
 } from "@chakra-ui/react";
 import { Card } from "./Card";
-export const FundingStatusCard = () => {
+import { KickstarterProps } from "../types/project.types";
+import moment from "moment";
+export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
+  const kickstarter = props.kickstarter;
   return (
     <Card>
       <Stack>
@@ -17,7 +20,7 @@ export const FundingStatusCard = () => {
           TOTAL RAISED
         </Text>
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-          $0
+          {kickstarter.total_deposited}
         </Text>
       </Stack>
       <HStack spacing="20">
@@ -26,7 +29,7 @@ export const FundingStatusCard = () => {
             SUPPORTERS
           </Text>
           <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
-            0
+            {kickstarter.total_supporters}
           </Text>
         </Stack>
         <Stack>
@@ -34,7 +37,11 @@ export const FundingStatusCard = () => {
             LEFT TO FUND
           </Text>
           <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
-            23 day/s
+            {moment().diff(
+              moment(kickstarter.close_timestamp),
+              "days"
+            )}{" "}
+            days
           </Text>
         </Stack>
         <Stack>
