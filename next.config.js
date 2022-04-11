@@ -6,7 +6,7 @@ const nextConfig = {
     domains: ['3621490034-files.gitbook.io', 'twitter.com', 'pbs.twimg.com', 'pembrock.finance']
   },
   env: {
-    CONTRACT_ID: 'dev-1649430868741-99451001026176',
+    CONTRACT_ID: 'v01.katherine_fundraising.testnet',
     METAPOOL_CONTRACT_ID: 'meta-v2.pool.testnet'
   }
 }

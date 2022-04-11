@@ -38,12 +38,13 @@ import { Alien } from "phosphor-react";
 // import Image from "next/image";
 import { CaretLeft, CaretRight, CircleWavyCheck } from "phosphor-react";
 import { ProjectProps, TeamMemberProps } from "../types/project.types";
-import { useGetProjects } from "../hooks/projects";
+import { useGetProjectDetails } from "../hooks/projects";
 import { useRouter } from "next/router";
 import moment from "moment";
-const FundingSummary = (props: { data: ProjectProps }) => {
+const FundingSummary = (props: { id: number }) => {
   const router = useRouter();
-  const project = props.data;
+  const { isLoading, data: project } = useGetProjectDetails(props.id);
+
   const [amountToFund, setAmountToFund] = useState<number>(0);
   const [fundingNeeded, setFundingNeeded] = useState<number | undefined>(
     undefined
@@ -54,20 +55,26 @@ const FundingSummary = (props: { data: ProjectProps }) => {
   const handleChange = (event: any) => setAmountToFund(event.target.value);
 
   useEffect(() => {
-    const totalAmountDesired = project.kickstarter?.goals
-      .map((g) => parseInt(g.desired_amount))
-      .reduce((sum: number, current: number) => sum + current);
-    if (totalAmountDesired) {
-      setFundingNeeded(totalAmountDesired / 10 ** 24);
+    if (project) {
+      const [currentFundingGoal] = project.kickstarter.goals.filter(
+        (g) => g.desired_amount > project.kickstarter.total_deposited
+      );
+      const raised =
+        project.kickstarter.id === 0
+          ? project.kickstarter.total_deposited
+          : currentFundingGoal.desired_amount -
+            project.kickstarter.total_deposited;
+      setFundingNeeded(parseInt(currentFundingGoal.desired_amount) / 10 ** 24);
+      const lockup = moment(currentFundingGoal.unfreeze_timestamp).diff(
+        moment(project.kickstarter?.close_timestamp),
+        "months"
+      );
+      setLockUpPeriod(lockup);
     }
-    const lockup = moment(project.kickstarter?.close_timestamp).diff(
-      moment(project.kickstarter?.open_timestamp),
-      "days"
-    );
-    setLockUpPeriod(lockup);
   }, [project]);
 
-  if (!project) return <>Loading...</>;
+  if (isLoading) return <>Loading</>;
+
   return (
     <Box as="section" p={{ base: "3", md: "10" }}>
       <Link
@@ -108,7 +115,7 @@ const FundingSummary = (props: { data: ProjectProps }) => {
                 <Box>
                   <Text>FUNDING NEEDED</Text>
                   <Text fontSize="2xl" lineHeight="8" fontWeight="bold">
-                    {fundingNeeded}
+                    {fundingNeeded?.toFixed(2)}
                   </Text>
                 </Box>
                 <Spacer />
@@ -208,7 +215,9 @@ const FundingSummary = (props: { data: ProjectProps }) => {
                           fontWeight="bold"
                           color="gray.900"
                         >
-                          {moment(project.kickstarter?.close_timestamp).format("MMMM Do, YYYY")}
+                          {moment(project.kickstarter?.close_timestamp).format(
+                            "MMMM Do, YYYY"
+                          )}
                         </Text>
                       </Flex>
                     </Stack>

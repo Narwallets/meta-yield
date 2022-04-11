@@ -15,7 +15,10 @@ const Home = () => {
     <>
       <Box pr={123} pl={123}>
         <Hero />
-        <ActiveProject data={data.active[0]} />;
+        {data.open.map((p) => (
+          <ActiveProject key={p.id} data={p} />
+        ))}
+
         <Projects data={data.open} />
         <HowItWorks />
       </Box>

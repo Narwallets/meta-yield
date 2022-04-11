@@ -22,7 +22,8 @@ export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
     initialGoal: kickstarter.goals[0].id,
   });
   const [goal, setGoal] = useState(kickstarter.goals[0]);
-  const [goalProgress, setGoalIdProgress] = useState(0);
+  const [goalRaised, setGoalRaised] = useState(0);
+  const [goalProgress, setGoalProgress] = useState(0);
   const getGoalStatus = () => {
     const totalAmountDesired = kickstarter.goals
       .map((g) => parseInt(g.desired_amount))
@@ -40,10 +41,14 @@ export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
   useEffect(() => {
     const goal = kickstarter.goals.find((g) => g.id === currentGoalId);
     if (goal) {
+      const goalDesiredAmount = parseInt(goal.desired_amount);
+      const raised =
+        currentGoalId === 0
+          ? kickstarter.total_deposited
+          : goalDesiredAmount - kickstarter.total_deposited;
       setGoal(goal);
-      setGoalIdProgress(
-        (kickstarter.total_deposited * 100) / parseInt(goal.desired_amount)
-      );
+      setGoalRaised(raised);
+      setGoalProgress((goalRaised * 100) / goalDesiredAmount);
     }
   }, [currentGoalId, kickstarter.goals]);
   return (
@@ -72,7 +77,7 @@ export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
         <Box>
           <HStack>
             <Text>{goal.name}</Text>
-            <Text>${parseInt(goal.desired_amount) / 10 ** 24}</Text>
+            <Text>${(goalRaised / 10 ** 24).toFixed(2)}</Text>
           </HStack>
         </Box>
         <Spacer />

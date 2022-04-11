@@ -37,8 +37,8 @@ export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             LEFT TO FUND
           </Text>
           <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
-            {moment().diff(
-              moment(kickstarter.close_timestamp),
+            {moment(kickstarter.close_timestamp).diff(
+              moment(),
               "days"
             )}{" "}
             days

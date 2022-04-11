@@ -33,19 +33,20 @@ import { Card } from "./Card";
 // import Image from "next/image";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
 import { ProjectProps, TeamMemberProps } from "../types/project.types";
-import { useGetProjects } from "../hooks/projects";
+import { useGetProjects, useGetProjectDetails } from "../hooks/projects";
 import parse from "html-react-parser";
 import { RewardsCalculator } from "./RewardsCalculator";
 import { useRouter } from "next/router";
 import { GoalsProgressCard } from "./GoalsProgressCard";
 import { FundingStatusCard } from "./FundingStatusCard";
-const ProjectDetails = (props: { data: any }) => {
+const ProjectDetails = (props: { id: number }) => {
   const router = useRouter();
-  const project = props.data;
+  const { isLoading, data: project } = useGetProjectDetails(props.id);
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const totalRaisedSize = useBreakpointValue({ base: "sm", md: "md" });
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
-  if (!project) return <>Loading...</>;
+
+  if (isLoading) return <>Loading</>;
   return (
     <Box pr={123} pl={123} as="section" mx="auto">
       <SimpleGrid columns={2} spacing={30}>
@@ -176,7 +177,10 @@ const ProjectDetails = (props: { data: any }) => {
         >
           <Stack spacing={{ base: "3", md: "10" }}>
             <FundingStatusCard kickstarter={project.kickstarter} />
-            <GoalsProgressCard kickstarter={project.kickstarter}/>
+            {project.kickstarter.goals &&
+              project.kickstarter.goals.length > 0 && (
+                <GoalsProgressCard kickstarter={project.kickstarter} />
+              )}
             <Stack align="center">
               <Button
                 colorScheme="blue"
@@ -187,7 +191,10 @@ const ProjectDetails = (props: { data: any }) => {
                 Fund Now
               </Button>
             </Stack>
-            <RewardsCalculator kickstarter={project.kickstarter} />
+            {project.kickstarter.goals &&
+              project.kickstarter.goals.length > 0 && (
+                <RewardsCalculator kickstarter={project.kickstarter} />
+              )}
           </Stack>
         </Box>
       </SimpleGrid>
