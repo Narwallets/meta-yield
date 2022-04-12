@@ -24,7 +24,7 @@ import { useStore } from "../stores/wallet";
 export const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, setWallet } = useStore();
   const [signInAccountId, setSignInAccountId] = useState(null);
-  const [stNearBalance, setStNearBalance] = useState<number>(0);
+  const [stNearBalance, setStNearBalance] = useState<string>("");
 
   const isDesktop = useBreakpointValue({ base: false, lg: true });
 
@@ -107,7 +107,7 @@ export const Header: React.FC<ButtonProps> = (props) => {
                         alt="stnear"
                       />
                     </Square>
-                    <Text>{stNearBalance.toFixed(5)}</Text>
+                    <Text>{stNearBalance}</Text>
                     <a
                       href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
                       target="_blank"
