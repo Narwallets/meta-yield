@@ -57,7 +57,7 @@ const FundingSummary = (props: { id: number }) => {
   useEffect(() => {
     if (project) {
       const [currentFundingGoal] = project.kickstarter.goals.filter(
-        (g) => g.desired_amount > project.kickstarter.total_deposited
+        (g: any) => g.desired_amount > project.kickstarter.total_deposited
       );
       const raised =
         project.kickstarter.id === 0
