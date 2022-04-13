@@ -57,7 +57,7 @@ export const ActiveProject = (props: { data: ProjectProps }) => {
         </Text>
       </Box>
     );
-  if (projectData) return (
+  return (
 
       <Card p={0} mt={10}>
         <Flex>

@@ -40,10 +40,10 @@ import { useRouter } from "next/router";
 import { GoalsProgressCard } from "./GoalsProgressCard";
 import { FundingStatusCard } from "./FundingStatusCard";
 import moment from "moment";
-import { getSupporterEstimatedStNear, getWallet } from "../../lib/near";
+import { getStNearPrice, getSupporterEstimatedStNear, getWallet } from "../../lib/near";
 
 
-const ProjectDetails = async (props: { id: number }) => {
+const ProjectDetails = (props: { id: number }) => {
   const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(props.id);
   const tagsColor = useColorModeValue("gray.600", "gray.300");
@@ -54,14 +54,6 @@ const ProjectDetails = async (props: { id: number }) => {
   const [showClaim, setShowClaim] = useState(false);
 
 
-
-  /* const activeProjects = await get();
-  for (const project of activeProjects.open) {
-    const projectOnChain = await getProjectDetails(project.id);
-    const projectStatic = data.find((sp) => sp.id === project.id);
-
-  } */
-
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
   const withdraw = ()=> {
       // call to contract for withdraw
@@ -70,8 +62,20 @@ const ProjectDetails = async (props: { id: number }) => {
     // call to contract for claiming the rewards
   }
 
-  const tempWallet = await getWallet();
-  const getWithdrawAmmount = await getSupporterEstimatedStNear(tempWallet, props.id.toString());
+
+  const getWithdrawAmmount =  async (wallet: any, id: string) => getSupporterEstimatedStNear(wallet, id);
+
+
+
+  useEffect(() => {
+    (async () => {
+      const tempWallet = await getWallet();
+      const price =  await getStNearPrice();
+      const ammount = getWithdrawAmmount(tempWallet, props.id.toString());
+    })();
+  }, [props]);
+
+
 
   useEffect(() => {
     if (project) {
@@ -83,11 +87,6 @@ const ProjectDetails = async (props: { id: number }) => {
 
   }, [project]);
 
-  useEffect(()=> {
-    if (showWithdraw) {
-      
-    }
-  }, [showWithdraw, tempWallet, props])
 
   if (isLoading) return <>Loading</>;
   return (
