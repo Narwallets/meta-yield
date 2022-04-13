@@ -40,7 +40,7 @@ export const ProjectCard = (props: Props) => {
     tags,
   } = project;
   return (
-    <Stack maxW={'30%'} spacing={useBreakpointValue({ base: "4", md: "5" })} {...rootProps}>
+    <Stack spacing={useBreakpointValue({ base: "4", md: "5" })} {...rootProps}>
       <Box position="relative">
         <AspectRatio ratio={4 / 3}>
           <Image
