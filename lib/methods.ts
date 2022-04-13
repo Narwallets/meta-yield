@@ -13,7 +13,8 @@ export const katherineViewMethods = {
     "get_supporter_total_deposit_in_kickstarter",
   getSupporterTotalRewards: "get_supporter_total_rewards",
   getSupporterAvailableRewards: "get_supporter_available_rewards",
-  getSupportedDetailedList: "get_supported_detailed_list"
+  getSupportedDetailedList: "get_supported_detailed_list",
+  getSupporterEstimatedStNear: "get_supporter_estimated_stnear",
 };
 
 // katherine gas methods (change methods)
