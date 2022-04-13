@@ -97,7 +97,7 @@ export const ProjectCard = (props: Props) => {
               }
           </Stack>
           <Stack             spacing={{ base: "1", md: "2" }}>
-          <Text>{truncateText(description, 150)}</Text>
+          <Text>{description && truncateText(description, 150)}</Text>
 
           </Stack>
           <Wrap
