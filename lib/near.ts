@@ -61,11 +61,22 @@ export const getTotalKickstarters = async () => {
 };
 
 
-export const getSupporterEstimatedStNear = async (wallet: WalletConnection, kickstarter_id: string) => {
-  return callViewMetapoolMethod(wallet, katherineViewMethods.getSupporterTotalDepositInKickstarter, {
+export const getSupporterEstimatedStNear = async (wallet: WalletConnection, kickstarter_id: number, price: string) => {
+  /* getContract(wallet).then( (contract)=> {
+    const opt: FunctionCallOptions = {
+      contractId: CONTRACT_ID ? CONTRACT_ID : '',
+      args: {
+        supporter_id: wallet.getAccountId(),
+        kickstarter_id,
+        st_near_price: price
+      },
+      methodName : katherineViewMethods.getSupporterEstimatedStNear
+    }
+    return  contract.account.functionCall(opt); */
+  return callPublicKatherineMethod( katherineViewMethods.getSupporterEstimatedStNear, {
     supporter_id: wallet.getAccountId(),
     kickstarter_id,
-    st_near_price: '0'
+    st_near_price: price
   });
 };
 

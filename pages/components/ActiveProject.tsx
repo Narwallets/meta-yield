@@ -58,8 +58,7 @@ export const ActiveProject = (props: { data: ProjectProps }) => {
       </Box>
     );
   return (
-
-      <Card p={0} mt={10}>
+      <Card key={projectData.slug} p={0} mt={10}>
         <Flex>
           <Box
             borderRadius={borderRadius}

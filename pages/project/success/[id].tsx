@@ -4,5 +4,6 @@ export default function Fund() {
   const router = useRouter();
   const { id } = router.query;
 
-  return <FundingSuccess id={Number(id)} />;
+  if(!id) return <></>
+  return <FundingSuccess id= {id} />
 }

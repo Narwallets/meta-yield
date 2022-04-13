@@ -24,8 +24,9 @@ const Home = () => {
               Current Project
             </Text>
             {data.open.map((p: any) => (
-
-              <ActiveProject key={p.id} data={p} />
+              <div  key={p.kickstarter.id}>
+                <ActiveProject data={p} />
+              </div>
             ))}
           </Box>
 

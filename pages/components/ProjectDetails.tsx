@@ -41,52 +41,51 @@ import { GoalsProgressCard } from "./GoalsProgressCard";
 import { FundingStatusCard } from "./FundingStatusCard";
 import moment from "moment";
 import { getStNearPrice, getSupporterEstimatedStNear, getWallet } from "../../lib/near";
+import { yoctoToStNear } from "../../lib/util";
 
 
-const ProjectDetails = (props: { id: number }) => {
+const ProjectDetails = (props: { id: any }) => {
   const router = useRouter();
-  const { isLoading, data: project } = useGetProjectDetails(props.id);
+  const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const totalRaisedSize = useBreakpointValue({ base: "sm", md: "md" });
 
   const [showFund, setShowFund] = useState(false);
   const [showWithdraw, setShowWithdraw] = useState(false);
   const [showClaim, setShowClaim] = useState(false);
-
+  const [ammountWithdraw, setAmmountWithdraw] = useState('0');
 
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
   const withdraw = ()=> {
       // call to contract for withdraw
   }
   const claim = ()=> {
-    // call to contract for claiming the rewards
+      // call to contract for claiming the rewards
   }
 
-
-  const getWithdrawAmmount =  async (wallet: any, id: string) => getSupporterEstimatedStNear(wallet, id);
-
-
+  const getWithdrawAmmount =  async (wallet: any, id: number, price: string) => getSupporterEstimatedStNear(wallet, id, price);
 
   useEffect(() => {
     (async () => {
-      const tempWallet = await getWallet();
-      const price =  await getStNearPrice();
-      const ammount = getWithdrawAmmount(tempWallet, props.id.toString());
+      if (project && !project.active ) {
+        setShowWithdraw(true);
+        const tempWallet = await getWallet();
+        const price =  await getStNearPrice();
+        const ammount = await getWithdrawAmmount(tempWallet, props.id, price.toString());
+        if( ammount) {
+          setAmmountWithdraw(yoctoToStNear(parseInt(ammount)));
+        }
+      }
     })();
-  }, [props]);
-
-
+  }, [props, project]);
 
   useEffect(() => {
     if (project) {
       if (project.kickstarter.goals.lenght && moment().diff(moment(project.kickstarter.close_timestamp)) <= 0 ){
         setShowFund(true);
       }
-      
     }
-
   }, [project]);
-
 
   if (isLoading) return <>Loading</>;
   return (
@@ -243,7 +242,7 @@ const ProjectDetails = (props: { id: number }) => {
                     size="lg"
                     onClick={withdraw}
                   >
-                    Withdraw (stNEAR 8,000)
+                    Withdraw (stNEAR {ammountWithdraw})
                   </Button>)
               }
               {

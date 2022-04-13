@@ -30,6 +30,7 @@ export const ProjectCard = (props: Props) => {
   const router = useRouter();
   const {
     id,
+    slug,
     name,
     imageUrl,
     motto,
