@@ -1,4 +1,4 @@
-import { SimpleGrid, SimpleGridProps } from '@chakra-ui/react'
+import { Flex, SimpleGrid, SimpleGridProps } from '@chakra-ui/react'
 import * as React from 'react'
 
 export const ProjectGrid = (props: SimpleGridProps) => {
@@ -13,7 +13,7 @@ export const ProjectGrid = (props: SimpleGridProps) => {
   }, [props.children])
 
   return (
-    <SimpleGrid
+    <Flex
       columns={columns}
       columnGap={{ base: '4', md: '6' }}
       rowGap={{ base: '8', md: '10' }}
