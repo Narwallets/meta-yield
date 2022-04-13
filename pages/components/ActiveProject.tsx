@@ -34,14 +34,11 @@ import {
   getProjectDetails,
 } from "../../lib/near";
 import moment from "moment";
+import { yoctoToStNear } from "../../lib/util";
 
-export const ActiveProject = (props: {data: ProjectProps}) => {
+export const ActiveProject = (props: { data: ProjectProps }) => {
   const projectData = props.data;
-  // const { data, isLoading } = useGetProjects();
-  // const {data: projectData, isLoading} = useGetProjectDetails(0)
-  // const [projectData, setProjectData] = useState<ProjectProps | undefined>(
-    undefined
-  // );
+
   const avatarColor = useColorModeValue("white", "gray.700");
   const iconColor = useColorModeValue("indigo.500", "indigo.200");
   const tagColor = useColorModeValue("gray.600", "gray.300");
@@ -150,13 +147,21 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
                   TOKENOMICS
                 </Text>
                 <Text mt={14} fontSize="md" color="emphasized">
-                  <b>{projectData.kickstarter?.total_deposited} </b> raised
+                  <b>
+                    {projectData?.kickstarter
+                      ? yoctoToStNear(
+                          projectData?.kickstarter?.total_deposited,
+                          5
+                        )
+                      : 0}{" "}
+                  </b>{" "}
+                  raised
                 </Text>
                 <Text mt={14} color="emphasized" fontSize="md">
                   <b>{projectData.kickstarter?.total_supporters}</b> supporters
                 </Text>
-                { 
-                  // projectData.verified && <CircleWavyCheck size={24} />
+                {
+                  // projectData?.verified && <CircleWavyCheck size={24} />
                 }
               </Stack>
               <Stack align="flex-start" spacing="4">

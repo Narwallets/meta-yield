@@ -15,7 +15,12 @@ import {
   katherineChangeMethods,
   metaPoolMethods,
 } from "./methods";
-import { decodeJsonRpcData, encodeJsonRpcData } from "./util";
+import {
+  decodeJsonRpcData,
+  encodeJsonRpcData,
+  stNearToYocto,
+  yoctoToStNear,
+} from "./util";
 
 export const CONTRACT_ID = process.env.CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID = process.env.METAPOOL_CONTRACT_ID;
@@ -49,7 +54,7 @@ export const getMetapoolContract = async (wallet: WalletConnection) => {
 };
 
 export const getTotalKickstarters = async () => {
-   return callPublicKatherineMethod(
+  return callPublicKatherineMethod(
     katherineViewMethods.getTotalKickstarters,
     {}
   );
@@ -100,7 +105,7 @@ export const getMetapoolAccountInfo = async (wallet: WalletConnection) => {
 
 export const getBalance = async (wallet: WalletConnection) => {
   const accountInfo = await getMetapoolAccountInfo(wallet);
-  return accountInfo.st_near / 10 ** 24;
+  return yoctoToStNear(accountInfo.st_near, 5);
 };
 const callPublicKatherineMethod = async (method: string, args: any) => {
   const response: any = await provider.query({

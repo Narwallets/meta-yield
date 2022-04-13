@@ -11,6 +11,7 @@ import {
 import { Card } from "./Card";
 import { KickstarterProps } from "../types/project.types";
 import moment from "moment";
+import { yoctoToStNear } from "../../lib/util";
 export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   return (
@@ -20,7 +21,7 @@ export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
           TOTAL RAISED
         </Text>
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-          {kickstarter.total_deposited}
+          {yoctoToStNear(kickstarter.total_deposited)}
         </Text>
       </Stack>
       <HStack spacing="20">
