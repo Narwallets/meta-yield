@@ -60,15 +60,8 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
         </Text>
       </Box>
     );
-  return (
-    <Box
-      as="section"
-      pt={{ base: "50", md: "100" }}
-      pb={{ base: "12", md: "24" }}
-    >
-      <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-        Current Project
-      </Text>
+  if (projectData) return (
+
       <Card p={0} mt={10}>
         <Flex>
           <Box
@@ -78,13 +71,16 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
             backgroundColor={"black"}
           >
             <Flex alignItems={"center"} height={310}>
-              <Image
-                src={projectData?.imageUrl}
-                alt="project"
-                width="400"
-                height={"100%"}
-                layout={"fixed"}
-              />
+              {
+                projectData.imageUrl && 
+                (<Image
+                    src={projectData.imageUrl}
+                    alt="project"
+                    width="400"
+                    height={"100%"}
+                    layout={"fixed"}
+                />)
+              }
             </Flex>
           </Box>
           <Box mr="10" ml="10">
@@ -94,12 +90,14 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
             >
               <Circle boxShadow="xl" ml="-8" mb="2">
                 <Circle m="2" overflow={"hidden"}>
-                  <Image
-                    src={projectData?.avatarUrl}
-                    alt="project"
-                    width="60"
-                    height="60"
-                  />
+                  {projectData.avatarUrl && 
+                    (<Image
+                      src={projectData.avatarUrl}
+                      alt="project"
+                      width="60"
+                      height="60"
+                    />)
+                  }
                 </Circle>
               </Circle>
             </Stack>
@@ -108,7 +106,7 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
               direction={{ base: "column", md: "row" }}
             >
               <Text as="h2" mr={"10px"} fontWeight="bold" fontSize="2xl">
-                {projectData?.name}
+                {projectData.name}
               </Text>
               <Image
                 src={"/check.svg"}
@@ -117,10 +115,10 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
                 height={"16px"}
               />
             </Stack>
-            <Text mt="2">{projectData?.description}</Text>
+            <Text mt="2">{projectData.description}</Text>
             <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor}>
-              {projectData?.tags &&
-                projectData?.tags.map((tag: string) => (
+              {projectData.tags &&
+                projectData.tags.map((tag: string) => (
                   <Tag
                     backgroundColor={"indigo.100"}
                     key={tag}
@@ -140,7 +138,7 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
                   TIME LEFT
                 </Text>
                 <Text fontSize="md" color="emphasized">
-                  {moment(projectData?.kickstarter?.close_timestamp).diff(
+                  {moment(projectData.kickstarter?.close_timestamp).diff(
                     moment(),
                     "days"
                   )}{" "}
@@ -152,13 +150,13 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
                   TOKENOMICS
                 </Text>
                 <Text mt={14} fontSize="md" color="emphasized">
-                  <b>{projectData?.kickstarter?.total_deposited} </b> raised
+                  <b>{projectData.kickstarter?.total_deposited} </b> raised
                 </Text>
                 <Text mt={14} color="emphasized" fontSize="md">
-                  <b>{projectData?.kickstarter?.total_supporters}</b> supporters
+                  <b>{projectData.kickstarter?.total_supporters}</b> supporters
                 </Text>
                 { 
-                  // projectData?.verified && <CircleWavyCheck size={24} />
+                  // projectData.verified && <CircleWavyCheck size={24} />
                 }
               </Stack>
               <Stack align="flex-start" spacing="4">
@@ -168,7 +166,7 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
                   size={"md"}
                   colorScheme="indigo"
                   rightIcon={<CaretRight size={20} />}
-                  onClick={() => router.push(`/project/${projectData?.id}`)}
+                  onClick={() => router.push(`/project/${projectData.id}`)}
                 >
                   Fund Now
                 </Button>
@@ -177,6 +175,5 @@ export const ActiveProject = (props: {data: ProjectProps}) => {
           </Box>
         </Flex>
       </Card>
-    </Box>
   );
 };
