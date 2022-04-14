@@ -11,17 +11,21 @@ import {
 import { Card } from "./Card";
 import { KickstarterProps } from "../types/project.types";
 import moment from "moment";
-import { yoctoToStNearStr } from "../../lib/util";
+import { yoctoToDollarStr, yoctoToStNearStr } from "../../lib/util";
 import { getContractMetadata } from "../../lib/near";
+import { fetchNearPrice } from "../queries/prices";
 export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   const [tokenSymbol, setTokenSymbol] = useState("");
+  const [totalRaised, setTotalRaised] = useState("");
   useEffect(() => {
     (async () => {
       const contractMetadata = await getContractMetadata(
         kickstarter.token_contract_address
       );
       if (contractMetadata) setTokenSymbol(contractMetadata.symbol);
+      const nearPrice = await fetchNearPrice();
+      setTotalRaised(yoctoToDollarStr(kickstarter.total_deposited, nearPrice));
     })();
   }, []);
   return (
@@ -31,7 +35,7 @@ export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
           TOTAL RAISED
         </Text>
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-          {yoctoToStNearStr(kickstarter.total_deposited)}
+          ${totalRaised}
         </Text>
       </Stack>
       <HStack spacing="20">

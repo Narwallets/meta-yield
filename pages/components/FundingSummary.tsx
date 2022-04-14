@@ -75,7 +75,7 @@ const FundingSummary = (props: { id: any }) => {
     setAmountToFund(await getBalance(wallet!));
 
   const fund = async (event: any) => {
-    const result = await fundToKickstarter(
+    const result = fundToKickstarter(
       wallet!,
       kickstarter_id,
       amountToFund

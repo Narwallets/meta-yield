@@ -130,7 +130,7 @@ export const fundToKickstarter = async (
     amount: amountonyocto,
     msg: kickstarter_id.toString(),
   };
-  const response = await (contract as any)["ft_transfer_call"](
+  const response = (contract as any)["ft_transfer_call"](
     args,
     "300000000000000",
     "1"
