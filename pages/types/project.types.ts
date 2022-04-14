@@ -20,8 +20,14 @@ export interface TeamMemberProps {
     id: number;
     open_timestamp: number;
     token_contract_address: string;
-    total_deposited: number;
+    total_deposited: string;
     total_supporters: number;
+    project_token_symbol: string;
+    stnear_price_at_freeze: string;
+    stnear_price_at_unfreeze: string;
+    active: boolean;
+    successful: boolean;
+    winner_goal_id: number;
   }
   export interface ProjectProps {
     id: number;

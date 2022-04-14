@@ -5,9 +5,6 @@ import { HowItWorks } from "./components/HowItWorks";
 import { Box, Text } from "@chakra-ui/react";
 import * as React from "react";
 import { useGetActiveProjects } from "./hooks/projects";
-import { useState, useEffect } from "react";
-import { useStore } from "./stores/wallet";
-import { ProjectProps } from "./types/project.types";
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
   if (isLoading) return <>Loading...</>;
