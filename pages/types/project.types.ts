@@ -25,6 +25,7 @@ export interface TeamMemberProps {
   }
   export interface ProjectProps {
     id: number;
+    slug:string;
     name: string;
     motto: string;
     imageUrl: string;

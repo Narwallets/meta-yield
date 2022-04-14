@@ -6,8 +6,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const { id } = req.query as { id: string };
-  const project = data.find((p) => p.id === parseInt(id));
+  const { id } = req.query as { id: any };
+  const project = data.find((p) => p.id == id);
   if (!project) {
     res.status(404).json({ message: "Project not found" });
   }

@@ -30,6 +30,7 @@ export const ProjectCard = (props: Props) => {
   const router = useRouter();
   const {
     id,
+    slug,
     name,
     imageUrl,
     motto,
@@ -89,11 +90,11 @@ export const ProjectCard = (props: Props) => {
             </Text>
             {
                 verified &&  <Image
-                                            src={'/check.svg'}
-                                            alt="check"
-                                            width={'16px'}
-                                            height={'16px'}
-                                          />
+                                      src={'/check.svg'}
+                                      alt="check"
+                                      width={'16px'}
+                                      height={'16px'}
+                                    />
               }
           </Stack>
           <Stack             spacing={{ base: "1", md: "2" }}>

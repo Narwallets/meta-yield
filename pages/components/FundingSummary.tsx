@@ -41,7 +41,7 @@ import { ProjectProps, TeamMemberProps } from "../types/project.types";
 import { useGetProjectDetails } from "../hooks/projects";
 import { useRouter } from "next/router";
 import moment from "moment";
-const FundingSummary = (props: { id: number }) => {
+const FundingSummary = (props: { id: any }) => {
   const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(props.id);
 

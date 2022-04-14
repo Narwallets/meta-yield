@@ -60,6 +60,15 @@ export const getTotalKickstarters = async () => {
   );
 };
 
+
+export const getSupporterEstimatedStNear = async (wallet: WalletConnection, kickstarter_id: number, price: string) => {
+  return callPublicKatherineMethod( katherineViewMethods.getSupporterEstimatedStNear, {
+    supporter_id: wallet.getAccountId(),
+    kickstarter_id,
+    st_near_price: price
+  });
+};
+
 export const getKickstarters = async () => {
   return callPublicKatherineMethod(katherineViewMethods.getKickstarters, {
     from_index: 0,

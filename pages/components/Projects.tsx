@@ -20,7 +20,7 @@ export const Projects = (props: { data: ProjectProps[] }) => {
         </Text>
         <ProjectGrid>
           {data.map((project: ProjectProps) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.kickstarter && project.kickstarter.id} project={project} />
           ))}
         </ProjectGrid>
       </Stack>

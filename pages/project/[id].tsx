@@ -4,7 +4,8 @@ import ProjectDetails from "../components/ProjectDetails";
 
 export default function ProjectDetailsContainer() {
   const router = useRouter();
-  const { id } = router.query;
-
-  return <ProjectDetails id={Number(id)} />;
+  const id = router.query && router.query.id ? router.query.id : '';
+  
+  if(!id) return <></>
+  return <ProjectDetails id= {id} />
 }

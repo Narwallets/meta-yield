@@ -3,5 +3,7 @@ import FundingSummary from "../../components/FundingSummary";
 export default function Fund() {
   const router = useRouter();
   const { id } = router.query;
-  return <FundingSummary id={Number(id)} />;
+
+  if(!id) return <></>
+  return <FundingSummary id= {id} />
 }

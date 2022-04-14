@@ -39,12 +39,53 @@ import { RewardsCalculator } from "./RewardsCalculator";
 import { useRouter } from "next/router";
 import { GoalsProgressCard } from "./GoalsProgressCard";
 import { FundingStatusCard } from "./FundingStatusCard";
-const ProjectDetails = (props: { id: number }) => {
+import moment from "moment";
+import { getStNearPrice, getSupporterEstimatedStNear, getWallet } from "../../lib/near";
+import { yoctoToStNear } from "../../lib/util";
+
+
+const ProjectDetails = (props: { id: any }) => {
   const router = useRouter();
-  const { isLoading, data: project } = useGetProjectDetails(props.id);
+  const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const totalRaisedSize = useBreakpointValue({ base: "sm", md: "md" });
+
+  const [showFund, setShowFund] = useState(false);
+  const [showWithdraw, setShowWithdraw] = useState(false);
+  const [showClaim, setShowClaim] = useState(false);
+  const [ammountWithdraw, setAmmountWithdraw] = useState('0');
+
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
+  const withdraw = ()=> {
+      // call to contract for withdraw
+  }
+  const claim = ()=> {
+      // call to contract for claiming the rewards
+  }
+
+  const getWithdrawAmmount =  async (wallet: any, id: number, price: string) => getSupporterEstimatedStNear(wallet, id, price);
+
+  useEffect(() => {
+    (async () => {
+      if (project && !project.active ) {
+        setShowWithdraw(true);
+        const tempWallet = await getWallet();
+        const price =  await getStNearPrice();
+        const ammount = await getWithdrawAmmount(tempWallet, props.id, price.toString());
+        if( ammount) {
+          setAmmountWithdraw(yoctoToStNear(parseInt(ammount)));
+        }
+      }
+    })();
+  }, [props, project]);
+
+  useEffect(() => {
+    if (project) {
+      if (project.kickstarter.goals.lenght && moment().diff(moment(project.kickstarter.close_timestamp)) <= 0 ){
+        setShowFund(true);
+      }
+    }
+  }, [project]);
 
   if (isLoading) return <>Loading</>;
   return (
@@ -65,7 +106,7 @@ const ProjectDetails = (props: { id: number }) => {
             >
               <Circle maxW={"60px"} m="2" overflow={"hidden"}>
                 <Image
-                  src={project.avatarUrl}
+                  src={project?.avatarUrl}
                   alt="project"
                   width="48px"
                   height="48px"
@@ -74,9 +115,9 @@ const ProjectDetails = (props: { id: number }) => {
             </Circle>
 
             <Text as="h2" fontWeight="bold" fontSize="4xl">
-              {project.name}
+              {project?.name}
             </Text>
-            {project.verified && (
+            {project?.verified && (
               <Image
                 src={"/check.svg"}
                 alt="check"
@@ -85,10 +126,10 @@ const ProjectDetails = (props: { id: number }) => {
               />
             )}
           </Stack>
-          <Text mt="2">{project.motto}</Text>
+          <Text mt="2">{project?.motto}</Text>
           <Wrap shouldWrapChildren mt="5" color={tagsColor}>
-            {project.tags &&
-              project.tags.map((tag: string) => (
+            {project?.tags &&
+              project?.tags.map((tag: string) => (
                 <Tag key={tag} color="inherit" px="3">
                   {tag}
                 </Tag>
@@ -131,7 +172,7 @@ const ProjectDetails = (props: { id: number }) => {
                     <Text fontSize="lg" fontWeight="extrabold">
                       Our Vision
                     </Text>
-                    {parse(project.campaignHtml)}
+                    {parse(project?.campaignHtml)}
                   </TabPanel>
                   <TabPanel>
                     <Text fontSize="sm" fontWeight="subtle">
@@ -140,7 +181,7 @@ const ProjectDetails = (props: { id: number }) => {
                     <Text fontSize="lg" fontWeight="extrabold">
                       Our founding team
                     </Text>
-                    <Team team={project.team} />
+                    <Team team={project?.team} />
                   </TabPanel>
                   <TabPanel>
                     <Text fontSize="sm" fontWeight="subtle">
@@ -176,24 +217,50 @@ const ProjectDetails = (props: { id: number }) => {
           borderRadius="lg"
         >
           <Stack spacing={{ base: "3", md: "10" }}>
-            <FundingStatusCard kickstarter={project.kickstarter} />
-            {project.kickstarter.goals &&
-              project.kickstarter.goals.length > 0 && (
-                <GoalsProgressCard kickstarter={project.kickstarter} />
+            <FundingStatusCard kickstarter={project?.kickstarter} />
+            {project?.kickstarter.goals &&
+              project?.kickstarter.goals.length > 0 && (
+                <GoalsProgressCard kickstarter={project?.kickstarter} />
               )}
             <Stack align="center">
-              <Button
-                colorScheme="blue"
-                isFullWidth
-                size="lg"
-                onClick={() => router.push(`/project/fund/${project.id}`)}
-              >
-                Fund Now
-              </Button>
+              {
+                showFund && 
+                    (<Button
+                      colorScheme="blue"
+                      isFullWidth
+                      size="lg"
+                      onClick={() => router.push(`/project/fund/${project?.id}`)}
+                    >
+                      Fund Now
+                    </Button>)
+              }
+              {
+                showWithdraw && 
+                  (<Button
+                    colorScheme="blue"
+                    isFullWidth
+                    size="lg"
+                    onClick={withdraw}
+                  >
+                    Withdraw (stNEAR {ammountWithdraw})
+                  </Button>)
+              }
+              {
+                showClaim && 
+                  (<Button
+                    colorScheme="blue"
+                    isFullWidth
+                    size="lg"
+                    onClick={claim}
+                  >
+                    Claim Rewards
+                  </Button>)
+              }
+              
             </Stack>
-            {project.kickstarter.goals &&
-              project.kickstarter.goals.length > 0 && (
-                <RewardsCalculator kickstarter={project.kickstarter} />
+            {project?.kickstarter.goals &&
+              project?.kickstarter.goals.length > 0 && (
+                <RewardsCalculator kickstarter={project?.kickstarter} />
               )}
           </Stack>
         </Box>
