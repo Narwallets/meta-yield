@@ -117,6 +117,8 @@ export const getBalance = async (wallet: WalletConnection): Promise<number> => {
   return yoctoToStNear(accountInfo.st_near);
 };
 
+// TODO: fundToKickstarter and withdrawAll could use a similiar method as callPublicMetapoolMethod 
+
 export const fundToKickstarter = async (
   wallet: WalletConnection,
   kickstarter_id: number,
@@ -127,8 +129,24 @@ export const fundToKickstarter = async (
     receiver_id: CONTRACT_ID,
     amount: stNearToYocto(amountOnStNear),
     msg: kickstarter_id.toString(),
-  };
+  };   
   const response = (contract as any)["ft_transfer_call"](
+    args,
+    "300000000000000",
+    "1"
+  );
+  return response;
+};
+
+export const withdrawAll = async (
+  wallet: WalletConnection,
+  kickstarter_id: number,
+) => {
+  const contract = await getContract(wallet);
+  const args = {
+    kickstarter_id: kickstarter_id,
+  };
+  const response = (contract as any)["withdraw_all"](
     args,
     "300000000000000",
     "1"

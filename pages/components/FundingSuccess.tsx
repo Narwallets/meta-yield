@@ -27,7 +27,7 @@ const FundingSuccess = (props: { id: any }) => {
       setProject(data.find((p: ProjectProps) => p.id === props.id));
     }
   }, [data, props]);
-  if (!project) return <>Loading...</>;
+  if (!project) return <></>;
   return (
     <Box as="section" p={{ base: "3", md: "10px 140px" }}>
       <Link
