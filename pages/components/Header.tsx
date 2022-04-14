@@ -24,7 +24,7 @@ import { useStore } from "../stores/wallet";
 export const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, setWallet } = useStore();
   const [signInAccountId, setSignInAccountId] = useState(null);
-  const [stNearBalance, setStNearBalance] = useState<number>(0);
+  const [stNearBalance, setStNearBalance] = useState<string>("");
   
   const isDesktop = useBreakpointValue({ base: false, lg: true });
 
@@ -42,7 +42,7 @@ export const Header: React.FC<ButtonProps> = (props) => {
     (async () => {
       try {
         if (wallet) {
-          setStNearBalance(await getBalance(wallet!));
+          setStNearBalance(await (await getBalance(wallet!)).toFixed(5));
         }
       } catch (e) {
         console.log(e);
