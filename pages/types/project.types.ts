@@ -22,6 +22,8 @@ export interface TeamMemberProps {
     token_contract_address: string;
     total_deposited: number;
     total_supporters: number;
+    project_token_symbol: string;
+
   }
   export interface ProjectProps {
     id: number;

@@ -18,14 +18,14 @@ import {
   Square,
   Image,
 } from "@chakra-ui/react";
-import { getWallet, getBalance, METAPOOL_CONTRACT_ID } from "../../lib/near";
+import { getWallet, getBalance, METAPOOL_CONTRACT_ID, getContractMetadata } from "../../lib/near";
 import colors from "../colors";
 import { useStore } from "../stores/wallet";
 export const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, setWallet } = useStore();
   const [signInAccountId, setSignInAccountId] = useState(null);
-  const [stNearBalance, setStNearBalance] = useState<string>("");
-
+  const [stNearBalance, setStNearBalance] = useState<number>(0);
+  
   const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   const onConnect = async () => {

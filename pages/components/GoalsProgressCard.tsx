@@ -19,8 +19,11 @@ export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   const getCurrentFundingGoal = () => {
     const [current] = kickstarter.goals.filter(
-      (g) => parseInt(g.desired_amount) > kickstarter.total_deposited
+      (g) => parseInt(g.desired_amount) >= kickstarter.total_deposited
     );
+    if (!current) {
+      return kickstarter.goals[kickstarter.goals.length - 1];
+    }
     return current;
   };
   const [goal, setGoal] = useState(kickstarter.goals[0]);
@@ -39,7 +42,7 @@ export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
         return "Timeout";
       } else return "Completed";
     }
-    return "In Progress";
+    return "In Progress...";
   };
   useEffect(() => {
     const goal = kickstarter.goals.find((g) => g.id === currentGoalId);
@@ -48,13 +51,16 @@ export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
       const raised =
         currentGoalId === 0
           ? kickstarter.total_deposited
+          : kickstarter.total_deposited > goalDesiredAmount
+          ? kickstarter.total_deposited
           : goalDesiredAmount - kickstarter.total_deposited;
       setGoal(goal);
       setGoalRaised(raised);
-      setGoalProgress((goalRaised * 100) / goalDesiredAmount);
+      setGoalProgress((raised * 100) / goalDesiredAmount);
       setGoalStatus(getGoalStatus());
     }
   }, [currentGoalId, kickstarter.goals]);
+
   return (
     <Card>
       <Text>GOALS</Text>

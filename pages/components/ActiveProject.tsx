@@ -34,7 +34,7 @@ import {
   getProjectDetails,
 } from "../../lib/near";
 import moment from "moment";
-import { yoctoToStNear } from "../../lib/util";
+import { yoctoToStNearStr } from "../../lib/util";
 
 export const ActiveProject = (props: { data: ProjectProps }) => {
   const projectData = props.data;
@@ -148,9 +148,8 @@ export const ActiveProject = (props: { data: ProjectProps }) => {
                 <Text mt={14} fontSize="md" color="emphasized">
                   <b>
                     {projectData?.kickstarter
-                      ? yoctoToStNear(
-                          projectData?.kickstarter?.total_deposited,
-                          5
+                      ? yoctoToStNearStr(
+                          projectData?.kickstarter?.total_deposited
                         )
                       : 0}{" "}
                   </b>{" "}

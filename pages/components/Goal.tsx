@@ -57,7 +57,11 @@ export const Goal = (props: GoalProps) => {
               : "inherit"
           }
         />
-        <GoalCircle isActive={isActive} isCompleted={isCompleted} />
+        <GoalCircle
+          isActive={isActive}
+          isCompleted={isCompleted}
+          goalNumber={kickstarterGoal.id + 1}
+        />
         <Divider
           orientation={orientation}
           borderWidth="1px"

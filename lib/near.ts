@@ -49,7 +49,7 @@ export const getContract = async (wallet: WalletConnection) => {
 export const getMetapoolContract = async (wallet: WalletConnection) => {
   return new Contract(wallet.account(), METAPOOL_CONTRACT_ID!, {
     viewMethods: Object.values(metaPoolMethods),
-    changeMethods: [],
+    changeMethods: ["ft_transfer_call"],
   });
 };
 
@@ -112,9 +112,41 @@ export const getMetapoolAccountInfo = async (wallet: WalletConnection) => {
   });
 };
 
-export const getBalance = async (wallet: WalletConnection) => {
+export const getBalance = async (wallet: WalletConnection): Promise<number> => {
   const accountInfo = await getMetapoolAccountInfo(wallet);
-  return yoctoToStNear(accountInfo.st_near, 5);
+  return yoctoToStNear(accountInfo.st_near);
+};
+
+export const fundToKickstarter = async (
+  wallet: WalletConnection,
+  kickstarter_id: number,
+  amountOnStNear: number
+) => {
+  const accountInfo = await getMetapoolAccountInfo(wallet);
+  const contract = await getMetapoolContract(wallet);
+  const amountonyocto = stNearToYocto(amountOnStNear);
+  const args = {
+    receiver_id: CONTRACT_ID,
+    amount: amountonyocto,
+    msg: kickstarter_id.toString(),
+  };
+  const response = await (contract as any)["ft_transfer_call"](
+    args,
+    "300000000000000",
+    "1"
+  );
+  return response;
+};
+
+export const getContractMetadata = async (contract: string) => {
+  const response: any = await provider.query({
+    request_type: "call_function",
+    finality: "final",
+    account_id: contract,
+    method_name: "ft_metadata",
+    args_base64: encodeJsonRpcData({}),
+  });
+  return decodeJsonRpcData(response.result);
 };
 const callPublicKatherineMethod = async (method: string, args: any) => {
   const response: any = await provider.query({

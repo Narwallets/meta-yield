@@ -245,6 +245,254 @@ export const data = [
       },
     ],
   },
+  {
+    id: 4,
+    name: "Bearverse",
+    slug: "bearverse",
+    motto:
+      "Bearverse is a metaverse of exciting games, united by one token, a mighty 3D NFT bear, and one world — a freezing land of mysterious dieselpunk.",
+    imageUrl:
+      "https://pbs.twimg.com/profile_banners/1428095273579032579/1647855767/1500x500",
+    avatarUrl:
+      "https://pbs.twimg.com/profile_images/1507835850482229259/9acmlIS4_400x400.png",
+    description:
+      "🐻 The Bearverse is a metaverse of frozen territories where 11 clans of bears fight and extract resources, surviving in a post-apocalyptic dieselpunk world. The main task of these clans is to survive in the world of icy wastelands.",
+    verified: true,
+    active: false,
+    tags: ["Games", "NFTs"],
+    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
+    <b>Managed by Community</b><br><br>
+    Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
+    <b>Greater Profits Unlocked</b>
+    Boost your portfolio — leveraged yield farming gives participants the opportunity to increase their stake with borrowed funds and maximize their profits.<br><br>
+    <b>The only leveraged yield farming on NEAR</b>
+    <ul>
+    <li>NEAR is still in a rapid growth, coupled with increased volumes flowing through Ref. finance.</li>
+    <li>The huge buzz around farming on Ethereum, BSC, Terra, and Avalanche brings NEAR a clear opportunity to attract new users and bring greater value to existing ones.</li>
+    <li>There is currently no opportunity for users to get loans for farming on NEAR. Yet.</li>
+    </ul>`,
+    team: [
+      {
+        id:1,
+        name: "Igor Stadnyk",
+        bio: "Founder and CEO with a software development background and a proven track record of launching and leading blockchain projects since 2012. Corgi devotee and Lead Rocker at PembRock.",
+        avatarUrl:
+          "	https://pembrock.finance/static/Igor_Stadnyk-e3b4eec08e68b0074fd34e2732a6fd38.png",
+          handle: "@igor"
+      },
+      {
+        id:2,
+        name: "Vitalii Dmytrenko",
+        bio: "CTO and Core Developer with more than 2 decades of experience in software and hardware development, reverse engineering and cybersecurity research. Cypherpunk. Web3 & DeFi advocate.",
+        avatarUrl:
+          "https://pembrock.finance/static/Vitalii_Dmytrenko-6162eb5af90f048468b5cfe71b3daf89.png",
+          handle:"@vitalii"
+      },
+      {
+        id:3,
+        name: "Oleksandr Molotsylo",
+        bio: "Front End Lead Developer with over 10 years of experience developing in different programming languages. Blockchain fan for the last 4 years. Mentor, JS and ReactJS teacher.",
+        avatarUrl:
+          "https://pembrock.finance/static/Oleksandr_Molotsylo-d5fd00dc84fa48eb563b3e0880e78563.png",
+          handle: "@Oleksandr"
+      },
+      {
+        id:4,
+        name: "Ivan Skrypachov",
+        bio: "Project Manager with 5+ years in Product IT. Guided by gained experience, Ivan smoothly manages teams of up to 30 people and builds processes from scratch. SCRUM guru.",
+        avatarUrl:
+          "https://pembrock.finance/static/Ivan_Skrypachov-729265f8d7e8a60828d0a45270bb3060.png",
+          handle:"@ivan"
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: "Bearverse",
+    slug: "bearverse",
+    motto:
+      "Bearverse is a metaverse of exciting games, united by one token, a mighty 3D NFT bear, and one world — a freezing land of mysterious dieselpunk.",
+    imageUrl:
+      "https://pbs.twimg.com/profile_banners/1428095273579032579/1647855767/1500x500",
+    avatarUrl:
+      "https://pbs.twimg.com/profile_images/1507835850482229259/9acmlIS4_400x400.png",
+    description:
+      "🐻 The Bearverse is a metaverse of frozen territories where 11 clans of bears fight and extract resources, surviving in a post-apocalyptic dieselpunk world. The main task of these clans is to survive in the world of icy wastelands.",
+    verified: true,
+    active: false,
+    tags: ["Games", "NFTs"],
+    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
+    <b>Managed by Community</b><br><br>
+    Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
+    <b>Greater Profits Unlocked</b>
+    Boost your portfolio — leveraged yield farming gives participants the opportunity to increase their stake with borrowed funds and maximize their profits.<br><br>
+    <b>The only leveraged yield farming on NEAR</b>
+    <ul>
+    <li>NEAR is still in a rapid growth, coupled with increased volumes flowing through Ref. finance.</li>
+    <li>The huge buzz around farming on Ethereum, BSC, Terra, and Avalanche brings NEAR a clear opportunity to attract new users and bring greater value to existing ones.</li>
+    <li>There is currently no opportunity for users to get loans for farming on NEAR. Yet.</li>
+    </ul>`,
+    team: [
+      {
+        id:1,
+        name: "Igor Stadnyk",
+        bio: "Founder and CEO with a software development background and a proven track record of launching and leading blockchain projects since 2012. Corgi devotee and Lead Rocker at PembRock.",
+        avatarUrl:
+          "	https://pembrock.finance/static/Igor_Stadnyk-e3b4eec08e68b0074fd34e2732a6fd38.png",
+          handle: "@igor"
+      },
+      {
+        id:2,
+        name: "Vitalii Dmytrenko",
+        bio: "CTO and Core Developer with more than 2 decades of experience in software and hardware development, reverse engineering and cybersecurity research. Cypherpunk. Web3 & DeFi advocate.",
+        avatarUrl:
+          "https://pembrock.finance/static/Vitalii_Dmytrenko-6162eb5af90f048468b5cfe71b3daf89.png",
+          handle:"@vitalii"
+      },
+      {
+        id:3,
+        name: "Oleksandr Molotsylo",
+        bio: "Front End Lead Developer with over 10 years of experience developing in different programming languages. Blockchain fan for the last 4 years. Mentor, JS and ReactJS teacher.",
+        avatarUrl:
+          "https://pembrock.finance/static/Oleksandr_Molotsylo-d5fd00dc84fa48eb563b3e0880e78563.png",
+          handle: "@Oleksandr"
+      },
+      {
+        id:4,
+        name: "Ivan Skrypachov",
+        bio: "Project Manager with 5+ years in Product IT. Guided by gained experience, Ivan smoothly manages teams of up to 30 people and builds processes from scratch. SCRUM guru.",
+        avatarUrl:
+          "https://pembrock.finance/static/Ivan_Skrypachov-729265f8d7e8a60828d0a45270bb3060.png",
+          handle:"@ivan"
+      },
+    ],
+  },
+  {
+    id: 6,
+    name: "Bearverse",
+    slug: "bearverse",
+    motto:
+      "Bearverse is a metaverse of exciting games, united by one token, a mighty 3D NFT bear, and one world — a freezing land of mysterious dieselpunk.",
+    imageUrl:
+      "https://pbs.twimg.com/profile_banners/1428095273579032579/1647855767/1500x500",
+    avatarUrl:
+      "https://pbs.twimg.com/profile_images/1507835850482229259/9acmlIS4_400x400.png",
+    description:
+      "🐻 The Bearverse is a metaverse of frozen territories where 11 clans of bears fight and extract resources, surviving in a post-apocalyptic dieselpunk world. The main task of these clans is to survive in the world of icy wastelands.",
+    verified: true,
+    active: false,
+    tags: ["Games", "NFTs"],
+    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
+    <b>Managed by Community</b><br><br>
+    Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
+    <b>Greater Profits Unlocked</b>
+    Boost your portfolio — leveraged yield farming gives participants the opportunity to increase their stake with borrowed funds and maximize their profits.<br><br>
+    <b>The only leveraged yield farming on NEAR</b>
+    <ul>
+    <li>NEAR is still in a rapid growth, coupled with increased volumes flowing through Ref. finance.</li>
+    <li>The huge buzz around farming on Ethereum, BSC, Terra, and Avalanche brings NEAR a clear opportunity to attract new users and bring greater value to existing ones.</li>
+    <li>There is currently no opportunity for users to get loans for farming on NEAR. Yet.</li>
+    </ul>`,
+    team: [
+      {
+        id:1,
+        name: "Igor Stadnyk",
+        bio: "Founder and CEO with a software development background and a proven track record of launching and leading blockchain projects since 2012. Corgi devotee and Lead Rocker at PembRock.",
+        avatarUrl:
+          "	https://pembrock.finance/static/Igor_Stadnyk-e3b4eec08e68b0074fd34e2732a6fd38.png",
+          handle: "@igor"
+      },
+      {
+        id:2,
+        name: "Vitalii Dmytrenko",
+        bio: "CTO and Core Developer with more than 2 decades of experience in software and hardware development, reverse engineering and cybersecurity research. Cypherpunk. Web3 & DeFi advocate.",
+        avatarUrl:
+          "https://pembrock.finance/static/Vitalii_Dmytrenko-6162eb5af90f048468b5cfe71b3daf89.png",
+          handle:"@vitalii"
+      },
+      {
+        id:3,
+        name: "Oleksandr Molotsylo",
+        bio: "Front End Lead Developer with over 10 years of experience developing in different programming languages. Blockchain fan for the last 4 years. Mentor, JS and ReactJS teacher.",
+        avatarUrl:
+          "https://pembrock.finance/static/Oleksandr_Molotsylo-d5fd00dc84fa48eb563b3e0880e78563.png",
+          handle: "@Oleksandr"
+      },
+      {
+        id:4,
+        name: "Ivan Skrypachov",
+        bio: "Project Manager with 5+ years in Product IT. Guided by gained experience, Ivan smoothly manages teams of up to 30 people and builds processes from scratch. SCRUM guru.",
+        avatarUrl:
+          "https://pembrock.finance/static/Ivan_Skrypachov-729265f8d7e8a60828d0a45270bb3060.png",
+          handle:"@ivan"
+      },
+    ],
+  },
+  {
+    id: 7,
+    name: "Bearverse",
+    slug: "bearverse",
+    motto:
+      "Bearverse is a metaverse of exciting games, united by one token, a mighty 3D NFT bear, and one world — a freezing land of mysterious dieselpunk.",
+    imageUrl:
+      "https://pbs.twimg.com/profile_banners/1428095273579032579/1647855767/1500x500",
+    avatarUrl:
+      "https://pbs.twimg.com/profile_images/1507835850482229259/9acmlIS4_400x400.png",
+    description:
+      "🐻 The Bearverse is a metaverse of frozen territories where 11 clans of bears fight and extract resources, surviving in a post-apocalyptic dieselpunk world. The main task of these clans is to survive in the world of icy wastelands.",
+    verified: true,
+    active: false,
+    tags: ["Games", "NFTs"],
+    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
+    <b>Managed by Community</b><br><br>
+    Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
+    <b>Greater Profits Unlocked</b>
+    Boost your portfolio — leveraged yield farming gives participants the opportunity to increase their stake with borrowed funds and maximize their profits.<br><br>
+    <b>The only leveraged yield farming on NEAR</b>
+    <ul>
+    <li>NEAR is still in a rapid growth, coupled with increased volumes flowing through Ref. finance.</li>
+    <li>The huge buzz around farming on Ethereum, BSC, Terra, and Avalanche brings NEAR a clear opportunity to attract new users and bring greater value to existing ones.</li>
+    <li>There is currently no opportunity for users to get loans for farming on NEAR. Yet.</li>
+    </ul>`,
+    team: [
+      {
+        id:1,
+        name: "Igor Stadnyk",
+        bio: "Founder and CEO with a software development background and a proven track record of launching and leading blockchain projects since 2012. Corgi devotee and Lead Rocker at PembRock.",
+        avatarUrl:
+          "	https://pembrock.finance/static/Igor_Stadnyk-e3b4eec08e68b0074fd34e2732a6fd38.png",
+          handle: "@igor"
+      },
+      {
+        id:2,
+        name: "Vitalii Dmytrenko",
+        bio: "CTO and Core Developer with more than 2 decades of experience in software and hardware development, reverse engineering and cybersecurity research. Cypherpunk. Web3 & DeFi advocate.",
+        avatarUrl:
+          "https://pembrock.finance/static/Vitalii_Dmytrenko-6162eb5af90f048468b5cfe71b3daf89.png",
+          handle:"@vitalii"
+      },
+      {
+        id:3,
+        name: "Oleksandr Molotsylo",
+        bio: "Front End Lead Developer with over 10 years of experience developing in different programming languages. Blockchain fan for the last 4 years. Mentor, JS and ReactJS teacher.",
+        avatarUrl:
+          "https://pembrock.finance/static/Oleksandr_Molotsylo-d5fd00dc84fa48eb563b3e0880e78563.png",
+          handle: "@Oleksandr"
+      },
+      {
+        id:4,
+        name: "Ivan Skrypachov",
+        bio: "Project Manager with 5+ years in Product IT. Guided by gained experience, Ivan smoothly manages teams of up to 30 people and builds processes from scratch. SCRUM guru.",
+        avatarUrl:
+          "https://pembrock.finance/static/Ivan_Skrypachov-729265f8d7e8a60828d0a45270bb3060.png",
+          handle:"@ivan"
+      },
+    ],
+  },
 ];
 
 export type ElementType<T extends ReadonlyArray<unknown>> =

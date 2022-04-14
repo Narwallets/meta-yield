@@ -37,14 +37,27 @@ import { Card } from "./Card";
 import { Alien } from "phosphor-react";
 // import Image from "next/image";
 import { CaretLeft, CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps, TeamMemberProps } from "../types/project.types";
+import {
+  KickstarterGoalProps,
+  ProjectProps,
+  TeamMemberProps,
+} from "../types/project.types";
 import { useGetProjectDetails } from "../hooks/projects";
 import { useRouter } from "next/router";
 import moment from "moment";
-const FundingSummary = (props: { id: any }) => {
-  const router = useRouter();
-  const { isLoading, data: project } = useGetProjectDetails(props.id);
+import {
+  fundToKickstarter,
+  getBalance,
+  getContractMetadata,
+} from "../../lib/near";
+import { useStore } from "./../stores/wallet";
+import { stNearToYocto, yoctoToStNear } from "../../lib/util";
 
+const FundingSummary = (props: { id: any }) => {
+  const kickstarter_id = props.id;
+  const router = useRouter();
+  const { wallet } = useStore();
+  const { isLoading, data: project } = useGetProjectDetails(kickstarter_id);
   const [amountToFund, setAmountToFund] = useState<number>(0);
   const [fundingNeeded, setFundingNeeded] = useState<number | undefined>(
     undefined
@@ -52,28 +65,65 @@ const FundingSummary = (props: { id: any }) => {
   const [lockUpPeriod, setLockUpPeriod] = useState<number | undefined>(
     undefined
   );
+
+  const [currentFundingGoal, setCurrentFundingGoal] =
+    useState<KickstarterGoalProps>();
+  const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
   const handleChange = (event: any) => setAmountToFund(event.target.value);
+
+  const onMaxClick = async (event: any) =>
+    setAmountToFund(await getBalance(wallet!));
+
+  const fund = async (event: any) => {
+    const result = await fundToKickstarter(
+      wallet!,
+      kickstarter_id,
+      amountToFund
+    );
+    router.push(`/project/success/${project.id}`);
+  };
+  const getCurrentFundingGoal = () => {
+    const [currentFundingGoal] = project.kickstarter.goals.filter(
+      (g) => parseInt(g.desired_amount) >= project.kickstarter.total_deposited
+    );
+    if (!currentFundingGoal) {
+      return project.kickstarter.goals[project.kickstarter.goals.length - 1];
+    }
+    return currentFundingGoal;
+  };
 
   useEffect(() => {
     if (project) {
-      const [currentFundingGoal] = project.kickstarter.goals.filter(
-        (g: any) => g.desired_amount > project.kickstarter.total_deposited
-      );
-      const raised =
-        project.kickstarter.id === 0
-          ? project.kickstarter.total_deposited
-          : currentFundingGoal.desired_amount -
-            project.kickstarter.total_deposited;
-      setFundingNeeded(parseInt(currentFundingGoal.desired_amount) / 10 ** 24);
-      const lockup = moment(currentFundingGoal.unfreeze_timestamp).diff(
-        moment(project.kickstarter?.close_timestamp),
-        "months"
-      );
-      setLockUpPeriod(lockup);
+      const current= getCurrentFundingGoal(); 
+      setCurrentFundingGoal(current);
+      if (current) {
+        // const raised =
+        //   project.kickstarter.id === 0
+        //     ? project.kickstarter.total_deposited
+        //     : currentFundingGoal.desired_amount -
+        //       project.kickstarter.total_deposited;
+        setFundingNeeded(
+          parseInt(current.desired_amount) / 10 ** 24
+        );
+        const lockup = moment(current.unfreeze_timestamp).diff(
+          moment(project?.kickstarter?.close_timestamp),
+          "months"
+        );
+        setLockUpPeriod(lockup);
+      }
     }
   }, [project]);
 
-  if (isLoading) return <>Loading</>;
+  useEffect(() => {
+    if (currentFundingGoal) {
+      const tokenAwardPerStnear: string = currentFundingGoal.tokens_to_release;
+      setEstimatedRewards(
+        yoctoToStNear(parseInt(tokenAwardPerStnear)) * amountToFund
+      );
+    }
+  }, [amountToFund]);
+
+  if (isLoading && !project) return <>Loading</>;
 
   return (
     <Box as="section" p={{ base: "3", md: "10" }}>
@@ -122,7 +172,7 @@ const FundingSummary = (props: { id: any }) => {
                 <Box>
                   <Text>LOCKUP PERIOD</Text>
                   <Text fontSize="2xl" lineHeight="8" fontWeight="bold">
-                    {lockUpPeriod} days
+                    {lockUpPeriod} month/s
                   </Text>
                 </Box>
               </Flex>
@@ -158,7 +208,7 @@ const FundingSummary = (props: { id: any }) => {
                     onChange={handleChange}
                   />
                   <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm">
+                    <Button h="1.75rem" size="sm" onClick={onMaxClick}>
                       Max
                     </Button>
                   </InputRightElement>
@@ -186,7 +236,8 @@ const FundingSummary = (props: { id: any }) => {
                           fontWeight="semibold"
                           color="gray.500"
                         >
-                          $GLA Tokens (Rewards)
+                          ${project.kickstarter.project_token_symbol} Tokens
+                          (Rewards)
                         </Text>
                         <Spacer />
                         <Text
@@ -195,7 +246,7 @@ const FundingSummary = (props: { id: any }) => {
                           fontWeight="bold"
                           color="gray.900"
                         >
-                          0
+                          {estimatedRewards}
                         </Text>
                       </Flex>
                       <Divider />
@@ -215,9 +266,9 @@ const FundingSummary = (props: { id: any }) => {
                           fontWeight="bold"
                           color="gray.900"
                         >
-                          {moment(project.kickstarter?.close_timestamp).format(
-                            "MMMM Do, YYYY"
-                          )}
+                          {moment(
+                            currentFundingGoal?.unfreeze_timestamp
+                          ).format("MMMM Do, YYYY")}
                         </Text>
                       </Flex>
                     </Stack>
@@ -227,13 +278,8 @@ const FundingSummary = (props: { id: any }) => {
             </Card>
 
             <Stack align="center">
-              <Button
-                colorScheme="blue"
-                isFullWidth
-                size="lg"
-                onClick={() => router.push(`/project/success/${project.id}`)}
-              >
-                Invest {amountToFund} stNEAR from {}
+              <Button colorScheme="blue" isFullWidth size="lg" onClick={fund}>
+                Invest {amountToFund} stNEAR from {wallet?.getAccountId()}
               </Button>
             </Stack>
           </Stack>
