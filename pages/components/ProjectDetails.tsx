@@ -71,7 +71,7 @@ const ProjectDetails = (props: { id: any }) => {
         setShowWithdraw(true);
         const tempWallet = await getWallet();
         const price =  await getStNearPrice();
-        const ammount = await getWithdrawAmmount(tempWallet, props.id, price.toString());
+        const ammount = await getWithdrawAmmount(tempWallet, parseInt(props.id), price.toString());
         if( ammount) {
           setAmmountWithdraw(yoctoToStNear(parseInt(ammount)));
         }
