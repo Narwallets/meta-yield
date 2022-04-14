@@ -40,9 +40,12 @@ import { useRouter } from "next/router";
 import { GoalsProgressCard } from "./GoalsProgressCard";
 import { FundingStatusCard } from "./FundingStatusCard";
 import moment from "moment";
-import { getStNearPrice, getSupporterEstimatedStNear, getWallet } from "../../lib/near";
+import {
+  getStNearPrice,
+  getSupporterEstimatedStNear,
+  getWallet,
+} from "../../lib/near";
 import { yoctoToStNear } from "../../lib/util";
-
 
 const ProjectDetails = (props: { id: any }) => {
   const router = useRouter();
@@ -50,30 +53,43 @@ const ProjectDetails = (props: { id: any }) => {
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const totalRaisedSize = useBreakpointValue({ base: "sm", md: "md" });
 
-  const [showFund, setShowFund] = useState(false);
+  const [showFund, setShowFund] = useState(true);
   const [showWithdraw, setShowWithdraw] = useState(false);
   const [showClaim, setShowClaim] = useState(false);
-  const [ammountWithdraw, setAmmountWithdraw] = useState('0');
+  const [showRewardsCalculator, setShowRewardsCalculator] = useState(true);
+  const [ammountWithdraw, setAmmountWithdraw] = useState("0");
 
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
-  const withdraw = ()=> {
-      // call to contract for withdraw
-  }
-  const claim = ()=> {
-      // call to contract for claiming the rewards
-  }
+  const withdraw = () => {
+    // call to contract for withdraw
+  };
+  const claim = () => {
+    // call to contract for claiming the rewards
+  };
 
-  const getWithdrawAmmount =  async (wallet: any, id: number, price: string) => getSupporterEstimatedStNear(wallet, id, price);
+  const getWithdrawAmmount = async (wallet: any, id: number, price: string) =>
+    getSupporterEstimatedStNear(wallet, id, price);
 
   useEffect(() => {
     (async () => {
-      if (project && !project.active ) {
-        setShowWithdraw(true);
-        const tempWallet = await getWallet();
-        const price =  await getStNearPrice();
-        const ammount = await getWithdrawAmmount(tempWallet, parseInt(props.id), price.toString());
-        if( ammount) {
-          setAmmountWithdraw(yoctoToStNear(parseInt(ammount)));
+      if (project) {
+        if (!project.kickstarter.active) {
+          // if project is not active (not able to fund) hide rewards calculator and fund button
+          setShowFund(false);
+          setShowRewardsCalculator(false);
+          if (project.kickstarter.successful) {
+            setShowWithdraw(true);
+            const tempWallet = await getWallet();
+            const price = await getStNearPrice();
+            const ammount = await getWithdrawAmmount(
+              tempWallet,
+              parseInt(props.id),
+              price.toString()
+            );
+            if (ammount) {
+              setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
+            }
+          }
         }
       }
     })();
@@ -81,7 +97,10 @@ const ProjectDetails = (props: { id: any }) => {
 
   useEffect(() => {
     if (project) {
-      if (project.kickstarter.goals.lenght && moment().diff(moment(project.kickstarter.close_timestamp)) <= 0 ){
+      if (
+        project.kickstarter.goals.lenght &&
+        moment().diff(moment(project.kickstarter.close_timestamp)) <= 0
+      ) {
         setShowFund(true);
       }
     }
@@ -159,7 +178,7 @@ const ProjectDetails = (props: { id: any }) => {
                   <Tab>Campaign</Tab>
                   <Tab>Team</Tab>
                   <Tab>FAQ</Tab>
-                  <Tab>Milestones</Tab>
+                  <Tab>Roadmap</Tab>
                   <Tab>Documents</Tab>
                   <Tab>About</Tab>
                 </TabList>
@@ -190,7 +209,7 @@ const ProjectDetails = (props: { id: any }) => {
                   </TabPanel>
                   <TabPanel>
                     <Text fontSize="sm" fontWeight="subtle">
-                      MIESTONES
+                      ROADMAP
                     </Text>
                     <Text fontSize="lg" fontWeight="extrabold">
                       Our Timeline
@@ -223,45 +242,40 @@ const ProjectDetails = (props: { id: any }) => {
                 <GoalsProgressCard kickstarter={project?.kickstarter} />
               )}
             <Stack align="center">
-              {
-                showFund && 
-                    (<Button
-                      colorScheme="blue"
-                      isFullWidth
-                      size="lg"
-                      onClick={() => router.push(`/project/fund/${project?.id}`)}
-                    >
-                      Fund Now
-                    </Button>)
-              }
-              {
-                showWithdraw && 
-                  (<Button
-                    colorScheme="blue"
-                    isFullWidth
-                    size="lg"
-                    onClick={withdraw}
-                  >
-                    Withdraw (stNEAR {ammountWithdraw})
-                  </Button>)
-              }
-              {
-                showClaim && 
-                  (<Button
-                    colorScheme="blue"
-                    isFullWidth
-                    size="lg"
-                    onClick={claim}
-                  >
-                    Claim Rewards
-                  </Button>)
-              }
-              
-            </Stack>
-            {project?.kickstarter.goals &&
-              project?.kickstarter.goals.length > 0 && (
-                <RewardsCalculator kickstarter={project?.kickstarter} />
+              {showFund && (
+                <Button
+                  colorScheme="blue"
+                  isFullWidth
+                  size="lg"
+                  onClick={() => router.push(`/project/fund/${project?.id}`)}
+                >
+                  Fund Now
+                </Button>
               )}
+              {showWithdraw && (
+                <Button
+                  colorScheme="blue"
+                  isFullWidth
+                  size="lg"
+                  onClick={withdraw}
+                >
+                  Withdraw (stNEAR {ammountWithdraw})
+                </Button>
+              )}
+              {showClaim && (
+                <Button
+                  colorScheme="blue"
+                  isFullWidth
+                  size="lg"
+                  onClick={claim}
+                >
+                  Claim Rewards
+                </Button>
+              )}
+            </Stack>
+            {showRewardsCalculator && (
+              <RewardsCalculator kickstarter={project?.kickstarter} />
+            )}
           </Stack>
         </Box>
       </SimpleGrid>

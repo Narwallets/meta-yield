@@ -122,12 +122,10 @@ export const fundToKickstarter = async (
   kickstarter_id: number,
   amountOnStNear: number
 ) => {
-  const accountInfo = await getMetapoolAccountInfo(wallet);
   const contract = await getMetapoolContract(wallet);
-  const amountonyocto = stNearToYocto(amountOnStNear);
   const args = {
     receiver_id: CONTRACT_ID,
-    amount: amountonyocto,
+    amount: stNearToYocto(amountOnStNear),
     msg: kickstarter_id.toString(),
   };
   const response = (contract as any)["ft_transfer_call"](
