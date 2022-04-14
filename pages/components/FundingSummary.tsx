@@ -123,7 +123,7 @@ const FundingSummary = (props: { id: any }) => {
     }
   }, [amountToFund]);
 
-  if (isLoading && !project) return <>Loading</>;
+  if (isLoading && !project) return <></>;
 
   return (
     <Box as="section" p={{ base: "3", md: "10" }}>

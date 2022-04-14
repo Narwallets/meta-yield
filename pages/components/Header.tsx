@@ -32,6 +32,12 @@ export const Header: React.FC<ButtonProps> = (props) => {
     wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
   };
 
+  const logout = async () => {
+    wallet!.signOut();
+    setSignInAccountId(null);
+    setWallet(null);
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -115,6 +121,9 @@ export const Header: React.FC<ButtonProps> = (props) => {
                     >
                       {signInAccountId}
                     </a>
+                    <Button colorScheme="indigo" onClick={() => logout()}>
+                      Logout
+                    </Button>
                   </>
                 ) : (
                   <Button colorScheme="indigo" onClick={() => onConnect()}>
@@ -123,13 +132,18 @@ export const Header: React.FC<ButtonProps> = (props) => {
                 )}
               </HStack>
             ) : signInAccountId ? (
-              <a
-                href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {signInAccountId}
-              </a>
+              <>
+                <a
+                  href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {signInAccountId}
+                </a>
+                <Button colorScheme="indigo" onClick={() => logout()}>
+                  Logout
+                </Button>
+              </>
             ) : (
               <Button colorScheme="indigo" onClick={() => onConnect()}>
                 Connect Wallet

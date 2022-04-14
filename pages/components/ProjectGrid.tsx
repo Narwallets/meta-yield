@@ -14,6 +14,7 @@ export const ProjectGrid = (props: SimpleGridProps) => {
 
   return (
     <Flex
+      flexWrap={'wrap'}
       columns={columns}
       columnGap={{ base: '4', md: '6' }}
       rowGap={{ base: '8', md: '10' }}

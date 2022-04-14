@@ -3,10 +3,10 @@ import create from "zustand";
 
 interface WalletState {
   wallet: WalletConnection | null;
-  setWallet: (value: WalletConnection) => void;
+  setWallet: (value: WalletConnection | null) => void;
 }
 
 export const useStore = create<WalletState>((set) => ({
   wallet: null,
-  setWallet: (value: WalletConnection) => set((state) => ({ wallet: value })),
+  setWallet: (value: WalletConnection | null) => set((state) => ({ wallet: value })),
 }));

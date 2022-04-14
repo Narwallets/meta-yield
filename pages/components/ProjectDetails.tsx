@@ -41,9 +41,11 @@ import { GoalsProgressCard } from "./GoalsProgressCard";
 import { FundingStatusCard } from "./FundingStatusCard";
 import moment from "moment";
 import {
+  fundToKickstarter,
   getStNearPrice,
   getSupporterEstimatedStNear,
   getWallet,
+  withdrawAll,
 } from "../../lib/near";
 import { yoctoToStNear } from "../../lib/util";
 
@@ -60,8 +62,16 @@ const ProjectDetails = (props: { id: any }) => {
   const [ammountWithdraw, setAmmountWithdraw] = useState("0");
 
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
-  const withdraw = () => {
+
+
+  const withdraw = async () => {
     // call to contract for withdraw
+    const tempWallet = await getWallet();
+    withdrawAll(tempWallet, parseInt(props.id)).then((val)=> {
+        console.log("Resurn withdrrawAll", val)
+    });
+
+    
   };
   const claim = () => {
     // call to contract for claiming the rewards
@@ -106,7 +116,7 @@ const ProjectDetails = (props: { id: any }) => {
     }
   }, [project]);
 
-  if (isLoading) return <>Loading</>;
+  if (isLoading) return <></>;
   return (
     <Box pr={123} pl={123} as="section" mx="auto">
       <SimpleGrid columns={2} spacing={30}>

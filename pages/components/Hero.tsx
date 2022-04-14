@@ -12,15 +12,24 @@ import {
 import { useState, useEffect } from "react";
 import * as React from "react";
 import { getWallet } from "../../lib/near";
+import { useStore } from "../stores/wallet";
 
 export const Hero = () => {
+  const { wallet, setWallet } = useStore();
+  const [isConnected, setIsConnected] = useState(false);
+
   useEffect(() => {
     (async () => {
       const tempWallet = await getWallet();
-      setIsConnected(true);
+      if (tempWallet.getAccountId()!){
+        setIsConnected(true);
+      }
     })();
   }, []);
-  const [isConnected, setIsConnected] = useState(false);
+
+  useEffect(()=>{
+    console.log("tempWallet.getAccountId()!", wallet);
+  }, [wallet])
   return (
     <Square minHeight={600} borderRadius={16} as="section" bg="bg-accent" color="on-accent">
       <Container py={{ base: "12", md: "24" }}>
