@@ -106,7 +106,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       <Image
                         boxSize="20px"
                         objectFit="cover"
-                        src="/st-logo.png"
+                        src="/stnear.svg"
                         alt="stnear"
                       />
                     </Square>
