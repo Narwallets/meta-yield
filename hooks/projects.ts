@@ -1,5 +1,10 @@
 import { useQuery } from "react-query";
-import { fetchProjects, fetchProjectDetails, fetchActiveProjects } from "../queries/projects";
+import {
+  fetchProjects,
+  fetchProjectDetails,
+  fetchActiveProjects,
+  fetchSupportedProjects,
+} from "../queries/projects";
 import { getActiveProjects, getProjectDetails } from "../lib/near";
 import { number } from "yup";
 import { ProjectProps } from "../types/project.types";
@@ -20,10 +25,22 @@ export const useGetProjectDetails = (id: number) => {
   });
 };
 
-export const  useGetActiveProjects = () => {
+export const useGetActiveProjects = () => {
   return useQuery("active-projects", () => fetchActiveProjects(), {
     onError: (err) => {
       console.error(err);
     },
   });
+};
+
+export const useGetSupportedProjects = (wallet_id: string) => {
+  return useQuery(
+    "supported-projects",
+    () => fetchSupportedProjects(wallet_id),
+    {
+      onError: (err) => {
+        console.error(err);
+      },
+    }
+  );
 };

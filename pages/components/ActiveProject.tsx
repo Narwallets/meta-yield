@@ -46,10 +46,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
       const nearPrice = await fetchNearPrice();
       if (projectData?.kickstarter?.total_deposited) {
         setTotalRaised(
-          yoctoToDollarStr(
-            parseInt(projectData?.kickstarter?.total_deposited),
-            nearPrice
-          )
+          yoctoToDollarStr(projectData?.kickstarter?.total_deposited, nearPrice)
         );
       }
     })();
@@ -149,33 +146,33 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                 )}{" "}
                 days
               </Text>
+              <Stack align="flex-start" spacing="4">
+                <Text fontSize="xs" fontWeight="700">
+                  TOKENOMICS
+                </Text>
+                <Text mt={14} fontSize="md" color="emphasized">
+                  <b>${totalRaised} </b> raised
+                </Text>
+                <Text mt={14} color="emphasized" fontSize="md">
+                  <b>{projectData.kickstarter?.total_supporters}</b> supporters
+                </Text>
+                {
+                  // projectData?.verified && <CircleWavyCheck size={24} />
+                }
+              </Stack>
+              <Stack align="flex-start" spacing="4">
+                <Button
+                  w={"100%"}
+                  h={"48px"}
+                  size={"md"}
+                  colorScheme="indigo"
+                  rightIcon={<CaretRight size={20} />}
+                  onClick={() => router.push(`/project/${projectData.id}`)}
+                >
+                  Fund Now
+                </Button>
+              </Stack>
             </VStack>
-            <Stack align="flex-start" spacing="1">
-              <Text fontSize="xs" fontWeight="700">
-                TOKENOMICS
-              </Text>
-              <Text mt={14} fontSize="md" color="emphasized">
-                <b>${totalRaised} </b> raised
-              </Text>
-              <Text mt={14} color="emphasized" fontSize="md">
-                <b>{projectData.kickstarter?.total_supporters}</b> supporters
-              </Text>
-              {
-                // projectData?.verified && <CircleWavyCheck size={24} />
-              }
-            </Stack>
-            <Stack align="flex-start" spacing="4">
-              <Button
-                w={"100%"}
-                h={"48px"}
-                size={"md"}
-                colorScheme="indigo"
-                rightIcon={<CaretRight size={20} />}
-                onClick={() => router.push(`/project/${projectData.id}`)}
-              >
-                Fund Now
-              </Button>
-            </Stack>
           </Stack>
         </Box>
       </Flex>

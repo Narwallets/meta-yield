@@ -17,9 +17,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
       );
       if (contractMetadata) setTokenSymbol(contractMetadata.symbol);
       const nearPrice = await fetchNearPrice();
-      setTotalRaised(
-        yoctoToDollarStr(parseInt(kickstarter?.total_deposited), nearPrice)
-      );
+      setTotalRaised(yoctoToDollarStr(kickstarter?.total_deposited, nearPrice));
     })();
   }, [kickstarter?.token_contract_address, kickstarter?.total_deposited]);
   return (
