@@ -1,3 +1,9 @@
+export interface SupportedKickstarter {
+  kickstarter_id: number;
+  supporter_deposit: string;
+  active: boolean;
+  successful?: boolean;
+}
 export interface TeamMemberProps {
     id: number;
     name: string;
@@ -26,7 +32,7 @@ export interface TeamMemberProps {
     stnear_price_at_freeze: string;
     stnear_price_at_unfreeze: string;
     active: boolean;
-    successful: boolean;
+    successful?: boolean;
     winner_goal_id: number;
   }
   export interface ProjectProps {

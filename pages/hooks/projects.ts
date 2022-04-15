@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { fetchProjects, fetchProjectDetails, fetchActiveProjects } from "../queries/projects";
+import { fetchProjects, fetchProjectDetails, fetchActiveProjects, fetchSupportedProjects } from "../queries/projects";
 import { getActiveProjects, getProjectDetails } from "../../lib/near";
 import { number } from "yup";
 import { ProjectProps } from "../types/project.types";
@@ -52,3 +52,12 @@ export const  useGetActiveProjects = () => {
     },
   });
 };
+
+export const useGetSupportedProjects = (supporterId: string) => {
+  return useQuery("supported-projects", () => fetchSupportedProjects(supporterId), {
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+};
+

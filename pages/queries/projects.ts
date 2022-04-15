@@ -12,3 +12,8 @@ export const fetchActiveProjects = async () => {
   const response = await fetch("/api/projects/active");
   return await response.json();
 };
+
+export const fetchSupportedProjects = async(supporterId: string) => {
+  const response = await fetch(`/api/projects/supported/${supporterId}`);
+  return await response.json();
+}

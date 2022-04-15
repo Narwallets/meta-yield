@@ -40,23 +40,29 @@ import { CaretLeft, CaretRight, CircleWavyCheck } from "phosphor-react";
 import {
   KickstarterGoalProps,
   ProjectProps,
+  SupportedKickstarter,
   TeamMemberProps,
 } from "../types/project.types";
-import { useGetProjectDetails } from "../hooks/projects";
+import {
+  useGetProjectDetails,
+  useGetSupportedProjects,
+} from "../hooks/projects";
 import { useRouter } from "next/router";
 import moment from "moment";
 import {
   fundToKickstarter,
   getBalance,
   getContractMetadata,
+  getSupporterDetailedList,
 } from "../../lib/near";
 import { useStore } from "./../stores/wallet";
 import { stNearToYocto, yoctoToStNear } from "../../lib/util";
-
+import FundingSuccess from "./FundingSuccess";
 const FundingSummary = (props: { id: any }) => {
-  const kickstarter_id = props.id;
+  const kickstarter_id: number = props.id;
   const router = useRouter();
   const { wallet } = useStore();
+
   const { isLoading, data: project } = useGetProjectDetails(kickstarter_id);
   const [amountToFund, setAmountToFund] = useState<number>(0);
   const [fundingNeeded, setFundingNeeded] = useState<number | undefined>(
@@ -75,7 +81,7 @@ const FundingSummary = (props: { id: any }) => {
     setAmountToFund(await getBalance(wallet!));
 
   const fund = async (event: any) => {
-    const result = fundToKickstarter(
+    const result = await fundToKickstarter(
       wallet!,
       kickstarter_id,
       amountToFund
@@ -94,17 +100,10 @@ const FundingSummary = (props: { id: any }) => {
 
   useEffect(() => {
     if (project) {
-      const current= getCurrentFundingGoal(); 
+      const current = getCurrentFundingGoal();
       setCurrentFundingGoal(current);
       if (current) {
-        // const raised =
-        //   project.kickstarter.id === 0
-        //     ? project.kickstarter.total_deposited
-        //     : currentFundingGoal.desired_amount -
-        //       project.kickstarter.total_deposited;
-        setFundingNeeded(
-          parseInt(current.desired_amount) / 10 ** 24
-        );
+        setFundingNeeded(parseInt(current.desired_amount) / 10 ** 24);
         const lockup = moment(current.unfreeze_timestamp).diff(
           moment(project?.kickstarter?.close_timestamp),
           "months"
@@ -123,8 +122,8 @@ const FundingSummary = (props: { id: any }) => {
     }
   }, [amountToFund]);
 
-  if (isLoading && !project) return <></>;
 
+  if (isLoading && !project) return <>Loading</>;
   return (
     <Box as="section" p={{ base: "3", md: "10" }}>
       <Link
