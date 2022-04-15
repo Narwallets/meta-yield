@@ -59,7 +59,7 @@ const ProjectDetails = (props: { id: any }) => {
   const [showWithdraw, setShowWithdraw] = useState(false);
   const [showClaim, setShowClaim] = useState(false);
   const [showRewardsCalculator, setShowRewardsCalculator] = useState(true);
-  const [showRewardEstimated, setShowRewardsEstimated] = useState(true);
+  const [showRewardEstimated, setShowRewardsEstimated] = useState(false);
   const [ammountWithdraw, setAmmountWithdraw] = useState("0");
 
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
