@@ -15,6 +15,7 @@ export const katherineViewMethods = {
   getSupporterAvailableRewards: "get_supporter_available_rewards",
   getSupportedDetailedList: "get_supported_detailed_list",
   getSupporterEstimatedStNear: "get_supporter_estimated_stnear",
+  getSupportedProjects: "get_supported_projects",
 };
 
 // katherine gas methods (change methods)

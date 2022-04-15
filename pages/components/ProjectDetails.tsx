@@ -43,27 +43,25 @@ import moment from "moment";
 import {
   fundToKickstarter,
   getStNearPrice,
+  getSupportedKickstarters,
   getSupporterEstimatedStNear,
   getWallet,
   withdrawAll,
 } from "../../lib/near";
 import { yoctoToStNear } from "../../lib/util";
+import RewardsEstimated from "./RewardsEstimated";
 
 const ProjectDetails = (props: { id: any }) => {
   const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
-  const totalRaisedSize = useBreakpointValue({ base: "sm", md: "md" });
-
   const [showFund, setShowFund] = useState(true);
   const [showWithdraw, setShowWithdraw] = useState(false);
   const [showClaim, setShowClaim] = useState(false);
   const [showRewardsCalculator, setShowRewardsCalculator] = useState(true);
+  const [showRewardEstimated, setShowRewardsEstimated] = useState(true);
   const [ammountWithdraw, setAmmountWithdraw] = useState("0");
-
-  const totalRaisedColor = useColorModeValue("green.500", "green.500");
-
-
+  
   const withdraw = async () => {
     // call to contract for withdraw
     const tempWallet = await getWallet();
@@ -83,15 +81,21 @@ const ProjectDetails = (props: { id: any }) => {
   useEffect(() => {
     (async () => {
       if (project) {
+        const tempWallet = await getWallet();
+
+        const projectFounded: any[] = await getSupportedKickstarters(tempWallet.getAccountId());
+        if (projectFounded && projectFounded.length && projectFounded.find((val: any)=> val.id = project.kickstarter.id)) {
+          setShowRewardsEstimated(true);
+        }
+
         if (!project.kickstarter.active) {
           // if project is not active (not able to fund) hide rewards calculator and fund button
           setShowFund(false);
           setShowRewardsCalculator(false);
           if (project.kickstarter.successful) {
             setShowWithdraw(true);
-            const tempWallet = await getWallet();
             const price = await getStNearPrice();
-            const ammount = await getWithdrawAmmount(
+            const ammount = parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0 ? project.kickstarter.stnear_price_at_unfreeze :  await getWithdrawAmmount(
               tempWallet,
               parseInt(props.id),
               price.toString()
@@ -101,6 +105,8 @@ const ProjectDetails = (props: { id: any }) => {
             }
           }
         }
+
+
       }
     })();
   }, [props, project]);
@@ -286,6 +292,12 @@ const ProjectDetails = (props: { id: any }) => {
             {showRewardsCalculator && (
               <RewardsCalculator kickstarter={project?.kickstarter} />
             )}
+
+            {
+             showRewardEstimated && (
+                <RewardsEstimated  kickstarter={project?.kickstarter}></RewardsEstimated>
+              )
+            }
           </Stack>
         </Box>
       </SimpleGrid>
