@@ -13,6 +13,8 @@ import {
   InputGroup,
   InputRightElement,
   InputLeftAddon,
+  Square,
+  Image,
   Divider,
 } from "@chakra-ui/react";
 import Card from "./Card";
@@ -92,7 +94,6 @@ const FundingSummary = (props: { id: any }) => {
     }
   }, [amountToFund]);
 
-
   if (isLoading && !project) return <>Loading</>;
   return (
     <Box as="section" p={{ base: "3", md: "10" }}>
@@ -169,7 +170,14 @@ const FundingSummary = (props: { id: any }) => {
                 </Text>
                 <InputGroup>
                   <InputLeftAddon>
-                    <Alien size={32} color="indigo" />
+                    <Square minW="30px">
+                      <Image
+                        boxSize="20px"
+                        objectFit="cover"
+                        src="/stnear.svg"
+                        alt="stnear"
+                      />
+                    </Square>
                   </InputLeftAddon>
                   <Input
                     placeholder="0"
