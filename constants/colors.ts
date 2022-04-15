@@ -1,7 +1,7 @@
 export type Colors = typeof colors;
 import { theme } from "@chakra-ui/pro-theme";
 
-const colors = {
+export const colors = {
   ...theme.colors,
   transparent: "transparent",
   current: "currentColor",
@@ -281,5 +281,3 @@ const colors = {
     900: "#003F5E",
   },
 };
-
-export default colors;

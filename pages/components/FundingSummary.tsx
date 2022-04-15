@@ -2,51 +2,26 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
-  HStack,
-  VStack,
-  Icon,
   Stack,
-  Tag,
   Text,
-  useColorModeValue,
-  Wrap,
-  StackDivider,
-  Heading,
-  useBreakpointValue,
   SimpleGrid,
-  AvatarBadge,
-  Image,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
   Avatar,
   Link,
   Flex,
   Spacer,
   Input,
-  Center,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   InputLeftAddon,
+  Square,
+  Image,
   Divider,
 } from "@chakra-ui/react";
-import { Card } from "./Card";
+import Card from "./Card";
 import { Alien } from "phosphor-react";
-// import Image from "next/image";
 import { CaretLeft, CaretRight, CircleWavyCheck } from "phosphor-react";
-import {
-  KickstarterGoalProps,
-  ProjectProps,
-  SupportedKickstarter,
-  TeamMemberProps,
-} from "../types/project.types";
-import {
-  useGetProjectDetails,
-  useGetSupportedProjects,
-} from "../hooks/projects";
+import { KickstarterGoalProps } from "../../types/project.types";
+import { useGetProjectDetails } from "../../hooks/projects";
 import { useRouter } from "next/router";
 import moment from "moment";
 import {
@@ -55,9 +30,9 @@ import {
   getContractMetadata,
   getSupporterDetailedList,
 } from "../../lib/near";
-import { useStore } from "./../stores/wallet";
-import { stNearToYocto, yoctoToStNear } from "../../lib/util";
-import FundingSuccess from "./FundingSuccess";
+import { useStore } from "./../../stores/wallet";
+import { yoctoToStNear } from "../../lib/util";
+
 const FundingSummary = (props: { id: any }) => {
   const kickstarter_id: number = props.id;
   const router = useRouter();
@@ -81,16 +56,13 @@ const FundingSummary = (props: { id: any }) => {
     setAmountToFund(await getBalance(wallet!));
 
   const fund = async (event: any) => {
-    const result = await fundToKickstarter(
-      wallet!,
-      kickstarter_id,
-      amountToFund
-    );
+    const result = fundToKickstarter(wallet!, kickstarter_id, amountToFund);
     router.push(`/project/success/${project.id}`);
   };
   const getCurrentFundingGoal = () => {
     const [currentFundingGoal] = project.kickstarter.goals.filter(
-      (g) => parseInt(g.desired_amount) >= project.kickstarter.total_deposited
+      (g: KickstarterGoalProps) =>
+        parseInt(g.desired_amount) >= project.kickstarter.total_deposited
     );
     if (!currentFundingGoal) {
       return project.kickstarter.goals[project.kickstarter.goals.length - 1];
@@ -121,7 +93,6 @@ const FundingSummary = (props: { id: any }) => {
       );
     }
   }, [amountToFund]);
-
 
   if (isLoading && !project) return <>Loading</>;
   return (
@@ -199,7 +170,14 @@ const FundingSummary = (props: { id: any }) => {
                 </Text>
                 <InputGroup>
                   <InputLeftAddon>
-                    <Alien size={32} color="indigo" />
+                    <Square minW="30px">
+                      <Image
+                        boxSize="20px"
+                        objectFit="cover"
+                        src="/stnear.svg"
+                        alt="stnear"
+                      />
+                    </Square>
                   </InputLeftAddon>
                   <Input
                     placeholder="0"

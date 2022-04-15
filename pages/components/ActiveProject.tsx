@@ -20,19 +20,19 @@ import {
   Circle,
   AspectRatio,
 } from "@chakra-ui/react";
-import { Card } from "./Card";
+import Card from "./Card";
 import Image from "next/image";
 import Link from "next/link";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps } from "../types/project.types";
+import { ProjectProps } from "../../types/project.types";
 import { useRouter } from "next/router";
-import { truncateText } from "../utils/textHandlers";
-import { useGetProjectDetails, useGetProjects } from "../hooks/projects";
+import { truncateText } from "../../utils/textHandlers";
+import { useGetProjectDetails, useGetProjects } from "../../hooks/projects";
 import moment from "moment";
 import { yoctoToDollarStr, yoctoToStNearStr } from "../../lib/util";
-import { fetchNearPrice } from "../queries/prices";
+import { fetchNearPrice } from "../../queries/prices";
 
-export const ActiveProject = (props: { data: ProjectProps }) => {
+const ActiveProject = (props: { data: ProjectProps }) => {
   const projectData = props.data;
   const [totalRaised, setTotalRaised] = useState("");
   const avatarColor = useColorModeValue("white", "gray.700");
@@ -146,36 +146,38 @@ export const ActiveProject = (props: { data: ProjectProps }) => {
                 )}{" "}
                 days
               </Text>
+              <Stack align="flex-start" spacing="4">
+                <Text fontSize="xs" fontWeight="700">
+                  TOKENOMICS
+                </Text>
+                <Text mt={14} fontSize="md" color="emphasized">
+                  <b>${totalRaised} </b> raised
+                </Text>
+                <Text mt={14} color="emphasized" fontSize="md">
+                  <b>{projectData.kickstarter?.total_supporters}</b> supporters
+                </Text>
+                {
+                  // projectData?.verified && <CircleWavyCheck size={24} />
+                }
+              </Stack>
+              <Stack align="flex-start" spacing="4">
+                <Button
+                  w={"100%"}
+                  h={"48px"}
+                  size={"md"}
+                  colorScheme="indigo"
+                  rightIcon={<CaretRight size={20} />}
+                  onClick={() => router.push(`/project/${projectData.id}`)}
+                >
+                  Fund Now
+                </Button>
+              </Stack>
             </VStack>
-            <Stack align="flex-start" spacing="1">
-              <Text fontSize="xs" fontWeight="700">
-                TOKENOMICS
-              </Text>
-              <Text mt={14} fontSize="md" color="emphasized">
-                <b>${totalRaised} </b> raised
-              </Text>
-              <Text mt={14} color="emphasized" fontSize="md">
-                <b>{projectData.kickstarter?.total_supporters}</b> supporters
-              </Text>
-              {
-                // projectData?.verified && <CircleWavyCheck size={24} />
-              }
-            </Stack>
-            <Stack align="flex-start" spacing="4">
-              <Button
-                w={"100%"}
-                h={"48px"}
-                size={"md"}
-                colorScheme="indigo"
-                rightIcon={<CaretRight size={20} />}
-                onClick={() => router.push(`/project/${projectData.id}`)}
-              >
-                Fund Now
-              </Button>
-            </Stack>
           </Stack>
         </Box>
       </Flex>
     </Card>
   );
 };
+
+export default ActiveProject;

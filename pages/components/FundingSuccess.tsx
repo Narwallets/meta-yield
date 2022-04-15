@@ -14,23 +14,32 @@ const BN = require("bn.js");
 // import Image from "next/image";
 import { CaretLeft, CaretRight } from "phosphor-react";
 
-import { useGetProjectDetails, useGetProjects } from "../hooks/projects";
+import { useGetProjects, useGetProjectDetails } from "../../hooks/projects";
 import { useRouter } from "next/router";
-import { KickstarterGoalProps, ProjectProps } from "../types/project.types";
+import {
+  ProjectProps,
+  KickstarterGoalProps,
+  SupportedKickstarter,
+} from "../../types/project.types";
 import { yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
-import { fetchNearPrice } from "../queries/prices";
+import { fetchNearPrice } from "../../queries/prices";
 import moment from "moment";
-const FundingSuccess = (props: { id: any; supporter_deposit: string }) => {
+import { useStore } from "../../stores/wallet";
+import { useGetSupportedProjects } from "../../hooks/projects";
+const FundingSuccess = (props: { id: any }) => {
   const router = useRouter();
   const kickstarter_id = parseInt(props.id as string);
-  const supporter_deposit = props.supporter_deposit;
+  const { wallet, setWallet } = useStore();
   const { data, isLoading } = useGetProjectDetails(kickstarter_id);
+  const { data: supportedProjets, isLoading: isLoadingSupportedProjects } =
+    useGetSupportedProjects(wallet?.getAccountId());
   const [rewards, setRewards] = useState<string>("");
   const [invested, setInvested] = useState<string>("");
   const [lockupTime, setLockupTime] = useState<string>("");
   const getCurrentFundingGoal = () => {
     const [currentFundingGoal] = data.kickstarter.goals.filter(
-      (g) => parseInt(g.desired_amount) >= data.kickstarter.total_deposited
+      (g: KickstarterGoalProps) =>
+        parseInt(g.desired_amount) >= data.kickstarter.total_deposited
     );
     if (!currentFundingGoal) {
       return data.kickstarter.goals[data.kickstarter.goals.length - 1];
@@ -43,19 +52,24 @@ const FundingSuccess = (props: { id: any; supporter_deposit: string }) => {
       if (data) {
         const nearPrice = await fetchNearPrice();
         const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal();
+        const supportedProject = supportedProjets.find(
+          (p: SupportedKickstarter) => p.kickstarter_id === kickstarter_id
+        );
         if (winnerGoal) {
           const rewards =
             yoctoToStNear(parseInt(winnerGoal.tokens_to_release)) *
-            yoctoToStNear(parseInt(supporter_deposit));
+            yoctoToStNear(parseInt(supportedProject.supporter_deposit));
           setRewards(rewards.toString());
           setLockupTime(
             moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
           );
         }
-        setInvested(yoctoToDollarStr(supporter_deposit, nearPrice));
+        setInvested(
+          yoctoToDollarStr(supportedProject.supporter_deposit, nearPrice)
+        );
       }
     })();
-  }, [data, props]);
+  }, [data, props, supportedProjets]);
   if (!data || isLoading) return <></>;
   return (
     <Box as="section" p={{ base: "3", md: "10px 140px" }}>

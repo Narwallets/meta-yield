@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Container,
   Heading,
@@ -7,35 +6,46 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  Link
+  Link,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import * as React from "react";
 import { getWallet } from "../../lib/near";
-import { useStore } from "../stores/wallet";
+import { useStore } from "../../stores/wallet";
 
-export const Hero = () => {
+const Hero = () => {
   const { wallet, setWallet } = useStore();
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
     (async () => {
       const tempWallet = await getWallet();
-      if (tempWallet.getAccountId()!){
+      if (tempWallet.getAccountId()!) {
         setIsConnected(true);
       }
     })();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("tempWallet.getAccountId()!", wallet);
-  }, [wallet])
+  }, [wallet]);
   return (
-    <Square minHeight={600} borderRadius={16} as="section" bg="bg-accent" color="on-accent">
+    <Square
+      minHeight={600}
+      borderRadius={16}
+      as="section"
+      bg="bg-accent"
+      color="on-accent"
+    >
       <Container py={{ base: "12", md: "24" }}>
         <Stack spacing={{ base: "8", md: "10" }}>
           <Stack spacing={{ base: "4", md: "5" }} align="center">
-            <Heading textAlign={'center'} fontSize={72} fontWeight={900} size={useBreakpointValue({ base: "md", md: "lg" })}>
+            <Heading
+              textAlign={"center"}
+              fontSize={72}
+              fontWeight={900}
+              size={useBreakpointValue({ base: "md", md: "lg" })}
+            >
               Stake. Support. <br></br> Earn.
             </Heading>
             <Text
@@ -44,8 +54,8 @@ export const Hero = () => {
               textAlign="center"
               fontSize="xl"
             >
-              Stake NEAR and use your tokens to support crypto-based projects, and
-              earn their tokens.
+              Stake NEAR and use your tokens to support crypto-based projects,
+              and earn their tokens.
             </Text>
           </Stack>
           <Stack
@@ -53,11 +63,11 @@ export const Hero = () => {
             direction={{ base: "column", sm: "row" }}
             justify="center"
           >
-            {
-              !isConnected && (<Button colorScheme={'indigo'} size="lg">
-              Connect Wallet
-            </Button>)
-            }
+            {!isConnected && (
+              <Button colorScheme={"indigo"} size="lg">
+                Connect Wallet
+              </Button>
+            )}
             <Link href="#how-it-works">
               <Button variant="secondary-on-accent" size="lg">
                 How it works
@@ -68,4 +78,6 @@ export const Hero = () => {
       </Container>
     </Square>
   );
-}
+};
+
+export default Hero;

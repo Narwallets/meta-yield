@@ -29,16 +29,16 @@ import {
   Center,
   Circle,
 } from "@chakra-ui/react";
-import { Card } from "./Card";
+import Card from "./Card";
 // import Image from "next/image";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps, TeamMemberProps } from "../types/project.types";
-import { useGetProjects, useGetProjectDetails } from "../hooks/projects";
+import { ProjectProps, TeamMemberProps } from "../../types/project.types";
+import { useGetProjects, useGetProjectDetails } from "../../hooks/projects";
 import parse from "html-react-parser";
-import { RewardsCalculator } from "./RewardsCalculator";
+import RewardsCalculator from "./RewardsCalculator";
 import { useRouter } from "next/router";
-import { GoalsProgressCard } from "./GoalsProgressCard";
-import { FundingStatusCard } from "./FundingStatusCard";
+import GoalsProgressCard from "./GoalsProgressCard";
+import FundingStatusCard from "./FundingStatusCard";
 import moment from "moment";
 import {
   fundToKickstarter,
@@ -61,15 +61,15 @@ const ProjectDetails = (props: { id: any }) => {
   const [showRewardsCalculator, setShowRewardsCalculator] = useState(true);
   const [showRewardEstimated, setShowRewardsEstimated] = useState(true);
   const [ammountWithdraw, setAmmountWithdraw] = useState("0");
-  
+
+  const totalRaisedColor = useColorModeValue("green.500", "green.500");
+
   const withdraw = async () => {
     // call to contract for withdraw
     const tempWallet = await getWallet();
-    withdrawAll(tempWallet, parseInt(props.id)).then((val)=> {
-        console.log("Resurn withdrrawAll", val)
+    withdrawAll(tempWallet, parseInt(props.id)).then((val) => {
+      console.log("Resurn withdrrawAll", val);
     });
-
-    
   };
   const claim = () => {
     // call to contract for claiming the rewards

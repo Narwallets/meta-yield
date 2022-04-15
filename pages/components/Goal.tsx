@@ -6,8 +6,8 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { KickstarterGoalProps } from "../types/project.types";
-import { GoalCircle } from "./GoalCircle";
+import { KickstarterGoalProps } from "../../types/project.types";
+import GoalCircle from "./GoalCircle";
 
 interface GoalProps extends BoxProps {
   kickstarterGoal: KickstarterGoalProps;
@@ -17,7 +17,7 @@ interface GoalProps extends BoxProps {
   isFirstGoal: boolean;
 }
 
-export const Goal = (props: GoalProps) => {
+const Goal = (props: GoalProps) => {
   const {
     isActive,
     isCompleted,
@@ -25,14 +25,14 @@ export const Goal = (props: GoalProps) => {
     isFirstGoal,
     kickstarterGoal,
     ...stackProps
-  } = props;
+  } = props as GoalProps;
   const isMobile = useBreakpointValue({ base: true, md: false });
 
   const orientation = useBreakpointValue<"horizontal" | "vertical">({
     base: "vertical",
     md: "horizontal",
   });
-
+  if (!props) return <></>;
   return (
     <Stack
       spacing="4"
@@ -60,7 +60,7 @@ export const Goal = (props: GoalProps) => {
         <GoalCircle
           isActive={isActive}
           isCompleted={isCompleted}
-          goalNumber={kickstarterGoal.id + 1}
+          goalNumber={kickstarterGoal?.id + 1}
         />
         <Divider
           orientation={orientation}
@@ -76,12 +76,17 @@ export const Goal = (props: GoalProps) => {
         align={{ base: "start", md: "center" }}
       >
         <Text color="emphasized" fontWeight="medium">
-          {kickstarterGoal.name}
+          {kickstarterGoal?.name}
         </Text>
         <Text color="emphasized" fontWeight="medium">
-          ${(parseInt(kickstarterGoal.desired_amount) / 10 ** 24).toFixed(2)}
+          $
+          {kickstarterGoal
+            ? (parseInt(kickstarterGoal?.desired_amount) / 10 ** 24).toFixed(2)
+            : ""}
         </Text>
       </Stack>
     </Stack>
   );
 };
+
+export default Goal;

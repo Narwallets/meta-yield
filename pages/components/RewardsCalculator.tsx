@@ -1,34 +1,33 @@
 import React, { useEffect, useState, ChangeEvent } from "react";
 import { HStack, Stack, Text, Input, Center, Select } from "@chakra-ui/react";
-import { Card } from "./Card";
-import { KickstarterProps } from "../types/project.types";
+import Card from "./Card";
+import { KickstarterProps } from "../../types/project.types";
 import { yoctoToStNear } from "../../lib/util";
-export const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
+const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   const [goalSelected, setGoalSelected] = useState<number>(0);
   const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
   const [amountOfStNear, setAmountOfStNear] = useState<number>(0);
-  // ToDo: REVIEW ESTIMATED REWARD CALCULATION
-  const calculateRewards = () => {
-    const goal = kickstarter.goals.find((g) => g.id === goalSelected);
-
-    if (goal) {
-      const tokenAwardPerStnear: string = goal.tokens_to_release;
-      setEstimatedRewards(
-        yoctoToStNear(parseInt(tokenAwardPerStnear)) * amountOfStNear
-      );
-    }
-  };
 
   const onGoalChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setGoalSelected(parseInt(e.target.value));
-    // const tokenAwardPerStnear: string = goal.tokens_to_release;
-    // calculateRewards(amountOfStNear);
   };
 
   useEffect(() => {
+    const calculateRewards = () => {
+      if (kickstarter) {
+        const goal = kickstarter.goals.find((g) => g.id === goalSelected);
+        if (goal) {
+          const tokenAwardPerStnear: string = goal.tokens_to_release;
+          setEstimatedRewards(
+            yoctoToStNear(parseInt(tokenAwardPerStnear)) * amountOfStNear
+          );
+        }
+      }
+    };
     calculateRewards();
   }, [amountOfStNear, goalSelected]);
+  if (!kickstarter) return <></>;
   return (
     <Card>
       <Stack spacing="6">
@@ -56,7 +55,6 @@ export const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
           placeholder="0"
           onChange={(e) => {
             setAmountOfStNear(parseInt(e.target.value));
-            // calculateRewards(parseInt(e.target.value));
           }}
         ></Input>
         <Center>
@@ -89,3 +87,5 @@ export const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
     </Card>
   );
 };
+
+export default RewardsCalculator;
