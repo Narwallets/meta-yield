@@ -17,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import Card from "./Card";
 import { Alien } from "phosphor-react";
-// import Image from "next/image";
 import { CaretLeft, CaretRight, CircleWavyCheck } from "phosphor-react";
 import { KickstarterGoalProps } from "../../types/project.types";
 import { useGetProjectDetails } from "../../hooks/projects";
@@ -27,14 +26,16 @@ import {
   fundToKickstarter,
   getBalance,
   getContractMetadata,
+  getSupporterDetailedList,
 } from "../../lib/near";
 import { useStore } from "./../../stores/wallet";
 import { yoctoToStNear } from "../../lib/util";
 
 const FundingSummary = (props: { id: any }) => {
-  const kickstarter_id = props.id;
+  const kickstarter_id: number = props.id;
   const router = useRouter();
   const { wallet } = useStore();
+
   const { isLoading, data: project } = useGetProjectDetails(kickstarter_id);
   const [amountToFund, setAmountToFund] = useState<number>(0);
   const [fundingNeeded, setFundingNeeded] = useState<number | undefined>(
@@ -91,8 +92,8 @@ const FundingSummary = (props: { id: any }) => {
     }
   }, [amountToFund]);
 
-  if (isLoading && !project) return <></>;
 
+  if (isLoading && !project) return <>Loading</>;
   return (
     <Box as="section" p={{ base: "3", md: "10" }}>
       <Link

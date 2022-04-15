@@ -60,13 +60,19 @@ export const getTotalKickstarters = async () => {
   );
 };
 
-
-export const getSupporterEstimatedStNear = async (wallet: WalletConnection, kickstarter_id: number, price: string) => {
-  return callPublicKatherineMethod( katherineViewMethods.getSupporterEstimatedStNear, {
-    supporter_id: wallet.getAccountId(),
-    kickstarter_id,
-    st_near_price: price
-  });
+export const getSupporterEstimatedStNear = async (
+  wallet: WalletConnection,
+  kickstarter_id: number,
+  price: string
+) => {
+  return callPublicKatherineMethod(
+    katherineViewMethods.getSupporterEstimatedStNear,
+    {
+      supporter_id: wallet.getAccountId(),
+      kickstarter_id,
+      st_near_price: price,
+    }
+  );
 };
 
 export const getKickstarters = async () => {
@@ -117,7 +123,16 @@ export const getBalance = async (wallet: WalletConnection): Promise<number> => {
   return yoctoToStNear(accountInfo.st_near);
 };
 
-// TODO: fundToKickstarter and withdrawAll could use a similiar method as callPublicMetapoolMethod 
+export const getSupporterDetailedList = async (supporter_id: string) => {
+  return callPublicKatherineMethod(
+    katherineViewMethods.getSupportedDetailedList,
+    {
+      supporter_id: supporter_id,
+      from_index: 0,
+      limit: 10,
+    }
+  );
+};
 
 export const fundToKickstarter = async (
   wallet: WalletConnection,
@@ -129,13 +144,13 @@ export const fundToKickstarter = async (
     receiver_id: CONTRACT_ID,
     amount: stNearToYocto(amountOnStNear),
     msg: kickstarter_id.toString(),
-  };   
-  const response = (contract as any)["ft_transfer_call"](
+  };
+  const response = await (contract as any)["ft_transfer_call"](
     args,
     "300000000000000",
     "1"
   );
-  return response;
+  return providers.getTransactionLastResult(response);
 };
 
 export const withdrawAll = async (

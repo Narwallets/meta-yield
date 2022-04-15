@@ -36,10 +36,10 @@ export const yoctoToStNear = (value: Number): number => {
 };
 
 export const yoctoToDollarStr = (
-  value: Number,
+  value: string,
   nearPrice: number,
   decimals: number = 2
 ) => {
-  const stnear = new BN(value).div(new BN(10).pow(new BN(24))).toNumber();
-  return (stnear * nearPrice).toFixed(decimals);
+  const result = new BN(value).div(new BN(10).pow(new BN(24))).mul(new BN(nearPrice))
+  return result.toString();
 };

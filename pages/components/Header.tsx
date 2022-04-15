@@ -39,7 +39,7 @@ const Header: React.FC<ButtonProps> = (props) => {
     (async () => {
       try {
         if (wallet) {
-          setStNearBalance(await getBalance(wallet!));
+          setStNearBalance(await (await getBalance(wallet!)));
         }
       } catch (e) {
         console.log(e);
