@@ -9,23 +9,20 @@ import {
   HStack,
   Link,
   Container,
-  useColorModeValue,
-  Stack,
-  Heading,
   useBreakpointValue,
   ButtonGroup,
   Spacer,
   Square,
   Image,
 } from "@chakra-ui/react";
-import { getWallet, getBalance, METAPOOL_CONTRACT_ID, getContractMetadata } from "../../lib/near";
-import colors from "../colors";
-import { useStore } from "../stores/wallet";
-export const Header: React.FC<ButtonProps> = (props) => {
+import { getWallet, getBalance, METAPOOL_CONTRACT_ID } from "../../lib/near";
+import { colors } from "../../constants/colors";
+import { useStore } from "../../stores/wallet";
+const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, setWallet } = useStore();
   const [signInAccountId, setSignInAccountId] = useState(null);
   const [stNearBalance, setStNearBalance] = useState<number>(0);
-  
+
   const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   const onConnect = async () => {
@@ -113,7 +110,7 @@ export const Header: React.FC<ButtonProps> = (props) => {
                         alt="stnear"
                       />
                     </Square>
-                    <Text>{stNearBalance}</Text>
+                    <Text>{stNearBalance.toFixed(5)}</Text>
                     <a
                       href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
                       target="_blank"
@@ -155,3 +152,5 @@ export const Header: React.FC<ButtonProps> = (props) => {
     </Box>
   );
 };
+
+export default Header;

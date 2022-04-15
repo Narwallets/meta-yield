@@ -1,33 +1,27 @@
 import React, { useEffect, useState } from "react";
-import {
-  HStack,
-  Stack,
-  Text,
-  Progress,
-  Flex,
-  Spacer,
-  Tag,
-} from "@chakra-ui/react";
-import { Card } from "./Card";
-import { KickstarterProps } from "../types/project.types";
+import { HStack, Stack, Text } from "@chakra-ui/react";
+import Card from "./Card";
+import { KickstarterProps } from "../../types/project.types";
 import moment from "moment";
-import { yoctoToDollarStr, yoctoToStNearStr } from "../../lib/util";
+import { yoctoToDollarStr } from "../../lib/util";
 import { getContractMetadata } from "../../lib/near";
-import { fetchNearPrice } from "../queries/prices";
-export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
-  const kickstarter = props.kickstarter;
+import { fetchNearPrice } from "../../queries/prices";
+const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
+  const kickstarter = props.kickstarter as KickstarterProps;
   const [tokenSymbol, setTokenSymbol] = useState("");
   const [totalRaised, setTotalRaised] = useState("");
   useEffect(() => {
     (async () => {
       const contractMetadata = await getContractMetadata(
-        kickstarter.token_contract_address
+        kickstarter?.token_contract_address
       );
       if (contractMetadata) setTokenSymbol(contractMetadata.symbol);
       const nearPrice = await fetchNearPrice();
-      setTotalRaised(yoctoToDollarStr(kickstarter.total_deposited, nearPrice));
+      setTotalRaised(
+        yoctoToDollarStr(parseInt(kickstarter?.total_deposited), nearPrice)
+      );
     })();
-  }, []);
+  }, [kickstarter?.token_contract_address, kickstarter?.total_deposited]);
   return (
     <Card>
       <Stack>
@@ -44,7 +38,7 @@ export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             SUPPORTERS
           </Text>
           <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
-            {kickstarter.total_supporters}
+            {kickstarter?.total_supporters}
           </Text>
         </Stack>
         <Stack>
@@ -52,7 +46,7 @@ export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             LEFT TO FUND
           </Text>
           <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
-            {moment(kickstarter.close_timestamp).diff(moment(), "days")} days
+            {moment(kickstarter?.close_timestamp).diff(moment(), "days")} days
           </Text>
         </Stack>
         <Stack>
@@ -67,3 +61,5 @@ export const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
     </Card>
   );
 };
+
+export default FundingStatusCard;

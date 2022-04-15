@@ -20,19 +20,19 @@ import {
   Circle,
   AspectRatio,
 } from "@chakra-ui/react";
-import { Card } from "./Card";
+import Card from "./Card";
 import Image from "next/image";
 import Link from "next/link";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps } from "../types/project.types";
+import { ProjectProps } from "../../types/project.types";
 import { useRouter } from "next/router";
-import { truncateText } from "../utils/textHandlers";
-import { useGetProjectDetails, useGetProjects } from "../hooks/projects";
+import { truncateText } from "../../utils/textHandlers";
+import { useGetProjectDetails, useGetProjects } from "../../hooks/projects";
 import moment from "moment";
 import { yoctoToDollarStr, yoctoToStNearStr } from "../../lib/util";
-import { fetchNearPrice } from "../queries/prices";
+import { fetchNearPrice } from "../../queries/prices";
 
-export const ActiveProject = (props: { data: ProjectProps }) => {
+const ActiveProject = (props: { data: ProjectProps }) => {
   const projectData = props.data;
   const [totalRaised, setTotalRaised] = useState("");
   const avatarColor = useColorModeValue("white", "gray.700");
@@ -46,7 +46,10 @@ export const ActiveProject = (props: { data: ProjectProps }) => {
       const nearPrice = await fetchNearPrice();
       if (projectData?.kickstarter?.total_deposited) {
         setTotalRaised(
-          yoctoToDollarStr(projectData?.kickstarter?.total_deposited, nearPrice)
+          yoctoToDollarStr(
+            parseInt(projectData?.kickstarter?.total_deposited),
+            nearPrice
+          )
         );
       }
     })();
@@ -179,3 +182,5 @@ export const ActiveProject = (props: { data: ProjectProps }) => {
     </Card>
   );
 };
+
+export default ActiveProject;

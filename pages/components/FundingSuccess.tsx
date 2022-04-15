@@ -13,9 +13,9 @@ import {
 // import Image from "next/image";
 import { CaretLeft, CaretRight, } from "phosphor-react";
 
-import { useGetProjects } from "../hooks/projects";
+import { useGetProjects } from "../../hooks/projects";
 import { useRouter } from "next/router";
-import { ProjectProps } from "../types/project.types";
+import { ProjectProps } from "../../types/project.types";
 const FundingSuccess = (props: { id: any }) => {
   const router = useRouter();
   const { data, isLoading } = useGetProjects();

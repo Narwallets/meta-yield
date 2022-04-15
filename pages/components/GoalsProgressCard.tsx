@@ -10,57 +10,74 @@ import {
   Progress,
   Box,
 } from "@chakra-ui/react";
-import { Card } from "./Card";
-import { KickstarterGoalProps, KickstarterProps } from "../types/project.types";
-import { Goal } from "./Goal";
-import { useGoal } from "../hooks/useGoal";
+import Card from "./Card";
+import {
+  KickstarterGoalProps,
+  KickstarterProps,
+} from "../../types/project.types";
+import Goal from "./Goal";
+import { useGoal } from "../../hooks/useGoal";
 import moment from "moment";
-export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
-  const kickstarter = props.kickstarter;
+const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
+  const kickstarter = props.kickstarter as KickstarterProps;
   const getCurrentFundingGoal = () => {
-    const [current] = kickstarter.goals.filter(
-      (g) => parseInt(g.desired_amount) >= kickstarter.total_deposited
-    );
-    if (!current) {
-      return kickstarter.goals[kickstarter.goals.length - 1];
+    if (kickstarter && kickstarter.goals) {
+      const [current] = kickstarter.goals.filter(
+        (g) =>
+          parseInt(g.desired_amount) >= parseInt(kickstarter.total_deposited)
+      );
+      if (!current) {
+        return kickstarter?.goals[kickstarter.goals.length - 1];
+      }
+      return current;
     }
-    return current;
+    return undefined;
   };
-  const [goal, setGoal] = useState(kickstarter.goals[0]);
+  const [goal, setGoal] = useState<KickstarterGoalProps>();
   const [goalRaised, setGoalRaised] = useState(0);
   const [goalProgress, setGoalProgress] = useState(0);
   const [goalStatus, setGoalStatus] = useState<string | undefined>(undefined);
   const [currentGoalId, { setGoalId }] = useGoal({
-    maxGoal: kickstarter.goals.length,
-    initialGoal: getCurrentFundingGoal().id,
+    maxGoal: kickstarter && kickstarter.goals ? kickstarter.goals.length : 0,
+    initialGoal: getCurrentFundingGoal()
+      ? getCurrentFundingGoal()?.id
+      : undefined,
   });
   const getGoalStatus = () => {
     const goal = getCurrentFundingGoal();
-    const desiredAmount = parseInt(goal.desired_amount);
-    if (moment().valueOf() > kickstarter.close_timestamp) {
-      if (kickstarter.total_deposited < desiredAmount) {
-        return "Timeout";
-      } else return "Completed";
+    if (goal) {
+      const desiredAmount = parseInt(goal.desired_amount);
+      const deposited = parseInt(kickstarter.total_deposited);
+      if (moment().valueOf() > kickstarter.close_timestamp) {
+        if (deposited < desiredAmount) {
+          return "Timeout";
+        } else return "Completed";
+      }
+      return "In Progress...";
     }
-    return "In Progress...";
+    return "Undefined";
   };
   useEffect(() => {
-    const goal = kickstarter.goals.find((g) => g.id === currentGoalId);
-    if (goal) {
-      const goalDesiredAmount = parseInt(goal.desired_amount);
-      const raised =
-        currentGoalId === 0
-          ? kickstarter.total_deposited
-          : kickstarter.total_deposited > goalDesiredAmount
-          ? kickstarter.total_deposited
-          : goalDesiredAmount - kickstarter.total_deposited;
-      setGoal(goal);
-      setGoalRaised(raised);
-      setGoalProgress((raised * 100) / goalDesiredAmount);
-      setGoalStatus(getGoalStatus());
+    if (kickstarter && kickstarter.goals) {
+      setGoal(kickstarter?.goals[0]);
+      const goal = kickstarter.goals.find((g) => g.id === currentGoalId);
+      if (goal) {
+        const goalDesiredAmount = parseInt(goal.desired_amount);
+        const deposited = parseInt(kickstarter.total_deposited);
+        const raised =
+          currentGoalId === 0
+            ? deposited
+            : deposited > goalDesiredAmount
+            ? deposited
+            : goalDesiredAmount - deposited;
+        setGoal(goal);
+        setGoalRaised(raised);
+        setGoalProgress((raised * 100) / goalDesiredAmount);
+        setGoalStatus(getGoalStatus());
+      }
     }
-  }, [currentGoalId, kickstarter.goals]);
-
+  }, [currentGoalId, kickstarter]);
+  if (!props || !props.kickstarter) return <></>;
   return (
     <Card>
       <Text>GOALS</Text>
@@ -90,3 +107,5 @@ export const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
     </Card>
   );
 };
+
+export default GoalsProgressCard;

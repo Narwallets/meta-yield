@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 
-export const HowItWorks = () => (
+const HowItWorks = () => (
   <Box
     as="section"
     id="how-it-works"
@@ -21,7 +21,7 @@ export const HowItWorks = () => (
   >
     <Container>
       <Stack spacing={{ base: "8", md: "10" }} align="center">
-        <Flex flexDirection={'column'} alignItems={'center'} mb={'50px'}>
+        <Flex flexDirection={"column"} alignItems={"center"} mb={"50px"}>
           <Text fontSize="xl" lineHeight="7" fontWeight="semibold">
             How It Works
           </Text>
@@ -34,14 +34,14 @@ export const HowItWorks = () => (
             Fund to earn.
           </Text>
         </Flex>
-        <HStack  spacing={{ base: "8", md: "10" }} align="center">
+        <HStack spacing={{ base: "8", md: "10" }} align="center">
           <Stack>
-              <Image
-                src={'/connectwallet.svg'}
-                alt="project"
-                width="72px"
-                height={"72px"}
-              />
+            <Image
+              src={"/connectwallet.svg"}
+              alt="project"
+              width="72px"
+              height={"72px"}
+            />
             <Text fontSize="2xl" lineHeight="8" fontWeight="semibold">
               Connect your wallet
             </Text>
@@ -51,7 +51,7 @@ export const HowItWorks = () => (
           </Stack>
           <Stack>
             <Image
-              src={'/stakenear.svg'}
+              src={"/stakenear.svg"}
               alt="project"
               width="72px"
               height={"72px"}
@@ -65,7 +65,7 @@ export const HowItWorks = () => (
           </Stack>
           <Stack>
             <Image
-              src={'/earntokens.svg'}
+              src={"/earntokens.svg"}
               alt="project"
               width="72px"
               height={"72px"}
@@ -79,7 +79,7 @@ export const HowItWorks = () => (
           </Stack>
           <Stack>
             <Image
-              src={'/fundprojects.svg'}
+              src={"/fundprojects.svg"}
               alt="project"
               width="72px"
               height={"72px"}
@@ -96,3 +96,5 @@ export const HowItWorks = () => (
     </Container>
   </Box>
 );
+
+export default HowItWorks;

@@ -2,47 +2,25 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
-  HStack,
-  VStack,
-  Icon,
   Stack,
-  Tag,
   Text,
-  useColorModeValue,
-  Wrap,
-  StackDivider,
-  Heading,
-  useBreakpointValue,
   SimpleGrid,
-  AvatarBadge,
-  Image,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
   Avatar,
   Link,
   Flex,
   Spacer,
   Input,
-  Center,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   InputLeftAddon,
   Divider,
 } from "@chakra-ui/react";
-import { Card } from "./Card";
+import Card from "./Card";
 import { Alien } from "phosphor-react";
 // import Image from "next/image";
 import { CaretLeft, CaretRight, CircleWavyCheck } from "phosphor-react";
-import {
-  KickstarterGoalProps,
-  ProjectProps,
-  TeamMemberProps,
-} from "../types/project.types";
-import { useGetProjectDetails } from "../hooks/projects";
+import { KickstarterGoalProps } from "../../types/project.types";
+import { useGetProjectDetails } from "../../hooks/projects";
 import { useRouter } from "next/router";
 import moment from "moment";
 import {
@@ -50,8 +28,8 @@ import {
   getBalance,
   getContractMetadata,
 } from "../../lib/near";
-import { useStore } from "./../stores/wallet";
-import { stNearToYocto, yoctoToStNear } from "../../lib/util";
+import { useStore } from "./../../stores/wallet";
+import { yoctoToStNear } from "../../lib/util";
 
 const FundingSummary = (props: { id: any }) => {
   const kickstarter_id = props.id;
@@ -75,16 +53,13 @@ const FundingSummary = (props: { id: any }) => {
     setAmountToFund(await getBalance(wallet!));
 
   const fund = async (event: any) => {
-    const result = fundToKickstarter(
-      wallet!,
-      kickstarter_id,
-      amountToFund
-    );
+    const result = fundToKickstarter(wallet!, kickstarter_id, amountToFund);
     router.push(`/project/success/${project.id}`);
   };
   const getCurrentFundingGoal = () => {
     const [currentFundingGoal] = project.kickstarter.goals.filter(
-      (g) => parseInt(g.desired_amount) >= project.kickstarter.total_deposited
+      (g: KickstarterGoalProps) =>
+        parseInt(g.desired_amount) >= project.kickstarter.total_deposited
     );
     if (!currentFundingGoal) {
       return project.kickstarter.goals[project.kickstarter.goals.length - 1];
@@ -94,17 +69,10 @@ const FundingSummary = (props: { id: any }) => {
 
   useEffect(() => {
     if (project) {
-      const current= getCurrentFundingGoal(); 
+      const current = getCurrentFundingGoal();
       setCurrentFundingGoal(current);
       if (current) {
-        // const raised =
-        //   project.kickstarter.id === 0
-        //     ? project.kickstarter.total_deposited
-        //     : currentFundingGoal.desired_amount -
-        //       project.kickstarter.total_deposited;
-        setFundingNeeded(
-          parseInt(current.desired_amount) / 10 ** 24
-        );
+        setFundingNeeded(parseInt(current.desired_amount) / 10 ** 24);
         const lockup = moment(current.unfreeze_timestamp).diff(
           moment(project?.kickstarter?.close_timestamp),
           "months"

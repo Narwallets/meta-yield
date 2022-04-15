@@ -1,12 +1,13 @@
 import { Box, Text, Stack } from "@chakra-ui/react";
 import * as React from "react";
-import { ProjectCard } from "./ProjectCard";
-import { ProjectGrid } from "./ProjectGrid";
-import { ProjectProps } from "../types/project.types";
-import { useGetProjects } from "../hooks/projects";
-export const Projects = (props: { data: ProjectProps[] }) => {
+import ProjectCard from "./ProjectCard";
+import ProjectGrid from "./ProjectGrid";
+import { ProjectProps } from "../../types/project.types";
+import { useGetProjects } from "../../hooks/projects";
+const Projects = (props: { data: ProjectProps[] }) => {
   // const { data, isLoading } = useGetProjects();
   const data = props.data;
+  if (!props.data) return <></>;
   return (
     <Box
       mx="auto"
@@ -19,11 +20,16 @@ export const Projects = (props: { data: ProjectProps[] }) => {
           Other Projects
         </Text>
         <ProjectGrid>
-          {data.map((project: ProjectProps) => (
-            <ProjectCard key={project.kickstarter && project.kickstarter.id} project={project} />
+          {data?.map((project: ProjectProps) => (
+            <ProjectCard
+              key={project.kickstarter && project.kickstarter.id}
+              project={project}
+            />
           ))}
         </ProjectGrid>
       </Stack>
     </Box>
   );
 };
+
+export default Projects;
