@@ -60,6 +60,15 @@ export const getTotalKickstarters = async () => {
   );
 };
 
+export const getSupportedKickstarters = async (id: any) => {
+  return callPublicKatherineMethod(
+    katherineViewMethods.getSupportedProjects,
+    {
+      supporter_id: id
+    }
+  );
+};
+
 export const getSupporterEstimatedStNear = async (
   wallet: WalletConnection,
   kickstarter_id: number,
