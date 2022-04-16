@@ -13,6 +13,8 @@ import {
   InputGroup,
   InputRightElement,
   InputLeftAddon,
+  Square,
+  Image,
   Divider,
 } from "@chakra-ui/react";
 import Card from "./Card";
@@ -194,7 +196,14 @@ const FundingSummary = (props: { id: any }) => {
                 </Text>
                 <InputGroup>
                   <InputLeftAddon>
-                    <Alien size={32} color="indigo" />
+                    <Square minW="30px">
+                      <Image
+                        boxSize="20px"
+                        objectFit="cover"
+                        src="/stnear.svg"
+                        alt="stnear"
+                      />
+                    </Square>
                   </InputLeftAddon>
                   <Input
                     id="amount"

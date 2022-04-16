@@ -9,22 +9,24 @@ export default async function handler(
   let result: { open: any[]; active: any[] } = { open: [], active: [] };
 
   const activeProjects = await getActiveProjects();
-  for (const project of activeProjects.open) {
-    const projectOnChain = await getProjectDetails(project.id);
-    const projectStatic = data.find((sp) => sp.id === project.id);
-    result.open.push({
-      ...projectStatic,
-      kickstarter: projectOnChain,
-    });
-  }
+  if (activeProjects) {
+    for (const project of activeProjects.open) {
+      const projectOnChain = await getProjectDetails(project.id);
+      const projectStatic = data.find((sp) => sp.id === project.id);
+      result.open.push({
+        ...projectStatic,
+        kickstarter: projectOnChain,
+      });
+    }
 
-  for (const project of activeProjects.active) {
-    const projectOnChain = await getProjectDetails(project.id);
-    const projectStatic = data.find((sp) => sp.id === project.id);
-    result.active.push({
-      ...projectStatic,
-      kickstarter: projectOnChain,
-    });
+    for (const project of activeProjects.active) {
+      const projectOnChain = await getProjectDetails(project.id);
+      const projectStatic = data.find((sp) => sp.id === project.id);
+      result.active.push({
+        ...projectStatic,
+        kickstarter: projectOnChain,
+      });
+    }
   }
   res.status(200).json(result);
 }

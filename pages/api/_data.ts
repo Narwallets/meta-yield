@@ -1,6 +1,6 @@
 export const data = [
   {
-    id: 0, // key para proyectos en katherine
+    id: 4, // key para proyectos en katherine
     slug: "permrock", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "PembRock Finance",
     motto: "Leveraged yield farming is NEAR.",
@@ -61,7 +61,7 @@ export const data = [
     ],
   },
   {
-    id: 1,
+    id: 5,
     name: "Metamon",
     slug: "metamon",
     motto: "Capture, evolve and battle!",
@@ -245,7 +245,7 @@ export const data = [
     ],
   },
   {
-    id: 4,
+    id: 7,
     name: "Bearverse",
     slug: "bearverse",
     motto:
@@ -307,7 +307,7 @@ export const data = [
     ],
   },
   {
-    id: 5,
+    id: 8,
     name: "Bearverse",
     slug: "bearverse",
     motto:
