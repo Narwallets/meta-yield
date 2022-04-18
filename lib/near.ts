@@ -8,8 +8,10 @@ import {
   providers,
   ConnectConfig,
 } from "near-api-js";
+import { FinalExecutionStatus } from "near-api-js/lib/providers";
 const BN = require("bn.js");
 import { getConfig } from "../config";
+import { TransactionStatusResult } from "../types/transactions.types";
 import {
   katherineViewMethods,
   katherineChangeMethods,
@@ -61,12 +63,9 @@ export const getTotalKickstarters = async () => {
 };
 
 export const getSupportedKickstarters = async (id: any) => {
-  return callPublicKatherineMethod(
-    katherineViewMethods.getSupportedProjects,
-    {
-      supporter_id: id
-    }
-  );
+  return callPublicKatherineMethod(katherineViewMethods.getSupportedProjects, {
+    supporter_id: id,
+  });
 };
 
 export const getSupporterEstimatedStNear = async (
@@ -154,17 +153,43 @@ export const fundToKickstarter = async (
     amount: stNearToYocto(amountOnStNear),
     msg: kickstarter_id.toString(),
   };
-  const response = await (contract as any)["ft_transfer_call"](
-    args,
-    "300000000000000",
-    "1"
-  );
+  const response = await wallet
+    .account()
+    .functionCall(
+      METAPOOL_CONTRACT_ID!,
+      "ft_transfer_call",
+      args,
+      "300000000000000",
+      "1"
+    );
   return providers.getTransactionLastResult(response);
 };
 
+export const getTxStatus = async (
+  txHash: string,
+  account_id: string
+): Promise<TransactionStatusResult> => {
+  const result = await provider.txStatus(txHash, account_id);
+  if ((result.status as FinalExecutionStatus).SuccessValue)
+    return { success: true };
+  if ((result.status as FinalExecutionStatus).Failure)
+    return {
+      success: false,
+      error: {
+        message: (result.status as FinalExecutionStatus).Failure
+          ?.error_message as string,
+        type: (result.status as FinalExecutionStatus).Failure
+          ?.error_type as string,
+      },
+    };
+  return {
+    success: false,
+    error: { message: "Error executing transaction", type: "UNKNOWN_ERROR" },
+  };
+};
 export const withdrawAll = async (
   wallet: WalletConnection,
-  kickstarter_id: number,
+  kickstarter_id: number
 ) => {
   const contract = await getContract(wallet);
   const args = {

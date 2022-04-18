@@ -36,7 +36,7 @@ const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
         </Text>
 
         <Select
-          placeholder="Select a goal"
+        placeholder="Select a goal"
           size="lg"
           onChange={(e) => onGoalChange(e)}
         >

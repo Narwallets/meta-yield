@@ -48,5 +48,6 @@ export interface TeamMemberProps {
     tags: string[];
     campaignHtml: string;
     team: TeamMemberProps[];
+    roadmapImageUrl: string;
     kickstarter?: KickstarterProps;
   }

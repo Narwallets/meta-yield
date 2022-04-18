@@ -59,6 +59,7 @@ export const data = [
         handle: "@ivan",
       },
     ],
+    roadmapImageUrl: 'https://3621490034-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fop6AI95zTHVsmsuW1IpF%2Fuploads%2Fpyt3cN28gXSrgsgPaNrB%2Froadmap.jpg?alt=media&token=4b262c3c-2c47-4e2b-9a93-4974981972c4'
   },
   {
     id: 5,
