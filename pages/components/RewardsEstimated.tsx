@@ -1,7 +1,17 @@
 import React, { useEffect, useState, ChangeEvent } from "react";
-import { HStack, Stack, Text, Input, Center, Select, Box, Flex, Divider, Spacer } from "@chakra-ui/react";
-import { Card } from "./Card";
-import { KickstarterProps } from "../types/project.types";
+import {
+  Stack,
+  Text,
+  Input,
+  Center,
+  Select,
+  Box,
+  Flex,
+  Divider,
+  Spacer,
+} from "@chakra-ui/react";
+import Card from "./Card";
+import { KickstarterProps } from "../../types/project.types";
 import { yoctoToStNear } from "../../lib/util";
 import moment from "moment";
 const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
@@ -9,13 +19,13 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   const [goalSelected, setGoalSelected] = useState<number>(0);
   const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
   const [amountOfStNear, setAmountOfStNear] = useState<number>(0);
-  const [lockupTime, setLockUpPeriod]  = useState<any>();
+  const [lockupTime, setLockUpPeriod] = useState<any>();
   // ToDo: REVIEW ESTIMATED REWARD CALCULATION
   const calculateRewards = () => {
-    const goal = kickstarter.goals.find((g) => g.id === goalSelected);
+    const goal = kickstarter?.goals.find((g) => g.id === goalSelected);
 
     if (goal) {
-      const lockup = moment(goal.unfreeze_timestamp).format('MMM do YYYY');
+      const lockup = moment(goal.unfreeze_timestamp).format("MMM do YYYY");
       setLockUpPeriod(lockup);
 
       const tokenAwardPerStnear: string = goal.tokens_to_release_per_stnear;
@@ -35,9 +45,6 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
     calculateRewards();
   }, [amountOfStNear, goalSelected]);
 
-
-
-
   return (
     <Card>
       <Stack spacing="6">
@@ -45,16 +52,15 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
           YOUR INVESTMENT
         </Text>
         <Flex mt="65px" backgroundColor={"#F1F2F6"} justifyContent={"center"}>
-        <Box
-          px={{ base: "4", md: "6" }}
-          py={{ base: "5", md: "6" }}
-          borderRadius="lg"
-        >
-          <Stack w={"600px"}>
-            <Stack>
-
-              <Box backgroundColor={"white"} p={"40px"} bg="light">
-                <Stack spacing="4">
+          <Box
+            px={{ base: "4", md: "6" }}
+            py={{ base: "5", md: "6" }}
+            borderRadius="lg"
+          >
+            <Stack w={"600px"}>
+              <Stack>
+                <Box backgroundColor={"white"} p={"40px"} bg="light">
+                  <Stack spacing="4">
                     <Flex>
                       <Text
                         fontSize="md"
@@ -71,7 +77,7 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
                         fontWeight="bold"
                         color="gray.900"
                       >
-                        ${kickstarter.stnear_price_at_unfreeze}
+                        ${kickstarter?.stnear_price_at_unfreeze}
                       </Text>
                     </Flex>
                     <Divider />
@@ -82,7 +88,7 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
                         fontWeight="semibold"
                         color="gray.500"
                       >
-                        {kickstarter.project_token_symbol} Tokens (Rewards)
+                        {kickstarter?.project_token_symbol} Tokens (Rewards)
                       </Text>
                       <Spacer />
                       <Text
@@ -114,14 +120,12 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
                         {lockupTime}
                       </Text>
                     </Flex>
-                </Stack>
-              </Box>
+                  </Stack>
+                </Box>
+              </Stack>
             </Stack>
-          </Stack>
-        </Box>
-      </Flex>
-        
-        
+          </Box>
+        </Flex>
       </Stack>
     </Card>
   );
