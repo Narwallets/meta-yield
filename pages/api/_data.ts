@@ -75,7 +75,7 @@ export const data = [
     verified: false,
 
     tags: ["Games", "NFTs"],
-    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    campaignHtml: `<b>Supported by Near Foundation</b><br>
     PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
     <b>Managed by Community</b><br><br>
     Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
@@ -121,6 +121,7 @@ export const data = [
         handle: "@ivan",
       },
     ],
+    roadmapImageUrl: 'https://3621490034-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fop6AI95zTHVsmsuW1IpF%2Fuploads%2Fpyt3cN28gXSrgsgPaNrB%2Froadmap.jpg?alt=media&token=4b262c3c-2c47-4e2b-9a93-4974981972c4'
   },
   {
     id: 3,
@@ -136,7 +137,7 @@ export const data = [
     verified: true,
 
     tags: ["Games", "NFTs"],
-    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    campaignHtml: `<b>Supported by Near Foundation</b><br>
     PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
     <b>Managed by Community</b><br><br>
     Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
@@ -182,6 +183,7 @@ export const data = [
         handle: "@ivan",
       },
     ],
+    roadmapImageUrl: 'https://3621490034-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fop6AI95zTHVsmsuW1IpF%2Fuploads%2Fpyt3cN28gXSrgsgPaNrB%2Froadmap.jpg?alt=media&token=4b262c3c-2c47-4e2b-9a93-4974981972c4'
   },
   {
     id: 4,
@@ -198,7 +200,7 @@ export const data = [
     verified: true,
 
     tags: ["Games", "NFTs"],
-    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    campaignHtml: `<b>Supported by Near Foundation</b><br>
     PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
     <b>Managed by Community</b><br><br>
     Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
@@ -244,6 +246,7 @@ export const data = [
         handle: "@ivan",
       },
     ],
+    roadmapImageUrl: 'https://3621490034-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fop6AI95zTHVsmsuW1IpF%2Fuploads%2Fpyt3cN28gXSrgsgPaNrB%2Froadmap.jpg?alt=media&token=4b262c3c-2c47-4e2b-9a93-4974981972c4'
   },
   {
     id: 5,
@@ -260,7 +263,7 @@ export const data = [
     verified: true,
 
     tags: ["Games", "NFTs"],
-    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    campaignHtml: `<b>Supported by Near Foundation</b><br>
     PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
     <b>Managed by Community</b><br><br>
     Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
@@ -306,6 +309,7 @@ export const data = [
         handle: "@ivan",
       },
     ],
+    roadmapImageUrl: 'https://3621490034-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fop6AI95zTHVsmsuW1IpF%2Fuploads%2Fpyt3cN28gXSrgsgPaNrB%2Froadmap.jpg?alt=media&token=4b262c3c-2c47-4e2b-9a93-4974981972c4'
   },
   {
     id: 6,
@@ -322,7 +326,7 @@ export const data = [
     verified: true,
 
     tags: ["Games", "NFTs"],
-    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    campaignHtml: `<b>Supported by Near Foundation</b><br>
     PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
     <b>Managed by Community</b><br><br>
     Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
@@ -368,6 +372,7 @@ export const data = [
         handle: "@ivan",
       },
     ],
+    roadmapImageUrl: 'https://3621490034-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fop6AI95zTHVsmsuW1IpF%2Fuploads%2Fpyt3cN28gXSrgsgPaNrB%2Froadmap.jpg?alt=media&token=4b262c3c-2c47-4e2b-9a93-4974981972c4'
   },
   {
     id: 7,
@@ -384,7 +389,7 @@ export const data = [
     verified: true,
 
     tags: ["Games", "NFTs"],
-    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    campaignHtml: `<b>Supported by Near Foundation</b><br>
     PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
     <b>Managed by Community</b><br><br>
     Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
@@ -446,7 +451,7 @@ export const data = [
     verified: true,
 
     tags: ["Games", "NFTs"],
-    campaignHtml: `<h1>Our vision</h1> <br><br> <b>Supported by Near Foundation</b><br>
+    campaignHtml: `<b>Supported by Near Foundation</b><br>
     PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
     <b>Managed by Community</b><br><br>
     Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>

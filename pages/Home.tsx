@@ -18,17 +18,18 @@ const Home = () => {
           pb={{ base: "12", md: "24" }}
         >
           <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-            Current Project
+            Current Projects
           </Text>
-          {data.open
-            .map((p: any) => (
-              <div key={p.kickstarter.id}>
-                <ActiveProject data={p} />
-              </div>
-            ))}
+          {data.open.map((p: any) => (
+            <div key={p.kickstarter.id}>
+              <ActiveProject data={p} />
+            </div>
+          ))}
         </Box>
+        {data.active.lenght && (
+          <Projects data={data.active} />
+        )}
 
-        <Projects data={data.open.filter((val: any) => !val.verified)} />
         <HowItWorks />
       </Box>
     </>
