@@ -63,9 +63,10 @@ export const getTotalKickstarters = async () => {
 };
 
 export const getSupportedKickstarters = async (id: any) => {
+  const st_near_price = await getStNearPrice();
   return callPublicKatherineMethod(katherineViewMethods.getSupportedDetailedList, {
     supporter_id: id,
-    st_near_price: stNearToYocto(1),
+    st_near_price: st_near_price,
     from_index: 0,
     limit: 10
   });
@@ -76,14 +77,17 @@ export const getSupporterEstimatedStNear = async (
   kickstarter_id: number,
   price: string
 ) => {
-  return callPublicKatherineMethod(
-    katherineViewMethods.getSupporterEstimatedStNear,
-    {
-      supporter_id: wallet.getAccountId(),
-      kickstarter_id,
-      st_near_price: price,
-    }
-  );
+  
+    console.log("price", price);
+    return callPublicKatherineMethod(
+      katherineViewMethods.getSupporterEstimatedStNear,
+      {
+        supporter_id: wallet.getAccountId(),
+        kickstarter_id,
+        st_near_price: price,
+      }
+    );
+  
 };
 
 export const getKickstarters = async () => {
