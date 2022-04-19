@@ -143,8 +143,10 @@ const ActiveProject = (props: { data: ProjectProps }) => {
               <Text fontSize="md" color="emphasized">
                 { 
                   moment(projectData.kickstarter?.close_timestamp).diff(moment(), "days") > 0 ? 
-                  `${moment(projectData.kickstarter?.close_timestamp).diff(moment(), "days") > 0 } days` : 
-                  `${moment(projectData.kickstarter?.close_timestamp).diff(moment(), "hours")} hours`            
+                  `${moment(projectData.kickstarter?.close_timestamp).diff(moment(), "days")} days` : 
+                    moment(projectData.kickstarter?.close_timestamp).diff(moment(), "hours") > 1 ? 
+                    `${moment(projectData.kickstarter?.close_timestamp).diff(moment(), "hours")} hours` :
+                    `${moment(projectData.kickstarter?.close_timestamp).diff(moment(), "minutes")} minutes`           
                 }
               </Text>
               <Stack align="flex-start" spacing="4">
