@@ -21,7 +21,7 @@ export const katherineViewMethods = {
 // katherine gas methods (change methods)
 export const katherineChangeMethods = {
   withdraw: "withdraw",
-  withdrawAll: "withdraw_all" 
+  withdrawAll: "withdraw_all",
 };
 
 export const metaPoolMethods = {
