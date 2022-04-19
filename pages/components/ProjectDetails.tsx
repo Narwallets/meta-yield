@@ -91,6 +91,8 @@ const ProjectDetails = (props: { id: any }) => {
           projectFounded.length &&
           projectFounded.find((val: any) => (val.id = project.kickstarter.id))
         ) {
+          setShowFund(false);
+          setShowRewardsCalculator(false);
           setShowRewardsEstimated(true);
         }
 
@@ -305,7 +307,7 @@ const ProjectDetails = (props: { id: any }) => {
 
             {showRewardEstimated && (
               <RewardsEstimated
-                kickstarter={project?.kickstarter}
+                kickstarter={project?.kickstarter} 
               ></RewardsEstimated>
             )}
           </Stack>
