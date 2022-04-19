@@ -49,7 +49,7 @@ const FundingSuccess = (props: { id: any }) => {
 
   useEffect(() => {
     (async () => {
-      if (data) {
+      if (data && supportedProjets) {
         const nearPrice = await fetchNearPrice();
         const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal();
         const supportedProject = supportedProjets.find(
@@ -57,7 +57,7 @@ const FundingSuccess = (props: { id: any }) => {
         );
         if (winnerGoal) {
           const rewards =
-            yoctoToStNear(parseInt(winnerGoal.tokens_to_release)) *
+            yoctoToStNear(parseInt(winnerGoal.tokens_to_release_per_stnear)) *
             yoctoToStNear(parseInt(supportedProject.supporter_deposit));
           setRewards(rewards.toString());
           setLockupTime(

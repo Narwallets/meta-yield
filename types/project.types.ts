@@ -17,7 +17,7 @@ export interface TeamMemberProps {
     end_timestamp: number;
     id: number;
     name: string;
-    tokens_to_release: string;
+    tokens_to_release_per_stnear: string;
     unfreeze_timestamp: number;
   }
   export interface KickstarterProps {
@@ -34,6 +34,7 @@ export interface TeamMemberProps {
     active: boolean;
     successful?: boolean;
     winner_goal_id: number;
+    enough_reward_tokens: boolean;
   }
   export interface ProjectProps {
     id: number;
@@ -48,5 +49,6 @@ export interface TeamMemberProps {
     tags: string[];
     campaignHtml: string;
     team: TeamMemberProps[];
+    roadmapImageUrl: string;
     kickstarter?: KickstarterProps;
   }

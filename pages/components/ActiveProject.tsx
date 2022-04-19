@@ -31,6 +31,7 @@ import { useGetProjectDetails, useGetProjects } from "../../hooks/projects";
 import moment from "moment";
 import { yoctoToDollarStr, yoctoToStNearStr } from "../../lib/util";
 import { fetchNearPrice } from "../../queries/prices";
+import FundButton from "./FundButon";
 
 const ActiveProject = (props: { data: ProjectProps }) => {
   const projectData = props.data;
@@ -161,16 +162,10 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                 }
               </Stack>
               <Stack align="flex-start" spacing="4">
-                <Button
-                  w={"100%"}
-                  h={"48px"}
-                  size={"md"}
-                  colorScheme="indigo"
-                  rightIcon={<CaretRight size={20} />}
+                <FundButton
+                  show={true}
                   onClick={() => router.push(`/project/${projectData.id}`)}
-                >
-                  Fund Now
-                </Button>
+                ></FundButton>
               </Stack>
             </VStack>
           </Stack>

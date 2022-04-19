@@ -50,7 +50,7 @@ import {
 } from "../../lib/near";
 import { yoctoToStNear } from "../../lib/util";
 import RewardsEstimated from "./RewardsEstimated";
-
+import FundButton from "./FundButon";
 const ProjectDetails = (props: { id: any }) => {
   const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
@@ -83,8 +83,14 @@ const ProjectDetails = (props: { id: any }) => {
       if (project) {
         const tempWallet = await getWallet();
 
-        const projectFounded: any[] = await getSupportedKickstarters(tempWallet.getAccountId());
-        if (projectFounded && projectFounded.length && projectFounded.find((val: any)=> val.id = project.kickstarter.id)) {
+        const projectFounded: any[] = await getSupportedKickstarters(
+          tempWallet.getAccountId()
+        );
+        if (
+          projectFounded &&
+          projectFounded.length &&
+          projectFounded.find((val: any) => (val.id = project.kickstarter.id))
+        ) {
           setShowRewardsEstimated(true);
         }
 
@@ -95,18 +101,19 @@ const ProjectDetails = (props: { id: any }) => {
           if (project.kickstarter.successful) {
             setShowWithdraw(true);
             const price = await getStNearPrice();
-            const ammount = parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0 ? project.kickstarter.stnear_price_at_unfreeze :  await getWithdrawAmmount(
-              tempWallet,
-              parseInt(props.id),
-              price.toString()
-            );
+            const ammount =
+              parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
+                ? project.kickstarter.stnear_price_at_unfreeze
+                : await getWithdrawAmmount(
+                    tempWallet,
+                    parseInt(props.id),
+                    price.toString()
+                  );
             if (ammount) {
               setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
             }
           }
         }
-
-
       }
     })();
   }, [props, project]);
@@ -230,6 +237,13 @@ const ProjectDetails = (props: { id: any }) => {
                     <Text fontSize="lg" fontWeight="extrabold">
                       Our Timeline
                     </Text>
+                    <Image
+                      src={project?.roadmapImageUrl}
+                      alt="project"
+                      width="400"
+                      height={"100%"}
+                      objectFit="cover"
+                    />
                   </TabPanel>
                   <TabPanel>
                     <Text fontSize="sm" fontWeight="subtle">
@@ -258,16 +272,12 @@ const ProjectDetails = (props: { id: any }) => {
                 <GoalsProgressCard kickstarter={project?.kickstarter} />
               )}
             <Stack align="center">
-              {showFund && (
-                <Button
-                  colorScheme="blue"
-                  isFullWidth
-                  size="lg"
-                  onClick={() => router.push(`/project/fund/${project?.id}`)}
-                >
-                  Fund Now
-                </Button>
-              )}
+              <FundButton
+                show={showFund}
+                isFullWidth
+                size="lg"
+                onClick={() => router.push(`/project/fund/${project?.id}`)}
+              ></FundButton>
               {showWithdraw && (
                 <Button
                   colorScheme="blue"
@@ -293,11 +303,11 @@ const ProjectDetails = (props: { id: any }) => {
               <RewardsCalculator kickstarter={project?.kickstarter} />
             )}
 
-            {
-             showRewardEstimated && (
-                <RewardsEstimated  kickstarter={project?.kickstarter}></RewardsEstimated>
-              )
-            }
+            {showRewardEstimated && (
+              <RewardsEstimated
+                kickstarter={project?.kickstarter}
+              ></RewardsEstimated>
+            )}
           </Stack>
         </Box>
       </SimpleGrid>
