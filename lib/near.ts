@@ -77,9 +77,7 @@ export const getSupporterEstimatedStNear = async (
   kickstarter_id: number,
   price: string
 ) => {
-  
-    console.log("price", price);
-    return callPublicKatherineMethod(
+      return callPublicKatherineMethod(
       katherineViewMethods.getSupporterEstimatedStNear,
       {
         supporter_id: wallet.getAccountId(),
