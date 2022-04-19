@@ -203,7 +203,6 @@ export const withdrawAll = async (
   const response = (contract as any)["withdraw_all"](
     args,
     "300000000000000",
-    "1"
   );
   return response;
 };
