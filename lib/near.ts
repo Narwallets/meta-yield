@@ -64,12 +64,15 @@ export const getTotalKickstarters = async () => {
 
 export const getSupportedKickstarters = async (id: any) => {
   const st_near_price = await getStNearPrice();
-  return callPublicKatherineMethod(katherineViewMethods.getSupportedDetailedList, {
-    supporter_id: id,
-    st_near_price: st_near_price,
-    from_index: 0,
-    limit: 10
-  });
+  return callPublicKatherineMethod(
+    katherineViewMethods.getSupportedDetailedList,
+    {
+      supporter_id: id,
+      st_near_price: st_near_price,
+      from_index: 0,
+      limit: 10,
+    }
+  );
 };
 
 export const getSupporterEstimatedStNear = async (
@@ -77,15 +80,14 @@ export const getSupporterEstimatedStNear = async (
   kickstarter_id: number,
   price: string
 ) => {
-      return callPublicKatherineMethod(
-      katherineViewMethods.getSupporterEstimatedStNear,
-      {
-        supporter_id: wallet.getAccountId(),
-        kickstarter_id,
-        st_near_price: price,
-      }
-    );
-  
+  return callPublicKatherineMethod(
+    katherineViewMethods.getSupporterEstimatedStNear,
+    {
+      supporter_id: wallet.getAccountId(),
+      kickstarter_id,
+      st_near_price: price,
+    }
+  );
 };
 
 export const getKickstarters = async () => {
@@ -161,7 +163,7 @@ export const fundToKickstarter = async (
     msg: kickstarter_id.toString(),
   };
   const response = await wallet
-    .account()  
+    .account()
     .functionCall(
       METAPOOL_CONTRACT_ID!,
       "ft_transfer_call",
@@ -177,10 +179,15 @@ export const getTxStatus = async (
   account_id: string
 ): Promise<TransactionStatusResult> => {
   const result = await provider.txStatus(txHash, account_id);
+  const txUrl = `${nearConfig.explorerUrl}/transactions/${txHash}`;
+  if (!result) {
+    return { found: false, success: false };
+  }
   if ((result.status as FinalExecutionStatus).SuccessValue)
-    return { success: true };
+    return { found: true, success: true, transactionExplorerUrl: txUrl };
   if ((result.status as FinalExecutionStatus).Failure)
     return {
+      found: true,
       success: false,
       error: {
         message: (result.status as FinalExecutionStatus).Failure
@@ -188,10 +195,13 @@ export const getTxStatus = async (
         type: (result.status as FinalExecutionStatus).Failure
           ?.error_type as string,
       },
+      transactionExplorerUrl: txUrl,
     };
   return {
+    found: true,
     success: false,
     error: { message: "Error executing transaction", type: "UNKNOWN_ERROR" },
+    transactionExplorerUrl: txUrl,
   };
 };
 export const withdrawAll = async (
@@ -202,10 +212,7 @@ export const withdrawAll = async (
   const args = {
     kickstarter_id: kickstarter_id,
   };
-  const response = (contract as any)["withdraw_all"](
-    args,
-    "300000000000000",
-  );
+  const response = (contract as any)["withdraw_all"](args, "300000000000000");
   return response;
 };
 

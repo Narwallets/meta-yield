@@ -26,7 +26,7 @@ const Home = () => {
             </div>
           ))}
         </Box>
-        {data.active.lenght && (
+        {data.active.length > 0 && (
           <Projects data={data.active} />
         )}
 
