@@ -82,40 +82,42 @@ const ProjectDetails = (props: { id: any }) => {
     (async () => {
       if (project) {
         const tempWallet = await getWallet();
-
-        const projectFounded: any[] = await getSupportedKickstarters(
-          tempWallet.getAccountId()
-        );
-        if (
-          projectFounded &&
-          projectFounded.length &&
-          projectFounded.find((val: any) => (val.id = project.kickstarter.id))
-        ) {
-          setShowFund(false);
-          setShowRewardsCalculator(false);
-          setShowRewardsEstimated(true);
-        }
-
-        if (!project.kickstarter.active) {
-          // if project is not active (not able to fund) hide rewards calculator and fund button
-          setShowFund(false);
-          setShowRewardsCalculator(false);
-          if (project.kickstarter.successful) {
-            setShowWithdraw(true);
-            const price = await getStNearPrice();
-            const ammount =
-              parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
-                ? project.kickstarter.stnear_price_at_unfreeze
-                : await getWithdrawAmmount(
-                    tempWallet,
-                    parseInt(props.id),
-                    price.toString()
-                  );
-            if (ammount) {
-              setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
+        const walletId = tempWallet.getAccountId();
+        if (walletId) {
+          const projectFounded: any[] = await getSupportedKickstarters(walletId);
+  
+          if (
+            projectFounded &&
+            projectFounded.length &&
+            projectFounded.find((val: any) => (val.id = project.kickstarter.id))
+          ) {
+            setShowFund(false);
+            setShowRewardsCalculator(false);
+            setShowRewardsEstimated(true);
+          }
+  
+          if (!project.kickstarter.active) {
+            // if project is not active (not able to fund) hide rewards calculator and fund button
+            setShowFund(false);
+            setShowRewardsCalculator(false);
+            if (project.kickstarter.successful) {
+              setShowWithdraw(true);
+              const price = await getStNearPrice();
+              const ammount =
+                parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
+                  ? project.kickstarter.stnear_price_at_unfreeze
+                  : await getWithdrawAmmount(
+                      tempWallet,
+                      parseInt(props.id),
+                      price.toString()
+                    );
+              if (ammount) {
+                setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
+              }
             }
           }
         }
+        
       }
     })();
   }, [props, project]);

@@ -32,7 +32,6 @@ const Header: React.FC<ButtonProps> = (props) => {
   const logout = async () => {
     wallet!.signOut();
     setSignInAccountId(null);
-    setWallet(null);
   };
 
   useEffect(() => {
