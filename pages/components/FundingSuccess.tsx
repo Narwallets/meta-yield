@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Button,
   Stack,
   Text,
   Flex,
@@ -12,12 +11,11 @@ import {
 const BN = require("bn.js");
 
 // import Image from "next/image";
-import { CaretLeft, CaretRight } from "phosphor-react";
+import { CaretLeft } from "phosphor-react";
 
-import { useGetProjects, useGetProjectDetails } from "../../hooks/projects";
+import { useGetProjectDetails } from "../../hooks/projects";
 import { useRouter } from "next/router";
 import {
-  ProjectProps,
   KickstarterGoalProps,
   SupportedKickstarter,
 } from "../../types/project.types";

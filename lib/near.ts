@@ -65,7 +65,9 @@ export const getTotalKickstarters = async () => {
 export const getSupportedKickstarters = async (id: any) => {
   return callPublicKatherineMethod(katherineViewMethods.getSupportedDetailedList, {
     supporter_id: id,
-    st_near_price: stNearToYocto(1)
+    st_near_price: stNearToYocto(1),
+    from_index: 0,
+    limit: 10
   });
 };
 
