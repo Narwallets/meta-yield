@@ -11,39 +11,57 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import Card from "./Card";
-import { KickstarterProps } from "../../types/project.types";
-import { yoctoToStNear } from "../../lib/util";
+import { KickstarterGoalProps, KickstarterProps, SupportedKickstarter } from "../../types/project.types";
+import { yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
 import moment from "moment";
+import { useGetSupportedProjects } from "../../hooks/projects";
+import { useStore } from "../../stores/wallet";
+import { fetchNearPrice } from "../../queries/prices";
 const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   const [goalSelected, setGoalSelected] = useState<number>(0);
   const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
   const [amountOfStNear, setAmountOfStNear] = useState<number>(0);
-  const [lockupTime, setLockUpPeriod] = useState<any>();
-  // ToDo: REVIEW ESTIMATED REWARD CALCULATION
-  const calculateRewards = () => {
-    const goal = kickstarter?.goals.find((g) => g.id === goalSelected);
-
-    if (goal) {
-      const lockup = moment(goal.unfreeze_timestamp).format("MMM do YYYY");
-      setLockUpPeriod(lockup);
-
-      const tokenAwardPerStnear: string = goal.tokens_to_release_per_stnear;
-      setEstimatedRewards(
-        yoctoToStNear(parseInt(tokenAwardPerStnear)) * amountOfStNear
-      );
+  const kickstarter_id = kickstarter.id;
+  const { wallet, setWallet } = useStore();
+  const { data: supportedProjets, isLoading: isLoadingSupportedProjects } =
+    useGetSupportedProjects(wallet?.getAccountId());
+  const [rewards, setRewards] = useState<string>("");
+  const [invested, setInvested] = useState<string>("");
+  const [lockupTime, setLockupTime] = useState<string>("");
+  const getCurrentFundingGoal = () => {
+    const [currentFundingGoal] = kickstarter.goals.filter(
+      (g: KickstarterGoalProps) =>
+        parseInt(g.desired_amount) >= parseInt(kickstarter.total_deposited)
+    );
+    if (!currentFundingGoal) {
+      return kickstarter.goals[kickstarter.goals.length - 1];
     }
+    return currentFundingGoal;
   };
-
-  const onGoalChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setGoalSelected(parseInt(e.target.value));
-    // const tokenAwardPerStnear: string = goal.tokens_to_release_per_stnear;
-    // calculateRewards(amountOfStNear);
-  };
-
   useEffect(() => {
-    calculateRewards();
-  }, [amountOfStNear, goalSelected]);
+    (async () => {
+      if (supportedProjets) {
+        const nearPrice = await fetchNearPrice();
+        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal();
+        const supportedProject = supportedProjets.find(
+          (p: SupportedKickstarter) => p.kickstarter_id === kickstarter_id
+        );
+        if (winnerGoal) {
+          const rewards =
+            yoctoToStNear(parseInt(winnerGoal.tokens_to_release_per_stnear)) *
+            yoctoToStNear(parseInt(supportedProject.supporter_deposit));
+          setRewards(rewards.toString());
+          setLockupTime(
+            moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
+          );
+        }
+        setInvested(
+          yoctoToDollarStr(supportedProject.supporter_deposit, nearPrice)
+        );
+      }
+    })();
+  }, [props, supportedProjets]);
 
   return (
     <Card>
@@ -77,7 +95,7 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
                         fontWeight="bold"
                         color="gray.900"
                       >
-                        ${kickstarter?.stnear_price_at_unfreeze}
+                        {invested}
                       </Text>
                     </Flex>
                     <Divider />
@@ -97,7 +115,7 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
                         fontWeight="bold"
                         color="gray.900"
                       >
-                        {estimatedRewards}
+                        {rewards} ${kickstarter?.project_token_symbol}
                       </Text>
                     </Flex>
                     <Divider />
