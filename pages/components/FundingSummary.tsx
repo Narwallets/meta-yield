@@ -105,7 +105,7 @@ const FundingSummary = (props: { id: any }) => {
 
   useEffect(() => {
     if (currentFundingGoal) {
-      const tokenAwardPerStnear: string = currentFundingGoal.tokens_to_release;
+      const tokenAwardPerStnear: string = currentFundingGoal.tokens_to_release_per_stnear;
       setEstimatedRewards(
         yoctoToStNear(parseInt(tokenAwardPerStnear)) * amount
       );

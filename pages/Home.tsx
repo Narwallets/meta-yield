@@ -21,7 +21,6 @@ const Home = () => {
             Current Project
           </Text>
           {data.open
-            .filter((val: any) => val.verified)
             .map((p: any) => (
               <div key={p.kickstarter.id}>
                 <ActiveProject data={p} />

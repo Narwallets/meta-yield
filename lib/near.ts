@@ -63,8 +63,9 @@ export const getTotalKickstarters = async () => {
 };
 
 export const getSupportedKickstarters = async (id: any) => {
-  return callPublicKatherineMethod(katherineViewMethods.getSupportedProjects, {
+  return callPublicKatherineMethod(katherineViewMethods.getSupportedDetailedList, {
     supporter_id: id,
+    st_near_price: stNearToYocto(1)
   });
 };
 
@@ -132,10 +133,12 @@ export const getBalance = async (wallet: WalletConnection): Promise<number> => {
 };
 
 export const getSupporterDetailedList = async (supporter_id: string) => {
+  const st_near_price = await getStNearPrice();
   return callPublicKatherineMethod(
     katherineViewMethods.getSupportedDetailedList,
     {
       supporter_id: supporter_id,
+      st_near_price: st_near_price,
       from_index: 0,
       limit: 10,
     }
@@ -154,7 +157,7 @@ export const fundToKickstarter = async (
     msg: kickstarter_id.toString(),
   };
   const response = await wallet
-    .account()
+    .account()  
     .functionCall(
       METAPOOL_CONTRACT_ID!,
       "ft_transfer_call",

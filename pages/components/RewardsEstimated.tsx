@@ -18,7 +18,7 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
       const lockup = moment(goal.unfreeze_timestamp).format('MMM do YYYY');
       setLockUpPeriod(lockup);
 
-      const tokenAwardPerStnear: string = goal.tokens_to_release;
+      const tokenAwardPerStnear: string = goal.tokens_to_release_per_stnear;
       setEstimatedRewards(
         yoctoToStNear(parseInt(tokenAwardPerStnear)) * amountOfStNear
       );
@@ -27,13 +27,13 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
 
   const onGoalChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setGoalSelected(parseInt(e.target.value));
-    // const tokenAwardPerStnear: string = goal.tokens_to_release;
+    // const tokenAwardPerStnear: string = goal.tokens_to_release_per_stnear;
     // calculateRewards(amountOfStNear);
   };
 
   useEffect(() => {
     calculateRewards();
-  }, [amountOfStNear, goalSelected,]);
+  }, [amountOfStNear, goalSelected]);
 
 
 
