@@ -62,18 +62,30 @@ export const getTotalKickstarters = async () => {
   );
 };
 
-export const getSupportedKickstarters = async (id: any) => {
+export const getSupportedKickstarters = async (supporter_id: any) => {
   const st_near_price = await getStNearPrice();
   return callPublicKatherineMethod(
     katherineViewMethods.getSupportedDetailedList,
     {
-      supporter_id: id,
+      supporter_id: supporter_id,
       st_near_price: st_near_price,
       from_index: 0,
       limit: 10,
     }
   );
 };
+
+export const getSupporterTotalDepositInKickstarter = async (supporter_id: string, kickstarter_id:number) => {
+  const st_near_price = await getStNearPrice();
+  return callPublicKatherineMethod(
+    katherineViewMethods.getSupporterTotalDepositInKickstarter,
+    {
+      supporter_id: supporter_id,
+      kickstarter_id: kickstarter_id,
+      st_near_price: st_near_price
+    }
+  );
+}
 
 export const getSupporterEstimatedStNear = async (
   wallet: WalletConnection,

@@ -100,7 +100,7 @@ const ProjectDetails = (props: { id: any }) => {
             // if project is not active (not able to fund) hide rewards calculator and fund button
             setShowFund(false);
             setShowRewardsCalculator(false);
-            if (project.kickstarter.successful) {
+            if (project.kickstarter.successful && parseInt(project.supporter_deposit) > 0) {
               setShowWithdraw(true);
               const price = await getStNearPrice();
               const ammount =
