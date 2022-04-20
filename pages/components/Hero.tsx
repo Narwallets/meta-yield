@@ -10,13 +10,15 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import * as React from "react";
-import { getWallet } from "../../lib/near";
+import { getWallet, METAPOOL_CONTRACT_ID } from "../../lib/near";
 import { useStore } from "../../stores/wallet";
 
 const Hero = () => {
   const { wallet, setWallet } = useStore();
   const [isConnected, setIsConnected] = useState(false);
-
+  const onConnect = async () => {
+    wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
+  };
   useEffect(() => {
     (async () => {
       const tempWallet = await getWallet();
@@ -64,7 +66,7 @@ const Hero = () => {
             justify="center"
           >
             {!isConnected && (
-              <Button colorScheme={"indigo"} size="lg">
+              <Button colorScheme="indigo" size="lg" onClick={() => onConnect()}>
                 Connect Wallet
               </Button>
             )}
