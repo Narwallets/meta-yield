@@ -286,7 +286,7 @@ const FundingSummary = (props: { id: any }) => {
 
             <Stack align="center">
               <Button
-                colorScheme="blue"
+                colorScheme="indigo"
                 isFullWidth
                 size="lg"
                 onClick={(e: any) => formik.handleSubmit(e)}
