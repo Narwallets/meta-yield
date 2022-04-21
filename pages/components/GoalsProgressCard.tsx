@@ -24,7 +24,7 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
     if (kickstarter && kickstarter.goals) {
       const [current] = kickstarter.goals.filter(
         (g) =>
-          parseInt(g.desired_amount) >= parseInt(kickstarter.total_deposited)
+          parseInt(g.desired_amount) > parseInt(kickstarter.total_deposited)
       );
       if (!current) {
         return kickstarter?.goals[kickstarter.goals.length - 1];
@@ -76,6 +76,7 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
         setGoalStatus(getGoalStatus());
       }
     }
+    console.log("@current", currentGoalId)
   }, [currentGoalId, kickstarter]);
   if (!props || !props.kickstarter) return <></>;
   return (

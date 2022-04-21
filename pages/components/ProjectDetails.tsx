@@ -3,18 +3,13 @@ import {
   Box,
   Button,
   HStack,
-  VStack,
-  Icon,
   Stack,
   Tag,
   Text,
   useColorModeValue,
   Wrap,
   StackDivider,
-  Heading,
-  useBreakpointValue,
   SimpleGrid,
-  AvatarBadge,
   Image,
   Tabs,
   TabList,
@@ -22,18 +17,12 @@ import {
   Tab,
   TabPanel,
   Avatar,
-  Progress,
-  Flex,
-  Spacer,
-  Input,
-  Center,
   Circle,
 } from "@chakra-ui/react";
 import Card from "./Card";
 // import Image from "next/image";
-import { CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps, TeamMemberProps } from "../../types/project.types";
-import { useGetProjects, useGetProjectDetails } from "../../hooks/projects";
+import {  TeamMemberProps } from "../../types/project.types";
+import {  useGetProjectDetails } from "../../hooks/projects";
 import parse from "html-react-parser";
 import RewardsCalculator from "./RewardsCalculator";
 import { useRouter } from "next/router";
@@ -41,7 +30,6 @@ import GoalsProgressCard from "./GoalsProgressCard";
 import FundingStatusCard from "./FundingStatusCard";
 import moment from "moment";
 import {
-  fundToKickstarter,
   getStNearPrice,
   getSupportedKickstarters,
   getSupporterEstimatedStNear,
@@ -51,6 +39,9 @@ import {
 import { yoctoToStNear } from "../../lib/util";
 import RewardsEstimated from "./RewardsEstimated";
 import FundButton from "./FundButon";
+import { useStore } from "../../stores/wallet";
+import ConnectButton from "./ConnectButton";
+
 const ProjectDetails = (props: { id: any }) => {
   const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
@@ -61,6 +52,7 @@ const ProjectDetails = (props: { id: any }) => {
   const [showRewardsCalculator, setShowRewardsCalculator] = useState(true);
   const [showRewardEstimated, setShowRewardsEstimated] = useState(false);
   const [ammountWithdraw, setAmmountWithdraw] = useState("0");
+  const { wallet, isLogin } = useStore();
 
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
 
@@ -84,13 +76,11 @@ const ProjectDetails = (props: { id: any }) => {
         const tempWallet = await getWallet();
         const walletId = tempWallet.getAccountId();
         if (walletId) {
-          const projectFounded: any[] = await getSupportedKickstarters(walletId);
-  
+          const projectsFounded: any[] = await getSupportedKickstarters(walletId);
+          const thisProjetFounded = projectsFounded && projectsFounded.find((val: any) => (val.kickstarter_id === project.kickstarter.id));
           if (
-            projectFounded &&
-            projectFounded.length &&
-            projectFounded.find((val: any) => (val.id = project.kickstarter.id))
-          ) {
+            projectsFounded &&
+            projectsFounded.length && thisProjetFounded) {
             setShowFund(false);
             setShowRewardsCalculator(false);
             setShowRewardsEstimated(true);
@@ -100,7 +90,7 @@ const ProjectDetails = (props: { id: any }) => {
             // if project is not active (not able to fund) hide rewards calculator and fund button
             setShowFund(false);
             setShowRewardsCalculator(false);
-            if (project.kickstarter.successful && parseInt(project.supporter_deposit) > 0) {
+            if (project.kickstarter.successful && thisProjetFounded && parseInt(thisProjetFounded.supporter_deposit) > 0) {
               setShowWithdraw(true);
               const price = await getStNearPrice();
               const ammount =
@@ -120,7 +110,7 @@ const ProjectDetails = (props: { id: any }) => {
         
       }
     })();
-  }, [props, project]);
+  }, [wallet, props, project]);
 
   useEffect(() => {
     if (project) {
@@ -276,13 +266,23 @@ const ProjectDetails = (props: { id: any }) => {
                 <GoalsProgressCard kickstarter={project?.kickstarter} />
               )}
             <Stack align="center">
-              <FundButton
-                show={showFund}
-                isFullWidth
-                size="lg"
-                onClick={() => router.push(`/project/fund/${project?.id}`)}
-              ></FundButton>
-              {showWithdraw && (
+              {
+                isLogin && (
+                  <FundButton
+                    show={showFund}
+                    isFullWidth
+                    size="lg"
+                    onClick={() => router.push(`/project/fund/${project?.id}`)}
+                  ></FundButton>
+                )
+              }
+              {
+                !isLogin && (
+                  <ConnectButton text={'Connect wallet to fund'}></ConnectButton>
+                )
+              }
+              
+              {showWithdraw && isLogin && (
                 <Button
                   colorScheme="blue"
                   isFullWidth
@@ -292,7 +292,7 @@ const ProjectDetails = (props: { id: any }) => {
                   Withdraw (stNEAR {ammountWithdraw})
                 </Button>
               )}
-              {showClaim && (
+              {showClaim && isLogin && (
                 <Button
                   colorScheme="blue"
                   isFullWidth
@@ -307,7 +307,7 @@ const ProjectDetails = (props: { id: any }) => {
               <RewardsCalculator kickstarter={project?.kickstarter} />
             )}
 
-            {showRewardEstimated && (
+            {showRewardEstimated && isLogin && (
               <RewardsEstimated
                 kickstarter={project?.kickstarter} 
               ></RewardsEstimated>

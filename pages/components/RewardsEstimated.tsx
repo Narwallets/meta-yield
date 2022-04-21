@@ -22,7 +22,6 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   const [goalSelected, setGoalSelected] = useState<number>(0);
   const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
   const [amountOfStNear, setAmountOfStNear] = useState<number>(0);
-  const kickstarter_id = kickstarter.id;
   const { wallet, setWallet } = useStore();
   const { data: supportedProjets, isLoading: isLoadingSupportedProjects } =
     useGetSupportedProjects(wallet?.getAccountId());
@@ -41,11 +40,11 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   };
   useEffect(() => {
     (async () => {
-      if (supportedProjets) {
+      if (supportedProjets && supportedProjets.length) {
         const nearPrice = await fetchNearPrice();
         const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal();
         const supportedProject = supportedProjets.find(
-          (p: SupportedKickstarter) => p.kickstarter_id === kickstarter_id
+          (p: SupportedKickstarter) => p.kickstarter_id === kickstarter?.id
         );
         if (winnerGoal) {
           const rewards =
