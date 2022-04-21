@@ -18,7 +18,6 @@ import {
 import { getWallet, getBalance, METAPOOL_CONTRACT_ID } from "../../lib/near";
 import { colors } from "../../constants/colors";
 import { useStore } from "../../stores/wallet";
-import { useLocation } from "react-router-dom";
 
 const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, isLogin, setWallet, setLogin } = useStore();
