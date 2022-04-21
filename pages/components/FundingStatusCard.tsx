@@ -3,7 +3,7 @@ import { HStack, Stack, Text } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
 import moment from "moment";
-import { timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
+import { timeLeftToFund, yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
 import { getContractMetadata } from "../../lib/near";
 import { fetchNearPrice } from "../../queries/prices";
 const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
@@ -26,11 +26,15 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
         <Text fontSize="sm" fontWeight="subtle">
           TOTAL RAISED
         </Text>
+        <HStack>
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-          ${totalRaised}
+          ${yoctoToStNear(parseInt(kickstarter?.total_deposited)) } 
         </Text>
+        <Text fontSize="l" >(  ${totalRaised} USD)</Text>
+        </HStack>
+        
       </Stack>
-      <HStack spacing="20">
+      <HStack mt={10} spacing="20">
         <Stack>
           <Text fontSize="sm" fontWeight="subtle">
             SUPPORTERS

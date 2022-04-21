@@ -12,16 +12,16 @@ const GoalCircle = (props: RadioCircleProps) => {
   return (
     <Circle
       size="8"
-      bg={isCompleted ? "accent" : "inherit"}
-      backgroundColor={isCompleted ? "green.400" : "indigo.500"}
-      color={isCompleted ? "white" : "gray.400"}
+     // bg={isCompleted ? "accent" : "inherit"}
+      backgroundColor={isCompleted ? "green.400" :  isActive ? "indigo.500" : "lightgrey"}
+      color={isCompleted ? "white" :  "gray.400"}
       borderWidth={isCompleted ? "0" : "2px"}
-      borderColor={isActive ? "accent" : "inherit"}
+      borderColor={isActive ? "accent" : "none"}
     >
       {isCompleted ? (
         <Check size={32} />
       ) : (
-        <Circle  color={isActive ? "white" : "gray.400"} bg={isActive ? "accent" : "border"} size="3">
+        <Circle  color={isActive ? "white" : "gray.900"} size="3">
           {goalNumber}
         </Circle>
       )}

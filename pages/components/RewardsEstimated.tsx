@@ -40,7 +40,7 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   };
   useEffect(() => {
     (async () => {
-      if (supportedProjets && supportedProjets.lenght) {
+      if (supportedProjets && supportedProjets.length) {
         const nearPrice = await fetchNearPrice();
         const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal();
         const supportedProject = supportedProjets.find(
