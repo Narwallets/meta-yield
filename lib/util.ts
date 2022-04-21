@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const BN = require("bn.js");
 export const decodeJsonRpcData = (data: any) => {
   let res = "";
@@ -43,3 +45,18 @@ export const yoctoToDollarStr = (
   const result = new BN(value).div(new BN(10).pow(new BN(24))).mul(new BN(nearPrice))
   return result.toString();
 };
+
+export const timeLeftToFund = (time: any)=> {
+  if (!time || moment(time).diff(moment()) < 0) {
+    return ''
+  }
+  const timeMoment = moment(time);
+  const now = moment();
+
+  return timeMoment.diff(now, "days") > 0 ? 
+  `${timeMoment.diff(now, "days")} days` : 
+    timeMoment.diff(now, "hours") > 1 ? 
+    `${timeMoment.diff(now, "hours")} hours` :
+    `${timeMoment.diff(now, "minutes")} minutes`    
+
+}

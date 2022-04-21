@@ -18,20 +18,28 @@ import {
 import { getWallet, getBalance, METAPOOL_CONTRACT_ID } from "../../lib/near";
 import { colors } from "../../constants/colors";
 import { useStore } from "../../stores/wallet";
+import { useLocation } from "react-router-dom";
+
 const Header: React.FC<ButtonProps> = (props) => {
-  const { wallet, setWallet } = useStore();
+  const { wallet, isLogin, setWallet, setLogin } = useStore();
   const [signInAccountId, setSignInAccountId] = useState(null);
   const [stNearBalance, setStNearBalance] = useState<number>(0);
-
   const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   const onConnect = async () => {
-    wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
+    try {
+      wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
+      setLogin(true);
+    }
+    catch (e) {
+      console.log( 'errir', e);
+      setLogin(true);
+    }
   };
 
-  const logout = async () => {
+  const logout = () => {
     wallet!.signOut();
-    setSignInAccountId(null);
+    setLogin(false);
   };
 
   useEffect(() => {
@@ -51,6 +59,7 @@ const Header: React.FC<ButtonProps> = (props) => {
       const tempWallet = await getWallet();
       setWallet(tempWallet);
       setSignInAccountId(tempWallet.getAccountId());
+      setLogin(tempWallet.getAccountId()!);
     })();
   }, []);
 
@@ -99,7 +108,7 @@ const Header: React.FC<ButtonProps> = (props) => {
             </HStack>
             {isDesktop ? (
               <HStack spacing="4">
-                {signInAccountId ? (
+                {isLogin ? (
                   <>
                     <Square minW="30px">
                       <Image
@@ -127,7 +136,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                   </Button>
                 )}
               </HStack>
-            ) : signInAccountId ? (
+            ) : isLogin ? (
               <>
                 <a
                   href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}

@@ -3,7 +3,7 @@ import { HStack, Stack, Text } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
 import moment from "moment";
-import { yoctoToDollarStr } from "../../lib/util";
+import { timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
 import { getContractMetadata } from "../../lib/near";
 import { fetchNearPrice } from "../../queries/prices";
 const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
@@ -39,19 +39,35 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             {kickstarter?.total_supporters}
           </Text>
         </Stack>
+        
         <Stack>
-          <Text fontSize="sm" fontWeight="subtle">
-            LEFT TO FUND
-          </Text>
-          <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
-            { 
-              moment(kickstarter?.close_timestamp).diff(moment(), "days") > 0 ? 
-              `${moment(kickstarter?.close_timestamp).diff(moment(), "days")} days` : 
-                moment(kickstarter?.close_timestamp).diff(moment(), "hours") > 1 ? 
-                `${moment(kickstarter?.close_timestamp).diff(moment(), "hours")} hours` :
-                `${moment(kickstarter?.close_timestamp).diff(moment(), "minutes")} minutes`            
-            } 
-          </Text>
+          {
+            timeLeftToFund(kickstarter?.close_timestamp) && (
+              <>
+                <Text fontSize="sm" fontWeight="subtle">
+                  LEFT TO FUND
+                </Text>
+                <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
+                  { 
+                    timeLeftToFund(kickstarter?.close_timestamp)
+                  } 
+                </Text>
+              </>
+            )
+          }
+          {
+            !timeLeftToFund(kickstarter?.close_timestamp) && (
+              <>
+                <Text fontSize="sm" fontWeight="subtle">
+                    Status
+                </Text>
+                <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
+                   Finish
+                </Text>
+              </>
+            )
+          }
+          
         </Stack>
         <Stack>
           <Text fontSize="sm" fontWeight="subtle">

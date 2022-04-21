@@ -41,6 +41,17 @@ export const getWallet = async () => {
   return wallet;
 };
 
+export const signInWallet = async () => {
+  const wallet = await getWallet();
+  wallet.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
+  return wallet;
+};
+
+export const signOutWallet = async () => {
+  const wallet = await getWallet();
+  wallet!.signOut();
+};
+
 export const getContract = async (wallet: WalletConnection) => {
   return new Contract(wallet.account(), CONTRACT_ID!, {
     viewMethods: Object.values(katherineViewMethods),

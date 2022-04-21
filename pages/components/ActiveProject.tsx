@@ -19,6 +19,7 @@ import {
   Flex,
   Circle,
   AspectRatio,
+  Spacer,
 } from "@chakra-ui/react";
 import Card from "./Card";
 import Image from "next/image";
@@ -29,7 +30,7 @@ import { useRouter } from "next/router";
 import { truncateText } from "../../utils/textHandlers";
 import { useGetProjectDetails, useGetProjects } from "../../hooks/projects";
 import moment from "moment";
-import { yoctoToDollarStr, yoctoToStNearStr } from "../../lib/util";
+import { timeLeftToFund, yoctoToDollarStr, yoctoToStNearStr } from "../../lib/util";
 import { fetchNearPrice } from "../../queries/prices";
 import FundButton from "./FundButon";
 
@@ -136,21 +137,23 @@ const ActiveProject = (props: { data: ProjectProps }) => {
         <Box>
           <Stack minW={190} spacing="10">
             <VStack align="flex-start" spacing="1 ">
-              <Text fontSize="xs" fontWeight="700">
-                {" "}
-                TIME LEFT
-              </Text>
-              <Text fontSize="md" color="emphasized">
-                { 
-                  moment(projectData.kickstarter?.close_timestamp).diff(moment(), "days") > 0 ? 
-                  `${moment(projectData.kickstarter?.close_timestamp).diff(moment(), "days")} days` : 
-                    moment(projectData.kickstarter?.close_timestamp).diff(moment(), "hours") > 1 ? 
-                    `${moment(projectData.kickstarter?.close_timestamp).diff(moment(), "hours")} hours` :
-                    `${moment(projectData.kickstarter?.close_timestamp).diff(moment(), "minutes")} minutes`           
-                }
-              </Text>
+              {
+                timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
+                  <>
+                    <Text fontSize="xs" fontWeight="700">
+                      {" "}
+                      TIME LEFT
+                    </Text>
+                    <Text fontSize="md" color="emphasized">
+                      {
+                        timeLeftToFund(projectData.kickstarter?.close_timestamp)
+                      }
+                    </Text></>
+                )
+              }
+
               <Stack align="flex-start" spacing="4">
-                <Text fontSize="xs" fontWeight="700">
+                <Text mt={5} fontSize="xs" fontWeight="700">
                   TOKENOMICS
                 </Text>
                 <Text mt={14} fontSize="md" color="emphasized">
@@ -163,7 +166,8 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                   // projectData?.verified && <CircleWavyCheck size={24} />
                 }
               </Stack>
-              <Stack align="flex-start" spacing="4">
+              
+              <Stack mt={10} align="flex-start" spacing="4">
                 <FundButton
                   show={true}
                   onClick={() => router.push(`/project/${projectData.id}`)}
