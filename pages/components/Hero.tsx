@@ -28,9 +28,7 @@ const Hero = () => {
     })();
   }, []);
 
-  useEffect(() => {
-    console.log("tempWallet.getAccountId()!", wallet);
-  }, [wallet]);
+
   return (
     <Square
       minHeight={600}

@@ -81,7 +81,7 @@ const ProjectDetails = (props: { id: any }) => {
           if (
             projectsFounded &&
             projectsFounded.length && thisProjetFounded) {
-            setShowFund(false);
+            // setShowFund(false);
             setShowRewardsCalculator(false);
             setShowRewardsEstimated(true);
           }

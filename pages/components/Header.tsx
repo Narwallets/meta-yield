@@ -28,37 +28,50 @@ const Header: React.FC<ButtonProps> = (props) => {
   const onConnect = async () => {
     try {
       wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
-      setLogin(true);
     }
     catch (e) {
       console.log( 'errir', e);
-      setLogin(true);
     }
   };
 
-  const logout = () => {
-    wallet!.signOut();
-    setLogin(false);
+  const logout = async () =>  {
+    await wallet!.signOut();
+    setLogin(wallet && wallet.getAccountId() ? true : false);
+    const tempWallet = await getWallet();
+    setWallet(tempWallet);
   };
+
+  const removeQueryString = () => {
+    var uri = window.location.toString();
+    if (uri.indexOf("?") > 0) {
+      var clean_uri = uri.substring(0, uri.indexOf("?"));
+      window.history.replaceState({}, document.title, clean_uri);
+    }
+  }
+
+  useEffect(() => {
+    (async () => {
+      
+    })();
+  }, [setLogin, wallet, isLogin]);
 
   useEffect(() => {
     (async () => {
       try {
-        if (wallet) {
-          setStNearBalance(await (await getBalance(wallet!)));
+        const tempWallet = await getWallet();
+        if (!wallet) {
+          setWallet(tempWallet);
         }
+        
+        if(tempWallet && tempWallet.getAccountId()) {
+          setSignInAccountId(tempWallet.getAccountId());
+          setStNearBalance(await (await getBalance(tempWallet!)));
+        }
+        removeQueryString();
+        setLogin(tempWallet && tempWallet.getAccountId() ? true : false);
       } catch (e) {
         console.log(e);
-      }
-    })();
-  }, [wallet]);
-
-  useEffect(() => {
-    (async () => {
-      const tempWallet = await getWallet();
-      setWallet(tempWallet);
-      setSignInAccountId(tempWallet.getAccountId());
-      setLogin(tempWallet.getAccountId()!);
+      }    
     })();
   }, []);
 
