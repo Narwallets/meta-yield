@@ -27,11 +27,9 @@ import moment from "moment";
 import {
   fundToKickstarter,
   getBalance,
-  getContractMetadata,
-  getSupporterDetailedList,
 } from "../../lib/near";
 import { useStore } from "./../../stores/wallet";
-import { yoctoToStNear } from "../../lib/util";
+import { getCurrentFundingGoal, yoctoToStNear } from "../../lib/util";
 import { useFormik } from "formik";
 import fundKickstarterSchema from "../../validation/fundSupporterSchema";
 
@@ -57,16 +55,7 @@ const FundingSummary = (props: { id: any }) => {
   const onMaxClick = async (event: any) =>
     formik.setFieldValue("amount", await getBalance(wallet!));
 
-  const getCurrentFundingGoal = () => {
-    const [currentFundingGoal] = project.kickstarter.goals.filter(
-      (g: KickstarterGoalProps) =>
-        parseInt(g.desired_amount) >= project.kickstarter.total_deposited
-    );
-    if (!currentFundingGoal) {
-      return project.kickstarter.goals[project.kickstarter.goals.length - 1];
-    }
-    return currentFundingGoal;
-  };
+
   const initialValues: any = {
     amount: 0,
     balance: 0,
@@ -90,7 +79,7 @@ const FundingSummary = (props: { id: any }) => {
 
   useEffect(() => {
     if (project) {
-      const current = getCurrentFundingGoal();
+      const current = getCurrentFundingGoal(project.kickstarter.goals ,project.kickstarter.total_deposited ) ;
       setCurrentFundingGoal(current);
       if (current) {
         setFundingNeeded(parseInt(current.desired_amount) / 10 ** 24);

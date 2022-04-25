@@ -1,4 +1,6 @@
 import moment from "moment";
+import { KickstarterGoalProps } from "../types/project.types";
+import { getSupportedKickstarters } from "./near";
 
 const BN = require("bn.js");
 export const decodeJsonRpcData = (data: any) => {
@@ -60,3 +62,23 @@ export const timeLeftToFund = (time: any)=> {
     `${timeMoment.diff(now, "minutes")} minutes`    
 
 }
+
+export const getMyProjectsFounded = async (id: string, wallet: any)  => {
+  const projectsFounded: any[] = await getSupportedKickstarters(wallet.getAccountId());
+  if (!projectsFounded) {
+    return [];
+  }
+  return projectsFounded && projectsFounded.find((val: any) => (val.kickstarter_id === id));
+}
+
+export const getCurrentFundingGoal = (goals: any, total_deposited: any) => {
+  const [currentFundingGoal] = goals.filter(
+    (g: KickstarterGoalProps) =>
+      parseInt(g.desired_amount) >= total_deposited
+  );
+  if (!currentFundingGoal) {
+    return goals[goals.length - 1];
+  }
+  return currentFundingGoal;
+};
+
