@@ -18,6 +18,8 @@ import {
   TabPanel,
   Avatar,
   Circle,
+  Link,
+  Flex,
 } from "@chakra-ui/react";
 import Card from "./Card";
 // import Image from "next/image";
@@ -36,7 +38,7 @@ import {
   getWallet,
   withdrawAll,
 } from "../../lib/near";
-import { yoctoToStNear } from "../../lib/util";
+import { getMyProjectsFounded, yoctoToStNear } from "../../lib/util";
 import RewardsEstimated from "./RewardsEstimated";
 import FundButton from "./FundButon";
 import { useStore } from "../../stores/wallet";
@@ -46,12 +48,14 @@ const ProjectDetails = (props: { id: any }) => {
   const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
+
   const [showFund, setShowFund] = useState(true);
   const [showWithdraw, setShowWithdraw] = useState(false);
   const [showClaim, setShowClaim] = useState(false);
   const [showRewardsCalculator, setShowRewardsCalculator] = useState(true);
   const [showRewardEstimated, setShowRewardsEstimated] = useState(false);
   const [ammountWithdraw, setAmmountWithdraw] = useState("0");
+  
   const { wallet, isLogin } = useStore();
 
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
@@ -70,58 +74,58 @@ const ProjectDetails = (props: { id: any }) => {
   const getWithdrawAmmount = async (wallet: any, id: number, price: string) =>
     getSupporterEstimatedStNear(wallet, id, price);
 
+  const calculateAmmountToWithdraw = async(thisProjectFounded? :any)=> {
+    
+    if (isPeriodEnded()) { 
+      const price = await getStNearPrice();
+      const ammount =
+      parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
+        ? project.kickstarter.stnear_price_at_unfreeze
+        : await getWithdrawAmmount(
+            wallet,
+            parseInt(props.id),
+            price.toString()
+          );
+      if (ammount) {
+        setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
+      }
+    } else {
+      setAmmountWithdraw(yoctoToStNear(parseInt(thisProjectFounded.deposit_in_near)).toFixed(5));
+    }
+    
+  }
+
+  const isPeriodEnded = ()=> {
+    return moment().diff(moment(project.kickstarter.close_timestamp)) > 0
+  }
+
   useEffect(() => {
     (async () => {
       if (project) {
-        const tempWallet = await getWallet();
-        const walletId = tempWallet.getAccountId();
-        if (walletId) {
-          const projectsFounded: any[] = await getSupportedKickstarters(walletId);
-          const thisProjetFounded = projectsFounded && projectsFounded.find((val: any) => (val.kickstarter_id === project.kickstarter.id));
-          if (
-            projectsFounded &&
-            projectsFounded.length && thisProjetFounded) {
-            setShowFund(false);
+        if (isLogin) {
+          const thisProjectFounded = await getMyProjectsFounded(project.kickstarter.id, wallet);
+          
+          if ( thisProjectFounded && parseInt(thisProjectFounded.supporter_deposit) > 0) {
+            // If the user has already deposit STNEAR in the project
+            
+            // setShowFund(false);
+            calculateAmmountToWithdraw(thisProjectFounded);
+            setShowWithdraw(true);
             setShowRewardsCalculator(false);
             setShowRewardsEstimated(true);
           }
   
           if (!project.kickstarter.active) {
-            // if project is not active (not able to fund) hide rewards calculator and fund button
+            // if project is not active (not able to fund) hide rewards calculator 
             setShowFund(false);
             setShowRewardsCalculator(false);
-            if (project.kickstarter.successful && thisProjetFounded && parseInt(thisProjetFounded.supporter_deposit) > 0) {
-              setShowWithdraw(true);
-              const price = await getStNearPrice();
-              const ammount =
-                parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
-                  ? project.kickstarter.stnear_price_at_unfreeze
-                  : await getWithdrawAmmount(
-                      tempWallet,
-                      parseInt(props.id),
-                      price.toString()
-                    );
-              if (ammount) {
-                setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
-              }
-            }
+            
           }
         }
-        
       }
     })();
   }, [wallet, props, project]);
 
-  useEffect(() => {
-    if (project) {
-      if (
-        project.kickstarter.goals.lenght &&
-        moment().diff(moment(project.kickstarter.close_timestamp)) <= 0
-      ) {
-        setShowFund(true);
-      }
-    }
-  }, [project]);
 
   if (isLoading) return <></>;
   return (
@@ -265,6 +269,13 @@ const ProjectDetails = (props: { id: any }) => {
               project?.kickstarter.goals.length > 0 && (
                 <GoalsProgressCard kickstarter={project?.kickstarter} />
               )}
+            
+            <Stack>
+              <Flex justifyContent={'space-between'}> 
+                <Text>Funded Ammount {}</Text>
+                <Link href="https://metapool.app/" target="_blank"> get stNEAR</Link> 
+              </Flex>
+            </Stack>
             <Stack align="center">
               {
                 isLogin && (

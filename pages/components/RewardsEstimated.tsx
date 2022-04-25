@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterGoalProps, KickstarterProps, SupportedKickstarter } from "../../types/project.types";
-import { yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
+import { getCurrentFundingGoal, yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
 import moment from "moment";
 import { useGetSupportedProjects } from "../../hooks/projects";
 import { useStore } from "../../stores/wallet";
@@ -28,21 +28,12 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   const [rewards, setRewards] = useState<string>("");
   const [invested, setInvested] = useState<string>("");
   const [lockupTime, setLockupTime] = useState<string>("");
-  const getCurrentFundingGoal = () => {
-    const [currentFundingGoal] = kickstarter.goals.filter(
-      (g: KickstarterGoalProps) =>
-        parseInt(g.desired_amount) >= parseInt(kickstarter.total_deposited)
-    );
-    if (!currentFundingGoal) {
-      return kickstarter.goals[kickstarter.goals.length - 1];
-    }
-    return currentFundingGoal;
-  };
+
   useEffect(() => {
     (async () => {
       if (supportedProjets && supportedProjets.length) {
         const nearPrice = await fetchNearPrice();
-        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal();
+        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(kickstarter.goals, kickstarter.total_deposited);
         const supportedProject = supportedProjets.find(
           (p: SupportedKickstarter) => p.kickstarter_id === kickstarter?.id
         );

@@ -19,11 +19,13 @@ import {
   KickstarterGoalProps,
   SupportedKickstarter,
 } from "../../types/project.types";
-import { yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
+import { getCurrentFundingGoal, yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
 import { fetchNearPrice } from "../../queries/prices";
 import moment from "moment";
 import { useStore } from "../../stores/wallet";
 import { useGetSupportedProjects } from "../../hooks/projects";
+import { checkRedirectSearchParams } from "../../lib/errors";
+import { utils } from "near-api-js";
 const FundingSuccess = (props: { id: any }) => {
   const router = useRouter();
   const kickstarter_id = parseInt(props.id as string);
@@ -34,26 +36,16 @@ const FundingSuccess = (props: { id: any }) => {
   const [rewards, setRewards] = useState<string>("");
   const [invested, setInvested] = useState<string>("");
   const [lockupTime, setLockupTime] = useState<string>("");
-  const getCurrentFundingGoal = () => {
-    const [currentFundingGoal] = data.kickstarter.goals.filter(
-      (g: KickstarterGoalProps) =>
-        parseInt(g.desired_amount) >= data.kickstarter.total_deposited
-    );
-    if (!currentFundingGoal) {
-      return data.kickstarter.goals[data.kickstarter.goals.length - 1];
-    }
-    return currentFundingGoal;
-  };
 
   useEffect(() => {
     (async () => {
       if (data && supportedProjets) {
         const nearPrice = await fetchNearPrice();
-        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal();
+        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(data.kickstarter.goals, data.kickstarter.total_deposited);
         const supportedProject = supportedProjets.find(
           (p: SupportedKickstarter) => p.kickstarter_id === kickstarter_id
         );
-        if (winnerGoal) {
+        if (winnerGoal && supportedProject) {
           const rewards =
             yoctoToStNear(parseInt(winnerGoal.tokens_to_release_per_stnear)) *
             yoctoToStNear(parseInt(supportedProject.supporter_deposit));
@@ -63,7 +55,7 @@ const FundingSuccess = (props: { id: any }) => {
           );
         }
         setInvested(
-          yoctoToDollarStr(supportedProject.supporter_deposit, nearPrice)
+          yoctoToDollarStr(supportedProject && supportedProject.supporter_deposit ? supportedProject.supporter_deposit : '0', nearPrice)
         );
       }
     })();
