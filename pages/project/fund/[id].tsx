@@ -19,10 +19,11 @@ export default function Fund() {
           transactionHashes as string,
           wallet?.getAccountId()
         );
-        setTxSuccess(result.found && !!result.success);
-        if (!result.success) {
+        const txSuccess = result.found && !!result.success &&  result.data && result.data !== '0'
+        setTxSuccess(txSuccess);
+        if (!txSuccess) {
           toast({
-            title: "Fund error.",
+            title: `Fund error. See transaction  ${result.transactionExplorerUrl}`,
             description: result.errorMessage,
             status: "error",
             duration: 9000,

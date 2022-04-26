@@ -21,7 +21,8 @@ export default function ProjectDetailsContainer() {
           wallet?.getAccountId()
         );
         if (result.found) {
-          if (result.success) {
+          const txSuccess = !!result.success &&  result.data && result.data !== '0'
+          if (txSuccess) {
             toast({
               title: "Transaction success.",
               status: "success",
