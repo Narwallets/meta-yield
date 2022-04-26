@@ -4,7 +4,7 @@ export interface TransactionStatusResult {
   found: boolean;
   success?: boolean;
   errorMessage?: string;
-  data?: TransactionError;
+  data?: any;
   finalExecutionOutcome?: FinalExecutionOutcome;
   method?: string;
 

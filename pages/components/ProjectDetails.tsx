@@ -390,7 +390,7 @@ const ProjectDetails = (props: { id: any }) => {
                 <>
                 <Stack>
                   <Flex>
-                    <Text>NEARS {ammountWithdraw}</Text>
+                    <Text>{ammountWithdraw} NEAR</Text>
                     <Button
                       colorScheme="blue"
                       isFullWidth
