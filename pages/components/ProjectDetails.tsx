@@ -23,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 import Card from "./Card";
 // import Image from "next/image";
-import {  TeamMemberProps } from "../../types/project.types";
+import {  KickstarterGoalProps, TeamMemberProps } from "../../types/project.types";
 import {  useGetProjectDetails } from "../../hooks/projects";
 import parse from "html-react-parser";
 import RewardsCalculator from "./RewardsCalculator";
@@ -32,51 +32,101 @@ import GoalsProgressCard from "./GoalsProgressCard";
 import FundingStatusCard from "./FundingStatusCard";
 import moment from "moment";
 import {
+  claimAll,
   getStNearPrice,
   getSupportedKickstarters,
   getSupporterEstimatedStNear,
   getWallet,
+  withdraw,
   withdrawAll,
 } from "../../lib/near";
-import { getMyProjectsFounded, yoctoToStNear } from "../../lib/util";
+import { getCurrentFundingGoal, getMyProjectsFounded, yoctoToStNear } from "../../lib/util";
 import RewardsEstimated from "./RewardsEstimated";
 import FundButton from "./FundButon";
 import { useStore } from "../../stores/wallet";
 import ConnectButton from "./ConnectButton";
 
+export enum ProjectStatus {
+  NOT_LOGGIN,
+  LOGGIN,
+  ACTIVE,
+  CLOSE,
+  FUNDED,
+  SUCCESS ,
+  UNSUCCESS
+}
+
 const ProjectDetails = (props: { id: any }) => {
+
   const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
 
-  const [showFund, setShowFund] = useState(true);
-  const [showWithdraw, setShowWithdraw] = useState(false);
-  const [showClaim, setShowClaim] = useState(false);
-  const [showRewardsCalculator, setShowRewardsCalculator] = useState(true);
-  const [showRewardEstimated, setShowRewardsEstimated] = useState(false);
-  const [ammountWithdraw, setAmmountWithdraw] = useState("0");
-  
-  const { wallet, isLogin } = useStore();
+  const [showFund, setShowFund] = useState<boolean>(true);
+  const [showWithdraw, setShowWithdraw] = useState<boolean>(false);
+  const [showClaim, setShowClaim] = useState<boolean>(false);
+  const [showRewardsCalculator, setShowRewardsCalculator] = useState<boolean>(true);
+  const [showRewardEstimated, setShowRewardsEstimated] = useState<boolean>(false);
 
+  const [status, setStatus] = useState<ProjectStatus>(ProjectStatus.NOT_LOGGIN);
+  const [ammountClaim, setRewards] = useState<any>(0);
+  const [lockupDate, setLockupDate] = useState<any>();
+
+  const [myProjectFounded, setMyProjectFounded] = useState<any>();
+  const [ammountWithdraw, setAmmountWithdraw] = useState("0");
+
+  const { wallet, isLogin } = useStore();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
 
-  const withdraw = async () => {
+  const withdrawAllStnear = async () => {
     // call to contract for withdraw
     const tempWallet = await getWallet();
     withdrawAll(tempWallet, parseInt(props.id)).then((val) => {
-      console.log("Resurn withdrrawAll", val);
+      console.log("Return withdrrawAll", val);
     });
   };
-  const claim = () => {
-    // call to contract for claiming the rewards
+
+  const withdrawAmount = async () => {
+    const amount = '0';
+    // call to contract for withdraw
+    const tempWallet = await getWallet();
+    withdraw(tempWallet, parseInt(props.id), amount).then((val) => {
+      console.log("Return withdrrawAll", val);
+    });
   };
+  const claim = async () => {
+    // call to contract for claiming the rewards
+    const tempWallet = await getWallet();
+    claimAll(tempWallet, parseInt(props.id)).then((val) => {
+      console.log("Return claimAll", val);
+    });
+  };
+
+  const refreshStatus = (project: any, thisProjectFounded: any )=> {
+    if (isLogin) {
+      setStatus(ProjectStatus.LOGGIN);
+      if (project.kickstarter.active) {
+        setStatus(ProjectStatus.ACTIVE);
+        if ( thisProjectFounded && parseInt(thisProjectFounded.supporter_deposit) > 0) {
+          setStatus(ProjectStatus.FUNDED);
+        }
+      } else {
+        // setStatus(ProjectStatus.CLOSE);
+        if (project.kickstarter.successful && thisProjectFounded) {
+          setStatus(ProjectStatus.SUCCESS);
+        } else {
+          setStatus(ProjectStatus.UNSUCCESS);
+        }
+      }
+    }
+  }
 
   const getWithdrawAmmount = async (wallet: any, id: number, price: string) =>
     getSupporterEstimatedStNear(wallet, id, price);
 
-  const calculateAmmountToWithdraw = async(thisProjectFounded? :any)=> {
-    
+  const calculateAmmountToWithdraw = async()=> {
     if (isPeriodEnded()) { 
+      calculateTokensToClaim();
       const price = await getStNearPrice();
       const ammount =
       parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
@@ -90,42 +140,76 @@ const ProjectDetails = (props: { id: any }) => {
         setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
       }
     } else {
-      setAmmountWithdraw(yoctoToStNear(parseInt(thisProjectFounded.deposit_in_near)).toFixed(5));
+      setAmmountWithdraw(yoctoToStNear(parseInt(myProjectFounded && myProjectFounded.supporter_deposit ? myProjectFounded.supporter_deposit : '0')).toFixed(5));
     }
-    
   }
 
   const isPeriodEnded = ()=> {
     return moment().diff(moment(project.kickstarter.close_timestamp)) > 0
   }
 
+  const calculateTokensToClaim = ()=> {
+    const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(project.kickstarter.goals, project.kickstarter.total_deposited);
+
+        if (winnerGoal) {
+          const rewards =
+            yoctoToStNear(parseInt(winnerGoal.tokens_to_release_per_stnear)) *
+            yoctoToStNear(parseInt(myProjectFounded.supporter_deposit));
+          setRewards( rewards);
+          setLockupDate(
+            moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
+          );
+        }
+  }
+
+  useEffect(()=>{
+    setShowWithdraw(false);
+    setShowClaim(false);
+    setShowFund(false);
+    setShowRewardsCalculator(false);
+
+    switch (status) {
+      case ProjectStatus.LOGGIN:
+        // is login true
+        break;
+      
+      case ProjectStatus.ACTIVE:
+        setShowRewardsCalculator(true);
+        setShowFund(true);  
+        break;
+      
+      case ProjectStatus.FUNDED:
+        calculateAmmountToWithdraw();
+        setShowRewardsCalculator(true);
+        setShowFund(true);
+        setShowWithdraw(true);
+        setShowRewardsEstimated(true);
+        break;
+
+      case ProjectStatus.SUCCESS:
+        calculateAmmountToWithdraw();
+        setShowWithdraw(false);
+        setShowRewardsCalculator(false);
+        setShowClaim(true);
+        break;
+        
+      case ProjectStatus.UNSUCCESS:
+        calculateAmmountToWithdraw();
+        setShowWithdraw(true);
+        break;
+    }
+  }, [status])
+
   useEffect(() => {
     (async () => {
       if (project) {
-        if (isLogin) {
-          const thisProjectFounded = await getMyProjectsFounded(project.kickstarter.id, wallet);
-          
-          if ( thisProjectFounded && parseInt(thisProjectFounded.supporter_deposit) > 0) {
-            // If the user has already deposit STNEAR in the project
-            
-            // setShowFund(false);
-            calculateAmmountToWithdraw(thisProjectFounded);
-            setShowWithdraw(true);
-            setShowRewardsCalculator(false);
-            setShowRewardsEstimated(true);
-          }
-  
-          if (!project.kickstarter.active) {
-            // if project is not active (not able to fund) hide rewards calculator 
-            setShowFund(false);
-            setShowRewardsCalculator(false);
-            
-          }
-        }
+        
+        const thisProjectFounded = await getMyProjectsFounded(project.kickstarter.id, wallet);
+        setMyProjectFounded(thisProjectFounded);
+        refreshStatus(project, thisProjectFounded);
       }
     })();
   }, [wallet, props, project]);
-
 
   if (isLoading) return <></>;
   return (
@@ -297,20 +381,40 @@ const ProjectDetails = (props: { id: any }) => {
                   colorScheme="blue"
                   isFullWidth
                   size="lg"
-                  onClick={withdraw}
+                  onClick={withdrawAllStnear}
                 >
-                  Withdraw (stNEAR {ammountWithdraw})
+                  {project.kickstarter.active ? 'Withdraw ' : 'Claim NEAR'}  (stNEAR {ammountWithdraw})
                 </Button>
               )}
               {showClaim && isLogin && (
-                <Button
-                  colorScheme="blue"
-                  isFullWidth
-                  size="lg"
-                  onClick={claim}
-                >
-                  Claim Rewards
-                </Button>
+                <>
+                <Stack>
+                  <Flex>
+                    <Text>NEARS {ammountWithdraw}</Text>
+                    <Button
+                      colorScheme="blue"
+                      isFullWidth
+                      size="lg"
+                      onClick={withdrawAllStnear}
+                    >
+                      Claim NEAR Rewards
+                    </Button>
+                  </Flex>
+                  <Flex>
+                    <Text>{project.kickstarter.project_token_symbol} {ammountClaim}</Text>
+                    <Button
+                      colorScheme="blue"
+                      isFullWidth
+                      size="lg"
+                      onClick={claim}
+                    >
+                      Claim Tokens Rewards
+                    </Button>
+                  </Flex>
+                </Stack>
+                  
+                  
+                </>
               )}
             </Stack>
             {showRewardsCalculator && (
