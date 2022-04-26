@@ -32,6 +32,7 @@ import GoalsProgressCard from "./GoalsProgressCard";
 import FundingStatusCard from "./FundingStatusCard";
 import moment from "moment";
 import {
+  claimAll,
   getStNearPrice,
   getSupportedKickstarters,
   getSupporterEstimatedStNear,
@@ -44,7 +45,20 @@ import FundButton from "./FundButon";
 import { useStore } from "../../stores/wallet";
 import ConnectButton from "./ConnectButton";
 
+export enum ProjectStatus {
+  NOT_LOGGIN,
+  LOGGIN,
+  ACTIVE,
+  CLOSE,
+  FUNDED,
+  SUCESS,
+  UNSUCESS
+}
+
 const ProjectDetails = (props: { id: any }) => {
+
+   
+
   const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
@@ -52,8 +66,12 @@ const ProjectDetails = (props: { id: any }) => {
   const [showFund, setShowFund] = useState(true);
   const [showWithdraw, setShowWithdraw] = useState(false);
   const [showClaim, setShowClaim] = useState(false);
+  const [status, setStatus] = useState<ProjectStatus>(ProjectStatus.NOT_LOGGIN);
+
   const [showRewardsCalculator, setShowRewardsCalculator] = useState(true);
   const [showRewardEstimated, setShowRewardsEstimated] = useState(false);
+  const [myProjectFounded, setMyProjectFounded] = useState<any>();
+
   const [ammountWithdraw, setAmmountWithdraw] = useState("0");
   
   const { wallet, isLogin } = useStore();
@@ -64,18 +82,40 @@ const ProjectDetails = (props: { id: any }) => {
     // call to contract for withdraw
     const tempWallet = await getWallet();
     withdrawAll(tempWallet, parseInt(props.id)).then((val) => {
-      console.log("Resurn withdrrawAll", val);
+      console.log("Return withdrrawAll", val);
     });
   };
-  const claim = () => {
+  const claim = async () => {
     // call to contract for claiming the rewards
+    const tempWallet = await getWallet();
+    claimAll(tempWallet, parseInt(props.id)).then((val) => {
+      console.log("Return claimAll", val);
+    });
   };
+
+  const refreshStatus = (project: any, thisProjectFounded: any )=> {
+    if (isLogin) {
+      setStatus(ProjectStatus.LOGGIN);
+      if (project.kickstarter.active) {
+        setStatus(ProjectStatus.ACTIVE);
+        if ( thisProjectFounded && parseInt(thisProjectFounded.supporter_deposit) > 0) {
+          setStatus(ProjectStatus.FUNDED);
+        }
+      } else {
+        // setStatus(ProjectStatus.CLOSE);
+        if (project.kickstarter.sucess && thisProjectFounded) {
+          setStatus(ProjectStatus.SUCESS);
+        } else {
+          setStatus(ProjectStatus.UNSUCESS);
+        }
+      }
+    }
+  }
 
   const getWithdrawAmmount = async (wallet: any, id: number, price: string) =>
     getSupporterEstimatedStNear(wallet, id, price);
 
-  const calculateAmmountToWithdraw = async(thisProjectFounded? :any)=> {
-    
+  const calculateAmmountToWithdraw = async()=> {
     if (isPeriodEnded()) { 
       const price = await getStNearPrice();
       const ammount =
@@ -90,42 +130,59 @@ const ProjectDetails = (props: { id: any }) => {
         setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
       }
     } else {
-      setAmmountWithdraw(yoctoToStNear(parseInt(thisProjectFounded.deposit_in_near)).toFixed(5));
+      setAmmountWithdraw(yoctoToStNear(parseInt(myProjectFounded && myProjectFounded.supporter_deposit ? myProjectFounded.supporter_deposit : '0')).toFixed(5));
     }
-    
   }
 
   const isPeriodEnded = ()=> {
     return moment().diff(moment(project.kickstarter.close_timestamp)) > 0
   }
 
+  useEffect(()=>{
+    setShowWithdraw(false);
+    setShowClaim(false);
+    setShowFund(false);
+    setShowRewardsCalculator(false);
+
+    switch (status) {
+      case ProjectStatus.LOGGIN:
+        // is login true
+        break;
+      
+      case ProjectStatus.ACTIVE:
+        setShowRewardsCalculator(true);
+        setShowFund(true);  
+        break;
+      
+      case ProjectStatus.FUNDED:
+        calculateAmmountToWithdraw();
+        setShowRewardsCalculator(true);
+        setShowFund(true);
+        setShowWithdraw(true);
+        setShowRewardsEstimated(true);
+        break;
+
+      case ProjectStatus.SUCESS:
+        setShowWithdraw(false);
+        setShowRewardsCalculator(false);
+        setShowClaim(true);
+        break;
+        
+      case ProjectStatus.UNSUCESS:
+        setShowWithdraw(false);
+        break;
+    }
+  }, [status])
+
   useEffect(() => {
     (async () => {
       if (project) {
-        if (isLogin) {
-          const thisProjectFounded = await getMyProjectsFounded(project.kickstarter.id, wallet);
-          
-          if ( thisProjectFounded && parseInt(thisProjectFounded.supporter_deposit) > 0) {
-            // If the user has already deposit STNEAR in the project
-            
-            // setShowFund(false);
-            calculateAmmountToWithdraw(thisProjectFounded);
-            setShowWithdraw(true);
-            setShowRewardsCalculator(false);
-            setShowRewardsEstimated(true);
-          }
-  
-          if (!project.kickstarter.active) {
-            // if project is not active (not able to fund) hide rewards calculator 
-            setShowFund(false);
-            setShowRewardsCalculator(false);
-            
-          }
-        }
+        const thisProjectFounded = await getMyProjectsFounded(project.kickstarter.id, wallet);
+        setMyProjectFounded(thisProjectFounded);
+        refreshStatus(project, thisProjectFounded);
       }
     })();
   }, [wallet, props, project]);
-
 
   if (isLoading) return <></>;
   return (
@@ -272,7 +329,6 @@ const ProjectDetails = (props: { id: any }) => {
             
             <Stack>
               <Flex justifyContent={'space-between'}> 
-                <Text>Funded Ammount {}</Text>
                 <Link href="https://metapool.app/" target="_blank"> get stNEAR</Link> 
               </Flex>
             </Stack>
@@ -300,7 +356,7 @@ const ProjectDetails = (props: { id: any }) => {
                   size="lg"
                   onClick={withdraw}
                 >
-                  Withdraw (stNEAR {ammountWithdraw})
+                  {project.kickstarter.active ? 'Withdraw ' : 'Claim NEAR'}  (stNEAR {ammountWithdraw})
                 </Button>
               )}
               {showClaim && isLogin && (
@@ -310,7 +366,7 @@ const ProjectDetails = (props: { id: any }) => {
                   size="lg"
                   onClick={claim}
                 >
-                  Claim Rewards
+                  Claim Tokens Rewards
                 </Button>
               )}
             </Stack>
