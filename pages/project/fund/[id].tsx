@@ -19,12 +19,21 @@ export default function Fund() {
           transactionHashes as string,
           wallet?.getAccountId()
         );
-        setTxSuccess(result.success);
+        setTxSuccess(result.found && !!result.success);
         if (!result.success) {
           toast({
-            title: "Fund Transaction error.",
-            description: result.error?.message,
+            title: "Fund error.",
+            description: result.errorMessage,
             status: "error",
+            duration: 9000,
+            position: "top-right",
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: "Fund success.",
+            description: result.data?.message,
+            status: "success",
             duration: 9000,
             position: "top-right",
             isClosable: true,

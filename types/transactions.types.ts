@@ -1,7 +1,13 @@
+import { FinalExecutionOutcome } from "near-api-js/lib/providers";
+
 export interface TransactionStatusResult {
   found: boolean;
-  success: boolean;
-  error?: TransactionError;
+  success?: boolean;
+  errorMessage?: string;
+  data?: TransactionError;
+  finalExecutionOutcome?: FinalExecutionOutcome;
+  method?: string;
+
   transactionExplorerUrl?: string;
 }
 

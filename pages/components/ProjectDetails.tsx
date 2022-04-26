@@ -329,7 +329,7 @@ const ProjectDetails = (props: { id: any }) => {
             
             <Stack>
               <Flex justifyContent={'space-between'}> 
-                <Link href="https://metapool.app/" target="_blank"> get stNEAR</Link> 
+                <Text>Funded Ammount {}</Text>
               </Flex>
             </Stack>
             <Stack align="center">

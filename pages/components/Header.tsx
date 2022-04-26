@@ -30,7 +30,7 @@ const Header: React.FC<ButtonProps> = (props) => {
       wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
     }
     catch (e) {
-      console.log( 'errir', e);
+      console.log( 'error', e);
     }
   };
 
@@ -67,7 +67,7 @@ const Header: React.FC<ButtonProps> = (props) => {
           setSignInAccountId(tempWallet.getAccountId());
           setStNearBalance(await (await getBalance(tempWallet!)));
         }
-        removeQueryString();
+        // removeQueryString();
         setLogin(tempWallet && tempWallet.getAccountId() ? true : false);
       } catch (e) {
         console.log(e);
@@ -131,6 +131,15 @@ const Header: React.FC<ButtonProps> = (props) => {
                       />
                     </Square>
                     <Text>{stNearBalance.toFixed(5)}</Text>
+                    <Link href="https://metapool.app/dapp/mainnet/meta/" target="_blank">
+                      <Button
+                        fontWeight={600}
+                        fontSize={"md"}
+                        color={colors.indigo[500]} 
+                      >
+                        Get stNEAR 
+                      </Button>
+                    </Link>
                     <a
                       href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
                       target="_blank"
