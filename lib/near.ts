@@ -275,6 +275,20 @@ export const withdrawAll = async (
   return response;
 };
 
+export const withdraw = async (
+  wallet: WalletConnection,
+  kickstarter_id: number,
+  amount: string
+) => {
+  const contract = await getContract(wallet);
+  const args = {
+    kickstarter_id: kickstarter_id,
+    amount
+  };
+  const response = (contract as any)["withdraw"](args, "300000000000000");
+  return response;
+};
+
 export const claimAll = async (
   wallet: WalletConnection,
   kickstarter_id: number,
