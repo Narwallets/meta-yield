@@ -8,7 +8,11 @@ import {
   providers,
   ConnectConfig,
 } from "near-api-js";
-import { FinalExecutionStatus } from "near-api-js/lib/providers";
+import { parseRpcError } from "near-api-js/lib/utils/rpc_errors";
+import {
+  FinalExecutionStatus,
+  getTransactionLastResult,
+} from "near-api-js/lib/providers";
 const BN = require("bn.js");
 import { getConfig } from "../config";
 import { TransactionStatusResult } from "../types/transactions.types";
@@ -23,6 +27,7 @@ import {
   stNearToYocto,
   yoctoToStNear,
 } from "./util";
+import { ExecutionError } from "near-api-js/lib/providers/provider";
 
 export const CONTRACT_ID = process.env.CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID = process.env.METAPOOL_CONTRACT_ID;
@@ -86,17 +91,20 @@ export const getSupportedKickstarters = async (supporter_id: any) => {
   );
 };
 
-export const getSupporterTotalDepositInKickstarter = async (supporter_id: string, kickstarter_id:number) => {
+export const getSupporterTotalDepositInKickstarter = async (
+  supporter_id: string,
+  kickstarter_id: number
+) => {
   const st_near_price = await getStNearPrice();
   return callPublicKatherineMethod(
     katherineViewMethods.getSupporterTotalDepositInKickstarter,
     {
       supporter_id: supporter_id,
       kickstarter_id: kickstarter_id,
-      st_near_price: st_near_price
+      st_near_price: st_near_price,
     }
   );
-}
+};
 
 export const getSupporterEstimatedStNear = async (
   wallet: WalletConnection,
@@ -197,34 +205,62 @@ export const fundToKickstarter = async (
   return providers.getTransactionLastResult(response);
 };
 
+const getTxFunctionCallMethod = (
+  finalExecOutcome: providers.FinalExecutionOutcome
+) => {
+  let method: string | undefined = undefined;
+  if (finalExecOutcome.transaction?.actions?.length) {
+    const actions = finalExecOutcome.transaction.actions;
+    //recover methodName of first FunctionCall action
+    for (let n = 0; n < actions.length; n++) {
+      let item = actions[n];
+      if ("FunctionCall" in item) {
+        method = item.FunctionCall.method_name;
+        break;
+      }
+    }
+  }
+  return method;
+};
+
 export const getTxStatus = async (
   txHash: string,
   account_id: string
 ): Promise<TransactionStatusResult> => {
-  const result = await provider.txStatus(txHash, account_id);
+  // const decodedTxHash = utils.serialize.base_decode(txHash);
+  const finalExecutionOutcome = await provider.txStatus(
+    txHash,
+    account_id
+  );
   const txUrl = `${nearConfig.explorerUrl}/transactions/${txHash}`;
-  if (!result) {
-    return { found: false, success: false };
+  const method = getTxFunctionCallMethod(finalExecutionOutcome);
+  if (!finalExecutionOutcome) {
+    return { found: false };
   }
-  if ((result.status as FinalExecutionStatus).SuccessValue)
-    return { found: true, success: true, transactionExplorerUrl: txUrl };
-  if ((result.status as FinalExecutionStatus).Failure)
+  if ((finalExecutionOutcome.status as FinalExecutionStatus).Failure) {
+    const failure: ExecutionError = (
+      finalExecutionOutcome.status as FinalExecutionStatus
+    ).Failure as ExecutionError;
+    console.error("finalExecOutcome.status.Failure", failure);
+    const errorMessage =
+      typeof failure === "object"
+        ? parseRpcError(failure).toString()
+        : `Transaction <a href="${txUrl}">${finalExecutionOutcome.transaction.hash}</a> failed`;
+
     return {
-      found: true,
       success: false,
-      error: {
-        message: (result.status as FinalExecutionStatus).Failure
-          ?.error_message as string,
-        type: (result.status as FinalExecutionStatus).Failure
-          ?.error_type as string,
-      },
+      found: true,
+      errorMessage: errorMessage,
+      method: method,
       transactionExplorerUrl: txUrl,
     };
+  }
   return {
+    success: true,
     found: true,
-    success: false,
-    error: { message: "Error executing transaction", type: "UNKNOWN_ERROR" },
-    transactionExplorerUrl: txUrl,
+    data: getTransactionLastResult(finalExecutionOutcome),
+    method: method,
+    finalExecutionOutcome: finalExecutionOutcome,
   };
 };
 export const withdrawAll = async (

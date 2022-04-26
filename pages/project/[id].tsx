@@ -23,7 +23,7 @@ export default function ProjectDetailsContainer() {
         if (result.found) {
           if (result.success) {
             toast({
-              title: "Withdraw success.",
+              title: "Transaction success.",
               status: "success",
               duration: 9000,
               position: "top-right",
@@ -31,8 +31,8 @@ export default function ProjectDetailsContainer() {
             });
           } else {
             toast({
-              title: "Withdraw Transaction error.",
-              description: result?.error?.message,
+              title: "Transaction error.",
+              description: result?.errorMessage,
               status: "error",
               duration: 9000,
               position: "top-right",

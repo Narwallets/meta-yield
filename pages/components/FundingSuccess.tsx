@@ -24,7 +24,6 @@ import { fetchNearPrice } from "../../queries/prices";
 import moment from "moment";
 import { useStore } from "../../stores/wallet";
 import { useGetSupportedProjects } from "../../hooks/projects";
-import { checkRedirectSearchParams } from "../../lib/errors";
 import { utils } from "near-api-js";
 const FundingSuccess = (props: { id: any }) => {
   const router = useRouter();

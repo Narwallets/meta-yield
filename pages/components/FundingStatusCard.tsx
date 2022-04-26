@@ -28,7 +28,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
         </Text>
         <HStack>
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-          ${yoctoToStNear(parseInt(kickstarter?.total_deposited)) } 
+          {yoctoToStNear(parseInt(kickstarter?.total_deposited)).toFixed(5) } 
         </Text>
         <Text fontSize="l" >(  ${totalRaised} USD)</Text>
         </HStack>
