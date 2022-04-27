@@ -31,13 +31,10 @@ import withdrawSchemaValidation from "../../validation/withdrawSchemaValidation"
 const Funding = (props: {
   project: any;
   supportedDeposited: number;
-  isDepositEnabled: boolean;
-  isWithdrawEnabled: boolean;
 }) => {
   const project = props.project;
   const supportedDeposited = props.supportedDeposited;
-  const isDepositEnabled = props.isDepositEnabled;
-  const isWithdrawEnabled = props.isWithdrawEnabled;
+  const isWithdrawEnabled = supportedDeposited > 0;
   const router = useRouter();
   const { wallet } = useStore();
 
@@ -145,7 +142,7 @@ const Funding = (props: {
     <Tabs defaultIndex={isWithdrawEnabled ? 0 : 1}>
       <TabList>
         <Tab isDisabled={!isWithdrawEnabled}>Withdraw</Tab>
-        <Tab isDisabled={!isDepositEnabled}>Deposit</Tab>
+        <Tab>Deposit</Tab>
       </TabList>
 
       <TabPanels>

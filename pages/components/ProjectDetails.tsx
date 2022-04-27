@@ -173,7 +173,7 @@ const ProjectDetails = (props: { id: any }) => {
       project.kickstarter.total_deposited
     );
 
-    if (winnerGoal) {
+    if (winnerGoal && myProjectFounded) {
       const rewards =
         yoctoToStNear(parseInt(winnerGoal.tokens_to_release_per_stnear)) *
         yoctoToStNear(parseInt(myProjectFounded.supporter_deposit));
@@ -196,13 +196,11 @@ const ProjectDetails = (props: { id: any }) => {
         break;
 
       case ProjectStatus.ACTIVE:
-        setShowRewardsCalculator(true);
         setShowFund(true);
         break;
 
       case ProjectStatus.FUNDED:
         calculateAmmountToWithdraw();
-        setShowRewardsCalculator(true);
         setShowFund(true);
         setShowWithdraw(true);
         setShowRewardsEstimated(true);
@@ -211,7 +209,7 @@ const ProjectDetails = (props: { id: any }) => {
       case ProjectStatus.SUCCESS:
         calculateAmmountToWithdraw();
         setShowWithdraw(false);
-        setShowRewardsCalculator(false);
+        setShowFund(false);
         setShowClaim(true);
         break;
 
@@ -379,22 +377,18 @@ const ProjectDetails = (props: { id: any }) => {
               )}
 
             <Stack w={"100%"}>
-              {
-                isLogin && (showWithdraw || showFund) && (
-                  <Funding
-                    project={project}
-                    supportedDeposited={
-                      myProjectFounded && myProjectFounded.supporter_deposit
-                        ? yoctoToStNear(
-                            parseInt(myProjectFounded.supporter_deposit)
-                          )
-                        : 0
-                    }
-                    isDepositEnabled={showFund}
-                    isWithdrawEnabled={showWithdraw}
-                  ></Funding>
-                )
-              }
+              {isLogin && showFund && (
+                <Funding
+                  project={project}
+                  supportedDeposited={
+                    myProjectFounded && myProjectFounded.supporter_deposit
+                      ? yoctoToStNear(
+                          parseInt(myProjectFounded.supporter_deposit)
+                        )
+                      : 0
+                  }
+                ></Funding>
+              )}
               {!isLogin && (
                 <ConnectButton text={"Connect wallet to fund"}></ConnectButton>
               )}
