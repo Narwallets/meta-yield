@@ -261,6 +261,7 @@ export const getTxStatus = async (
     data: getTransactionLastResult(finalExecutionOutcome),
     method: method,
     finalExecutionOutcome: finalExecutionOutcome,
+    transactionExplorerUrl: txUrl
   };
 };
 export const withdrawAll = async (
