@@ -422,7 +422,7 @@ const ProjectDetails = (props: { id: any }) => {
                 <>
                 <Stack w={'100%'}>
                   { (myProjectFounded.supporter_deposit > 0 || myProjectFounded.rewards > 0 ) && (
-                    <Text>CLAIMS {}</Text>
+                    <Text>CLAIMS</Text>
                   )}
                   {   // show if there are deposits left to claim
                     myProjectFounded.supporter_deposit > 0 && (
