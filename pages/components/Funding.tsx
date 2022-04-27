@@ -60,7 +60,7 @@ const Funding = (props: {
     formikWithdraw.setFieldValue("amount_withdraw", supportedDeposited);
 
   const initialValuesDeposit: any = {
-    amount: 0,
+    amount_deposit: 0,
     balance: 0,
   };
   const formikDeposit = useFormik({
@@ -76,12 +76,11 @@ const Funding = (props: {
         project.id,
         values.amount_deposit
       );
-      // router.push(`/project/success/${project.id}`);
     },
   });
 
   const initialValuesWithdraw: any = {
-    amount: 0,
+    amount_withdraw: 0,
     supporterDeposited: 0,
   };
 
@@ -139,7 +138,6 @@ const Funding = (props: {
     }
 
     setBalance();
-    formikWithdraw.setFieldValue("supportedDeposited", supportedDeposited);
   }, []);
 
   if (!project) return <></>;
@@ -174,20 +172,32 @@ const Funding = (props: {
               isFullWidth
               size="lg"
               disabled={!formikWithdraw.isValid}
-              onClick={(e: any) => formikWithdraw.handleSubmit(e)}
+              onClick={(e: any) => {
+                formikWithdraw.handleSubmit(e);
+              }}
             >
               Withdraw
             </Button>
           </HStack>
+          <Stack mt={4}>
+            <Text
+              fontSize="md"
+              lineHeight="6"
+              fontWeight="semibold"
+              color="gray.500"
+            >
+              Current Deposit: {supportedDeposited} $STNEAR
+            </Text>
+          </Stack>
         </TabPanel>
         <TabPanel>
           <HStack>
             <InputGroup>
               <Input
-                id="amount"
-                name="amount"
+                id="amount_deposit"
+                name="amount_deposit"
                 placeholder="0"
-                value={formikDeposit.values.amount}
+                value={formikDeposit.values.amount_deposit}
                 onPaste={formikDeposit.handleChange}
                 onBlur={formikDeposit.handleBlur}
                 onChange={(e) => {
@@ -221,7 +231,6 @@ const Funding = (props: {
               ESTIMATED REWARDS: {estimatedRewards} $
               {project.kickstarter.project_token_symbol}
             </Text>
-            <Spacer />
           </Stack>
         </TabPanel>
       </TabPanels>
