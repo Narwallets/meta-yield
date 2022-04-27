@@ -41,7 +41,7 @@ import {
   withdraw,
   withdrawAll,
 } from "../../lib/near";
-import { getCurrentFundingGoal, getMyProjectsFounded, yoctoToStNear, yoctoToStNearStr } from "../../lib/util";
+import { getCurrentFundingGoal, getMyProjectsFounded, stNearToYocto, yoctoToStNear, yoctoToStNearStr } from "../../lib/util";
 
 import RewardsEstimated from "./RewardsEstimated";
 import FundButton from "./FundButon";
@@ -87,7 +87,7 @@ const ProjectDetails = (props: { id: any }) => {
     amount: 0
   };
   const fundKickstarterSchema = Yup.object().shape({
-    amount: Yup.number().required("Required").moreThan(0).max(myProjectFounded && myProjectFounded.supporter_deposit)
+    amount: Yup.number().required("Required").moreThan(0).max( myProjectFounded && myProjectFounded.supporter_deposit ? yoctoToStNear(parseInt(myProjectFounded.supporter_deposit)) : 0)
   });
   const formik = useFormik({
     initialValues: initialValues,
@@ -97,7 +97,7 @@ const ProjectDetails = (props: { id: any }) => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values: any) => {
-      const result = await withdrawAmount(values.amount);
+      const result = await withdrawAmount(stNearToYocto(values.amount.toString()));
     },
   });
 
@@ -109,10 +109,10 @@ const ProjectDetails = (props: { id: any }) => {
     });
   };
 
-  const withdrawAmount = async (amount: number) => {
+  const withdrawAmount = async (amount: string) => {
     // call to contract for withdraw
     const tempWallet = await getWallet();
-    withdraw(tempWallet, parseInt(props.id), amount.toString()).then((val) => {
+    withdraw(tempWallet, parseInt(props.id), amount).then((val) => {
       console.log("Return withdraw", val);
     });
   };
@@ -147,7 +147,7 @@ const ProjectDetails = (props: { id: any }) => {
     getSupporterEstimatedStNear(wallet, id, price);
 
   const calculateAmmountToWithdraw = async()=> {
-    if (isPeriodEnded()) { 
+    if (!project.kickstarter.active) { 
       calculateTokensToClaim();
       const price = await getStNearPrice();
       const ammount =
@@ -167,7 +167,7 @@ const ProjectDetails = (props: { id: any }) => {
   }
 
   const isPeriodEnded = ()=> {
-    return moment().diff(moment(project.kickstarter.close_timestamp)) > 0
+    return moment().diff(moment(project.kickstarter.close_timestamp)) < 0
   }
 
   const calculateTokensToClaim = ()=> {
