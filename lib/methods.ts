@@ -22,6 +22,7 @@ export const katherineViewMethods = {
 export const katherineChangeMethods = {
   withdraw: "withdraw",
   withdrawAll: "withdraw_all",
+  claimAll: "claim_all_kickstarter_tokens"
 };
 
 export const metaPoolMethods = {
