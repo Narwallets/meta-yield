@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HStack, Stack, Text } from "@chakra-ui/react";
+import { HStack, Stack, Text, Flex, Spacer } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
 import moment from "moment";
@@ -21,10 +21,10 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
     })();
   }, [kickstarter?.token_contract_address, kickstarter?.total_deposited]);
   return (
-    <Card>
-      <Stack>
+    <Card w={'100%'}> 
+      <Stack >
         <Text fontSize="sm" fontWeight="subtle">
-          TOTAL RAISED
+          TOTAL LOCKED
         </Text>
         <HStack>
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
@@ -34,7 +34,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
         </HStack>
         
       </Stack>
-      <HStack mt={10} spacing="20">
+      <Flex  mt={10}>
         <Stack>
           <Text fontSize="sm" fontWeight="subtle">
             SUPPORTERS
@@ -43,7 +43,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             {kickstarter?.total_supporters}
           </Text>
         </Stack>
-        
+        <Spacer />
         <Stack>
           {
             timeLeftToFund(kickstarter?.close_timestamp) && (
@@ -66,13 +66,14 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
                     Status
                 </Text>
                 <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
-                   Finish
+                   Finished
                 </Text>
               </>
             )
           }
           
         </Stack>
+        <Spacer />
         <Stack>
           <Text fontSize="sm" fontWeight="subtle">
             TOKEN
@@ -81,7 +82,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             ${tokenSymbol}
           </Text>
         </Stack>
-      </HStack>
+      </Flex>
     </Card>
   );
 };

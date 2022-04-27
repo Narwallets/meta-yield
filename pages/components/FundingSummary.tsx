@@ -31,7 +31,7 @@ import {
 import { useStore } from "./../../stores/wallet";
 import { getCurrentFundingGoal, yoctoToStNear } from "../../lib/util";
 import { useFormik } from "formik";
-import fundKickstarterSchema from "../../validation/fundSupporterSchema";
+import fundKickstarterSchema from "../../validation/fundSchemaValidation";
 
 const FundingSummary = (props: { id: any }) => {
   const kickstarter_id: number = props.id;
