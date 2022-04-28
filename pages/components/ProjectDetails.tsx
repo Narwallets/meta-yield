@@ -393,7 +393,7 @@ const ProjectDetails = (props: { id: any }) => {
                   <Stack w={"100%"}>
                     {myProjectFounded &&
                       (myProjectFounded.supporter_deposit > 0 ||
-                        myProjectFounded.rewards > 0) && <Text>CLAIMS</Text>}
+                        myProjectFounded.rewards > 0) && <Text>BONDS</Text>}
                     {
                       // show if there are deposits left to claim
                       myProjectFounded &&
@@ -421,7 +421,7 @@ const ProjectDetails = (props: { id: any }) => {
                             </VStack>
                             <VStack>
                               <Text fontSize={"xxs"} fontWeight={700}>
-                                BOND DUE:
+                                BOND DUE
                               </Text>
                               <Text>{lockupDate}</Text>
                             </VStack>
@@ -460,7 +460,7 @@ const ProjectDetails = (props: { id: any }) => {
                           </VStack>
                           <VStack>
                             <Text fontSize={"xxs"} fontWeight={700}>
-                              BOND DUE:
+                              BOND DUE
                             </Text>
                             <Text>{lockupDate}</Text>
                           </VStack>

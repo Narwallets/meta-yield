@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { getTxStatus } from "../../lib/near";
 import { useStore } from "../../stores/wallet";
 import ProjectDetails from "../components/ProjectDetails";
+import ErrorHandlerHash from "../components/ErrorHandlerHash";
 
 export default function ProjectDetailsContainer() {
   const router = useRouter();
@@ -15,37 +16,13 @@ export default function ProjectDetailsContainer() {
   const [txSuccess, setTxSuccess] = useState<boolean>(false);
   useEffect(() => {
     (async () => {
-      if (transactionHashes !== undefined) {
-        const result = await getTxStatus(
-          transactionHashes as string,
-          wallet?.getAccountId()
-        );
-        if (result.found) {
-          const txSuccess = result.success && (result.data !== '0' || result.data === '')
-          if (txSuccess) {
-            toast({
-              title: "Transaction success.",
-              status: "success",
-              duration: 9000,
-              position: "top-right",
-              isClosable: true,
-            });
-          } else {
-            toast({
-              title: "Transaction error.",
-              description: result?.errorMessage,
-              status: "error",
-              duration: 9000,
-              position: "top-right",
-              isClosable: true,
-            });
-          }
-        }
-      }
       setIsLoaded(true);
     })();
   }, [transactionHashes, wallet, toast]);
 
   if (!id || !isLoaded) return <></>;
-  return <ProjectDetails id={id} />;
+  return <>
+        <ErrorHandlerHash></ErrorHandlerHash>
+        <ProjectDetails id={id} />
+  </>;
 }

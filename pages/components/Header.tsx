@@ -14,16 +14,21 @@ import {
   Spacer,
   Square,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import { getWallet, getBalance, METAPOOL_CONTRACT_ID } from "../../lib/near";
 import { colors } from "../../constants/colors";
 import { useStore } from "../../stores/wallet";
+import { ErrorHashHandler } from "../../utils/errorHandlers";
+import { useRouter } from "next/router";
 
 const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, isLogin, setWallet, setLogin } = useStore();
   const [signInAccountId, setSignInAccountId] = useState(null);
   const [stNearBalance, setStNearBalance] = useState<number>(0);
   const isDesktop = useBreakpointValue({ base: false, lg: true });
+  const router = useRouter();
+  const toast = useToast();
 
   const onConnect = async () => {
     try {
@@ -40,16 +45,13 @@ const Header: React.FC<ButtonProps> = (props) => {
     setWallet(tempWallet);
   };
 
-  const removeQueryString = () => {
-    var uri = window.location.toString();
-    if (uri.indexOf("?") > 0) {
-      var clean_uri = uri.substring(0, uri.indexOf("?"));
-      window.history.replaceState({}, document.title, clean_uri);
-    }
-  };
+  
 
   useEffect(() => {
-    (async () => {})();
+    (async () => {
+      if (wallet){
+      }
+    })();
   }, [setLogin, wallet, isLogin]);
 
   useEffect(() => {
@@ -59,13 +61,12 @@ const Header: React.FC<ButtonProps> = (props) => {
         if (!wallet) {
           setWallet(tempWallet);
         }
-
         if (tempWallet && tempWallet.getAccountId()) {
           setSignInAccountId(tempWallet.getAccountId());
           setStNearBalance(await await getBalance(tempWallet!));
+          ErrorHashHandler(router, toast, wallet);
         }
 
-        // removeQueryString();
         setLogin(tempWallet && tempWallet.getAccountId() ? true : false);
       } catch (e) {
         console.log(e);
