@@ -169,10 +169,7 @@ const ProjectDetails = (props: { id: any }) => {
     );
 
     if (winnerGoal && myProjectFounded) {
-      const rewardsInt =
-        parseInt(winnerGoal.tokens_to_release_per_stnear) *
-        parseInt(myProjectFounded.supporter_deposit);
-      const rewards = yton(rewardsInt.toString());
+      const rewards = yton(myProjectFounded.available_rewards.toString());
       setRewards(rewards);
       setLockupDate(
         moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")

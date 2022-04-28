@@ -124,7 +124,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       <Image
                         boxSize="20px"
                         objectFit="cover"
-                        src="/stnear.svg"
+                        src="/stNEARorig.svg"
                         alt="stnear"
                       />
                     </Square>

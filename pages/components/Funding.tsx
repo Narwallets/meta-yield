@@ -135,7 +135,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
 
   if (!project) return <></>;
   return (
-    <Tabs defaultIndex={isWithdrawEnabled ? 0 : 1}>
+    <Tabs defaultIndex={0}>
       <TabList>
         <Tab>Deposit</Tab>
         <Tab isDisabled={!isWithdrawEnabled}>Withdraw</Tab>
@@ -147,7 +147,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar boxSize="30px" objectFit="cover" src="/stnear.svg" />
+                  <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
                 </Square>
               </InputLeftAddon>
               <Input
@@ -195,7 +195,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar boxSize="30px" objectFit="cover" src="/stnear.svg" />
+                  <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
                 </Square>
               </InputLeftAddon>
               <Input
