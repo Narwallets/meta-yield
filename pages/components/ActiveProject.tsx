@@ -30,7 +30,7 @@ import { useRouter } from "next/router";
 import { truncateText } from "../../utils/textHandlers";
 import { useGetProjectDetails, useGetProjects } from "../../hooks/projects";
 import moment from "moment";
-import { timeLeftToFund, yoctoToDollarStr, yoctoToStNearStr } from "../../lib/util";
+import { timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
 import { fetchNearPrice } from "../../queries/prices";
 import FundButton from "./FundButon";
 

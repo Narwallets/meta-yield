@@ -28,13 +28,12 @@ const Header: React.FC<ButtonProps> = (props) => {
   const onConnect = async () => {
     try {
       wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
-    }
-    catch (e) {
-      console.log( 'error', e);
+    } catch (e) {
+      console.log("error", e);
     }
   };
 
-  const logout = async () =>  {
+  const logout = async () => {
     await wallet!.signOut();
     setLogin(wallet && wallet.getAccountId() ? true : false);
     const tempWallet = await getWallet();
@@ -47,12 +46,10 @@ const Header: React.FC<ButtonProps> = (props) => {
       var clean_uri = uri.substring(0, uri.indexOf("?"));
       window.history.replaceState({}, document.title, clean_uri);
     }
-  }
+  };
 
   useEffect(() => {
-    (async () => {
-      
-    })();
+    (async () => {})();
   }, [setLogin, wallet, isLogin]);
 
   useEffect(() => {
@@ -62,16 +59,17 @@ const Header: React.FC<ButtonProps> = (props) => {
         if (!wallet) {
           setWallet(tempWallet);
         }
-        
-        if(tempWallet && tempWallet.getAccountId()) {
+
+        if (tempWallet && tempWallet.getAccountId()) {
           setSignInAccountId(tempWallet.getAccountId());
-          setStNearBalance(await (await getBalance(tempWallet!)));
+          setStNearBalance(await await getBalance(tempWallet!));
         }
+
         // removeQueryString();
         setLogin(tempWallet && tempWallet.getAccountId() ? true : false);
       } catch (e) {
         console.log(e);
-      }    
+      }
     })();
   }, []);
 
@@ -130,14 +128,17 @@ const Header: React.FC<ButtonProps> = (props) => {
                         alt="stnear"
                       />
                     </Square>
-                    <Text>{stNearBalance.toFixed(5)}</Text>
-                    <Link href="https://metapool.app/dapp/mainnet/meta/" target="_blank">
+                    <Text>{stNearBalance}</Text>
+                    <Link
+                      href="https://metapool.app/dapp/mainnet/meta/"
+                      target="_blank"
+                    >
                       <Button
                         fontWeight={600}
                         fontSize={"md"}
-                        color={colors.indigo[500]} 
+                        color={colors.indigo[500]}
                       >
-                        Get stNEAR 
+                        Get stNEAR
                       </Button>
                     </Link>
                     <a

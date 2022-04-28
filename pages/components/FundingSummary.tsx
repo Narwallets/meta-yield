@@ -24,12 +24,9 @@ import { KickstarterGoalProps } from "../../types/project.types";
 import { useGetProjectDetails } from "../../hooks/projects";
 import { useRouter } from "next/router";
 import moment from "moment";
-import {
-  fundToKickstarter,
-  getBalance,
-} from "../../lib/near";
+import { fundToKickstarter, getBalance } from "../../lib/near";
 import { useStore } from "./../../stores/wallet";
-import { getCurrentFundingGoal, yoctoToStNear } from "../../lib/util";
+import { getCurrentFundingGoal, yton } from "../../lib/util";
 import { useFormik } from "formik";
 import fundKickstarterSchema from "../../validation/fundSchemaValidation";
 
@@ -55,7 +52,6 @@ const FundingSummary = (props: { id: any }) => {
   const onMaxClick = async (event: any) =>
     formik.setFieldValue("amount", await getBalance(wallet!));
 
-
   const initialValues: any = {
     amount: 0,
     balance: 0,
@@ -79,7 +75,10 @@ const FundingSummary = (props: { id: any }) => {
 
   useEffect(() => {
     if (project) {
-      const current = getCurrentFundingGoal(project.kickstarter.goals ,project.kickstarter.total_deposited ) ;
+      const current = getCurrentFundingGoal(
+        project.kickstarter.goals,
+        project.kickstarter.total_deposited
+      );
       setCurrentFundingGoal(current);
       if (current) {
         setFundingNeeded(parseInt(current.desired_amount) / 10 ** 24);
@@ -94,10 +93,9 @@ const FundingSummary = (props: { id: any }) => {
 
   useEffect(() => {
     if (currentFundingGoal) {
-      const tokenAwardPerStnear: string = currentFundingGoal.tokens_to_release_per_stnear;
-      setEstimatedRewards(
-        yoctoToStNear(parseInt(tokenAwardPerStnear)) * amount
-      );
+      const tokenAwardPerStnear: string =
+        currentFundingGoal.tokens_to_release_per_stnear;
+      setEstimatedRewards(yton(tokenAwardPerStnear) * amount);
     }
   }, [amount]);
 
@@ -232,7 +230,7 @@ const FundingSummary = (props: { id: any }) => {
                           fontWeight="semibold"
                           color="gray.500"
                         >
-                          ${project.kickstarter.project_token_symbol} Tokens
+                          {project.kickstarter.project_token_symbol} Tokens
                           (Rewards)
                         </Text>
                         <Spacer />

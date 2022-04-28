@@ -19,7 +19,11 @@ import {
   KickstarterGoalProps,
   SupportedKickstarter,
 } from "../../types/project.types";
-import { getCurrentFundingGoal, yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
+import {
+  getCurrentFundingGoal,
+  yoctoToDollarStr,
+  yton,
+} from "../../lib/util";
 import { fetchNearPrice } from "../../queries/prices";
 import moment from "moment";
 import { useStore } from "../../stores/wallet";
@@ -40,21 +44,30 @@ const FundingSuccess = (props: { id: any }) => {
     (async () => {
       if (data && supportedProjets) {
         const nearPrice = await fetchNearPrice();
-        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(data.kickstarter.goals, data.kickstarter.total_deposited);
+        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(
+          data.kickstarter.goals,
+          data.kickstarter.total_deposited
+        );
         const supportedProject = supportedProjets.find(
           (p: SupportedKickstarter) => p.kickstarter_id === kickstarter_id
         );
         if (winnerGoal && supportedProject) {
-          const rewards =
-            yoctoToStNear(parseInt(winnerGoal.tokens_to_release_per_stnear)) *
-            yoctoToStNear(parseInt(supportedProject.supporter_deposit));
+          const rewardsInt =
+            parseInt(winnerGoal.tokens_to_release_per_stnear) *
+            parseInt(supportedProject.supporter_deposit);
+          const rewards = yton(rewardsInt.toString());
           setRewards(rewards.toString());
           setLockupTime(
             moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
           );
         }
         setInvested(
-          yoctoToDollarStr(supportedProject && supportedProject.supporter_deposit ? supportedProject.supporter_deposit : '0', nearPrice)
+          yoctoToDollarStr(
+            supportedProject && supportedProject.supporter_deposit
+              ? supportedProject.supporter_deposit
+              : "0",
+            nearPrice
+          )
         );
       }
     })();

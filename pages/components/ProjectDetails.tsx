@@ -22,6 +22,7 @@ import {
   Flex,
   VStack,
   Input,
+  Icon,
 } from "@chakra-ui/react";
 import Card from "./Card";
 // import Image from "next/image";
@@ -47,9 +48,7 @@ import {
 import {
   getCurrentFundingGoal,
   getMyProjectsFounded,
-  stNearToYocto,
-  yoctoToStNear,
-  yoctoToStNearStr,
+  yton,
 } from "../../lib/util";
 
 import RewardsEstimated from "./RewardsEstimated";
@@ -89,7 +88,7 @@ const ProjectDetails = (props: { id: any }) => {
   const [lockupDate, setLockupDate] = useState<any>();
 
   const [myProjectFounded, setMyProjectFounded] = useState<any>();
-  const [ammountWithdraw, setAmmountWithdraw] = useState("0");
+  const [ammountWithdraw, setAmmountWithdraw] = useState(0);
 
   const { wallet, isLogin } = useStore();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
@@ -139,7 +138,7 @@ const ProjectDetails = (props: { id: any }) => {
     if (!project.kickstarter.active) {
       calculateTokensToClaim();
       const price = await getStNearPrice();
-      const ammount =
+      const amount =
         parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
           ? project.kickstarter.stnear_price_at_unfreeze
           : await getWithdrawAmmount(
@@ -147,18 +146,14 @@ const ProjectDetails = (props: { id: any }) => {
               parseInt(props.id),
               price.toString()
             );
-      if (ammount) {
-        setAmmountWithdraw(yoctoToStNear(parseInt(ammount)).toFixed(5));
+      if (amount) {
+        setAmmountWithdraw(yton(amount));
       }
     } else {
       setAmmountWithdraw(
-        yoctoToStNear(
-          parseInt(
-            myProjectFounded && myProjectFounded.supporter_deposit
-              ? myProjectFounded.supporter_deposit
-              : "0"
-          )
-        ).toFixed(5)
+        myProjectFounded && myProjectFounded.supporter_deposit
+          ? yton(myProjectFounded.supporter_deposit)
+          : 0
       );
     }
   };
@@ -174,9 +169,10 @@ const ProjectDetails = (props: { id: any }) => {
     );
 
     if (winnerGoal && myProjectFounded) {
-      const rewards =
-        yoctoToStNear(parseInt(winnerGoal.tokens_to_release_per_stnear)) *
-        yoctoToStNear(parseInt(myProjectFounded.supporter_deposit));
+      const rewardsInt =
+        parseInt(winnerGoal.tokens_to_release_per_stnear) *
+        parseInt(myProjectFounded.supporter_deposit);
+      const rewards = yton(rewardsInt.toString());
       setRewards(rewards);
       setLockupDate(
         moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
@@ -375,16 +371,18 @@ const ProjectDetails = (props: { id: any }) => {
               project?.kickstarter.goals.length > 0 && (
                 <GoalsProgressCard kickstarter={project?.kickstarter} />
               )}
-
+            {showRewardEstimated && isLogin && (
+              <RewardsEstimated
+                kickstarter={project?.kickstarter}
+              ></RewardsEstimated>
+            )}
             <Stack w={"100%"}>
               {isLogin && showFund && (
                 <Funding
                   project={project}
                   supportedDeposited={
                     myProjectFounded && myProjectFounded.supporter_deposit
-                      ? yoctoToStNear(
-                          parseInt(myProjectFounded.supporter_deposit)
-                        )
+                      ? yton(myProjectFounded.supporter_deposit)
                       : 0
                   }
                 ></Funding>
@@ -396,68 +394,72 @@ const ProjectDetails = (props: { id: any }) => {
               {showClaim && isLogin && (
                 <>
                   <Stack w={"100%"}>
-                    {(myProjectFounded.supporter_deposit > 0 ||
-                      myProjectFounded.rewards > 0) && <Text>CLAIMS</Text>}
+                    {myProjectFounded &&
+                      (myProjectFounded.supporter_deposit > 0 ||
+                        myProjectFounded.rewards > 0) && <Text>CLAIMS</Text>}
                     {
                       // show if there are deposits left to claim
-                      myProjectFounded.supporter_deposit > 0 && (
-                        <Flex
-                          p={3}
-                          boxShadow="lg"
-                          justifyContent={"space-between"}
-                          alignItems={"center"}
-                        >
-                          <Circle size="40px" backgroundColor={"black"}>
-                            N
-                          </Circle>
-                          <VStack>
-                            <Text fontSize={"xxs"} fontWeight={700}>
-                              NEARS{" "}
-                            </Text>
-                            <Text>
-                              {yoctoToStNearStr(
-                                myProjectFounded.deposit_in_near
-                              )}{" "}
-                            </Text>
-                            <Text>{} </Text>
-                          </VStack>
-                          <VStack>
-                            <Text fontSize={"xxs"} fontWeight={700}>
-                              BOND DUE:
-                            </Text>
-                            <Text>{lockupDate}</Text>
-                          </VStack>
-
-                          <Button
-                            colorScheme="blue"
-                            size="lg"
-                            onClick={withdrawAllStnear}
+                      myProjectFounded &&
+                        myProjectFounded.supporter_deposit > 0 && (
+                          <Flex
+                            p={3}
+                            boxShadow="lg"
+                            justifyContent={"space-between"}
+                            alignItems={"center"}
                           >
-                            Claim
-                          </Button>
-                        </Flex>
-                      )
+                            <Image
+                              boxSize="40px"
+                              objectFit="cover"
+                              src={project.kickstarter.project_token_icon}
+                              alt="near"
+                            />
+                            <VStack>
+                              <Text fontSize={"xxs"} fontWeight={700}>
+                                NEARS{" "}
+                              </Text>
+                              <Text>
+                                {yton(myProjectFounded.deposit_in_near)}{" "}
+                              </Text>
+                              <Text>{} </Text>
+                            </VStack>
+                            <VStack>
+                              <Text fontSize={"xxs"} fontWeight={700}>
+                                BOND DUE:
+                              </Text>
+                              <Text>{lockupDate}</Text>
+                            </VStack>
+
+                            <Button
+                              colorScheme="blue"
+                              size="lg"
+                              onClick={withdrawAllStnear}
+                            >
+                              Claim
+                            </Button>
+                          </Flex>
+                        )
                     }
 
                     {
                       // show if there are pending rewards to claim
-                      myProjectFounded.rewards > 0 && (
+                      myProjectFounded && myProjectFounded.rewards > 0 && (
                         <Flex
                           p={3}
                           boxShadow="lg"
                           justifyContent={"space-between"}
                           alignItems={"center"}
                         >
-                          <Circle size="40px" backgroundColor={"black"}>
-                            N
-                          </Circle>
+                          <Image
+                            boxSize="40px"
+                            objectFit="cover"
+                            src={project.kickstarter.project_token_icon}
+                            alt="ptoken"
+                          />
                           <VStack>
                             <Text fontSize={"xxs"} fontWeight={700}>
                               {project.kickstarter.project_token_symbol}{" "}
                             </Text>
-                            <Text>
-                              {yoctoToStNearStr(myProjectFounded.rewards)}{" "}
-                            </Text>
+                            <Text>{yton(myProjectFounded.rewards)} </Text>
                           </VStack>
                           <VStack>
                             <Text fontSize={"xxs"} fontWeight={700}>
@@ -470,9 +472,7 @@ const ProjectDetails = (props: { id: any }) => {
                               CURRENT CLAIM{" "}
                             </Text>
                             <Text>
-                              {yoctoToStNearStr(
-                                myProjectFounded.available_rewards
-                              )}{" "}
+                              {yton(myProjectFounded.available_rewards)}{" "}
                             </Text>
                           </VStack>
                           <Button colorScheme="blue" size="lg" onClick={claim}>
@@ -487,12 +487,6 @@ const ProjectDetails = (props: { id: any }) => {
             </Stack>
             {showRewardsCalculator && (
               <RewardsCalculator kickstarter={project?.kickstarter} />
-            )}
-
-            {showRewardEstimated && isLogin && (
-              <RewardsEstimated
-                kickstarter={project?.kickstarter}
-              ></RewardsEstimated>
             )}
           </Stack>
         </Box>

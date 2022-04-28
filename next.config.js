@@ -11,7 +11,7 @@ const nextConfig = {
     ],
   },
   env: {
-    CONTRACT_ID: "dev-1651063623964-16608552136334",
+    CONTRACT_ID: "dev-1651084187713-32909136044900",
     METAPOOL_CONTRACT_ID: "meta-v2.pool.testnet",
   },
   pageExtensions: ["page.tsx", "ts", "tsx"],

@@ -21,12 +21,7 @@ import {
   katherineChangeMethods,
   metaPoolMethods,
 } from "./methods";
-import {
-  decodeJsonRpcData,
-  encodeJsonRpcData,
-  stNearToYocto,
-  yoctoToStNear,
-} from "./util";
+import { decodeJsonRpcData, encodeJsonRpcData, ntoy, yton } from "./util";
 import { ExecutionError } from "near-api-js/lib/providers/provider";
 
 export const CONTRACT_ID = process.env.CONTRACT_ID;
@@ -166,7 +161,7 @@ export const getMetapoolAccountInfo = async (wallet: WalletConnection) => {
 
 export const getBalance = async (wallet: WalletConnection): Promise<number> => {
   const accountInfo = await getMetapoolAccountInfo(wallet);
-  return yoctoToStNear(accountInfo.st_near);
+  return yton(accountInfo.st_near);
 };
 
 export const getSupporterDetailedList = async (supporter_id: string) => {
@@ -190,7 +185,7 @@ export const fundToKickstarter = async (
   const contract = await getMetapoolContract(wallet);
   const args = {
     receiver_id: CONTRACT_ID,
-    amount: stNearToYocto(amountOnStNear),
+    amount: ntoy(amountOnStNear),
     msg: kickstarter_id.toString(),
   };
   const response = await wallet
@@ -228,10 +223,7 @@ export const getTxStatus = async (
   account_id: string
 ): Promise<TransactionStatusResult> => {
   // const decodedTxHash = utils.serialize.base_decode(txHash);
-  const finalExecutionOutcome = await provider.txStatus(
-    txHash,
-    account_id
-  );
+  const finalExecutionOutcome = await provider.txStatus(txHash, account_id);
   const txUrl = `${nearConfig.explorerUrl}/transactions/${txHash}`;
   const method = getTxFunctionCallMethod(finalExecutionOutcome);
   if (!finalExecutionOutcome) {
@@ -261,7 +253,7 @@ export const getTxStatus = async (
     data: getTransactionLastResult(finalExecutionOutcome),
     method: method,
     finalExecutionOutcome: finalExecutionOutcome,
-    transactionExplorerUrl: txUrl
+    transactionExplorerUrl: txUrl,
   };
 };
 export const withdrawAll = async (
@@ -284,7 +276,7 @@ export const withdraw = async (
   const contract = await getContract(wallet);
   const args = {
     kickstarter_id: kickstarter_id,
-    amount
+    amount,
   };
   const response = (contract as any)["withdraw"](args, "300000000000000");
   return response;
@@ -292,13 +284,16 @@ export const withdraw = async (
 
 export const claimAll = async (
   wallet: WalletConnection,
-  kickstarter_id: number,
+  kickstarter_id: number
 ) => {
   const contract = await getContract(wallet);
   const args = {
     kickstarter_id: kickstarter_id,
   };
-  const response = (contract as any)["claim_all_kickstarter_tokens"](args, "300000000000000");
+  const response = (contract as any)["claim_all_kickstarter_tokens"](
+    args,
+    "300000000000000"
+  );
   return response;
 };
 
@@ -310,9 +305,12 @@ export const claimPartial = async (
   const contract = await getContract(wallet);
   const args = {
     kickstarter_id: kickstarter_id,
-    amount
+    amount,
   };
-  const response = (contract as any)["claim_all_kickstarter_tokens"](args, "300000000000000");
+  const response = (contract as any)["claim_all_kickstarter_tokens"](
+    args,
+    "300000000000000"
+  );
   return response;
 };
 

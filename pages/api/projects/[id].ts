@@ -15,5 +15,5 @@ export default async function handler(
   const tokenProjectMetadata = await getContractMetadata(
     projectOnChain.token_contract_address
   );
-  res.status(200).json({ ...project, kickstarter: {...projectOnChain, project_token_symbol: tokenProjectMetadata.symbol }});
+  res.status(200).json({ ...project, kickstarter: {...projectOnChain, project_token_symbol: tokenProjectMetadata.symbol, project_token_icon:tokenProjectMetadata.icon }});
 }

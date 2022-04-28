@@ -6,6 +6,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import * as React from "react";
+import { yton } from "../../lib/util";
 import { KickstarterGoalProps } from "../../types/project.types";
 import GoalCircle from "./GoalCircle";
 
@@ -79,10 +80,9 @@ const Goal = (props: GoalProps) => {
           {kickstarterGoal?.name}
         </Text>
         <Text color="emphasized" fontWeight="medium">
-          $
           {kickstarterGoal
-            ? (parseInt(kickstarterGoal?.desired_amount) / 10 ** 24).toFixed(2)
-            : ""}
+            ? `${yton(kickstarterGoal?.desired_amount)} NEAR `
+            : "N/D"}
         </Text>
       </Stack>
     </Stack>
