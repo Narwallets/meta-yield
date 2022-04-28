@@ -30,6 +30,7 @@ export function ntoy(n: number) {
  * @param yoctos amount expressed in yoctos
  */
 export function yton(yoctos: string) {
+  if (!yoctos) return 0;
   if (yoctos.indexOf(".") !== -1)
     throw new Error("a yocto string can't have a decimal point: " + yoctos);
   let negative = false;
