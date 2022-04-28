@@ -64,7 +64,6 @@ const Header: React.FC<ButtonProps> = (props) => {
         if (tempWallet && tempWallet.getAccountId()) {
           setSignInAccountId(tempWallet.getAccountId());
           setStNearBalance(await await getBalance(tempWallet!));
-          ErrorHashHandler(router, toast, wallet);
         }
 
         setLogin(tempWallet && tempWallet.getAccountId() ? true : false);
