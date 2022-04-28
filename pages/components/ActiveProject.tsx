@@ -31,7 +31,7 @@ import { truncateText } from "../../utils/textHandlers";
 import { useGetProjectDetails, useGetProjects } from "../../hooks/projects";
 import moment from "moment";
 import { timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
-import { fetchNearPrice } from "../../queries/prices";
+import { fetchStNearPrice } from "../../queries/prices";
 import FundButton from "./FundButon";
 
 const ActiveProject = (props: { data: ProjectProps }) => {
@@ -45,10 +45,10 @@ const ActiveProject = (props: { data: ProjectProps }) => {
 
   useEffect(() => {
     (async () => {
-      const nearPrice = await fetchNearPrice();
+      const stNEARPrice = await fetchStNearPrice();
       if (projectData?.kickstarter?.total_deposited) {
         setTotalRaised(
-          yoctoToDollarStr(projectData?.kickstarter?.total_deposited, nearPrice)
+          yoctoToDollarStr(projectData?.kickstarter?.total_deposited, stNEARPrice)
         );
       }
     })();

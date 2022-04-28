@@ -81,7 +81,7 @@ const Goal = (props: GoalProps) => {
         </Text>
         <Text color="emphasized" fontWeight="medium">
           {kickstarterGoal
-            ? `${yton(kickstarterGoal?.desired_amount)} NEAR `
+            ? `${yton(kickstarterGoal?.desired_amount)} stNEAR `
             : "N/D"}
         </Text>
       </Stack>

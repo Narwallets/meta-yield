@@ -5,7 +5,7 @@ import { KickstarterProps } from "../../types/project.types";
 import moment from "moment";
 import { timeLeftToFund, yoctoToDollarStr, yton } from "../../lib/util";
 import { getContractMetadata } from "../../lib/near";
-import { fetchNearPrice } from "../../queries/prices";
+import { fetchStNearPrice } from "../../queries/prices";
 const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter as KickstarterProps;
   const [tokenSymbol, setTokenSymbol] = useState("");
@@ -16,8 +16,8 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
         kickstarter?.token_contract_address
       );
       if (contractMetadata) setTokenSymbol(contractMetadata.symbol);
-      const nearPrice = await fetchNearPrice();
-      setTotalRaised(yoctoToDollarStr(kickstarter?.total_deposited, nearPrice));
+      const stNEARPrice = await fetchStNearPrice();
+      setTotalRaised(yoctoToDollarStr(kickstarter?.total_deposited, stNEARPrice));
     })();
   }, [kickstarter?.token_contract_address, kickstarter?.total_deposited]);
   return (
@@ -28,7 +28,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
         </Text>
         <HStack>
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-          {yton(kickstarter?.total_deposited) } NEAR
+          {yton(kickstarter?.total_deposited) } stNEAR
         </Text>
         <Text fontSize="l" >(  ${totalRaised} USD)</Text>
         </HStack>
