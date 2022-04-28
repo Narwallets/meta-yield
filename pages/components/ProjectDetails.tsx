@@ -469,7 +469,7 @@ const ProjectDetails = (props: { id: any }) => {
                           </VStack>
                           <VStack>
                             <Text fontSize={"xxs"} fontWeight={700}>
-                              CURRENT CLAIM{" "}
+                              AVAILABLE{" "}
                             </Text>
                             <Text>
                               {yton(myProjectFounded.available_rewards)}{" "}

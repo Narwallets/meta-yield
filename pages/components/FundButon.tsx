@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { Button, ButtonProps, IconButtonProps } from "@chakra-ui/react";
 import router from "next/router";
 import { CaretRight } from "phosphor-react";
@@ -7,14 +7,16 @@ import { useStore } from "../../stores/wallet";
 
 interface FundButtonProps extends ButtonProps {
   show: boolean;
+  completed: boolean;
 }
 
-const FundButton:  React.FC<FundButtonProps> = p => {
+const FundButton: React.FC<FundButtonProps> = (p) => {
   const { wallet, setWallet } = useStore();
-  const { show, ...props } = p;
+  const { show, completed, ...props } = p;
   const [disabled, setDisabled] = useState<boolean>(false);
   const fundText = "Fund Now";
   const notConnectedText = "Connect Wallet to Fund";
+  const completedText = "Details";
   useEffect(() => {
     setDisabled(!wallet || !wallet?.getAccountId());
   }, [wallet]);
@@ -27,7 +29,7 @@ const FundButton:  React.FC<FundButtonProps> = p => {
       disabled={disabled}
       {...props}
     >
-      {wallet ? fundText : notConnectedText}
+      {completed ? fundText : completedText}
     </Button>
   ) : (
     <></>
