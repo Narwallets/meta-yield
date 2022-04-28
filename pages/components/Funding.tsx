@@ -178,6 +178,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
               <InputLeftAddon>
                 <Square minW="30px">
                   <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
+                  <Text ml={2}>STNEAR</Text>
                 </Square>
               </InputLeftAddon>
               <Input
@@ -200,7 +201,6 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             </InputGroup>
             <Button
               colorScheme="blue"
-              isFullWidth
               size="lg"
               // disabled={!formikDeposit.isValid}
               onClick={(e: any) => formikDeposit.handleSubmit(e)}
@@ -234,6 +234,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
               <InputLeftAddon>
                 <Square minW="30px">
                   <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
+                  <Text ml={2}>STNEAR</Text>
                 </Square>
               </InputLeftAddon>
               <Input
@@ -253,7 +254,6 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             </InputGroup>
             <Button
               colorScheme="blue"
-              isFullWidth
               size="lg"
               disabled={!formikWithdraw.isValid}
               onClick={(e: any) => {

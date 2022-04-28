@@ -410,22 +410,29 @@ const ProjectDetails = (props: { id: any }) => {
                               src={project.kickstarter.project_token_icon}
                               alt="near"
                             />
-                            <VStack>
-                              <Text fontSize={"xxs"} fontWeight={700}>
+                            <VStack h={'50px'}>
+                              <Text color={'grey'} fontSize={"xxs"} fontWeight={700}>
                                 NEARS{" "}
                               </Text>
-                              <Text>
+                              <Text color={'black'} fontWeight={700}>
                                 {yton(myProjectFounded.deposit_in_near)}{" "}
                               </Text>
                               <Text>{} </Text>
                             </VStack>
-                            <VStack>
-                              <Text fontSize={"xxs"} fontWeight={700}>
+                            <VStack h={'50px'}>
+                              <Text color={'grey'} fontSize={"xxs"} fontWeight={700}>
                                 BOND DUE
                               </Text>
-                              <Text>{lockupDate}</Text>
+                              <Text fontSize={"14px"}>{lockupDate}</Text>
                             </VStack>
-
+                            <VStack h={'50px'}>
+                              <Text color={'grey'} fontSize={"xxs"} fontWeight={700}>
+                                AVAILABLE{" "}
+                              </Text>
+                              <Text>
+                                {yton(myProjectFounded.deposit_in_near)}{" "}
+                              </Text>
+                            </VStack>
                             <Button
                               colorScheme="blue"
                               size="lg"
@@ -452,20 +459,20 @@ const ProjectDetails = (props: { id: any }) => {
                             src={project.kickstarter.project_token_icon}
                             alt="ptoken"
                           />
-                          <VStack>
-                            <Text fontSize={"xxs"} fontWeight={700}>
+                          <VStack  h={'50px'} justify={'space-between'}>
+                            <Text color={'grey'} fontSize={"xxs"} fontWeight={700}>
                               {project.kickstarter.project_token_symbol}{" "}
                             </Text>
-                            <Text>{yton(myProjectFounded.rewards)} </Text>
+                            <Text color={'black'} fontSize={"xxs"} fontWeight={700}>{yton(myProjectFounded.rewards)} </Text>
                           </VStack>
-                          <VStack>
-                            <Text fontSize={"xxs"} fontWeight={700}>
+                          <VStack  h={'50px'}  justify={'space-between'}>
+                            <Text color={'grey'} fontSize={"xxs"} fontWeight={700}>
                               BOND DUE
                             </Text>
-                            <Text>{lockupDate}</Text>
+                            <Text fontSize={"14px"}>{lockupDate}</Text>
                           </VStack>
-                          <VStack>
-                            <Text fontSize={"xxs"} fontWeight={700}>
+                          <VStack  h={'50px'} justify={'space-between'}>
+                            <Text color={'grey'} fontSize={"xxs"} fontWeight={700}>
                               AVAILABLE{" "}
                             </Text>
                             <Text>
