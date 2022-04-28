@@ -14,13 +14,13 @@ import {
   TabPanels,
   TabPanel,
   HStack,
-  InputLeftElement,
   InputLeftAddon,
   Square,
   Image,
   Badge,
   Avatar,
   AvatarBadge,
+  useToast,
 } from "@chakra-ui/react";
 import { KickstarterGoalProps } from "../../types/project.types";
 import { useRouter } from "next/router";
@@ -37,6 +37,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   const isWithdrawEnabled = supportedDeposited > 0;
   const router = useRouter();
   const { wallet } = useStore();
+  const toast = useToast();
 
   const [amountDeposit, setAmountDeposit] = useState<number>(0);
   const [fundingNeeded, setFundingNeeded] = useState<number | undefined>(
@@ -68,11 +69,22 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values: any) => {
-      const result = await fundToKickstarter(
-        wallet!,
-        project.id,
-        values.amount_deposit
-      );
+      if (values.amount_deposit <= 0) {
+        toast({
+          title: "Transaction error.",
+          description: "The amount to deposit must be greater than 0",
+          status: "error",
+          duration: 9000,
+          position: "top-right",
+          isClosable: true,
+        });
+      } else {
+        const result = await fundToKickstarter(
+          wallet!,
+          project.id,
+          values.amount_deposit
+        );
+      }
     },
   });
 
@@ -89,15 +101,34 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values: any) => {
-      const result = await withdrawAmount(ntoy(values.amount_withdraw));
+      if (values.amount_deposit <= 0) {
+        toast({
+          title: "Transaction error.",
+          description: "The amount to withdraw must be greater than 0",
+          status: "error",
+          duration: 9000,
+          position: "top-right",
+          isClosable: true,
+        });
+      } else {
+        const result = await withdrawAmount(ntoy(values.amount_withdraw));
+      }
     },
   });
 
   const withdrawAmount = async (amount: string) => {
     withdraw(wallet!, project.id, amount).then((val) => {
-      console.log("Return withdraw", val);
+      console.log("Return withdraw success", val);
     });
   };
+
+  const getFormikError = ()=> {
+    const error = formikDeposit.errors && formikDeposit.errors.amount_deposit ?  formikDeposit.errors.amount_deposit : '';
+    return {
+      __html: error as string
+    }
+  }
+
   useEffect(() => {
     if (project) {
       const current = getCurrentFundingGoal(
@@ -117,7 +148,6 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   }, [project]);
 
   useEffect(() => {
-    console.log("amount change", amountDeposit);
     if (currentFundingGoal) {
       const tokenAwardPerStnear: string =
         currentFundingGoal.tokens_to_release_per_stnear;
@@ -148,6 +178,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
               <InputLeftAddon>
                 <Square minW="30px">
                   <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
+                  <Text ml={2}>STNEAR</Text>
                 </Square>
               </InputLeftAddon>
               <Input
@@ -170,14 +201,21 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             </InputGroup>
             <Button
               colorScheme="blue"
-              isFullWidth
               size="lg"
-              disabled={!formikDeposit.isValid}
+              // disabled={!formikDeposit.isValid}
               onClick={(e: any) => formikDeposit.handleSubmit(e)}
             >
               Deposit
             </Button>
           </HStack>
+          {
+            !formikDeposit.isValid && (
+              <HStack mt={5}>
+                <Text dangerouslySetInnerHTML={ getFormikError()}  color={'red'}></Text>
+              </HStack>
+            )
+          }
+          
           <Stack mt={4}>
             <Text
               fontSize="md"
@@ -196,6 +234,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
               <InputLeftAddon>
                 <Square minW="30px">
                   <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
+                  <Text ml={2}>STNEAR</Text>
                 </Square>
               </InputLeftAddon>
               <Input
@@ -215,7 +254,6 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             </InputGroup>
             <Button
               colorScheme="blue"
-              isFullWidth
               size="lg"
               disabled={!formikWithdraw.isValid}
               onClick={(e: any) => {

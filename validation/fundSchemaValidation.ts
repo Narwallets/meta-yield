@@ -1,7 +1,8 @@
 import * as Yup from "yup";
 
 const fundSchemaValidation = Yup.object().shape({
-  amount_deposit: Yup.number().required("Required").moreThan(0).lessThan(Yup.ref('balance'))
+  amount_deposit: Yup.number()
+                    .max(Yup.ref('balance'),'You dont have enough STNEAR. Visit <a href="metapool.app" target="blank"> Metapool </a> to get more. ')
 });
 
 export default fundSchemaValidation;
