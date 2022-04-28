@@ -95,7 +95,7 @@ const Header: React.FC<ButtonProps> = (props) => {
             <HStack spacing="4">
               {isDesktop && (
                 <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
-                  <Link>
+                <Link href="/#projects">
                     <Button
                       fontWeight={600}
                       fontSize={"md"}
@@ -124,7 +124,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       <Image
                         boxSize="20px"
                         objectFit="cover"
-                        src="/stnear.svg"
+                        src="/stNEARorig.svg"
                         alt="stnear"
                       />
                     </Square>

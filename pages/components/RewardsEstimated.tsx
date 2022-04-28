@@ -9,6 +9,9 @@ import {
   Flex,
   Divider,
   Spacer,
+  Wrap,
+  Square,
+  Avatar,
 } from "@chakra-ui/react";
 import Card from "./Card";
 import {
@@ -79,14 +82,31 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
                       Funded amount
                     </Text>
                     <Spacer />
-                    <Text
-                      fontSize="md"
-                      lineHeight="6"
-                      fontWeight="bold"
-                      color="gray.900"
-                    >
-                      {invested} NEAR
-                    </Text>
+                    <Wrap>
+                      <Text
+                        fontSize="md"
+                        lineHeight="6"
+                        fontWeight="bold"
+                        color="gray.900"
+                      >
+                        {invested}
+                      </Text>
+                      <Square minW="20px">
+                        <Avatar
+                          boxSize="20px"
+                          objectFit="cover"
+                          src="/stNEARorig.svg"
+                        />
+                      </Square>
+                      <Text
+                        fontSize="md"
+                        lineHeight="6"
+                        fontWeight="bold"
+                        color="gray.900"
+                      >
+                        stNEAR
+                      </Text>
+                    </Wrap>
                   </Flex>
                   <Divider />
                   <Flex>
@@ -99,14 +119,34 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
                       Tokens Rewards
                     </Text>
                     <Spacer />
-                    <Text
-                      fontSize="md"
-                      lineHeight="6"
-                      fontWeight="bold"
-                      color="gray.900"
-                    >
-                      {rewards} {kickstarter?.project_token_symbol}
-                    </Text>
+                    <Wrap>
+                      <Text
+                        fontSize="md"
+                        lineHeight="6"
+                        fontWeight="bold"
+                        color="gray.900"
+                      >
+                        {rewards}
+                      </Text>
+                      <Square minW="20px">
+                        <Avatar
+                          boxSize="20px"
+                          objectFit="cover"
+                          src={kickstarter?.project_token_icon}
+                        />
+                      </Square>
+                      <Text
+                        fontSize="md"
+                        lineHeight="6"
+                        fontWeight="bold"
+                        color="gray.900"
+                      >
+                        {kickstarter?.project_token_symbol}
+                      </Text>
+                    </Wrap>
+
+                    
+               
                   </Flex>
                   <Divider />
                   <Flex>

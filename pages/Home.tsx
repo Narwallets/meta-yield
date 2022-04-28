@@ -13,6 +13,7 @@ const Home = () => {
       <Box pr={123} pl={123}>
         <Hero />
         <Box
+          id="projects"
           as="section"
           pt={{ base: "50", md: "100" }}
           pb={{ base: "12", md: "24" }}
@@ -26,9 +27,7 @@ const Home = () => {
             </div>
           ))}
         </Box>
-        {data.active.length > 0 && (
-          <Projects data={data.active} />
-        )}
+        {data.active.length > 0 && <Projects data={data.active} />}
 
         <HowItWorks />
       </Box>

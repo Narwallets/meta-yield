@@ -170,6 +170,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
               <Stack mt={10} align="flex-start" spacing="4">
                 <FundButton
                   show={true}
+                  completed={!!projectData.kickstarter?.active}
                   onClick={() => router.push(`/project/${projectData.id}`)}
                 ></FundButton>
               </Stack>

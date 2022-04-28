@@ -21,7 +21,14 @@ import {
   katherineChangeMethods,
   metaPoolMethods,
 } from "./methods";
-import { decodeJsonRpcData, encodeJsonRpcData, ntoy, yton } from "./util";
+import {
+  decodeJsonRpcData,
+  encodeJsonRpcData,
+  getPanicError,
+  getTxFunctionCallMethod,
+  ntoy,
+  yton,
+} from "./util";
 import { ExecutionError } from "near-api-js/lib/providers/provider";
 
 export const CONTRACT_ID = process.env.CONTRACT_ID;
@@ -200,24 +207,6 @@ export const fundToKickstarter = async (
   return providers.getTransactionLastResult(response);
 };
 
-const getTxFunctionCallMethod = (
-  finalExecOutcome: providers.FinalExecutionOutcome
-) => {
-  let method: string | undefined = undefined;
-  if (finalExecOutcome.transaction?.actions?.length) {
-    const actions = finalExecOutcome.transaction.actions;
-    //recover methodName of first FunctionCall action
-    for (let n = 0; n < actions.length; n++) {
-      let item = actions[n];
-      if ("FunctionCall" in item) {
-        method = item.FunctionCall.method_name;
-        break;
-      }
-    }
-  }
-  return method;
-};
-
 export const getTxStatus = async (
   txHash: string,
   account_id: string
@@ -226,23 +215,15 @@ export const getTxStatus = async (
   const finalExecutionOutcome = await provider.txStatus(txHash, account_id);
   const txUrl = `${nearConfig.explorerUrl}/transactions/${txHash}`;
   const method = getTxFunctionCallMethod(finalExecutionOutcome);
+  const panicError = getPanicError(finalExecutionOutcome);
   if (!finalExecutionOutcome) {
     return { found: false };
   }
-  if ((finalExecutionOutcome.status as FinalExecutionStatus).Failure) {
-    const failure: ExecutionError = (
-      finalExecutionOutcome.status as FinalExecutionStatus
-    ).Failure as ExecutionError;
-    console.error("finalExecOutcome.status.Failure", failure);
-    const errorMessage =
-      typeof failure === "object"
-        ? parseRpcError(failure).toString()
-        : `Transaction <a href="${txUrl}">${finalExecutionOutcome.transaction.hash}</a> failed`;
-
+  if (panicError) {
     return {
       success: false,
       found: true,
-      errorMessage: errorMessage,
+      errorMessage: panicError,
       method: method,
       transactionExplorerUrl: txUrl,
     };
