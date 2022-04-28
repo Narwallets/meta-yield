@@ -11,8 +11,12 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import Card from "./Card";
-import { KickstarterGoalProps, KickstarterProps, SupportedKickstarter } from "../../types/project.types";
-import { getCurrentFundingGoal, yoctoToDollarStr, yoctoToStNear } from "../../lib/util";
+import {
+  KickstarterGoalProps,
+  KickstarterProps,
+  SupportedKickstarter,
+} from "../../types/project.types";
+import { getCurrentFundingGoal, yton } from "../../lib/util";
 import moment from "moment";
 import { useGetSupportedProjects } from "../../hooks/projects";
 import { useStore } from "../../stores/wallet";
@@ -33,109 +37,104 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
     (async () => {
       if (supportedProjets && supportedProjets.length) {
         const nearPrice = await fetchNearPrice();
-        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(kickstarter.goals, kickstarter.total_deposited);
+        const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(
+          kickstarter.goals,
+          kickstarter.total_deposited
+        );
         const supportedProject = supportedProjets.find(
           (p: SupportedKickstarter) => p.kickstarter_id === kickstarter?.id
         );
         if (winnerGoal) {
           const rewards =
-            yoctoToStNear(parseInt(winnerGoal.tokens_to_release_per_stnear)) *
-            yoctoToStNear(parseInt(supportedProject.supporter_deposit));
+            yton(winnerGoal.tokens_to_release_per_stnear) *
+            yton(supportedProject.supporter_deposit);
           setRewards(rewards.toString());
           setLockupTime(
             moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
           );
         }
-        setInvested(
-          yoctoToDollarStr(supportedProject.supporter_deposit, nearPrice)
-        );
+        setInvested(yton(supportedProject.supporter_deposit).toString());
       }
     })();
   }, [props, supportedProjets]);
 
   return (
-    <Card>
-      <Stack spacing="6">
-        <Text fontSize="sm" fontWeight="subtle">
-          YOUR INVESTMENT
-        </Text>
-        <Flex mt="65px" backgroundColor={"#F1F2F6"} justifyContent={"center"}>
-          <Box
-            px={{ base: "4", md: "6" }}
-            py={{ base: "5", md: "6" }}
-            borderRadius="lg"
-          >
-            <Stack w={"600px"}>
-              <Stack>
-                <Box backgroundColor={"white"} p={"40px"} bg="light">
-                  <Stack spacing="4">
-                    <Flex>
-                      <Text
-                        fontSize="md"
-                        lineHeight="6"
-                        fontWeight="semibold"
-                        color="gray.500"
-                      >
-                        Funded amount (NEAR)
-                      </Text>
-                      <Spacer />
-                      <Text
-                        fontSize="md"
-                        lineHeight="6"
-                        fontWeight="bold"
-                        color="gray.900"
-                      >
-                        {invested}
-                      </Text>
-                    </Flex>
-                    <Divider />
-                    <Flex>
-                      <Text
-                        fontSize="md"
-                        lineHeight="6"
-                        fontWeight="semibold"
-                        color="gray.500"
-                      >
-                        {kickstarter?.project_token_symbol} Tokens (Rewards)
-                      </Text>
-                      <Spacer />
-                      <Text
-                        fontSize="md"
-                        lineHeight="6"
-                        fontWeight="bold"
-                        color="gray.900"
-                      >
-                        {rewards} ${kickstarter?.project_token_symbol}
-                      </Text>
-                    </Flex>
-                    <Divider />
-                    <Flex>
-                      <Text
-                        fontSize="md"
-                        lineHeight="6"
-                        fontWeight="semibold"
-                        color="gray.500"
-                      >
-                        Lockup end date
-                      </Text>
-                      <Spacer />
-                      <Text
-                        fontSize="md"
-                        lineHeight="6"
-                        fontWeight="bold"
-                        color="gray.900"
-                      >
-                        {lockupTime}
-                      </Text>
-                    </Flex>
-                  </Stack>
-                </Box>
-              </Stack>
+    <Stack>
+      <Text fontSize="sm" fontWeight="subtle">
+        YOUR INVESTMENT
+      </Text>
+      <Flex justifyContent={"center"}>
+        <Box>
+          <Stack w={"600px"}>
+            <Stack>
+              <Box p={"40px"} bg="light">
+                <Stack spacing="4">
+                  <Flex>
+                    <Text
+                      fontSize="md"
+                      lineHeight="6"
+                      fontWeight="semibold"
+                      color="gray.500"
+                    >
+                      Funded amount
+                    </Text>
+                    <Spacer />
+                    <Text
+                      fontSize="md"
+                      lineHeight="6"
+                      fontWeight="bold"
+                      color="gray.900"
+                    >
+                      {invested} NEAR
+                    </Text>
+                  </Flex>
+                  <Divider />
+                  <Flex>
+                    <Text
+                      fontSize="md"
+                      lineHeight="6"
+                      fontWeight="semibold"
+                      color="gray.500"
+                    >
+                      Tokens Rewards
+                    </Text>
+                    <Spacer />
+                    <Text
+                      fontSize="md"
+                      lineHeight="6"
+                      fontWeight="bold"
+                      color="gray.900"
+                    >
+                      {rewards} {kickstarter?.project_token_symbol}
+                    </Text>
+                  </Flex>
+                  <Divider />
+                  <Flex>
+                    <Text
+                      fontSize="md"
+                      lineHeight="6"
+                      fontWeight="semibold"
+                      color="gray.500"
+                    >
+                      Lockup end date
+                    </Text>
+                    <Spacer />
+                    <Text
+                      fontSize="md"
+                      lineHeight="6"
+                      fontWeight="bold"
+                      color="gray.900"
+                    >
+                      {lockupTime}
+                    </Text>
+                  </Flex>
+                </Stack>
+              </Box>
             </Stack>
-          </Box>
-        </Flex>
-      </Stack>
-    </Card>
+          </Stack>
+        </Box>
+      </Flex>
+    </Stack>
   );
 };
 

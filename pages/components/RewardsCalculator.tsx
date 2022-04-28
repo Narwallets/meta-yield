@@ -2,7 +2,7 @@ import React, { useEffect, useState, ChangeEvent } from "react";
 import { HStack, Stack, Text, Input, Center, Select } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
-import { yoctoToStNear } from "../../lib/util";
+import { yton } from "../../lib/util";
 const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   const [goalSelected, setGoalSelected] = useState<number>(0);
@@ -19,9 +19,7 @@ const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
         const goal = kickstarter.goals.find((g) => g.id === goalSelected);
         if (goal) {
           const tokenAwardPerStnear: string = goal.tokens_to_release_per_stnear;
-          setEstimatedRewards(
-            yoctoToStNear(parseInt(tokenAwardPerStnear)) * amountOfStNear
-          );
+          setEstimatedRewards(yton(tokenAwardPerStnear) * amountOfStNear);
         }
       }
     };
@@ -36,7 +34,7 @@ const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
         </Text>
 
         <Select
-        placeholder="Select a goal"
+          placeholder="Select a goal"
           size="lg"
           onChange={(e) => onGoalChange(e)}
         >
@@ -79,7 +77,7 @@ const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
               fontWeight="semibold"
               color="gray.400"
             >
-              ${kickstarter.project_token_symbol}
+              {kickstarter.project_token_symbol}
             </Text>
           </HStack>
         </Center>

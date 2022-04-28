@@ -22,8 +22,8 @@ import { fundToKickstarter, getBalance, withdraw } from "../../lib/near";
 import { useStore } from "../../stores/wallet";
 import {
   getCurrentFundingGoal,
-  stNearToYocto,
-  yoctoToStNear,
+  ntoy,
+  yton,
 } from "../../lib/util";
 import { useFormik } from "formik";
 import depositSchemaValidation from "../../validation/fundSchemaValidation";
@@ -90,7 +90,7 @@ const Funding = (props: {
     validateOnChange: true,
     onSubmit: async (values: any) => {
       const result = await withdrawAmount(
-        stNearToYocto(values.amount_withdraw.toString())
+        ntoy(values.amount_withdraw)
       );
     },
   });
@@ -124,7 +124,7 @@ const Funding = (props: {
       const tokenAwardPerStnear: string =
         currentFundingGoal.tokens_to_release_per_stnear;
       setEstimatedRewards(
-        yoctoToStNear(parseInt(tokenAwardPerStnear)) * amountDeposit
+        yton(tokenAwardPerStnear) * amountDeposit
       );
     }
   }, [amountDeposit, currentFundingGoal]);
@@ -183,7 +183,7 @@ const Funding = (props: {
               fontWeight="semibold"
               color="gray.500"
             >
-              Current Deposit: {supportedDeposited} $STNEAR
+              CURRENT DEPOSITS: {supportedDeposited} STNEAR
             </Text>
           </Stack>
         </TabPanel>
@@ -225,8 +225,7 @@ const Funding = (props: {
               fontWeight="semibold"
               color="gray.500"
             >
-              ESTIMATED REWARDS: {estimatedRewards} $
-              {project.kickstarter.project_token_symbol}
+              ESTIMATED REWARDS: {estimatedRewards} {project.kickstarter.project_token_symbol}
             </Text>
           </Stack>
         </TabPanel>

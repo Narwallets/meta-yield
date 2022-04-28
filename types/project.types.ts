@@ -29,6 +29,7 @@ export interface TeamMemberProps {
     total_deposited: string;
     total_supporters: number;
     project_token_symbol: string;
+    project_token_icon: string;
     stnear_price_at_freeze: string;
     stnear_price_at_unfreeze: string;
     active: boolean;
