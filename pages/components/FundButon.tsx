@@ -17,9 +17,7 @@ const FundButton: React.FC<FundButtonProps> = (p) => {
   const fundText = "Fund Now";
   const notConnectedText = "Connect Wallet to Fund";
   const completedText = "Details";
-  useEffect(() => {
-    setDisabled(!wallet || !wallet?.getAccountId());
-  }, [wallet]);
+
   return show ? (
     <Button
       w={"100%"}
