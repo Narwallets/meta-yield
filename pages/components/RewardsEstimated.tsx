@@ -23,7 +23,6 @@ import { getCurrentFundingGoal, yton } from "../../lib/util";
 import moment from "moment";
 import { useGetSupportedProjects } from "../../hooks/projects";
 import { useStore } from "../../stores/wallet";
-import { fetchNearPrice } from "../../queries/prices";
 const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   const [goalSelected, setGoalSelected] = useState<number>(0);
@@ -39,7 +38,6 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   useEffect(() => {
     (async () => {
       if (supportedProjets && supportedProjets.length) {
-        const nearPrice = await fetchNearPrice();
         const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(
           kickstarter.goals,
           kickstarter.total_deposited

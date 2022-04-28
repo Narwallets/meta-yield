@@ -45,7 +45,7 @@ const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
           ))}
         </Select>
         <Text fontSize="sm" fontWeight="subtle">
-          AMOUNT OF STNEAR
+          AMOUNT OF stNEAR
         </Text>
         <Input
           variant="outline"

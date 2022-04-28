@@ -19,12 +19,8 @@ import {
   KickstarterGoalProps,
   SupportedKickstarter,
 } from "../../types/project.types";
-import {
-  getCurrentFundingGoal,
-  yoctoToDollarStr,
-  yton,
-} from "../../lib/util";
-import { fetchNearPrice } from "../../queries/prices";
+import { getCurrentFundingGoal, yoctoToDollarStr, yton } from "../../lib/util";
+import { fetchStNearPrice } from "../../queries/prices";
 import moment from "moment";
 import { useStore } from "../../stores/wallet";
 import { useGetSupportedProjects } from "../../hooks/projects";
@@ -43,7 +39,7 @@ const FundingSuccess = (props: { id: any }) => {
   useEffect(() => {
     (async () => {
       if (data && supportedProjets) {
-        const nearPrice = await fetchNearPrice();
+        const stNEARPrice = await fetchStNearPrice();
         const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(
           data.kickstarter.goals,
           data.kickstarter.total_deposited
@@ -66,7 +62,7 @@ const FundingSuccess = (props: { id: any }) => {
             supportedProject && supportedProject.supporter_deposit
               ? supportedProject.supporter_deposit
               : "0",
-            nearPrice
+            stNEARPrice
           )
         );
       }
