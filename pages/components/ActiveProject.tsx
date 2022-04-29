@@ -20,9 +20,10 @@ import {
   Circle,
   AspectRatio,
   Spacer,
+  Image,
+  Avatar,
 } from "@chakra-ui/react";
 import Card from "./Card";
-import Image from "next/image";
 import Link from "next/link";
 import { CaretRight, CircleWavyCheck } from "phosphor-react";
 import { ProjectProps } from "../../types/project.types";
@@ -48,7 +49,10 @@ const ActiveProject = (props: { data: ProjectProps }) => {
       const stNEARPrice = await fetchStNearPrice();
       if (projectData?.kickstarter?.total_deposited) {
         setTotalRaised(
-          yoctoToDollarStr(projectData?.kickstarter?.total_deposited, stNEARPrice)
+          yoctoToDollarStr(
+            projectData?.kickstarter?.total_deposited,
+            stNEARPrice
+          )
         );
       }
     })();
@@ -69,24 +73,22 @@ const ActiveProject = (props: { data: ProjectProps }) => {
   return (
     <Card key={projectData.slug} p={0} mt={10}>
       <Flex>
-        <Box
+        <Flex
           borderRadius={borderRadius}
           minW={400}
           minH={310}
           backgroundColor={"black"}
+          alignItems={"center"}
         >
-          <Flex alignItems={"center"} height={310}>
-            {projectData.imageUrl && (
-              <Image
-                src={projectData.imageUrl}
-                alt="project"
-                width="400"
-                height={"100%"}
-                layout={"fixed"}
-              />
-            )}
-          </Flex>
-        </Box>
+          <Image
+            src={projectData.imageUrl}
+            alt="project"
+            borderRadius="xl"
+            fit="cover"
+            maxH={310}
+            width={400}
+          />
+        </Flex>
         <Box mr="10" ml="10">
           <Stack
             spacing={{ base: "1", md: "2" }}
@@ -95,12 +97,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
             <Circle boxShadow="xl" ml="-8" mb="2">
               <Circle m="2" overflow={"hidden"}>
                 {projectData.avatarUrl && (
-                  <Image
-                    src={projectData.avatarUrl}
-                    alt="project"
-                    width="60"
-                    height="60"
-                  />
+                  <Avatar src={projectData.avatarUrl} boxSize="10" />
                 )}
               </Circle>
             </Circle>
@@ -137,20 +134,17 @@ const ActiveProject = (props: { data: ProjectProps }) => {
         <Box>
           <Stack minW={190} spacing="10">
             <VStack align="flex-start" spacing="1 ">
-              {
-                timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
-                  <>
-                    <Text fontSize="xs" fontWeight="700">
-                      {" "}
-                      TIME LEFT
-                    </Text>
-                    <Text fontSize="md" color="emphasized">
-                      {
-                        timeLeftToFund(projectData.kickstarter?.close_timestamp)
-                      }
-                    </Text></>
-                )
-              }
+              {timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
+                <>
+                  <Text fontSize="xs" fontWeight="700">
+                    {" "}
+                    TIME LEFT
+                  </Text>
+                  <Text fontSize="md" color="emphasized">
+                    {timeLeftToFund(projectData.kickstarter?.close_timestamp)}
+                  </Text>
+                </>
+              )}
 
               <Stack align="flex-start" spacing="4">
                 <Text mt={5} fontSize="xs" fontWeight="700">
@@ -166,7 +160,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                   // projectData?.verified && <CircleWavyCheck size={24} />
                 }
               </Stack>
-              
+
               <Stack mt={10} align="flex-start" spacing="4">
                 <FundButton
                   show={true}
