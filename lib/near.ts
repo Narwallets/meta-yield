@@ -34,8 +34,12 @@ import { ExecutionError } from "near-api-js/lib/providers/provider";
 export const CONTRACT_ID = process.env.CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID = process.env.METAPOOL_CONTRACT_ID;
 export const gas = new BN("70000000000000");
-const nearConfig = getConfig("development");
+const nearConfig = getConfig(process.env.NODE_ENV || "development");
 const provider = new providers.JsonRpcProvider({ url: nearConfig.nodeUrl });
+
+export const getNearConfig = () => {
+  return nearConfig;
+};
 
 export const getWallet = async () => {
   const connectConfig: ConnectConfig = {

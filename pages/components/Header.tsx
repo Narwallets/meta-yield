@@ -16,7 +16,12 @@ import {
   Image,
   useToast,
 } from "@chakra-ui/react";
-import { getWallet, getBalance, METAPOOL_CONTRACT_ID } from "../../lib/near";
+import {
+  getWallet,
+  getBalance,
+  METAPOOL_CONTRACT_ID,
+  getNearConfig,
+} from "../../lib/near";
 import { colors } from "../../constants/colors";
 import { useStore } from "../../stores/wallet";
 import { ErrorHashHandler } from "../../utils/errorHandlers";
@@ -29,7 +34,7 @@ const Header: React.FC<ButtonProps> = (props) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const router = useRouter();
   const toast = useToast();
-
+  const nearConfig = getNearConfig();
   const onConnect = async () => {
     try {
       wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
@@ -45,11 +50,9 @@ const Header: React.FC<ButtonProps> = (props) => {
     setWallet(tempWallet);
   };
 
-  
-
   useEffect(() => {
     (async () => {
-      if (wallet){
+      if (wallet) {
       }
     })();
   }, [setLogin, wallet, isLogin]);
@@ -95,7 +98,7 @@ const Header: React.FC<ButtonProps> = (props) => {
             <HStack spacing="4">
               {isDesktop && (
                 <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
-                <Link href="/#projects">
+                  <Link href="/#projects">
                     <Button
                       fontWeight={600}
                       fontSize={"md"}
@@ -130,7 +133,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                     </Square>
                     <Text>{stNearBalance}</Text>
                     <Link
-                      href="https://metapool.app/dapp/mainnet/meta/"
+                      href={nearConfig.metapoolUrl}
                       target="_blank"
                     >
                       <Button
@@ -142,7 +145,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       </Button>
                     </Link>
                     <a
-                      href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
+                      href={`${nearConfig.explorerUrl}/account/${signInAccountId}`}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -161,7 +164,7 @@ const Header: React.FC<ButtonProps> = (props) => {
             ) : isLogin ? (
               <>
                 <a
-                  href={`https://explorer.testnet.near.org/accounts/${signInAccountId}`}
+                  href={`${nearConfig.explorerUrl}/account/${signInAccountId}`}
                   target="_blank"
                   rel="noreferrer"
                 >
