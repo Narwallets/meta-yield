@@ -37,20 +37,6 @@ const HowItWorks = () => (
         <HStack spacing={{ base: "8", md: "10" }} align="center">
           <Stack>
             <Image
-              src={"/connectwallet.svg"}
-              alt="project"
-              width="72px"
-              height={"72px"}
-            />
-            <Text fontSize="2xl" lineHeight="8" fontWeight="semibold">
-              Connect your wallet
-            </Text>
-            <Text fontSize="md" lineHeight="6" fontWeight="normal">
-              Earn Althea tokens—faster, cheaper, decentralized internet
-            </Text>
-          </Stack>
-          <Stack>
-            <Image
               src={"/stakenear.svg"}
               alt="project"
               width="72px"
@@ -60,7 +46,7 @@ const HowItWorks = () => (
               Stake NEAR tokens
             </Text>
             <Text fontSize="md" lineHeight="6" fontWeight="normal">
-              Earn Althea tokens—faster, cheaper, decentralized internet
+              Help decentralize the network. Stake your NEAR, get stNEAR
             </Text>
           </Stack>
           <Stack>
@@ -74,7 +60,7 @@ const HowItWorks = () => (
               Fund crypto projects
             </Text>
             <Text fontSize="md" lineHeight="6" fontWeight="normal">
-              Earn Althea tokens—faster, cheaper, decentralized internet
+              Use the staking rewards to fund new projects. You keep ownership of the underlying NEAR
             </Text>
           </Stack>
           <Stack>
@@ -88,7 +74,21 @@ const HowItWorks = () => (
               Earn new tokens
             </Text>
             <Text fontSize="md" lineHeight="6" fontWeight="normal">
-              Earn Althea tokens—faster, cheaper, decentralized internet
+              Get tokens from new projects launching on NEAR at seed price
+            </Text>
+          </Stack>
+          <Stack>
+            <Image
+              src={"/earntokens.svg"}
+              alt="project"
+              width="72px"
+              height={"72px"}
+            />
+            <Text fontSize="2xl" lineHeight="8" fontWeight="semibold">
+              Recover your NEAR
+            </Text>
+            <Text fontSize="md" lineHeight="6" fontWeight="normal">
+              At the end of the locking period, you recover 100% of your NEAR
             </Text>
           </Stack>
         </HStack>
