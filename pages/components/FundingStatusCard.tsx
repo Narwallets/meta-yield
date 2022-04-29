@@ -24,7 +24,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
     <Card w={'100%'}> 
       <Stack >
         <Text fontSize="sm" fontWeight="subtle">
-          TOTAL LOCKED
+          TOTAL DEPOSITED
         </Text>
         <HStack>
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">

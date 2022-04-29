@@ -74,6 +74,13 @@ const Header: React.FC<ButtonProps> = (props) => {
         console.log(e);
       }
     })();
+
+    setInterval(async()=>{
+          if (wallet && wallet.getAccountId()) {
+            const balance = await getBalance(wallet!);
+            setStNearBalance(balance);
+        }
+    }, 5000)
   }, []);
 
   return (
