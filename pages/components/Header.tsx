@@ -66,7 +66,7 @@ const Header: React.FC<ButtonProps> = (props) => {
         }
         if (tempWallet && tempWallet.getAccountId()) {
           setSignInAccountId(tempWallet.getAccountId());
-          setStNearBalance(await await getBalance(tempWallet!));
+          setStNearBalance(await getBalance(tempWallet!));
         }
 
         setLogin(tempWallet && tempWallet.getAccountId() ? true : false);
@@ -76,8 +76,9 @@ const Header: React.FC<ButtonProps> = (props) => {
     })();
 
     setInterval(async()=>{
-          if (wallet && wallet.getAccountId()) {
-            const balance = await getBalance(wallet!);
+          const tempWallet = await getWallet() 
+          if (tempWallet && tempWallet.getAccountId()) {
+            const balance = await getBalance(tempWallet);
             setStNearBalance(balance);
         }
     }, 5000)
