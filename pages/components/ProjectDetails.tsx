@@ -48,6 +48,7 @@ import {
 import {
   getCurrentFundingGoal,
   getMyProjectsFounded,
+  isOpenPeriod,
   yton,
 } from "../../lib/util";
 
@@ -63,6 +64,7 @@ import Funding from "./Funding";
 export enum ProjectStatus {
   NOT_LOGGIN,
   LOGGIN,
+  FUTURE,
   ACTIVE,
   CLOSE,
   FUNDED,
@@ -112,21 +114,26 @@ const ProjectDetails = (props: { id: any }) => {
   const refreshStatus = (project: any, thisProjectFounded: any) => {
     if (isLogin) {
       setStatus(ProjectStatus.LOGGIN);
-      if (project.kickstarter.active) {
-        setStatus(ProjectStatus.ACTIVE);
-        if (
-          thisProjectFounded &&
-          parseInt(thisProjectFounded.supporter_deposit) > 0
-        ) {
-          setStatus(ProjectStatus.FUNDED);
+      if (isOpenPeriod(project.kickstarter?.open_timestamp)) {
+        if (project.kickstarter.active ) {
+          setStatus(ProjectStatus.ACTIVE);
+          if (
+            thisProjectFounded &&
+            parseInt(thisProjectFounded.supporter_deposit) > 0
+          ) {
+            setStatus(ProjectStatus.FUNDED);
+          }
+        } else {
+          // setStatus(ProjectStatus.CLOSE);
+          if (project.kickstarter.successful && thisProjectFounded) {
+            setStatus(ProjectStatus.SUCCESS);
+          } else {
+            setStatus(ProjectStatus.UNSUCCESS);
+          }
         }
       } else {
-        // setStatus(ProjectStatus.CLOSE);
-        if (project.kickstarter.successful && thisProjectFounded) {
-          setStatus(ProjectStatus.SUCCESS);
-        } else {
-          setStatus(ProjectStatus.UNSUCCESS);
-        }
+        // The project is not yet open
+        setStatus(ProjectStatus.FUTURE);
       }
     }
   };
@@ -168,7 +175,7 @@ const ProjectDetails = (props: { id: any }) => {
       project.kickstarter.total_deposited
     );
 
-    if (winnerGoal && myProjectFounded) {
+    if (winnerGoal && myProjectFounded && myProjectFounded.length) {
       const rewards = yton(myProjectFounded.available_rewards.toString());
       setRewards(rewards);
       setLockupDate(
@@ -188,6 +195,10 @@ const ProjectDetails = (props: { id: any }) => {
         // is login true
         break;
 
+      case ProjectStatus.FUTURE:
+
+      break;
+      
       case ProjectStatus.ACTIVE:
         setShowFund(true);
         break;

@@ -18,6 +18,7 @@ import {
 import Goal from "./Goal";
 import { useGoal } from "../../hooks/useGoal";
 import moment from "moment";
+import { isOpenPeriod } from "../../lib/util";
 const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter as KickstarterProps;
   const getCurrentFundingGoal = () => {
@@ -48,14 +49,18 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
     if (goal) {
       const desiredAmount = parseInt(goal.desired_amount);
       const deposited = parseInt(kickstarter.total_deposited);
-      if (moment().valueOf() > kickstarter.close_timestamp) {
-        if (deposited < desiredAmount) {
-          return "Timeout";
-        } else return "Completed";
+      if (isOpenPeriod(kickstarter.open_timestamp)) {
+        if (moment().valueOf() > kickstarter.close_timestamp) {
+          if (deposited < desiredAmount) {
+            return "Timeout";
+          } else return "Completed";
+        }
+        return "In Progress...";
+      } else {
+        return "Coming soon...";
       }
-      return "In Progress...";
     }
-    return "Undefined";
+    return "";
   };
   useEffect(() => {
     if (kickstarter && kickstarter.goals) {

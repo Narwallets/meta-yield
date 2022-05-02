@@ -3,7 +3,7 @@ import { HStack, Stack, Text, Flex, Spacer } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
 import moment from "moment";
-import { timeLeftToFund, yoctoToDollarStr, yton } from "../../lib/util";
+import { isOpenPeriod, timeLeftToFund, yoctoToDollarStr, yton } from "../../lib/util";
 import { getContractMetadata } from "../../lib/near";
 import { fetchStNearPrice } from "../../queries/prices";
 const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
@@ -46,7 +46,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
         <Spacer />
         <Stack>
           {
-            timeLeftToFund(kickstarter?.close_timestamp) && (
+            isOpenPeriod(kickstarter?.open_timestamp) &&  timeLeftToFund(kickstarter?.close_timestamp) && (
               <>
                 <Text fontSize="sm" fontWeight="subtle">
                   LEFT TO FUND
@@ -54,6 +54,20 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
                 <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
                   { 
                     timeLeftToFund(kickstarter?.close_timestamp)
+                  } 
+                </Text>
+              </>
+            )
+          }
+          {
+            !isOpenPeriod(kickstarter?.open_timestamp)&& (
+              <>
+                <Text fontSize="sm" fontWeight="subtle">
+                  OPEN IN 
+                </Text>
+                <Text fontSize="2xl" fontWeight="bold" lineHeight="8">
+                  { 
+                    timeLeftToFund(kickstarter?.open_timestamp)
                   } 
                 </Text>
               </>

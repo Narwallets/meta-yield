@@ -31,7 +31,7 @@ import { useRouter } from "next/router";
 import { truncateText } from "../../utils/textHandlers";
 import { useGetProjectDetails, useGetProjects } from "../../hooks/projects";
 import moment from "moment";
-import { timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
+import { isOpenPeriod, timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
 import { fetchStNearPrice } from "../../queries/prices";
 import FundButton from "./FundButon";
 
@@ -134,7 +134,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
         <Box>
           <Stack minW={190} spacing="10">
             <VStack align="flex-start" spacing="1 ">
-              {timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
+              { isOpenPeriod(projectData.kickstarter?.open_timestamp) && timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
                 <>
                   <Text fontSize="xs" fontWeight="700">
                     {" "}
