@@ -74,6 +74,10 @@ export const timeLeftToFund = (time: any) => {
     : `${timeMoment.diff(now, "minutes")} minutes`;
 };
 
+export const isOpenPeriod = (openDate: any) => {
+  return moment().diff(moment(openDate)) > 0;
+}
+
 export const getMyProjectsFounded = async (id: string, wallet: any) => {
   const projectsFounded: any[] = await getSupportedKickstarters(
     wallet.getAccountId()
