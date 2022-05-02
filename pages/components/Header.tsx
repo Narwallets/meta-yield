@@ -152,7 +152,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       </Button>
                     </Link>
                     <a
-                      href={`${nearConfig.explorerUrl}/account/${signInAccountId}`}
+                      href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -171,7 +171,7 @@ const Header: React.FC<ButtonProps> = (props) => {
             ) : isLogin ? (
               <>
                 <a
-                  href={`${nearConfig.explorerUrl}/account/${signInAccountId}`}
+                  href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
                   target="_blank"
                   rel="noreferrer"
                 >
