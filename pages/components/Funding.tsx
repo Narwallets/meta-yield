@@ -65,10 +65,10 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values: any) => {
-      if (values.amount_deposit <= 0) {
+      if (values.amount_deposit < 1) {
         toast({
           title: "Transaction error.",
-          description: "The amount to deposit must be greater than 0",
+          description: "The amount to deposit must be greater than 1",
           status: "error",
           duration: 9000,
           position: "top-right",
