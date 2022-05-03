@@ -1,4 +1,4 @@
-import { Flex, SimpleGrid, SimpleGridProps } from "@chakra-ui/react";
+import { Flex, SimpleGridProps } from "@chakra-ui/react";
 import * as React from "react";
 
 const ProjectGrid = (props: SimpleGridProps) => {

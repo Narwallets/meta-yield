@@ -1,7 +1,6 @@
-import { Icon, IconButton, IconButtonProps, LightMode } from "@chakra-ui/react";
+import { IconButton, IconButtonProps, LightMode } from "@chakra-ui/react";
 import * as React from "react";
 import { Heart } from "phosphor-react";
-import { fetchActiveProjects } from "../../queries/projects";
 const FavouriteButton = (props: IconButtonProps) => (
   <LightMode>
     <IconButton

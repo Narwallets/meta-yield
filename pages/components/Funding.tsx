@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box,
   Button,
   Stack,
   Text,
-  Spacer,
   Input,
   InputGroup,
   InputRightElement,
@@ -16,21 +14,19 @@ import {
   HStack,
   InputLeftAddon,
   Square,
-  Image,
-  Badge,
   Avatar,
-  AvatarBadge,
   useToast,
 } from "@chakra-ui/react";
-import { KickstarterGoalProps } from "../../types/project.types";
 import { useRouter } from "next/router";
 import moment from "moment";
+import { useFormik } from "formik";
+import { KickstarterGoalProps } from "../../types/project.types";
 import { fundToKickstarter, getBalance, withdraw } from "../../lib/near";
 import { useStore } from "../../stores/wallet";
 import { getCurrentFundingGoal, ntoy, yton } from "../../lib/util";
-import { useFormik } from "formik";
 import depositSchemaValidation from "../../validation/fundSchemaValidation";
 import withdrawSchemaValidation from "../../validation/withdrawSchemaValidation";
+
 const Funding = (props: { project: any; supportedDeposited: number }) => {
   const project = props.project;
   const supportedDeposited = props.supportedDeposited;
@@ -164,6 +160,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   }, []);
 
   if (!project) return <></>;
+
   return (
     <Tabs defaultIndex={0}>
       <TabList>

@@ -2,9 +2,7 @@ import {
   AspectRatio,
   Box,
   Button,
-  HStack,
   Image,
-  Link,
   Skeleton,
   Stack,
   StackProps,
@@ -16,11 +14,11 @@ import {
   Circle,
 } from "@chakra-ui/react";
 import * as React from "react";
-import FavouriteButton from "./FavouriteButton";
-import { CaretRight, CircleWavyCheck } from "phosphor-react";
+import { CaretRight } from "phosphor-react";
 import { truncateText } from "../../utils/textHandlers";
 import { useRouter } from "next/router";
 import { ProjectProps } from "../../types/project.types";
+
 interface Props {
   project: any;
   rootProps?: StackProps;

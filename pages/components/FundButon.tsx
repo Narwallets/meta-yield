@@ -1,8 +1,7 @@
 import React from "react";
-import { Button, ButtonProps, IconButtonProps } from "@chakra-ui/react";
-import router from "next/router";
+import { Button, ButtonProps } from "@chakra-ui/react";
 import { CaretRight } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useStore } from "../../stores/wallet";
 
 interface FundButtonProps extends ButtonProps {

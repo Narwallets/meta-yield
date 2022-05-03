@@ -3,6 +3,7 @@ import { HStack, Stack, Text, Input, Center, Select } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
 import { yton } from "../../lib/util";
+
 const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   const [goalSelected, setGoalSelected] = useState<number>(0);
@@ -26,6 +27,7 @@ const RewardsCalculator = (props: { kickstarter: KickstarterProps }) => {
     calculateRewards();
   }, [amountOfStNear, goalSelected]);
   if (!kickstarter) return <></>;
+
   return (
     <Card>
       <Stack spacing="6">

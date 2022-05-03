@@ -18,13 +18,9 @@ import {
   TabPanel,
   Avatar,
   Circle,
-  Link,
   Flex,
   VStack,
-  Input,
-  Icon,
 } from "@chakra-ui/react";
-import Card from "./Card";
 // import Image from "next/image";
 import {
   KickstarterGoalProps,
@@ -33,7 +29,6 @@ import {
 import { useGetProjectDetails } from "../../hooks/projects";
 import parse from "html-react-parser";
 import RewardsCalculator from "./RewardsCalculator";
-import { useRouter } from "next/router";
 import GoalsProgressCard from "./GoalsProgressCard";
 import FundingStatusCard from "./FundingStatusCard";
 import moment from "moment";
@@ -42,7 +37,6 @@ import {
   getStNearPrice,
   getSupporterEstimatedStNear,
   getWallet,
-  withdraw,
   withdrawAll,
 } from "../../lib/near";
 import {
@@ -53,12 +47,9 @@ import {
 } from "../../lib/util";
 
 import RewardsEstimated from "./RewardsEstimated";
-import FundButton from "./FundButon";
 import ConnectButton from "./ConnectButton";
 
 import { useStore } from "../../stores/wallet";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import Funding from "./Funding";
 
 export enum ProjectStatus {
@@ -73,7 +64,6 @@ export enum ProjectStatus {
 }
 
 const ProjectDetails = (props: { id: any }) => {
-  const router = useRouter();
   const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
 
