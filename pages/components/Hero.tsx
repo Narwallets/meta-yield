@@ -28,7 +28,6 @@ const Hero = () => {
     })();
   }, []);
 
-
   return (
     <Square
       minHeight={600}
@@ -42,9 +41,9 @@ const Hero = () => {
           <Stack spacing={{ base: "4", md: "5" }} align="center">
             <Heading
               textAlign={"center"}
-              fontSize={72}
               fontWeight={900}
-              size={useBreakpointValue({ base: "md", md: "lg" })}
+              lineHeight={{ base: "3rem", md: "4rem" }}
+              size={useBreakpointValue({ base: "lg", md: "2xl" })}
             >
               Stake. Support. <br></br> Earn.
             </Heading>
@@ -62,9 +61,14 @@ const Hero = () => {
             spacing="3"
             direction={{ base: "column", sm: "row" }}
             justify="center"
+            alignItems={"center"}
           >
             {!isConnected && (
-              <Button colorScheme="indigo" size="lg" onClick={() => onConnect()}>
+              <Button
+                colorScheme="indigo"
+                size="lg"
+                onClick={() => onConnect()}
+              >
                 Connect Wallet
               </Button>
             )}

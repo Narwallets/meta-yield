@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <>
       <ErrorHandlerHash></ErrorHandlerHash>
-      <Box pr={123} pl={123}>
+      <Box px={{ base: "2rem", lg: "8rem" }}>
         <Hero />
         <Box
           id="projects"
