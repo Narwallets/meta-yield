@@ -18,8 +18,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import Card from "./Card";
-import { Alien } from "phosphor-react";
-import { CaretLeft, CaretRight, CircleWavyCheck } from "phosphor-react";
+import { CaretLeft, CircleWavyCheck } from "phosphor-react";
 import { KickstarterGoalProps } from "../../types/project.types";
 import { useGetProjectDetails } from "../../hooks/projects";
 import { useRouter } from "next/router";

@@ -24,7 +24,7 @@ import { fetchStNearPrice } from "../../queries/prices";
 import moment from "moment";
 import { useStore } from "../../stores/wallet";
 import { useGetSupportedProjects } from "../../hooks/projects";
-import { utils } from "near-api-js";
+
 const FundingSuccess = (props: { id: any }) => {
   const router = useRouter();
   const kickstarter_id = parseInt(props.id as string);
@@ -69,6 +69,7 @@ const FundingSuccess = (props: { id: any }) => {
     })();
   }, [data, props, supportedProjets]);
   if (!data || isLoading) return <></>;
+
   return (
     <Box as="section" p={{ base: "3", md: "10px 140px" }}>
       <Link

@@ -24,7 +24,6 @@ import {
 } from "../../lib/near";
 import { colors } from "../../constants/colors";
 import { useStore } from "../../stores/wallet";
-import { ErrorHashHandler } from "../../utils/errorHandlers";
 import { useRouter } from "next/router";
 
 const Header: React.FC<ButtonProps> = (props) => {

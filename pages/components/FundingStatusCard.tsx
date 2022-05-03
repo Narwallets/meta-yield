@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { HStack, Stack, Text, Flex, Spacer } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
-import moment from "moment";
 import { isOpenPeriod, timeLeftToFund, yoctoToDollarStr, yton } from "../../lib/util";
 import { getContractMetadata } from "../../lib/near";
 import { fetchStNearPrice } from "../../queries/prices";
+
 const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter as KickstarterProps;
   const [tokenSymbol, setTokenSymbol] = useState("");
@@ -20,6 +20,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
       setTotalRaised(yoctoToDollarStr(kickstarter?.total_deposited, stNEARPrice));
     })();
   }, [kickstarter?.token_contract_address, kickstarter?.total_deposited]);
+
   return (
     <Card w={'100%'}> 
       <Stack >

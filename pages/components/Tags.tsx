@@ -2,7 +2,6 @@ import {
   Badge,
   Flex,
   HStack,
-  Icon,
   StackProps,
   Text,
   useColorModeValue,

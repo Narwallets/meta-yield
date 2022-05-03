@@ -2,9 +2,6 @@ import React, { useEffect, useState, ChangeEvent } from "react";
 import {
   Stack,
   Text,
-  Input,
-  Center,
-  Select,
   Box,
   Flex,
   Divider,
@@ -13,7 +10,6 @@ import {
   Square,
   Avatar,
 } from "@chakra-ui/react";
-import Card from "./Card";
 import {
   KickstarterGoalProps,
   KickstarterProps,
@@ -23,6 +19,7 @@ import { getCurrentFundingGoal, yton } from "../../lib/util";
 import moment from "moment";
 import { useGetSupportedProjects } from "../../hooks/projects";
 import { useStore } from "../../stores/wallet";
+
 const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter;
   const [goalSelected, setGoalSelected] = useState<number>(0);

@@ -3,11 +3,12 @@ import * as React from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectGrid from "./ProjectGrid";
 import { ProjectProps } from "../../types/project.types";
-import { useGetProjects } from "../../hooks/projects";
+
 const Projects = (props: { data: ProjectProps[] }) => {
   // const { data, isLoading } = useGetProjects();
   const data = props.data;
   if (!props.data) return <></>;
+
   return (
     <Box
       mx="auto"

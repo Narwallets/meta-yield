@@ -6,9 +6,11 @@ import { Box, Text } from "@chakra-ui/react";
 import * as React from "react";
 import { useGetActiveProjects } from "./../hooks/projects";
 import ErrorHandlerHash from "./components/ErrorHandlerHash";
+
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
   if (isLoading) return <></>;
+
   return (
     <>
       <ErrorHandlerHash></ErrorHandlerHash>
@@ -30,7 +32,6 @@ const Home = () => {
           ))}
         </Box>
         {data.active.length > 0 && <Projects data={data.active} />}
-
         <HowItWorks />
       </Box>
     </>

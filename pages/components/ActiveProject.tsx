@@ -1,36 +1,20 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Button,
-  HStack,
   VStack,
-  Icon,
   Stack,
   Tag,
   Text,
   useColorModeValue,
   Wrap,
-  StackDivider,
-  Heading,
   useBreakpointValue,
-  SimpleGrid,
-  AvatarBadge,
-  Square,
   Flex,
   Circle,
-  AspectRatio,
-  Spacer,
   Image,
   Avatar,
 } from "@chakra-ui/react";
-import Card from "./Card";
-import Link from "next/link";
-import { CaretRight, CircleWavyCheck } from "phosphor-react";
-import { ProjectProps } from "../../types/project.types";
 import { useRouter } from "next/router";
-import { truncateText } from "../../utils/textHandlers";
-import { useGetProjectDetails, useGetProjects } from "../../hooks/projects";
-import moment from "moment";
+import { ProjectProps } from "../../types/project.types";
 import { isOpenPeriod, timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
 import { fetchStNearPrice } from "../../queries/prices";
 import FundButton from "./FundButon";
@@ -38,8 +22,6 @@ import FundButton from "./FundButon";
 const ActiveProject = (props: { data: ProjectProps }) => {
   const projectData = props.data;
   const [totalRaised, setTotalRaised] = useState("");
-  const avatarColor = useColorModeValue("white", "gray.700");
-  const iconColor = useColorModeValue("indigo.500", "indigo.200");
   const tagColor = useColorModeValue("gray.600", "gray.300");
   const borderRadius = useBreakpointValue({ base: "md", md: "xl" });
   const router = useRouter();
@@ -70,6 +52,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
         </Text>
       </Box>
     );
+
   return (
     <Stack
       direction={{ base: "column", lg: "row" }}
@@ -81,7 +64,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
     >
       <Flex
         borderRadius={borderRadius}
-        minW={{base: "100%", lg: "400px"}}
+        minW={{ base: "100%", lg: "400px" }}
         minH={310}
         backgroundColor={"black"}
         alignItems={"center"}
@@ -91,7 +74,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
           alt="project"
           borderRadius="xl"
           fit="cover"
-          maxWidth={{base: "100%", lg: "400px"}}
+          maxWidth={{ base: "100%", lg: "400px" }}
         />
       </Flex>
       <Box mr="10" ml="10">

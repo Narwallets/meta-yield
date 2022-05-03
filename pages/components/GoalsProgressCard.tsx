@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  HStack,
   Stack,
   Text,
   Flex,
@@ -19,6 +18,7 @@ import Goal from "./Goal";
 import { useGoal } from "../../hooks/useGoal";
 import moment from "moment";
 import { isOpenPeriod } from "../../lib/util";
+
 const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
   const kickstarter = props.kickstarter as KickstarterProps;
   const getCurrentFundingGoal = () => {
