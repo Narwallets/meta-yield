@@ -76,6 +76,8 @@ const ActiveProject = (props: { data: ProjectProps }) => {
       key={projectData.slug}
       p={0}
       mt={10}
+      boxShadow="sm"
+      rounded="lg"
     >
       <Flex
         borderRadius={borderRadius}
