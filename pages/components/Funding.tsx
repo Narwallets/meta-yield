@@ -48,8 +48,11 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   const handleChangeDeposit = (event: any) =>
     setAmountDeposit(event.target.value);
 
-  const onMaxClickDeposit = async (event: any) =>
-    formikDeposit.setFieldValue("amount_deposit", await getBalance(wallet!));
+  const onMaxClickDeposit = async (event: any) => {
+    const balance = await getBalance(wallet!);
+    formikDeposit.setFieldValue("amount_deposit", balance);
+    setAmountDeposit(balance);
+  }
   const onMaxClickWithdraw = async (event: any) =>
     formikWithdraw.setFieldValue("amount_withdraw", supportedDeposited);
 
