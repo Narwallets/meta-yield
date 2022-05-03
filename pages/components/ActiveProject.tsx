@@ -77,7 +77,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
           maxWidth={{ base: "100%", lg: "400px" }}
         />
       </Flex>
-      <Box mr="10" ml="10">
+      <Box pr="10" pb="10" pl="10">
         <Stack
           spacing={{ base: "1", md: "2" }}
           direction={{ base: "column", md: "row" }}
