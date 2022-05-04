@@ -22,7 +22,8 @@ import moment from "moment";
 import { useFormik } from "formik";
 import { KickstarterGoalProps } from "../../types/project.types";
 import { fundToKickstarter, getBalance, withdraw } from "../../lib/near";
-import { useStore } from "../../stores/wallet";
+import { useStore as useWallet} from "../../stores/wallet";
+import { useStore  as useBalance} from "../../stores/balance";
 import { getCurrentFundingGoal, ntoy, yton } from "../../lib/util";
 import depositSchemaValidation from "../../validation/fundSchemaValidation";
 import withdrawSchemaValidation from "../../validation/withdrawSchemaValidation";
@@ -32,7 +33,8 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   const supportedDeposited = props.supportedDeposited;
   const isWithdrawEnabled = supportedDeposited > 0;
   const router = useRouter();
-  const { wallet } = useStore();
+  const { wallet } = useWallet();
+  const { balance } = useBalance();
   const toast = useToast();
 
   const [amountDeposit, setAmountDeposit] = useState<number>(0);
@@ -154,13 +156,16 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
     }
   }, [amountDeposit, currentFundingGoal]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     async function setBalance() {
       formikDeposit.setFieldValue("balance", await getBalance(wallet!));
     }
-
     setBalance();
-  }, []);
+  }, []); */
+
+  useEffect(()=> {
+    formikDeposit.setFieldValue("balance", balance);
+  }, [balance])
 
   if (!project) return <></>;
 
