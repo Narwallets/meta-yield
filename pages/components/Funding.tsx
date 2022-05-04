@@ -34,7 +34,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   const router = useRouter();
   const { wallet } = useStore();
   const toast = useToast();
-
+  const MINIMUM_TO_FUND = process.env.MINIMUM_AMOUNT_DEPOSIT ? process.env.MINIMUM_AMOUNT_DEPOSIT : 0;
   const [amountDeposit, setAmountDeposit] = useState<number>(0);
   const [fundingNeeded, setFundingNeeded] = useState<number | undefined>(
     undefined
@@ -65,10 +65,10 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values: any) => {
-      if (values.amount_deposit < 1) {
+      if (values.amount_deposit < MINIMUM_TO_FUND) {
         toast({
           title: "Transaction error.",
-          description: "The amount to deposit must be greater than 1",
+          description: "The amount to deposit must be greater than " + MINIMUM_TO_FUND?.toString(),
           status: "error",
           duration: 9000,
           position: "top-right",

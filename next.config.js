@@ -13,7 +13,8 @@ const nextConfig = {
   env: {
     CONTRACT_ID: "v0_1_6.katherine_fundraising.testnet",
     METAPOOL_CONTRACT_ID: "meta-v2.pool.testnet",
-    GA_TRACKING_ID: 'G-330HH1R960'
+    GA_TRACKING_ID: 'G-330HH1R960',
+    MINIMUM_AMOUNT_DEPOSIT: 0
   },
   pageExtensions: ["page.tsx", "ts", "tsx"],
 };
