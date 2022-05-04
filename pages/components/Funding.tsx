@@ -156,13 +156,6 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
     }
   }, [amountDeposit, currentFundingGoal]);
 
-  /* useEffect(() => {
-    async function setBalance() {
-      formikDeposit.setFieldValue("balance", await getBalance(wallet!));
-    }
-    setBalance();
-  }, []); */
-
   useEffect(()=> {
     formikDeposit.setFieldValue("balance", balance);
   }, [balance])
