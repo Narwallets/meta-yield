@@ -73,7 +73,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
       if (values.amount_deposit < MINIMUM_TO_FUND) {
         toast({
           title: "Transaction error.",
-          description: "The amount to deposit must be greater than " + MINIMUM_TO_FUND?.toString(),
+          description: `The amount to deposit must be at least ${MINIMUM_TO_FUND} stNEAR`,
           status: "error",
           duration: 9000,
           position: "top-right",
