@@ -34,37 +34,42 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
     }
     return undefined;
   };
+
+  const getCurrentGoalId = () => {
+    if (kickstarter?.active) 
+      return getCurrentFundingGoal()?.id
+    if (kickstarter?.successful)
+      return kickstarter?.winner_goal_id
+    return undefined;
+  }
+  
   const [goal, setGoal] = useState<KickstarterGoalProps>();
   const [goalRaised, setGoalRaised] = useState(0);
   const [goalProgress, setGoalProgress] = useState(0);
   const [goalStatus, setGoalStatus] = useState<string | undefined>(undefined);
   const [currentGoalId, { setGoalId }] = useGoal({
     maxGoal: kickstarter && kickstarter.goals ? kickstarter.goals.length : 0,
-    initialGoal: getCurrentFundingGoal()
-      ? getCurrentFundingGoal()?.id
-      : undefined,
+    initialGoal: getCurrentGoalId()
   });
   const getGoalStatus = () => {
+    if (!kickstarter.active) {
+      if (kickstarter.successful) 
+        return "Completed"
+      return "Timed Out"
+    }
+
     const goal = getCurrentFundingGoal();
     if (goal) {
-      const desiredAmount = parseInt(goal.desired_amount);
-      const deposited = parseInt(kickstarter.total_deposited);
-      if (isOpenPeriod(kickstarter.open_timestamp)) {
-        if (moment().valueOf() > kickstarter.close_timestamp) {
-          if (deposited < desiredAmount) {
-            return "Timeout";
-          } else return "Completed";
-        }
+      const isOpen = isOpenPeriod(kickstarter.open_timestamp)
+      if (isOpen) {
         return "In Progress...";
-      } else {
+      } else 
         return "Coming soon...";
-      }
     }
     return "";
   };
   useEffect(() => {
     if (kickstarter && kickstarter.goals) {
-      setGoal(kickstarter?.goals[0]);
       const goal = kickstarter.goals.find((g) => g.id === currentGoalId);
       if (goal) {
         const goalDesiredAmount = parseInt(goal.desired_amount);
@@ -95,7 +100,7 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
                 key={goal.id}
                 kickstarterGoal={goal}
                 isActive={currentGoalId === goal.id}
-                isCompleted={currentGoalId > goal.id}
+                isCompleted={currentGoalId >= goal.id}
                 isFirstGoal={goal.id === 0}
                 isLastGoal={kickstarter.goals.length === goal.id + 1}
               />
