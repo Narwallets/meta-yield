@@ -83,12 +83,9 @@ export const getMyProjectsFounded = async (id: string, wallet: any) => {
     wallet.getAccountId()
   );
   if (!projectsFounded) {
-    return [];
+    return null;
   }
-  return (
-    projectsFounded &&
-    projectsFounded.find((val: any) => val.kickstarter_id === id)
-  );
+  return projectsFounded.find((val: any) => val.kickstarter_id === id);
 };
 
 export const getCurrentFundingGoal = (goals: any, total_deposited: any) => {
