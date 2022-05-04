@@ -115,7 +115,7 @@ const ProjectDetails = (props: { id: any }) => {
           }
         } else {
           // setStatus(ProjectStatus.CLOSE);
-          if (project.kickstarter.successful && thisProjectFounded) {
+          if (project.kickstarter.successful && thisProjectFounded && thisProjectFounded.length) {
             setStatus(ProjectStatus.SUCCESS);
           } else {
             setStatus(ProjectStatus.UNSUCCESS);
