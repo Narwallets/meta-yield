@@ -36,10 +36,10 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
   };
 
   const getCurrentGoalId = () => {
-    if (kickstarter.active) 
+    if (kickstarter?.active) 
       return getCurrentFundingGoal()?.id
-    if (kickstarter.successful)
-      return kickstarter.winner_goal_id
+    if (kickstarter?.successful)
+      return kickstarter?.winner_goal_id
     return undefined;
   }
   
