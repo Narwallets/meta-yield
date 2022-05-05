@@ -24,6 +24,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
   const [totalRaised, setTotalRaised] = useState("");
   const tagColor = useColorModeValue("gray.600", "gray.300");
   const router = useRouter();
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   useEffect(() => {
     (async () => {
@@ -84,6 +85,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
         <Stack
           spacing={{ base: "1", md: "2" }}
           direction={{ base: "column", md: "row" }}
+          hidden={isMobile}
         >
           <Circle boxShadow="xl" ml={{ base: 0, lg: "0", xl: "-8" }} mb="2">
             <Circle m="2" overflow={"hidden"}>
@@ -124,12 +126,12 @@ const ActiveProject = (props: { data: ProjectProps }) => {
             ))}
         </Wrap>
       </Box>
-      <Flex alignItems={"center"}>
-        <Stack minW={{base: 160, xl: 190}} spacing="10" w="full">
-          <VStack align={{base: "center", lg: "flex-start"}} spacing="1">
+      <Flex alignItems={"center"} pb={{ base: "2rem", md: 0 }}>
+        <Stack minW={{ base: 160, xl: 190 }} spacing="10" w="full">
+          <VStack align={{ base: "center", lg: "flex-start" }} spacing="1" w="full">
             {isOpenPeriod(projectData.kickstarter?.open_timestamp) &&
               timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
-                <>
+                <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
                   <Text fontSize="xs" fontWeight="700">
                     {" "}
                     TIME LEFT
@@ -137,10 +139,10 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                   <Text fontSize="md" color="emphasized">
                     {timeLeftToFund(projectData.kickstarter?.close_timestamp)}
                   </Text>
-                </>
+                </Stack>
               )}
 
-            <Stack align="flex-start" spacing="4">
+            <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
               <Text mt={5} fontSize="xs" fontWeight="700">
                 TOKENOMICS
               </Text>
@@ -155,7 +157,14 @@ const ActiveProject = (props: { data: ProjectProps }) => {
               }
             </Stack>
 
-            <Stack mt={10} align="flex-start" spacing="4">
+            <Stack
+              mt={"2rem"}
+              align={{base: "center", lg: "flex-start"}}
+              spacing="4"
+              w="full"
+              maxW="sm"
+              p="1rem"
+            >
               <FundButton
                 show={true}
                 completed={!!projectData.kickstarter?.active}
