@@ -281,14 +281,14 @@ const ProjectDetails = (props: { id: any }) => {
             >
               {project?.name}
             </Text>
-            {project?.verified && (
+            {/* {project?.verified && (
               <Image
                 src={"/check.svg"}
                 alt="check"
                 width={"16px"}
                 height={"16px"}
               />
-            )}
+            )} */}
           </HStack>
           <Text display={isMobile ? "none" : "initial"} mt="2">
             {project?.motto}
