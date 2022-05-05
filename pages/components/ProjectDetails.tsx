@@ -90,14 +90,14 @@ const ProjectDetails = (props: { id: any }) => {
   const { wallet, isLogin } = useStore();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
   const tabListCss = useBreakpointValue({
-    "base": css({
+    base: css({
       scrollbarWidth: "none",
       "::-webkit-scrollbar": { display: "none" },
       "-webkit-overflow-scrolling": "touch",
       boxShadow: "inset 0 -2px 0 rgba(0, 0, 0, 0.1)",
       border: "0 none",
     }),
-    "lg": css({}),
+    lg: css({}),
   });
 
   const withdrawAllStnear = async () => {
@@ -244,177 +244,106 @@ const ProjectDetails = (props: { id: any }) => {
   if (isLoading) return <></>;
 
   return (
-    <Box px={{ base: "2rem", lg: "8rem" }} as="section" mx="auto">
-      <Grid
-        h="200px"
-        templateRows={{ base: "repeat(3, 1fr)", lg: "repeat(2, 1fr)" }}
-        templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
-        gap={30}
-      >
-        <GridItem>
-          <Stack
-            spacing={{ base: "1", md: "2" }}
-            direction={{ base: "column", md: "row" }}
+    <Grid
+      px={{ base: "2rem", lg: "8rem" }}
+      as="section"
+      mx="auto"
+      h="12rem"
+      templateRows={{ base: "repeat(3, 1fr)", lg: "repeat(2, 1fr)" }}
+      templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
+      gap={"2rem"}
+    >
+      <GridItem>
+        <HStack alignItems={"flex-start"}>
+          <Circle
+            position={"relative"}
+            backgroundColor={"white"}
+            maxH={"55px"}
+            maxW={"55px"}
+            mr={2}
+            boxShadow="xl"
           >
-            <Circle
-              position={"relative"}
-              backgroundColor={"white"}
-              maxH={"55px"}
-              maxW={"55px"}
-              mr={2}
-              boxShadow="xl"
-            >
-              <Circle maxW={"60px"} m="2" overflow={"hidden"}>
-                <Image
-                  src={project?.avatarUrl}
-                  alt="project"
-                  width="48px"
-                  height="48px"
-                />
-              </Circle>
+            <Circle maxW={"60px"} m="2" overflow={"hidden"}>
+              <Image
+                src={project?.avatarUrl}
+                alt="project"
+                width="48px"
+                height="48px"
+              />
             </Circle>
+          </Circle>
 
-            <Text as="h2" fontWeight="bold" fontSize="4xl">
-              {project?.name}
-            </Text>
-            {project?.verified && (
+          <Text as="h2" fontWeight="bold" fontSize={{ base: "2xl", md: "4xl" }}>
+            {project?.name}
+          </Text>
+          {project?.verified && (
               <Image
                 src={"/check.svg"}
                 alt="check"
                 width={"16px"}
                 height={"16px"}
               />
-            )}
-          </Stack>
-          <Text mt="2">{project?.motto}</Text>
-          <Wrap shouldWrapChildren mt="5" color={tagsColor}>
-            {project?.tags &&
-              project?.tags.map((tag: string) => (
-                <Tag key={tag} color="inherit" px="3">
-                  {tag}
-                </Tag>
-              ))}
-          </Wrap>
-          <Stack
-            mt={5}
-            mb={10}
-            direction={{ base: "column", md: "row" }}
-            spacing={{ base: "3", md: "10" }}
-            align="flex-start"
-          >
-            <Image
-              src={project?.imageUrl}
-              alt="project"
-              borderRadius="xl"
-              fit="cover"
-            />
-          </Stack>
-        </GridItem>
-        <GridItem rowSpan={{ base: 1, lg: 2 }}>
-          <Box
-            px={{ base: "4", md: "6" }}
-            py={{ base: "5", md: "6" }}
-            borderRadius="lg"
-          >
-            <Stack spacing={{ base: "3", md: "10" }}>
-              <FundingStatusCard kickstarter={project?.kickstarter} />
-              {project?.kickstarter.goals &&
-                project?.kickstarter.goals.length > 0 && (
-                  <GoalsProgressCard kickstarter={project?.kickstarter} />
-                )}
-              {showRewardEstimated && isLogin && (
-                <RewardsEstimated
-                  kickstarter={project?.kickstarter}
-                ></RewardsEstimated>
+          )}
+        </HStack>
+        <Text mt="2">{project?.motto}</Text>
+        <Wrap shouldWrapChildren mt="5" color={tagsColor}>
+          {project?.tags &&
+            project?.tags.map((tag: string) => (
+              <Tag key={tag} color="inherit" px="3">
+                {tag}
+              </Tag>
+            ))}
+        </Wrap>
+        <Image
+          mt={5}
+          src={project?.imageUrl}
+          alt="project"
+          borderRadius="xl"
+          fit="cover"
+        />
+      </GridItem>
+      <GridItem rowSpan={{ base: 0, lg: 2 }}>
+        <Box
+          px={{ base: "0", md: "6" }}
+          py={{ base: "0", md: "6" }}
+          borderRadius="lg"
+        >
+          <Stack spacing={{ base: "3", md: "10" }}>
+            <FundingStatusCard kickstarter={project?.kickstarter} />
+            {project?.kickstarter.goals &&
+              project?.kickstarter.goals.length > 0 && (
+                <GoalsProgressCard kickstarter={project?.kickstarter} />
               )}
-              <Stack w={"100%"}>
-                {isLogin && showFund && (
-                  <Funding
-                    project={project}
-                    supportedDeposited={
-                      myProjectFounded && myProjectFounded.supporter_deposit
-                        ? yton(myProjectFounded.supporter_deposit)
-                        : 0
-                    }
-                  ></Funding>
-                )}
-                {!isLogin && (
-                  <ConnectButton
-                    text={"Connect wallet to fund"}
-                  ></ConnectButton>
-                )}
+            {showRewardEstimated && isLogin && (
+              <RewardsEstimated
+                kickstarter={project?.kickstarter}
+              ></RewardsEstimated>
+            )}
+            <Stack w={"100%"}>
+              {isLogin && showFund && (
+                <Funding
+                  project={project}
+                  supportedDeposited={
+                    myProjectFounded && myProjectFounded.supporter_deposit
+                      ? yton(myProjectFounded.supporter_deposit)
+                      : 0
+                  }
+                ></Funding>
+              )}
+              {!isLogin && (
+                <ConnectButton text={"Connect wallet to fund"}></ConnectButton>
+              )}
 
-                {showClaim && isLogin && (
-                  <>
-                    <Stack w={"100%"}>
-                      {myProjectFounded &&
-                        (myProjectFounded.supporter_deposit > 0 ||
-                          myProjectFounded.rewards > 0) && <Text>BONDS</Text>}
-                      {
-                        // show if there are deposits left to claim
-                        myProjectFounded &&
-                          myProjectFounded.supporter_deposit > 0 && (
-                            <Flex
-                              p={3}
-                              boxShadow="lg"
-                              justifyContent={"space-between"}
-                              alignItems={"center"}
-                            >
-                              <Image
-                                boxSize="40px"
-                                objectFit="cover"
-                                src={project.kickstarter.project_token_icon}
-                                alt="near"
-                              />
-                              <VStack h={"50px"}>
-                                <Text
-                                  color={"grey"}
-                                  fontSize={"xxs"}
-                                  fontWeight={700}
-                                >
-                                  NEARS{" "}
-                                </Text>
-                                <Text color={"black"} fontWeight={700}>
-                                  {yton(myProjectFounded.deposit_in_near)}{" "}
-                                </Text>
-                                <Text>{} </Text>
-                              </VStack>
-                              <VStack h={"50px"}>
-                                <Text
-                                  color={"grey"}
-                                  fontSize={"xxs"}
-                                  fontWeight={700}
-                                >
-                                  BOND DUE
-                                </Text>
-                                <Text fontSize={"14px"}>{lockupDate}</Text>
-                              </VStack>
-                              <VStack h={"50px"}>
-                                <Text
-                                  color={"grey"}
-                                  fontSize={"xxs"}
-                                  fontWeight={700}
-                                >
-                                  AVAILABLE{" "}
-                                </Text>
-                                <Text>
-                                  {yton(myProjectFounded.deposit_in_near)}{" "}
-                                </Text>
-                              </VStack>
-                              <Button
-                                colorScheme="blue"
-                                size="lg"
-                                onClick={withdrawAllStnear}
-                              >
-                                Claim
-                              </Button>
-                            </Flex>
-                          )
-                      }
-
-                      {
-                        // show if there are pending rewards to claim
-                        myProjectFounded && myProjectFounded.rewards > 0 && (
+              {showClaim && isLogin && (
+                <>
+                  <Stack w={"100%"}>
+                    {myProjectFounded &&
+                      (myProjectFounded.supporter_deposit > 0 ||
+                        myProjectFounded.rewards > 0) && <Text>BONDS</Text>}
+                    {
+                      // show if there are deposits left to claim
+                      myProjectFounded &&
+                        myProjectFounded.supporter_deposit > 0 && (
                           <Flex
                             p={3}
                             boxShadow="lg"
@@ -425,25 +354,22 @@ const ProjectDetails = (props: { id: any }) => {
                               boxSize="40px"
                               objectFit="cover"
                               src={project.kickstarter.project_token_icon}
-                              alt="ptoken"
+                              alt="near"
                             />
-                            <VStack h={"50px"} justify={"space-between"}>
+                            <VStack h={"50px"}>
                               <Text
                                 color={"grey"}
                                 fontSize={"xxs"}
                                 fontWeight={700}
                               >
-                                {project.kickstarter.project_token_symbol}{" "}
+                                NEARS{" "}
                               </Text>
-                              <Text
-                                color={"black"}
-                                fontSize={"xxs"}
-                                fontWeight={700}
-                              >
-                                {yton(myProjectFounded.rewards)}{" "}
+                              <Text color={"black"} fontWeight={700}>
+                                {yton(myProjectFounded.deposit_in_near)}{" "}
                               </Text>
+                              <Text>{} </Text>
                             </VStack>
-                            <VStack h={"50px"} justify={"space-between"}>
+                            <VStack h={"50px"}>
                               <Text
                                 color={"grey"}
                                 fontSize={"xxs"}
@@ -453,7 +379,7 @@ const ProjectDetails = (props: { id: any }) => {
                               </Text>
                               <Text fontSize={"14px"}>{lockupDate}</Text>
                             </VStack>
-                            <VStack h={"50px"} justify={"space-between"}>
+                            <VStack h={"50px"}>
                               <Text
                                 color={"grey"}
                                 fontSize={"xxs"}
@@ -462,108 +388,160 @@ const ProjectDetails = (props: { id: any }) => {
                                 AVAILABLE{" "}
                               </Text>
                               <Text>
-                                {yton(myProjectFounded.available_rewards)}{" "}
+                                {yton(myProjectFounded.deposit_in_near)}{" "}
                               </Text>
                             </VStack>
                             <Button
                               colorScheme="blue"
                               size="lg"
-                              onClick={claim}
+                              onClick={withdrawAllStnear}
                             >
                               Claim
                             </Button>
                           </Flex>
                         )
-                      }
-                    </Stack>
-                  </>
-                )}
-              </Stack>
-              {showRewardsCalculator && (
-                <RewardsCalculator kickstarter={project?.kickstarter} />
+                    }
+
+                    {
+                      // show if there are pending rewards to claim
+                      myProjectFounded && myProjectFounded.rewards > 0 && (
+                        <Flex
+                          p={3}
+                          boxShadow="lg"
+                          justifyContent={"space-between"}
+                          alignItems={"center"}
+                        >
+                          <Image
+                            boxSize="40px"
+                            objectFit="cover"
+                            src={project.kickstarter.project_token_icon}
+                            alt="ptoken"
+                          />
+                          <VStack h={"50px"} justify={"space-between"}>
+                            <Text
+                              color={"grey"}
+                              fontSize={"xxs"}
+                              fontWeight={700}
+                            >
+                              {project.kickstarter.project_token_symbol}{" "}
+                            </Text>
+                            <Text
+                              color={"black"}
+                              fontSize={"xxs"}
+                              fontWeight={700}
+                            >
+                              {yton(myProjectFounded.rewards)}{" "}
+                            </Text>
+                          </VStack>
+                          <VStack h={"50px"} justify={"space-between"}>
+                            <Text
+                              color={"grey"}
+                              fontSize={"xxs"}
+                              fontWeight={700}
+                            >
+                              BOND DUE
+                            </Text>
+                            <Text fontSize={"14px"}>{lockupDate}</Text>
+                          </VStack>
+                          <VStack h={"50px"} justify={"space-between"}>
+                            <Text
+                              color={"grey"}
+                              fontSize={"xxs"}
+                              fontWeight={700}
+                            >
+                              AVAILABLE{" "}
+                            </Text>
+                            <Text>
+                              {yton(myProjectFounded.available_rewards)}{" "}
+                            </Text>
+                          </VStack>
+                          <Button colorScheme="blue" size="lg" onClick={claim}>
+                            Claim
+                          </Button>
+                        </Flex>
+                      )
+                    }
+                  </Stack>
+                </>
               )}
             </Stack>
-          </Box>
-        </GridItem>
-        <GridItem>
-          <Stack
-            spacing={{ base: "1", md: "2" }}
-            direction={{ base: "column", md: "row" }}
-          >
-            <Box>
-              <Tabs>
-                <TabList
-                  overflowX={{ base: "auto", lg: "visible" }}
-                  css={tabListCss}
-                  w={{ base: "100vw", lg: "full" }}
-                  my={{ base: "auto" }}
-                  minW={{ base: "0", lg: "0" }}
-                  maxW={{ base: "none", lg: "none" }}
-                >
-                  <Tab>Campaign</Tab>
-                  <Tab>Team</Tab>
-                  <Tab>FAQ</Tab>
-                  <Tab>Roadmap</Tab>
-                  <Tab>Documents</Tab>
-                  <Tab>About</Tab>
-                </TabList>
-
-                <TabPanels>
-                  <TabPanel>
-                    <Text fontSize="sm" fontWeight="subtle">
-                      CAMPAIGN
-                    </Text>
-                    <Text fontSize="lg" fontWeight="extrabold">
-                      Our Vision
-                    </Text>
-                    {parse(project?.campaignHtml)}
-                  </TabPanel>
-                  <TabPanel>
-                    <Text fontSize="sm" fontWeight="subtle">
-                      TEAM
-                    </Text>
-                    <Text fontSize="lg" fontWeight="extrabold">
-                      Our founding team
-                    </Text>
-                    <Team team={project?.team} />
-                  </TabPanel>
-                  <TabPanel>
-                    <Text fontSize="sm" fontWeight="subtle">
-                      FAQ
-                    </Text>
-                  </TabPanel>
-                  <TabPanel>
-                    <Text fontSize="sm" fontWeight="subtle">
-                      ROADMAP
-                    </Text>
-                    <Text fontSize="lg" fontWeight="extrabold">
-                      Our Timeline
-                    </Text>
-                    <Image
-                      src={project?.roadmapImageUrl}
-                      alt="project"
-                      width="400"
-                      height={"100%"}
-                      objectFit="cover"
-                    />
-                  </TabPanel>
-                  <TabPanel>
-                    <Text fontSize="sm" fontWeight="subtle">
-                      DOCUMENTS
-                    </Text>
-                  </TabPanel>
-                  <TabPanel>
-                    <Text fontSize="sm" fontWeight="subtle">
-                      ABOUT
-                    </Text>
-                  </TabPanel>
-                </TabPanels>
-              </Tabs>
-            </Box>
+            {showRewardsCalculator && (
+              <RewardsCalculator kickstarter={project?.kickstarter} />
+            )}
           </Stack>
-        </GridItem>
-      </Grid>
-    </Box>
+        </Box>
+      </GridItem>
+      <GridItem>
+        <Tabs mx={{ base: "1", md: "2" }}>
+          <TabList
+            overflowX={{ base: "auto", lg: "visible" }}
+            css={tabListCss}
+            w={{ base: "100vw", lg: "full" }}
+            my={{ base: "auto" }}
+            minW={{ base: "0", lg: "0" }}
+            maxW={{ base: "none", lg: "none" }}
+          >
+            <Tab>Campaign</Tab>
+            <Tab>Team</Tab>
+            <Tab>FAQ</Tab>
+            <Tab>Roadmap</Tab>
+            <Tab>Documents</Tab>
+            <Tab>About</Tab>
+          </TabList>
+
+          <TabPanels>
+            <TabPanel>
+              <Text fontSize="sm" fontWeight="subtle">
+                CAMPAIGN
+              </Text>
+              <Text fontSize="lg" fontWeight="extrabold">
+                Our Vision
+              </Text>
+              {parse(project?.campaignHtml)}
+            </TabPanel>
+            <TabPanel>
+              <Text fontSize="sm" fontWeight="subtle">
+                TEAM
+              </Text>
+              <Text fontSize="lg" fontWeight="extrabold">
+                Our founding team
+              </Text>
+              <Team team={project?.team} />
+            </TabPanel>
+            <TabPanel>
+              <Text fontSize="sm" fontWeight="subtle">
+                FAQ
+              </Text>
+            </TabPanel>
+            <TabPanel>
+              <Text fontSize="sm" fontWeight="subtle">
+                ROADMAP
+              </Text>
+              <Text fontSize="lg" fontWeight="extrabold">
+                Our Timeline
+              </Text>
+              <Image
+                src={project?.roadmapImageUrl}
+                alt="project"
+                width="400"
+                height={"100%"}
+                objectFit="cover"
+              />
+            </TabPanel>
+            <TabPanel>
+              <Text fontSize="sm" fontWeight="subtle">
+                DOCUMENTS
+              </Text>
+            </TabPanel>
+            <TabPanel>
+              <Text fontSize="sm" fontWeight="subtle">
+                ABOUT
+              </Text>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </GridItem>
+    </Grid>
   );
 };
 
