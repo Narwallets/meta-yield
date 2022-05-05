@@ -23,13 +23,14 @@ import {
   getNearConfig,
 } from "../../lib/near";
 import { colors } from "../../constants/colors";
-import { useStore } from "../../stores/wallet";
+import { useStore as useWallet} from "../../stores/wallet";
+import { useStore  as useBalance} from "../../stores/balance";
 import { useRouter } from "next/router";
 
 const Header: React.FC<ButtonProps> = (props) => {
-  const { wallet, isLogin, setWallet, setLogin } = useStore();
+  const { wallet, isLogin, setWallet, setLogin } = useWallet();
+  const { balance, setBalance } = useBalance();
   const [signInAccountId, setSignInAccountId] = useState(null);
-  const [stNearBalance, setStNearBalance] = useState<number>(0);
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const router = useRouter();
   const toast = useToast();
@@ -65,7 +66,7 @@ const Header: React.FC<ButtonProps> = (props) => {
         }
         if (tempWallet && tempWallet.getAccountId()) {
           setSignInAccountId(tempWallet.getAccountId());
-          setStNearBalance(await getBalance(tempWallet!));
+          setBalance(await getBalance(tempWallet!));
         }
 
         setLogin(tempWallet && tempWallet.getAccountId() ? true : false);
@@ -78,7 +79,7 @@ const Header: React.FC<ButtonProps> = (props) => {
           const tempWallet = await getWallet() 
           if (tempWallet && tempWallet.getAccountId()) {
             const balance = await getBalance(tempWallet);
-            setStNearBalance(balance);
+            setBalance(balance);
         }
     }, 5000)
   }, []);
@@ -138,7 +139,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                         alt="stnear"
                       />
                     </Square>
-                    <Text>{stNearBalance}</Text>
+                    <Text>{balance}</Text>
                     <Link
                       href={nearConfig.metapoolUrl}
                       target="_blank"

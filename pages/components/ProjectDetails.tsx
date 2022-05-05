@@ -147,7 +147,7 @@ const ProjectDetails = (props: { id: any }) => {
     getSupporterEstimatedStNear(wallet, id, price);
 
   const calculateAmmountToWithdraw = async () => {
-    if (!project.kickstarter.active) {
+    if (!project.kickstarter.active && myProjectFounded) {
       calculateTokensToClaim();
       const price = await getStNearPrice();
       const amount =
