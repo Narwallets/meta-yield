@@ -392,6 +392,7 @@ const ProjectDetails = (props: { id: any }) => {
                               </Text>
                             </VStack>
                             <Button
+                              disabled={ myProjectFounded.deposit_in_near <= 0}
                               colorScheme="blue"
                               size="lg"
                               onClick={withdrawAllStnear}
@@ -455,7 +456,7 @@ const ProjectDetails = (props: { id: any }) => {
                               {yton(myProjectFounded.available_rewards)}{" "}
                             </Text>
                           </VStack>
-                          <Button colorScheme="blue" size="lg" onClick={claim}>
+                          <Button disabled={ myProjectFounded.available_rewards <= 0} colorScheme="blue" size="lg" onClick={claim}>
                             Claim
                           </Button>
                         </Flex>
