@@ -22,8 +22,10 @@ export default function ProjectDetailsContainer() {
 
   if (!id || !isLoaded) return <></>;
 
-  return <>
-        <ErrorHandlerHash></ErrorHandlerHash>
-        <ProjectDetails id={id} />
-  </>;
+  return (
+    <>
+      <ErrorHandlerHash></ErrorHandlerHash>
+      <ProjectDetails id={id} />
+    </>
+  );
 }

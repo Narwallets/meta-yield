@@ -30,7 +30,7 @@ const Hero = () => {
 
   return (
     <Square
-      minHeight={600}
+      minHeight={{ base: 400, md: 600 }}
       borderRadius={16}
       as="section"
       bg="bg-accent"

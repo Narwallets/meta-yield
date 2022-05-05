@@ -23,8 +23,8 @@ const ActiveProject = (props: { data: ProjectProps }) => {
   const projectData = props.data;
   const [totalRaised, setTotalRaised] = useState("");
   const tagColor = useColorModeValue("gray.600", "gray.300");
-  const borderRadius = useBreakpointValue({ base: "md", md: "xl" });
   const router = useRouter();
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   useEffect(() => {
     (async () => {
@@ -63,8 +63,8 @@ const ActiveProject = (props: { data: ProjectProps }) => {
       rounded="lg"
     >
       <Flex
-        borderRadius={borderRadius}
-        minW={{ base: "100%", lg: "400px" }}
+        borderRadius={{ base: "md", md: "lg" }}
+        minW={{ base: "100%", lg: "300px", xl: "400px" }}
         minH={310}
         backgroundColor={"black"}
         alignItems={"center"}
@@ -74,15 +74,20 @@ const ActiveProject = (props: { data: ProjectProps }) => {
           alt="project"
           borderRadius="xl"
           fit="cover"
-          maxWidth={{ base: "100%", lg: "400px" }}
+          maxWidth={{ base: "100%", lg: "300px", xl: "400px" }}
         />
       </Flex>
-      <Box pr="10" pb="10" pl="10">
+      <Box
+        pr={{ base: "4", lg: "4", xl: "10" }}
+        pb={{ base: "4", lg: "4", xl: "10" }}
+        pl={{ base: "4", lg: "4", xl: "10" }}
+      >
         <Stack
           spacing={{ base: "1", md: "2" }}
           direction={{ base: "column", md: "row" }}
+          hidden={isMobile}
         >
-          <Circle boxShadow="xl" ml="-8" mb="2">
+          <Circle boxShadow="xl" ml={{ base: 0, lg: "0", xl: "-8" }} mb="2">
             <Circle m="2" overflow={"hidden"}>
               {projectData.avatarUrl && (
                 <Avatar src={projectData.avatarUrl} boxSize="10" />
@@ -97,12 +102,14 @@ const ActiveProject = (props: { data: ProjectProps }) => {
           <Text as="h2" mr={"10px"} fontWeight="bold" fontSize="2xl">
             {projectData.name}
           </Text>
-          <Image
-            src={"/check.svg"}
-            alt="check"
-            width={"16px"}
-            height={"16px"}
-          />
+                {/* {project?.verified && (
+              <Image
+                src={"/check.svg"}
+                alt="check"
+                width={"16px"}
+                height={"16px"}
+              />
+            )} */}
         </Stack>
         <Text mt="2">{projectData.description}</Text>
         <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor}>
@@ -119,12 +126,12 @@ const ActiveProject = (props: { data: ProjectProps }) => {
             ))}
         </Wrap>
       </Box>
-      <Box>
-        <Stack minW={190} spacing="10">
-          <VStack align="flex-start" spacing="1">
+      <Flex alignItems={"center"} pb={{ base: "2rem", md: 0 }}>
+        <Stack minW={{ base: 160, xl: 190 }} spacing="10" w="full">
+          <VStack align={{ base: "center", lg: "flex-start" }} spacing="1" w="full">
             {isOpenPeriod(projectData.kickstarter?.open_timestamp) &&
               timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
-                <>
+                <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
                   <Text fontSize="xs" fontWeight="700">
                     {" "}
                     TIME LEFT
@@ -132,10 +139,10 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                   <Text fontSize="md" color="emphasized">
                     {timeLeftToFund(projectData.kickstarter?.close_timestamp)}
                   </Text>
-                </>
+                </Stack>
               )}
 
-            <Stack align="flex-start" spacing="4">
+            <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
               <Text mt={5} fontSize="xs" fontWeight="700">
                 TOKENOMICS
               </Text>
@@ -150,7 +157,14 @@ const ActiveProject = (props: { data: ProjectProps }) => {
               }
             </Stack>
 
-            <Stack mt={10} align="flex-start" spacing="4">
+            <Stack
+              mt={"2rem"}
+              align={{base: "center", lg: "flex-start"}}
+              spacing="4"
+              w="full"
+              maxW="sm"
+              p="1rem"
+            >
               <FundButton
                 show={true}
                 completed={!!projectData.kickstarter?.active}
@@ -159,7 +173,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
             </Stack>
           </VStack>
         </Stack>
-      </Box>
+      </Flex>
     </Stack>
   );
 };

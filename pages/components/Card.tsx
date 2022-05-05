@@ -5,9 +5,9 @@ const Card = (props: BoxProps) => (
   <Box
     maxWidth="1xl"
     mx="auto"
-    p={{ base: '6', md: '8' }}
-    rounded={{ sm: 'lg' }}
-    shadow={{ md: 'base' }}
+    p={{ base: '3', md: '8' }}
+    rounded={{ base: 'lg' }}
+    shadow={{ base: 'base' }}
     {...props}
   />
 )

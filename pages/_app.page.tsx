@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
+import Script from "next/script";
 
 const isProduction = process.env.NODE_ENV === "production";
 function App({ Component, pageProps }: AppProps) {
@@ -17,7 +18,12 @@ function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
       /* invoke analytics function only for production */
-      if (isProduction) gtag.pageview(url);
+      if (isProduction){
+          (window as any).gtag("config", gtag.GA_TRACKING_ID, {
+            page_path: url,
+          });
+        
+      }
     };
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
@@ -29,7 +35,25 @@ function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <Header />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
+          {/* enable analytics script only for production */}
+          {isProduction && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+              strategy="lazyOnload"
+            />
+         <Script id="google-analytics" strategy="lazyOnload">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', '${gtag.GA_TRACKING_ID}');
+            `}
+          </Script>
+          </>
+        )}
       </QueryClientProvider>
     </ChakraProvider>
   );
