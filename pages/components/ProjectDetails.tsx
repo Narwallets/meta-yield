@@ -276,14 +276,14 @@ const ProjectDetails = (props: { id: any }) => {
           <Text as="h2" fontWeight="bold" fontSize={{ base: "2xl", md: "4xl" }}>
             {project?.name}
           </Text>
-          {project?.verified && (
+          {/* {project?.verified && (
               <Image
                 src={"/check.svg"}
                 alt="check"
                 width={"16px"}
                 height={"16px"}
               />
-          )}
+          )} */}
         </HStack>
         <Text mt="2">{project?.motto}</Text>
         <Wrap shouldWrapChildren mt="5" color={tagsColor}>

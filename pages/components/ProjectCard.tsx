@@ -96,14 +96,14 @@ const ProjectCard = (props: Props) => {
             <Text mt={5} fontWeight="medium" fontSize={"lg"} color={textColor}>
               {name}
             </Text>
-            {verified && (
+            {/* {verified && (
               <Image
                 src={"/check.svg"}
                 alt="check"
                 width={"16px"}
                 height={"16px"}
               />
-            )}
+            )} */}
           </Stack>
           <Stack spacing={{ base: "1", md: "2" }}>
             <Text>{description && truncateText(description, 150)}</Text>

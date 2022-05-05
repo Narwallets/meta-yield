@@ -100,12 +100,14 @@ const ActiveProject = (props: { data: ProjectProps }) => {
           <Text as="h2" mr={"10px"} fontWeight="bold" fontSize="2xl">
             {projectData.name}
           </Text>
-          <Image
-            src={"/check.svg"}
-            alt="check"
-            width={"16px"}
-            height={"16px"}
-          />
+                {/* {project?.verified && (
+              <Image
+                src={"/check.svg"}
+                alt="check"
+                width={"16px"}
+                height={"16px"}
+              />
+            )} */}
         </Stack>
         <Text mt="2">{projectData.description}</Text>
         <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor}>
