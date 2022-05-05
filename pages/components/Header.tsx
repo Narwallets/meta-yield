@@ -87,7 +87,7 @@ const Header: React.FC<ButtonProps> = (props) => {
   return (
     <Box as="section" pb={{ base: "12", md: "24" }}>
       <Box as="nav" alignContent="flex-end">
-        <Container py={{ base: "3", lg: "4" }}>
+        <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <Flex justify="space-between">
             <Square minW="45px">
               <Image

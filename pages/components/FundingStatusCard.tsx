@@ -94,7 +94,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             {!timeLeftToFund(kickstarter?.close_timestamp) && (
               <>
                 <Text fontSize="sm" fontWeight="subtle">
-                  Status
+                  STATUS
                 </Text>
                 <Text
                   fontSize={{ base: "lg", md: "2xl" }}
