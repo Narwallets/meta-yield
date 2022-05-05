@@ -48,6 +48,7 @@ import {
 import {
   getCurrentFundingGoal,
   getMyProjectsFounded,
+  getWinnerGoal,
   isOpenPeriod,
   yton,
 } from "../../lib/util";
@@ -177,12 +178,9 @@ const ProjectDetails = (props: { id: any }) => {
   };
 
   const calculateTokensToClaim = () => {
-    const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(
-      project.kickstarter.goals,
-      project.kickstarter.total_deposited
-    );
+    const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
 
-    if (winnerGoal && myProjectFounded && myProjectFounded.length) {
+    if (winnerGoal && myProjectFounded) {
       const rewards = yton(myProjectFounded.available_rewards.toString());
       setRewards(rewards);
       setLockupDate(
