@@ -98,6 +98,13 @@ export const getCurrentFundingGoal = (goals: any, total_deposited: any) => {
   return currentFundingGoal;
 };
 
+export const getWinnerGoal = (kickstarter: any) => {
+  if ( kickstarter.successful) {
+    return kickstarter.goals[kickstarter.winner_goal_id] ;
+  }
+  return null;
+};
+
 export const getTxFunctionCallMethod = (
   finalExecOutcome: providers.FinalExecutionOutcome
 ) => {
