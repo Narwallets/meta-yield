@@ -495,7 +495,7 @@ const ProjectDetails = (props: { id: any }) => {
                 <TabList
                   overflowX={{ base: "auto", lg: "visible" }}
                   css={tabListCss}
-                  w={{ base: "calc(100vw - 5rem)", lg: "full" }}
+                  w={{ base: "100vw", lg: "full" }}
                   my={{ base: "auto" }}
                   minW={{ base: "0", lg: "0" }}
                   maxW={{ base: "none", lg: "none" }}
