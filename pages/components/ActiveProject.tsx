@@ -129,7 +129,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
           <VStack align={{ base: "center", lg: "flex-start" }} spacing="1">
             {isOpenPeriod(projectData.kickstarter?.open_timestamp) &&
               timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
-                <>
+                <Stack align="flex-start" spacing="4" p="1rem">
                   <Text fontSize="xs" fontWeight="700">
                     {" "}
                     TIME LEFT
@@ -137,10 +137,10 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                   <Text fontSize="md" color="emphasized">
                     {timeLeftToFund(projectData.kickstarter?.close_timestamp)}
                   </Text>
-                </>
+                </Stack>
               )}
 
-            <Stack align="flex-start" spacing="4">
+            <Stack align="flex-start" spacing="4" p="1rem">
               <Text mt={5} fontSize="xs" fontWeight="700">
                 TOKENOMICS
               </Text>
@@ -155,7 +155,14 @@ const ActiveProject = (props: { data: ProjectProps }) => {
               }
             </Stack>
 
-            <Stack mt={10} align="flex-start" spacing="4">
+            <Stack
+              mt={"2rem"}
+              align="flex-start"
+              spacing="4"
+              w="full"
+              maxW="sm"
+              p="1rem"
+            >
               <FundButton
                 show={true}
                 completed={!!projectData.kickstarter?.active}
