@@ -29,7 +29,7 @@ function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <Header />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </QueryClientProvider>
     </ChakraProvider>
   );
