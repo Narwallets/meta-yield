@@ -11,7 +11,7 @@ const nextConfig = {
     ],
   },
   env: {
-    CONTRACT_ID: "dev-1651673814208-46560115062418",
+    CONTRACT_ID: "v0_1_6.katherine_fundraising.testnet",
     METAPOOL_CONTRACT_ID: "meta-v2.pool.testnet",
     GA_TRACKING_ID: 'G-330HH1R960',
     MINIMUM_AMOUNT_DEPOSIT: 1
