@@ -46,9 +46,12 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             >
               {yton(kickstarter?.total_deposited)} stNEAR
             </Text>
+            
+          </Stack>
+          <Stack>
             <Text fontSize="lg" whiteSpace={"nowrap"}>
-              ( ${totalRaised} USD)
-            </Text>
+            ~ ${totalRaised} USD
+              </Text>
           </Stack>
         </Stack>
         <Stack direction="row">
