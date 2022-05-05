@@ -126,10 +126,10 @@ const ActiveProject = (props: { data: ProjectProps }) => {
       </Box>
       <Flex alignItems={"center"} pb={{ base: "2rem", md: 0 }}>
         <Stack minW={{ base: 160, xl: 190 }} spacing="10" w="full">
-          <VStack align={{ base: "center", lg: "flex-start" }} spacing="1">
+          <VStack align={{ base: "center", lg: "flex-start" }} spacing="1" w="full">
             {isOpenPeriod(projectData.kickstarter?.open_timestamp) &&
               timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
-                <Stack align="flex-start" spacing="4" p="1rem">
+                <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
                   <Text fontSize="xs" fontWeight="700">
                     {" "}
                     TIME LEFT
@@ -140,7 +140,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                 </Stack>
               )}
 
-            <Stack align="flex-start" spacing="4" p="1rem">
+            <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
               <Text mt={5} fontSize="xs" fontWeight="700">
                 TOKENOMICS
               </Text>
@@ -157,7 +157,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
 
             <Stack
               mt={"2rem"}
-              align="flex-start"
+              align={{base: "center", lg: "flex-start"}}
               spacing="4"
               w="full"
               maxW="sm"
