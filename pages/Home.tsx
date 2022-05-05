@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       <ErrorHandlerHash></ErrorHandlerHash>
-      <Container maxW="container2.xl">
+      <Container maxW="container.xl">
         <Hero />
         <Box
           id="projects"

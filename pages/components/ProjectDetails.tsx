@@ -246,7 +246,7 @@ const ProjectDetails = (props: { id: any }) => {
   if (isLoading) return <></>;
 
   return (
-    <Container maxW="container.2xl">
+    <Container maxW="container.xl">
       <Grid
         as="section"
         h="12rem"
