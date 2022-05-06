@@ -60,6 +60,8 @@ import ConnectButton from "./ConnectButton";
 
 import { useStore } from "../../stores/wallet";
 import Funding from "./Funding";
+import FAQ from "./FAQ";
+import Documents from "./Documents";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -390,7 +392,7 @@ const ProjectDetails = (props: { id: any }) => {
                                   fontSize={"xxs"}
                                   fontWeight={700}
                                 >
-                                  NEARS{" "}
+                                  NEAR{" "}
                                 </Text>
                                 <Text color={"black"} fontWeight={700}>
                                   {yton(myProjectFounded.deposit_in_near)}{" "}
@@ -543,9 +545,7 @@ const ProjectDetails = (props: { id: any }) => {
                 <Team team={project?.team} />
               </TabPanel>
               <TabPanel>
-                <Text fontSize="sm" fontWeight="subtle">
-                  FAQ
-                </Text>
+                <FAQ data={project?.faq} />
               </TabPanel>
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
@@ -563,9 +563,7 @@ const ProjectDetails = (props: { id: any }) => {
                 />
               </TabPanel>
               <TabPanel>
-                <Text fontSize="sm" fontWeight="subtle">
-                  DOCUMENTS
-                </Text>
+                <Documents data={project?.documents} />
               </TabPanel>
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
