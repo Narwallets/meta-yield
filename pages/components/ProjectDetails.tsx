@@ -490,7 +490,7 @@ const ProjectDetails = (props: { id: any }) => {
                               size="lg"
                               onClick={claim}
                             >
-                              {showAprove ? 'Aprove' : 'Claim'}
+                              {showAprove ? 'Aprpove' : 'Claim'}
                             </Button>
                           </Flex>
                         )
