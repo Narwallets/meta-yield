@@ -203,6 +203,12 @@ const ProjectDetails = (props: { id: any }) => {
     );
   }
 
+  const isUnfreeze = ()=> {
+    const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
+    const result = moment().diff(moment(winnerGoal.unfreeze_timestamp)) > 0;
+    return result;
+  }
+
   useEffect(() => {
     setShowWithdraw(false);
     setShowClaim(false);
@@ -420,7 +426,7 @@ const ProjectDetails = (props: { id: any }) => {
                                 </Text>
                               </VStack>
                               <Button
-                                disabled={ myProjectFounded.deposit_in_near <= 0}
+                                disabled={!isUnfreeze() || myProjectFounded.deposit_in_near <= 0 }
                                 colorScheme="blue"
                                 size="lg"
                                 onClick={withdrawAllStnear}
