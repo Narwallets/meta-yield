@@ -12,10 +12,9 @@ const Documents = (props: { data: DocumentItem[] }) => {
     DOCUMENTS
   </Text>
   <Stack>
-  {data.map((item: DocumentItem) => (
+  {data.map((item: DocumentItem, index: number) => (
 
-  
-       <Link href={item.url}>{item.title}</Link>
+       <Link key={`link_document_${index}`} href={item.url}>{item.title}</Link>
 
  
 

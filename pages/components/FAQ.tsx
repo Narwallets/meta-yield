@@ -13,7 +13,7 @@ const FAQ = (props: { data: FAQItem[] }) => {
   </Text>
     <Accordion>
         {data.map((item: FAQItem, index: number) => 
-            ( <AccordionItem key={index}>
+            ( <AccordionItem key={`faq_item_${index}`}>
                 <h2>
                   <AccordionButton>
                     <Box flex='1' textAlign='left'>
