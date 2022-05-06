@@ -40,14 +40,17 @@ import FundingStatusCard from "./FundingStatusCard";
 import moment from "moment";
 import {
   claimAll,
+  getBalanceOfTokenForSupporter,
   getStNearPrice,
   getSupporterEstimatedStNear,
   getWallet,
+  storageDepositOfTokenForSupporter,
   withdrawAll,
 } from "../../lib/near";
 import {
   getCurrentFundingGoal,
   getMyProjectsFounded,
+  getWinnerGoal,
   isOpenPeriod,
   yton,
 } from "../../lib/util";
@@ -57,6 +60,8 @@ import ConnectButton from "./ConnectButton";
 
 import { useStore } from "../../stores/wallet";
 import Funding from "./Funding";
+import FAQ from "./FAQ";
+import Documents from "./Documents";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -77,6 +82,7 @@ const ProjectDetails = (props: { id: any }) => {
   const [showFund, setShowFund] = useState<boolean>(true);
   const [showWithdraw, setShowWithdraw] = useState<boolean>(false);
   const [showClaim, setShowClaim] = useState<boolean>(false);
+  const [showAprove, setShowAprove] = useState<boolean>(false)
   const [showRewardsCalculator, setShowRewardsCalculator] =
     useState<boolean>(true);
   const [showRewardEstimated, setShowRewardsEstimated] =
@@ -111,11 +117,15 @@ const ProjectDetails = (props: { id: any }) => {
   };
 
   const claim = async () => {
-    // call to contract for claiming the rewards
     const tempWallet = await getWallet();
-    claimAll(tempWallet, parseInt(props.id)).then((val) => {
-      console.log("Return claimAll", val);
-    });
+    const readyToClaim = await isReadyForClaimPToken()
+    if (!readyToClaim) {
+      storageDepositOfTokenForSupporter(tempWallet, project.kickstarter.token_contract_address)
+    } else {
+      claimAll(tempWallet, parseInt(props.id));
+    }
+
+  
   };
 
   const refreshStatus = (project: any, thisProjectFounded: any) => {
@@ -177,12 +187,9 @@ const ProjectDetails = (props: { id: any }) => {
   };
 
   const calculateTokensToClaim = () => {
-    const winnerGoal: KickstarterGoalProps = getCurrentFundingGoal(
-      project.kickstarter.goals,
-      project.kickstarter.total_deposited
-    );
+    const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
 
-    if (winnerGoal && myProjectFounded && myProjectFounded.length) {
+    if (winnerGoal && myProjectFounded) {
       const rewards = yton(myProjectFounded.available_rewards.toString());
       setRewards(rewards);
       setLockupDate(
@@ -190,6 +197,13 @@ const ProjectDetails = (props: { id: any }) => {
       );
     }
   };
+
+  const isReadyForClaimPToken = async () => {
+    const tempWallet = await getWallet();
+    return await getBalanceOfTokenForSupporter(
+      tempWallet, project.kickstarter.token_contract_address
+    );
+  }
 
   useEffect(() => {
     setShowWithdraw(false);
@@ -239,7 +253,9 @@ const ProjectDetails = (props: { id: any }) => {
         );
         setMyProjectFounded(thisProjectFounded);
         refreshStatus(project, thisProjectFounded);
-      }
+        const isApproved = await isReadyForClaimPToken()
+        setShowAprove(isApproved === null)
+      }    
     })();
   }, [wallet, props, project]);
 
@@ -376,7 +392,7 @@ const ProjectDetails = (props: { id: any }) => {
                                   fontSize={"xxs"}
                                   fontWeight={700}
                                 >
-                                  NEARS{" "}
+                                  NEAR{" "}
                                 </Text>
                                 <Text color={"black"} fontWeight={700}>
                                   {yton(myProjectFounded.deposit_in_near)}{" "}
@@ -476,7 +492,7 @@ const ProjectDetails = (props: { id: any }) => {
                               size="lg"
                               onClick={claim}
                             >
-                              Claim
+                              {showAprove ? 'Aprove' : 'Claim'}
                             </Button>
                           </Flex>
                         )
@@ -529,9 +545,7 @@ const ProjectDetails = (props: { id: any }) => {
                 <Team team={project?.team} />
               </TabPanel>
               <TabPanel>
-                <Text fontSize="sm" fontWeight="subtle">
-                  FAQ
-                </Text>
+                <FAQ data={project?.faq} />
               </TabPanel>
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
@@ -549,9 +563,7 @@ const ProjectDetails = (props: { id: any }) => {
                 />
               </TabPanel>
               <TabPanel>
-                <Text fontSize="sm" fontWeight="subtle">
-                  DOCUMENTS
-                </Text>
+                <Documents data={project?.documents} />
               </TabPanel>
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
