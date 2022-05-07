@@ -89,19 +89,21 @@ const Header: React.FC<ButtonProps> = (props) => {
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <Flex justify="space-between">
-            <Square minW="45px">
-              <Image
-                boxSize="25px"
-                objectFit="cover"
-                src="/logo.png"
-                alt="logo"
-              />
-            </Square>
-            <Square fontSize={"24px"}>
-              <Link href="/">
-                <b>Meta Yield</b>
-              </Link>
-            </Square>
+            <Link href="/">
+              <HStack>
+                <Square minW="45px">
+                  <Image
+                    boxSize="25px"
+                    objectFit="cover"
+                    src="/logo.png"
+                    alt="logo"
+                  />
+                </Square>
+                <Square fontSize={"24px"}>
+                  <b>Meta Yield</b>
+                </Square>
+              </HStack>
+            </Link>
             <Spacer />
             <HStack spacing="4">
               {isDesktop && (
