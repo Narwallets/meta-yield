@@ -45,9 +45,9 @@ const Footer: React.FC<ButtonProps> = (props) => {
       </Stack>
       <Spacer />
       <Stack direction={"row"} spacing={6}>
-        <Button variant="link">
+        <Link href="https://twitter.com/hashtag/MetaYield" target={"_blank"} variant="link">
           <img src="/twitter.svg" alt="Twitter" />
-        </Button>
+        </Link>
       </Stack>
     </Container>
   );
