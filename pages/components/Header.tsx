@@ -23,8 +23,8 @@ import {
   getNearConfig,
 } from "../../lib/near";
 import { colors } from "../../constants/colors";
-import { useStore as useWallet} from "../../stores/wallet";
-import { useStore  as useBalance} from "../../stores/balance";
+import { useStore as useWallet } from "../../stores/wallet";
+import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
 
 const Header: React.FC<ButtonProps> = (props) => {
@@ -75,13 +75,13 @@ const Header: React.FC<ButtonProps> = (props) => {
       }
     })();
 
-    setInterval(async()=>{
-          const tempWallet = await getWallet() 
-          if (tempWallet && tempWallet.getAccountId()) {
-            const balance = await getBalance(tempWallet);
-            setBalance(balance);
-        }
-    }, 5000)
+    setInterval(async () => {
+      const tempWallet = await getWallet();
+      if (tempWallet && tempWallet.getAccountId()) {
+        const balance = await getBalance(tempWallet);
+        setBalance(balance);
+      }
+    }, 5000);
   }, []);
 
   return (
@@ -89,21 +89,19 @@ const Header: React.FC<ButtonProps> = (props) => {
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <Flex justify="space-between">
-            <Link href="/">
-              <HStack>
-                <Square minW="45px">
-                  <Image
-                    boxSize="25px"
-                    objectFit="cover"
-                    src="/logo.png"
-                    alt="logo"
-                  />
-                </Square>
-                <Square fontSize={"24px"}>
-                  <b>Meta Yield</b>
-                </Square>
-              </HStack>
-            </Link>
+            <HStack onClick={() => router.push(`/`)} cursor="pointer">
+              <Square minW="45px">
+                <Image
+                  boxSize="25px"
+                  objectFit="cover"
+                  src="/logo.png"
+                  alt="logo"
+                />
+              </Square>
+              <Square fontSize={"24px"}>
+                <b>Meta Yield</b>
+              </Square>
+            </HStack>
             <Spacer />
             <HStack spacing="4">
               {isDesktop && (
@@ -142,10 +140,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       />
                     </Square>
                     <Text>{balance}</Text>
-                    <Link
-                      href={nearConfig.metapoolUrl}
-                      target="_blank"
-                    >
+                    <Link href={nearConfig.metapoolUrl} target="_blank">
                       <Button
                         fontWeight={600}
                         fontSize={"md"}

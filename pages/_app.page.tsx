@@ -3,12 +3,16 @@ import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import "@fontsource/inter/variable.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import theme from "../theme/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
 import Script from "next/script";
+import NProgress from 'nprogress';
+
+import '../styles/nprogress.css';
 
 const isProduction = process.env.NODE_ENV === "production";
 function App({ Component, pageProps }: AppProps) {
@@ -30,12 +34,18 @@ function App({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
+
+
+Router.events.on('routeChangeStart', _ => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
   
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <Header />
         <Component {...pageProps} />
+        <Footer />
           {/* enable analytics script only for production */}
           {isProduction && (
           <>
