@@ -265,7 +265,7 @@ const ProjectDetails = (props: { id: any }) => {
     <Container maxW="container.xl">
       <Grid
         as="section"
-        templateRows={{ base: "repeat(3, 1fr)", lg: "repeat(2, 1fr)" }}
+        templateRows={{ base: "1fr", lg: "1fr" }}
         templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
         gap={"2rem"}
       >
