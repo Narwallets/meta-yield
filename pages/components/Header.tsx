@@ -90,13 +90,13 @@ const Header: React.FC<ButtonProps> = (props) => {
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <Flex justify="space-between">
-            <Stack onClick={() => router.push(`/`)} cursor="pointer">
-                <Image
-                  objectFit="cover"
-                  src="/logo.svg"
-                  alt="logo"
-                />
-            </Stack>
+            <Flex onClick={() => router.push(`/`)} cursor="pointer" alignItems="center">
+              <Image
+                objectFit="cover"
+                src="/logo.svg"
+                alt="logo"
+              />
+            </Flex>
             <Spacer />
             {isDesktop && (
               <>
