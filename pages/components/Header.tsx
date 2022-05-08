@@ -15,6 +15,7 @@ import {
   Square,
   Image,
   useToast,
+  Stack,
 } from "@chakra-ui/react";
 import {
   getWallet,
@@ -103,8 +104,8 @@ const Header: React.FC<ButtonProps> = (props) => {
               </Square>
             </HStack>
             <Spacer />
-            <HStack spacing="4">
-              {isDesktop && (
+            {isDesktop && (
+              <>
                 <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
                   <Link href="/#projects">
                     <Button
@@ -125,12 +126,8 @@ const Header: React.FC<ButtonProps> = (props) => {
                     </Button>
                   </Link>
                 </ButtonGroup>
-              )}
-            </HStack>
-            {isDesktop ? (
-              <HStack spacing="4">
-                {isLogin ? (
-                  <>
+                {isLogin && (
+                  <HStack spacing="4">
                     <Square minW="30px">
                       <Image
                         boxSize="20px"
@@ -159,27 +156,29 @@ const Header: React.FC<ButtonProps> = (props) => {
                     <Button colorScheme="indigo" onClick={() => logout()}>
                       Logout
                     </Button>
-                  </>
-                ) : (
-                  <Button colorScheme="indigo" onClick={() => onConnect()}>
-                    Connect Wallet
-                  </Button>
+                  </HStack>
                 )}
-              </HStack>
-            ) : isLogin ? (
-              <>
-                <a
-                  href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {signInAccountId}
-                </a>
-                <Button colorScheme="indigo" onClick={() => logout()}>
-                  Logout
-                </Button>
               </>
-            ) : (
+            )}
+            {!isDesktop && (
+              <>
+                {isLogin && (
+                  <HStack wrap="wrap" justifyContent={"flex-end"}>
+                    <a
+                      href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {signInAccountId}
+                    </a>
+                    <Button colorScheme="indigo" onClick={() => logout()}>
+                      Logout
+                    </Button>
+                  </HStack>
+                )}
+              </>
+            )}
+            {!isLogin && (
               <Button colorScheme="indigo" onClick={() => onConnect()}>
                 Connect Wallet
               </Button>
