@@ -90,19 +90,13 @@ const Header: React.FC<ButtonProps> = (props) => {
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <Flex justify="space-between">
-            <HStack onClick={() => router.push(`/`)} cursor="pointer">
-              <Square minW="45px">
+            <Stack onClick={() => router.push(`/`)} cursor="pointer">
                 <Image
-                  boxSize="25px"
                   objectFit="cover"
-                  src="/logo.png"
+                  src="/logo.svg"
                   alt="logo"
                 />
-              </Square>
-              <Square fontSize={"24px"}>
-                <b>Meta Yield</b>
-              </Square>
-            </HStack>
+            </Stack>
             <Spacer />
             {isDesktop && (
               <>
@@ -164,13 +158,22 @@ const Header: React.FC<ButtonProps> = (props) => {
               <>
                 {isLogin && (
                   <HStack wrap="wrap" justifyContent={"flex-end"}>
-                    <a
+                      <Square minW="30px">
+                      <Image
+                        boxSize="20px"
+                        objectFit="cover"
+                        src="/stNEARorig.svg"
+                        alt="stnear"
+                      />
+                    </Square>
+                    <Text>{balance}</Text>
+                    {/* <a
                       href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
                       target="_blank"
                       rel="noreferrer"
                     >
                       {signInAccountId}
-                    </a>
+                    </a> */}
                     <Button colorScheme="indigo" onClick={() => logout()}>
                       Logout
                     </Button>

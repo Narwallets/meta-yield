@@ -25,14 +25,13 @@ const Footer: React.FC<ButtonProps> = (props) => {
       justify={{ base: "center", md: "space-between" }}
       align={{ base: "center", md: "center" }}
     >
-      <HStack onClick={() => router.push(`/`)} cursor="pointer">
-        <Square minW="45px">
-          <Image boxSize="24px" objectFit="cover" src="/logo.png" alt="logo" />
-        </Square>
-        <Square fontSize={"24px"}>
-          <Text fontWeight={"bold"}>Meta Yield</Text>
-        </Square>
-      </HStack>
+    <Stack onClick={() => router.push(`/`)} cursor="pointer">
+          <Image
+            objectFit="cover"
+            src="/logo.svg"
+            alt="logo"
+          />
+      </Stack>
       <Stack direction={{ base: "column", sm: "row" }} alignItems={{base: "center", sm: "flex-start"}} spacing={6}>
         <Text fontSize="xs">© 2022 Meta Pool Inc</Text>
         <Link href="https://rctracks.io/privacy-policy/" target={"_blank"} fontSize="xs">
