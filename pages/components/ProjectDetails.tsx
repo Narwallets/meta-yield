@@ -26,6 +26,8 @@ import {
   useBreakpoint,
   useBreakpointValue,
   Container,
+  Skeleton,
+  Spacer,
 } from "@chakra-ui/react";
 // import Image from "next/image";
 import {
@@ -62,6 +64,7 @@ import { useStore } from "../../stores/wallet";
 import Funding from "./Funding";
 import FAQ from "./FAQ";
 import Documents from "./Documents";
+import PageLoading from "./PageLoading";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -82,7 +85,7 @@ const ProjectDetails = (props: { id: any }) => {
   const [showFund, setShowFund] = useState<boolean>(true);
   const [showWithdraw, setShowWithdraw] = useState<boolean>(false);
   const [showClaim, setShowClaim] = useState<boolean>(false);
-  const [showAprove, setShowAprove] = useState<boolean>(false)
+  const [showAprove, setShowAprove] = useState<boolean>(false);
   const [showRewardsCalculator, setShowRewardsCalculator] =
     useState<boolean>(true);
   const [showRewardEstimated, setShowRewardsEstimated] =
@@ -118,14 +121,15 @@ const ProjectDetails = (props: { id: any }) => {
 
   const claim = async () => {
     const tempWallet = await getWallet();
-    const readyToClaim = await isReadyForClaimPToken()
+    const readyToClaim = await isReadyForClaimPToken();
     if (!readyToClaim) {
-      storageDepositOfTokenForSupporter(tempWallet, project.kickstarter.token_contract_address)
+      storageDepositOfTokenForSupporter(
+        tempWallet,
+        project.kickstarter.token_contract_address
+      );
     } else {
       claimAll(tempWallet, parseInt(props.id));
     }
-
-  
   };
 
   const refreshStatus = (project: any, thisProjectFounded: any) => {
@@ -201,9 +205,10 @@ const ProjectDetails = (props: { id: any }) => {
   const isReadyForClaimPToken = async () => {
     const tempWallet = await getWallet();
     return await getBalanceOfTokenForSupporter(
-      tempWallet, project.kickstarter.token_contract_address
+      tempWallet,
+      project.kickstarter.token_contract_address
     );
-  }
+  };
 
   useEffect(() => {
     setShowWithdraw(false);
@@ -253,13 +258,13 @@ const ProjectDetails = (props: { id: any }) => {
         );
         setMyProjectFounded(thisProjectFounded);
         refreshStatus(project, thisProjectFounded);
-        const isApproved = await isReadyForClaimPToken()
-        setShowAprove(isApproved === null)
-      }    
+        const isApproved = await isReadyForClaimPToken();
+        setShowAprove(isApproved === null);
+      }
     })();
   }, [wallet, props, project]);
 
-  if (isLoading) return <></>;
+  if (isLoading) return <PageLoading />;
 
   return (
     <Container maxW="container.xl">
@@ -421,7 +426,7 @@ const ProjectDetails = (props: { id: any }) => {
                                 </Text>
                               </VStack>
                               <Button
-                                disabled={ myProjectFounded.deposit_in_near <= 0}
+                                disabled={myProjectFounded.deposit_in_near <= 0}
                                 colorScheme="blue"
                                 size="lg"
                                 onClick={withdrawAllStnear}
@@ -486,12 +491,12 @@ const ProjectDetails = (props: { id: any }) => {
                               </Text>
                             </VStack>
                             <Button
-                              disabled={ myProjectFounded.available_rewards <= 0}
+                              disabled={myProjectFounded.available_rewards <= 0}
                               colorScheme="blue"
                               size="lg"
                               onClick={claim}
                             >
-                              {showAprove ? 'Aprove' : 'Claim'}
+                              {showAprove ? "Aprove" : "Claim"}
                             </Button>
                           </Flex>
                         )

@@ -6,10 +6,11 @@ import { Box, Container, Text } from "@chakra-ui/react";
 import * as React from "react";
 import { useGetActiveProjects } from "./../hooks/projects";
 import ErrorHandlerHash from "./components/ErrorHandlerHash";
+import PageLoading from "./components/PageLoading";
 
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
-  if (isLoading) return <></>;
+  if (isLoading) return <PageLoading />;
 
   return (
     <>
