@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from "react";
 import {
-  Button,
   Text,
   ButtonProps,
-  Box,
   HStack,
   Container,
   Square,
@@ -19,7 +17,8 @@ const Footer: React.FC<ButtonProps> = (props) => {
   return (
     <Container
       maxW="container.2xl"
-      py={{ base: "3", lg: "4" }}
+      pt={{ base: "3rem", lg: "4rem" }}
+      pb={{ base: "1rem", lg: "1rem" }}
       as={Stack}
       direction={{ base: "column", md: "row" }}
       spacing={4}
