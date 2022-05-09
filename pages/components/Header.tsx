@@ -20,6 +20,7 @@ import {
   Show,
   Menu,
   MenuButton,
+  MenuDivider,
   MenuItem,
   MenuList,
   IconButton,
@@ -93,45 +94,6 @@ const Header: React.FC<ButtonProps> = (props) => {
     }, 5000);
   }, []);
 
-  const UserMenu = () => {
-    const isDesktop = useBreakpointValue({ base: false, lg: true });
-    return (
-      <Menu>
-        {isDesktop ? (
-          <MenuButton
-            px={4}
-            py={2}
-            transition="all 0.2s"
-            borderRadius="md"
-            borderWidth="1px"
-          >
-            {signInAccountId} <ChevronDownIcon />
-          </MenuButton>
-        ) : (
-          <MenuButton
-            as={IconButton}
-            icon={<HamburgerIcon />}
-            variant="outline"
-          >
-            {signInAccountId} <ChevronDownIcon />
-          </MenuButton>
-        )}
-        <MenuList>
-          <MenuItem>
-            <LinkOverlay
-              href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              My dashboard
-            </LinkOverlay>
-          </MenuItem>
-          <MenuItem onClick={() => logout()}>Disconnect</MenuItem>
-        </MenuList>
-      </Menu>
-    );
-  };
-
   return (
     <Box as="section" pb={{ base: "12", md: "24" }}>
       <Box as="nav" alignContent="flex-end">
@@ -188,7 +150,47 @@ const Header: React.FC<ButtonProps> = (props) => {
               </Show>
             )}
             {isLogin ? (
-              <UserMenu />
+              <Menu>
+                {isDesktop ? (
+                  <MenuButton
+                    px={4}
+                    py={2}
+                    transition="all 0.2s"
+                    borderRadius="md"
+                    borderWidth="1px"
+                  >
+                    {signInAccountId} <ChevronDownIcon />
+                  </MenuButton>
+                ) : (
+                  <MenuButton
+                    as={IconButton}
+                    icon={<HamburgerIcon />}
+                    variant="outline"
+                  >
+                    {signInAccountId} <ChevronDownIcon />
+                  </MenuButton>
+                )}
+                <MenuList>
+                  <MenuItem
+                    as={"a"}
+                    href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    My dashboard
+                  </MenuItem>
+                  <MenuItem onClick={() => logout()}>Disconnect</MenuItem>
+                  <Show below="lg">
+                    <MenuDivider />
+                    <MenuItem onClick={() => router.push("/#projects")}>
+                      Projects
+                    </MenuItem>
+                    <MenuItem onClick={() => router.push("/#how-it-works")}>
+                      How it works
+                    </MenuItem>
+                  </Show>
+                </MenuList>
+              </Menu>
             ) : (
               <Button
                 color="blue"
