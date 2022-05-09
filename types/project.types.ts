@@ -37,11 +37,25 @@ export interface TeamMemberProps {
     winner_goal_id: number;
     enough_reward_tokens: boolean;
   }
+  export interface FAQItem {
+    title: string;
+    content: string;
+  }
+  export interface About {
+
+  }
+
+  export interface DocumentItem {
+    title: string;
+    url: string;
+  }
   export interface ProjectProps {
     id: number;
     slug:string;
     name: string;
     motto: string;
+    projectUrl: string;
+    twitter: string;
     imageUrl: string;
     avatarUrl: string;
     description: string;
@@ -52,4 +66,8 @@ export interface TeamMemberProps {
     team: TeamMemberProps[];
     roadmapImageUrl: string;
     kickstarter?: KickstarterProps;
+    faq: FAQItem[],
+    about: About;
+    documents: DocumentItem[]
+
   }

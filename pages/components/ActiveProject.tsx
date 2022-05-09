@@ -102,7 +102,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
           <Text as="h2" mr={"10px"} fontWeight="bold" fontSize="2xl">
             {projectData.name}
           </Text>
-                {/* {project?.verified && (
+          {/* {project?.verified && (
               <Image
                 src={"/check.svg"}
                 alt="check"
@@ -115,12 +115,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
         <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor}>
           {projectData.tags &&
             projectData.tags.map((tag: string) => (
-              <Tag
-                backgroundColor={"indigo.100"}
-                key={tag}
-                color="inherit"
-                px="3"
-              >
+              <Tag key={tag} color="inherit" px="3">
                 {tag}
               </Tag>
             ))}
@@ -128,10 +123,18 @@ const ActiveProject = (props: { data: ProjectProps }) => {
       </Box>
       <Flex alignItems={"center"} pb={{ base: "2rem", md: 0 }}>
         <Stack minW={{ base: 160, xl: 190 }} spacing="10" w="full">
-          <VStack align={{ base: "center", lg: "flex-start" }} spacing="1" w="full">
+          <VStack
+            align={{ base: "center", lg: "flex-start" }}
+            spacing="1"
+            w="full"
+          >
             {isOpenPeriod(projectData.kickstarter) &&
               timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
-                <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
+                <Stack
+                  align={{ base: "center", lg: "flex-start" }}
+                  spacing="4"
+                  p="1rem"
+                >
                   <Text fontSize="xs" fontWeight="700">
                     {" "}
                     TIME LEFT
@@ -142,7 +145,11 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                 </Stack>
               )}
 
-            <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
+            <Stack
+              align={{ base: "center", lg: "flex-start" }}
+              spacing="4"
+              p="1rem"
+            >
               <Text mt={5} fontSize="xs" fontWeight="700">
                 TOKENOMICS
               </Text>
@@ -159,7 +166,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
 
             <Stack
               mt={"2rem"}
-              align={{base: "center", lg: "flex-start"}}
+              align={{ base: "center", lg: "flex-start" }}
               spacing="4"
               w="full"
               maxW="sm"

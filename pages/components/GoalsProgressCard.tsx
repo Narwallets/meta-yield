@@ -106,7 +106,7 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
               />
             ))}
           </Stack>
-          <Progress colorScheme="indigo" value={goalProgress} size="lg" />
+          <Progress colorScheme="indigo" value={goalProgress} height='28px' rounded={"2xl"} shadow="sm" />
         </Stack>
       </Container>
       <Flex>
