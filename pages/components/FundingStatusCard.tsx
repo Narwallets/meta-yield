@@ -65,7 +65,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
           </Box>
           <Spacer />
           <Box>
-            {isOpenPeriod(kickstarter?.open_timestamp) &&
+            {isOpenPeriod(kickstarter) &&
               timeLeftToFund(kickstarter?.close_timestamp) && (
                 <>
                   <Text fontSize="sm" fontWeight="subtle">
@@ -80,7 +80,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
                   </Text>
                 </>
               )}
-            {!isOpenPeriod(kickstarter?.open_timestamp) && (
+            {!isOpenPeriod(kickstarter) && (
               <>
                 <Text fontSize="sm" fontWeight="subtle">
                   OPEN IN

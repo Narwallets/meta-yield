@@ -129,7 +129,7 @@ const ProjectDetails = (props: { id: any }) => {
   const refreshStatus = (project: any, thisProjectFounded: any) => {
     if (isLogin) {
       setStatus(ProjectStatus.LOGGIN);
-      if (isOpenPeriod(project.kickstarter?.open_timestamp)) {
+      if (isOpenPeriod(project.kickstarter)) {
         if (project.kickstarter.active) {
           setStatus(ProjectStatus.ACTIVE);
           if (
@@ -147,6 +147,7 @@ const ProjectDetails = (props: { id: any }) => {
           }
         }
       } else {
+        
         // The project is not yet open
         setStatus(ProjectStatus.FUTURE);
       }
@@ -180,10 +181,6 @@ const ProjectDetails = (props: { id: any }) => {
     }
   };
 
-  const isPeriodEnded = () => {
-    return moment().diff(moment(project.kickstarter.close_timestamp)) < 0;
-  };
-
   const calculateTokensToClaim = () => {
     const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
 
@@ -205,7 +202,9 @@ const ProjectDetails = (props: { id: any }) => {
 
   const isUnfreeze = ()=> {
     const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
-    const result = moment().diff(moment(winnerGoal.unfreeze_timestamp)) > 0;
+    const now = Date.now();
+    const unfreeze = winnerGoal.unfreeze_timestamp;
+    const result = moment.utc().diff(moment(winnerGoal.unfreeze_timestamp)) > 0;
     return result;
   }
 

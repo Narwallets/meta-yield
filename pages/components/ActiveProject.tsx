@@ -129,7 +129,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
       <Flex alignItems={"center"} pb={{ base: "2rem", md: 0 }}>
         <Stack minW={{ base: 160, xl: 190 }} spacing="10" w="full">
           <VStack align={{ base: "center", lg: "flex-start" }} spacing="1" w="full">
-            {isOpenPeriod(projectData.kickstarter?.open_timestamp) &&
+            {isOpenPeriod(projectData.kickstarter) &&
               timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
                 <Stack align={{base: "center", lg: "flex-start"}} spacing="4" p="1rem">
                   <Text fontSize="xs" fontWeight="700">
