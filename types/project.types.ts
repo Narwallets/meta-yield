@@ -41,10 +41,6 @@ export interface TeamMemberProps {
     title: string;
     content: string;
   }
-  export interface About {
-
-  }
-
   export interface DocumentItem {
     title: string;
     url: string;
@@ -54,6 +50,8 @@ export interface TeamMemberProps {
     slug:string;
     name: string;
     motto: string;
+    projectUrl: string;
+    twitter: string;
     imageUrl: string;
     avatarUrl: string;
     description: string;
@@ -65,7 +63,7 @@ export interface TeamMemberProps {
     roadmapImageUrl: string;
     kickstarter?: KickstarterProps;
     faq: FAQItem[],
-    about: About;
+    about: string;
     documents: DocumentItem[]
 
   }
