@@ -15,6 +15,7 @@ import {
   Square,
   Image,
   useToast,
+  Stack,
 } from "@chakra-ui/react";
 import {
   getWallet,
@@ -23,8 +24,8 @@ import {
   getNearConfig,
 } from "../../lib/near";
 import { colors } from "../../constants/colors";
-import { useStore as useWallet} from "../../stores/wallet";
-import { useStore  as useBalance} from "../../stores/balance";
+import { useStore as useWallet } from "../../stores/wallet";
+import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
 
 const Header: React.FC<ButtonProps> = (props) => {
@@ -75,13 +76,13 @@ const Header: React.FC<ButtonProps> = (props) => {
       }
     })();
 
-    setInterval(async()=>{
-          const tempWallet = await getWallet() 
-          if (tempWallet && tempWallet.getAccountId()) {
-            const balance = await getBalance(tempWallet);
-            setBalance(balance);
-        }
-    }, 5000)
+    setInterval(async () => {
+      const tempWallet = await getWallet();
+      if (tempWallet && tempWallet.getAccountId()) {
+        const balance = await getBalance(tempWallet);
+        setBalance(balance);
+      }
+    }, 5000);
   }, []);
 
   return (
@@ -89,22 +90,16 @@ const Header: React.FC<ButtonProps> = (props) => {
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <Flex justify="space-between">
-            <Square minW="45px">
+            <Flex onClick={() => router.push(`/`)} cursor="pointer" alignItems="center">
               <Image
-                boxSize="25px"
                 objectFit="cover"
-                src="/logo.png"
+                src="/logo.svg"
                 alt="logo"
               />
-            </Square>
-            <Square fontSize={"24px"}>
-              <Link href="/">
-                <b>Meta Yield</b>
-              </Link>
-            </Square>
+            </Flex>
             <Spacer />
-            <HStack spacing="4">
-              {isDesktop && (
+            {isDesktop && (
+              <>
                 <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
                   <Link href="/#projects">
                     <Button
@@ -125,12 +120,8 @@ const Header: React.FC<ButtonProps> = (props) => {
                     </Button>
                   </Link>
                 </ButtonGroup>
-              )}
-            </HStack>
-            {isDesktop ? (
-              <HStack spacing="4">
-                {isLogin ? (
-                  <>
+                {isLogin && (
+                  <HStack spacing="4">
                     <Square minW="30px">
                       <Image
                         boxSize="20px"
@@ -140,10 +131,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       />
                     </Square>
                     <Text>{balance}</Text>
-                    <Link
-                      href={nearConfig.metapoolUrl}
-                      target="_blank"
-                    >
+                    <Link href={nearConfig.metapoolUrl} target="_blank">
                       <Button
                         fontWeight={600}
                         fontSize={"md"}
@@ -162,27 +150,38 @@ const Header: React.FC<ButtonProps> = (props) => {
                     <Button colorScheme="indigo" onClick={() => logout()}>
                       Logout
                     </Button>
-                  </>
-                ) : (
-                  <Button colorScheme="indigo" onClick={() => onConnect()}>
-                    Connect Wallet
-                  </Button>
+                  </HStack>
                 )}
-              </HStack>
-            ) : isLogin ? (
-              <>
-                <a
-                  href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {signInAccountId}
-                </a>
-                <Button colorScheme="indigo" onClick={() => logout()}>
-                  Logout
-                </Button>
               </>
-            ) : (
+            )}
+            {!isDesktop && (
+              <>
+                {isLogin && (
+                  <HStack wrap="wrap" justifyContent={"flex-end"}>
+                      <Square minW="30px">
+                      <Image
+                        boxSize="20px"
+                        objectFit="cover"
+                        src="/stNEARorig.svg"
+                        alt="stnear"
+                      />
+                    </Square>
+                    <Text>{balance}</Text>
+                    {/* <a
+                      href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {signInAccountId}
+                    </a> */}
+                    <Button colorScheme="indigo" onClick={() => logout()}>
+                      Logout
+                    </Button>
+                  </HStack>
+                )}
+              </>
+            )}
+            {!isLogin && (
               <Button colorScheme="indigo" onClick={() => onConnect()}>
                 Connect Wallet
               </Button>

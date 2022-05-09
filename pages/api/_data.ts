@@ -4,6 +4,8 @@ export const data = [
     slug: "permrock", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "PembRock Finance",
     motto: "Leveraged yield farming is NEAR.",
+    projectUrl: "https://pembrock.finance/",
+    twitter: "https://twitter.com/PembrockFi",
     imageUrl:
       "https://pbs.twimg.com/media/FL0DTPSWUAEE87x?format=jpg&name=4096x4096",
     avatarUrl:

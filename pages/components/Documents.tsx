@@ -2,6 +2,7 @@ import { Box, Text, Stack, Accordion, AccordionItem, AccordionButton, AccordionI
 import * as React from "react";
 import { DocumentItem, FAQItem } from "../../types/project.types";
 import parse from "html-react-parser";
+import { ArrowSquareOut } from "phosphor-react";
 const Documents = (props: { data: DocumentItem[] }) => {
   const data = props.data;
   if (!data) return <></>;
@@ -14,11 +15,11 @@ const Documents = (props: { data: DocumentItem[] }) => {
   <Stack>
   {data.map((item: DocumentItem, index: number) => (
 
-       <Link key={`link_document_${index}`} href={item.url}>{item.title}</Link>
-
- 
-
+       <Link key={`link_document_${index}`} href={item.url} isExternal>{
+        item.title} <ArrowSquareOut size={20} />
+       </Link>
 ))}   </Stack>
+
 </>
 
   )

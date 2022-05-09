@@ -9,7 +9,6 @@ import {
   useColorModeValue,
   Wrap,
   StackDivider,
-  SimpleGrid,
   Image,
   Tabs,
   TabList,
@@ -23,11 +22,11 @@ import {
   Grid,
   GridItem,
   css,
-  useBreakpoint,
   useBreakpointValue,
   Container,
+  Spacer,
+  Link,
 } from "@chakra-ui/react";
-// import Image from "next/image";
 import {
   KickstarterGoalProps,
   TeamMemberProps,
@@ -48,7 +47,6 @@ import {
   withdrawAll,
 } from "../../lib/near";
 import {
-  getCurrentFundingGoal,
   getMyProjectsFounded,
   getWinnerGoal,
   isOpenPeriod,
@@ -62,6 +60,9 @@ import { useStore } from "../../stores/wallet";
 import Funding from "./Funding";
 import FAQ from "./FAQ";
 import Documents from "./Documents";
+import PageLoading from "./PageLoading";
+import { colors } from "../../constants/colors";
+import { Link as LinkI, TwitterLogo } from "phosphor-react";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -142,7 +143,6 @@ const ProjectDetails = (props: { id: any }) => {
             setStatus(ProjectStatus.FUNDED);
           }
         } else {
-          // setStatus(ProjectStatus.CLOSE);
           if (project.kickstarter.successful && thisProjectFounded) {
             setStatus(ProjectStatus.SUCCESS);
           } else {
@@ -261,14 +261,13 @@ const ProjectDetails = (props: { id: any }) => {
     })();
   }, [wallet, props, project]);
 
-  if (isLoading) return <></>;
+  if (isLoading) return <PageLoading />;
 
   return (
     <Container maxW="container.xl">
       <Grid
         as="section"
-        h="12rem"
-        templateRows={{ base: "repeat(3, 1fr)", lg: "repeat(2, 1fr)" }}
+        templateRows={{ base: "1fr", lg: "1fr" }}
         templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
         gap={"2rem"}
       >
@@ -311,19 +310,40 @@ const ProjectDetails = (props: { id: any }) => {
           <Text display={isMobile ? "none" : "initial"} mt="2">
             {project?.motto}
           </Text>
-          <Wrap
-            display={isMobile ? "none" : "initial"}
-            shouldWrapChildren
-            mt="5"
-            color={tagsColor}
-          >
-            {project?.tags &&
-              project?.tags.map((tag: string) => (
-                <Tag key={tag} color="inherit" px="3">
-                  {tag}
-                </Tag>
-              ))}
-          </Wrap>
+          <HStack alignItems="center" mt="5">
+            {!isMobile && (
+              <>
+                <Wrap shouldWrapChildren color={tagsColor}>
+                  {project?.tags &&
+                    project?.tags.map((tag: string) => (
+                      <Tag key={tag} color="inherit" px="3">
+                        {tag}
+                      </Tag>
+                    ))}
+                </Wrap>
+                <Spacer />
+              </>
+            )}
+
+            <HStack>
+              <Link href={project.projectUrl} isExternal>
+                <Button
+                  colorScheme="gray"
+                  leftIcon={<LinkI />}
+                  variant="outline"
+                >
+                  Website
+                </Button>
+              </Link>
+              {project.twitter && (
+                <Link href={project.twitter} isExternal>
+                  <Button colorScheme="gray" variant="outline" rounded="full">
+                    <TwitterLogo weight="fill" />
+                  </Button>
+                </Link>
+              )}
+            </HStack>
+          </HStack>
           <Image
             mt={5}
             src={project?.imageUrl}
