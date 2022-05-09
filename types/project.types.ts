@@ -54,6 +54,8 @@ export interface TeamMemberProps {
     slug:string;
     name: string;
     motto: string;
+    projectUrl: string;
+    twitter: string;
     imageUrl: string;
     avatarUrl: string;
     description: string;
