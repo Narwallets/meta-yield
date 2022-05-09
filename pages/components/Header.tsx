@@ -99,12 +99,12 @@ const Header: React.FC<ButtonProps> = (props) => {
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <HStack justify="space-between">
-            <Flex onClick={() => router.push(`/`)} cursor="pointer" alignItems="center">
-              <Image
-                objectFit="cover"
-                src="/logo.svg"
-                alt="logo"
-              />
+            <Flex
+              onClick={() => router.push(`/`)}
+              cursor="pointer"
+              alignItems="center"
+            >
+              <Image objectFit="cover" src="/logo.svg" alt="logo" />
             </Flex>
             <Spacer />
             <Show above="md">
@@ -130,67 +130,59 @@ const Header: React.FC<ButtonProps> = (props) => {
               </ButtonGroup>
             </Show>
             <Spacer />
-            {isLogin && (
-              <Show above="lg">
-                <Square minW="30px">
-                  <Image
-                    boxSize="20px"
-                    objectFit="cover"
-                    src="/stNEARorig.svg"
-                    alt="stnear"
-                  />
-                </Square>
-                <Text>{balance}</Text>
-
-                <Button colorScheme="indigo">
-                  <LinkOverlay href={nearConfig.metapoolUrl} isExternal>
-                    Get stNEAR
-                  </LinkOverlay>
-                </Button>
-              </Show>
-            )}
             {isLogin ? (
-              <Menu>
-                {isDesktop ? (
-                  <MenuButton
-                    px={4}
-                    py={2}
-                    transition="all 0.2s"
-                    borderRadius="md"
-                    borderWidth="1px"
-                  >
-                    {signInAccountId} <ChevronDownIcon />
-                  </MenuButton>
-                ) : (
-                  <MenuButton
-                    as={IconButton}
-                    icon={<HamburgerIcon />}
-                    variant="outline"
-                  >
-                    {signInAccountId} <ChevronDownIcon />
-                  </MenuButton>
-                )}
-                <MenuList>
-                  <MenuItem
-                    as={"a"}
-                    href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    My dashboard
-                  </MenuItem>
-                  <MenuItem onClick={() => logout()}>Disconnect</MenuItem>
-                  <Show below="lg">
-                    <MenuDivider />
-                    <MenuItem onClick={() => router.push("/#projects")}>
-                      Projects
+              <>
+                <Show above="lg">
+                  <Square minW="30px">
+                    <Image
+                      boxSize="20px"
+                      objectFit="cover"
+                      src="/stNEARorig.svg"
+                      alt="stnear"
+                    />
+                  </Square>
+                  <Text>{balance}</Text>
+
+                  <Button colorScheme="indigo">
+                    <LinkOverlay href={nearConfig.metapoolUrl} isExternal>
+                      Get stNEAR
+                    </LinkOverlay>
+                  </Button>
+                </Show>
+                <Menu>
+                  {isDesktop ? (
+                    <MenuButton px={4} py={2}>
+                      {signInAccountId} <ChevronDownIcon />
+                    </MenuButton>
+                  ) : (
+                    <MenuButton
+                      as={IconButton}
+                      icon={<HamburgerIcon h="22px" />}
+                      variant="none"
+                    />
+                  )}
+                  <MenuList>
+                    <MenuItem
+                      as={"a"}
+                      href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      My dashboard
                     </MenuItem>
-                    <MenuItem onClick={() => router.push("/#how-it-works")}>
-                      How it works
-                    </MenuItem>
-                  </Show>
-                </MenuList>
-              </Menu>
+                    <MenuItem onClick={() => logout()}>Disconnect</MenuItem>
+                    <Show below="lg">
+                      <MenuDivider />
+                      <MenuItem onClick={() => router.push("/#projects")}>
+                        Projects
+                      </MenuItem>
+                      <MenuItem onClick={() => router.push("/#how-it-works")}>
+                        How it works
+                      </MenuItem>
+                    </Show>
+                  </MenuList>
+                </Menu>
+              </>
             ) : (
               <Button
                 color="blue"
