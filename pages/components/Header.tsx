@@ -8,6 +8,7 @@ import {
   Flex,
   HStack,
   Link,
+  LinkOverlay,
   Container,
   useBreakpointValue,
   ButtonGroup,
@@ -138,8 +139,9 @@ const Header: React.FC<ButtonProps> = (props) => {
                         color={colors.indigo[500]}
                       >
                         Get stNEAR
-                      </Button>
-                    </Link>
+                      </LinkOverlay>
+                    </Button>
+
                     <a
                       href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
                       target="_blank"
