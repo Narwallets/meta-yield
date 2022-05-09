@@ -8,6 +8,7 @@ import {
   Flex,
   HStack,
   Link,
+  LinkOverlay,
   Container,
   useBreakpointValue,
   ButtonGroup,
@@ -16,7 +17,15 @@ import {
   Image,
   useToast,
   Stack,
+  Show,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  IconButton,
 } from "@chakra-ui/react";
+import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   getWallet,
   getBalance,
@@ -89,104 +98,102 @@ const Header: React.FC<ButtonProps> = (props) => {
     <Box as="section" pb={{ base: "12", md: "24" }}>
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
-          <Flex justify="space-between">
-            <Flex onClick={() => router.push(`/`)} cursor="pointer" alignItems="center">
-              <Image
-                objectFit="cover"
-                src="/logo.svg"
-                alt="logo"
-              />
+          <HStack justify="space-between">
+            <Flex
+              onClick={() => router.push(`/`)}
+              cursor="pointer"
+              alignItems="center"
+            >
+              <Image objectFit="cover" src="/logo.svg" alt="logo" />
             </Flex>
             <Spacer />
-            {isDesktop && (
+            <Show above="md">
+              <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
+                <Link href="/#projects">
+                  <Button
+                    fontWeight={600}
+                    fontSize={"md"}
+                    color={colors.indigo[500]}
+                    aria-current="page"
+                    variant="nav"
+                  >
+                    {" "}
+                    Projects{" "}
+                  </Button>
+                </Link>
+                <Link href="/#how-it-works">
+                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                    {" "}
+                    How it works{" "}
+                  </Button>
+                </Link>
+              </ButtonGroup>
+            </Show>
+            <Spacer />
+            {isLogin ? (
               <>
-                <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
-                  <Link href="/#projects">
-                    <Button
-                      fontWeight={600}
-                      fontSize={"md"}
-                      color={colors.indigo[500]}
-                      aria-current="page"
-                      variant="nav"
-                    >
-                      {" "}
-                      Projects{" "}
-                    </Button>
-                  </Link>
-                  <Link href="/#how-it-works">
-                    <Button fontWeight={600} fontSize={"16px"} variant="nav">
-                      {" "}
-                      How it works{" "}
-                    </Button>
-                  </Link>
-                </ButtonGroup>
-                {isLogin && (
-                  <HStack spacing="4">
-                    <Square minW="30px">
-                      <Image
-                        boxSize="20px"
-                        objectFit="cover"
-                        src="/stNEARorig.svg"
-                        alt="stnear"
-                      />
-                    </Square>
-                    <Text>{balance}</Text>
-                    <Link href={nearConfig.metapoolUrl} target="_blank">
-                      <Button
-                        fontWeight={600}
-                        fontSize={"md"}
-                        color={colors.indigo[500]}
-                      >
-                        Get stNEAR
-                      </Button>
-                    </Link>
-                    <a
+                <Show above="lg">
+                  <Square minW="30px">
+                    <Image
+                      boxSize="20px"
+                      objectFit="cover"
+                      src="/stNEARorig.svg"
+                      alt="stnear"
+                    />
+                  </Square>
+                  <Text>{balance}</Text>
+
+                  <Button colorScheme="indigo">
+                    <LinkOverlay href={nearConfig.metapoolUrl} isExternal>
+                      Get stNEAR
+                    </LinkOverlay>
+                  </Button>
+                </Show>
+                <Menu>
+                  {isDesktop ? (
+                    <MenuButton px={4} py={2}>
+                      {signInAccountId} <ChevronDownIcon />
+                    </MenuButton>
+                  ) : (
+                    <MenuButton
+                      as={IconButton}
+                      icon={<HamburgerIcon h="22px" />}
+                      variant="none"
+                    />
+                  )}
+                  <MenuList>
+                    <MenuItem
+                      as={"a"}
                       href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
                       target="_blank"
                       rel="noreferrer"
                     >
-                      {signInAccountId}
-                    </a>
-                    <Button colorScheme="indigo" onClick={() => logout()}>
-                      Logout
-                    </Button>
-                  </HStack>
-                )}
+                      My dashboard
+                    </MenuItem>
+                    <MenuItem onClick={() => logout()}>Disconnect</MenuItem>
+                    <Show below="lg">
+                      <MenuDivider />
+                      <MenuItem onClick={() => router.push("/#projects")}>
+                        Projects
+                      </MenuItem>
+                      <MenuItem onClick={() => router.push("/#how-it-works")}>
+                        How it works
+                      </MenuItem>
+                    </Show>
+                  </MenuList>
+                </Menu>
               </>
-            )}
-            {!isDesktop && (
-              <>
-                {isLogin && (
-                  <HStack wrap="wrap" justifyContent={"flex-end"}>
-                      <Square minW="30px">
-                      <Image
-                        boxSize="20px"
-                        objectFit="cover"
-                        src="/stNEARorig.svg"
-                        alt="stnear"
-                      />
-                    </Square>
-                    <Text>{balance}</Text>
-                    {/* <a
-                      href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {signInAccountId}
-                    </a> */}
-                    <Button colorScheme="indigo" onClick={() => logout()}>
-                      Logout
-                    </Button>
-                  </HStack>
-                )}
-              </>
-            )}
-            {!isLogin && (
-              <Button colorScheme="indigo" onClick={() => onConnect()}>
+            ) : (
+              <Button
+                color="blue"
+                borderColor="blue"
+                variant="outline"
+                onClick={() => onConnect()}
+              >
                 Connect Wallet
               </Button>
             )}
-          </Flex>
+          </HStack>
         </Container>
       </Box>
     </Box>
