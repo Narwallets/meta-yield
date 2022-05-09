@@ -17,6 +17,7 @@ import {
   Image,
   useToast,
   Stack,
+  Show,
 } from "@chakra-ui/react";
 import {
   getWallet,
@@ -99,30 +100,33 @@ const Header: React.FC<ButtonProps> = (props) => {
               />
             </Flex>
             <Spacer />
-            {isDesktop && (
-              <>
-                <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
-                  <Link href="/#projects">
-                    <Button
-                      fontWeight={600}
-                      fontSize={"md"}
-                      color={colors.indigo[500]}
-                      aria-current="page"
-                      variant="nav"
-                    >
-                      {" "}
-                      Projects{" "}
-                    </Button>
-                  </Link>
-                  <Link href="/#how-it-works">
-                    <Button fontWeight={600} fontSize={"16px"} variant="nav">
-                      {" "}
-                      How it works{" "}
-                    </Button>
-                  </Link>
-                </ButtonGroup>
+            <Show above="md">
+              <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
+                <Link href="/#projects">
+                  <Button
+                    fontWeight={600}
+                    fontSize={"md"}
+                    color={colors.indigo[500]}
+                    aria-current="page"
+                    variant="nav"
+                  >
+                    {" "}
+                    Projects{" "}
+                  </Button>
+                </Link>
+                <Link href="/#how-it-works">
+                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                    {" "}
+                    How it works{" "}
+                  </Button>
+                </Link>
+              </ButtonGroup>
+            </Show>
+            <Spacer />
+            <Show above="lg">
+              <HStack spacing="4">
                 {isLogin && (
-                  <HStack spacing="4">
+                  <HStack>
                     <Square minW="30px">
                       <Image
                         boxSize="20px"
@@ -132,12 +136,9 @@ const Header: React.FC<ButtonProps> = (props) => {
                       />
                     </Square>
                     <Text>{balance}</Text>
-                    <Link href={nearConfig.metapoolUrl} target="_blank">
-                      <Button
-                        fontWeight={600}
-                        fontSize={"md"}
-                        color={colors.indigo[500]}
-                      >
+
+                    <Button colorScheme="indigo">
+                      <LinkOverlay href={nearConfig.metapoolUrl} isExternal>
                         Get stNEAR
                       </LinkOverlay>
                     </Button>
@@ -154,40 +155,28 @@ const Header: React.FC<ButtonProps> = (props) => {
                     </Button>
                   </HStack>
                 )}
-              </>
-            )}
-            {!isDesktop && (
-              <>
-                {isLogin && (
-                  <HStack wrap="wrap" justifyContent={"flex-end"}>
-                      <Square minW="30px">
-                      <Image
-                        boxSize="20px"
-                        objectFit="cover"
-                        src="/stNEARorig.svg"
-                        alt="stnear"
-                      />
-                    </Square>
-                    <Text>{balance}</Text>
-                    {/* <a
-                      href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {signInAccountId}
-                    </a> */}
-                    <Button colorScheme="indigo" onClick={() => logout()}>
-                      Logout
-                    </Button>
-                  </HStack>
-                )}
-              </>
-            )}
-            {!isLogin && (
-              <Button colorScheme="indigo" onClick={() => onConnect()}>
-                Connect Wallet
-              </Button>
-            )}
+              </HStack>
+            </Show>
+            <Show below="lg">
+              {isLogin ? (
+                <>
+                  <a
+                    href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {signInAccountId}
+                  </a>
+                  <Button colorScheme="indigo" onClick={() => logout()}>
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Button colorScheme="indigo" onClick={() => onConnect()}>
+                  Connect Wallet
+                </Button>
+              )}
+            </Show>
           </Flex>
         </Container>
       </Box>
