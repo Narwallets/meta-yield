@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { ProjectProps } from "../../types/project.types";
-import { isOpenPeriod, timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
+import { getPeriod, isOpenPeriod, PERIOD, timeLeftToFund, yoctoToDollarStr } from "../../lib/util";
 import { fetchStNearPrice } from "../../queries/prices";
 import FundButton from "./FundButon";
 
@@ -128,7 +128,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
             spacing="1"
             w="full"
           >
-            {isOpenPeriod(projectData.kickstarter) &&
+            {getPeriod(projectData.kickstarter) === PERIOD.OPEN &&
               timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
                 <Stack
                   align={{ base: "center", lg: "flex-start" }}
@@ -138,6 +138,23 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                   <Text fontSize="xs" fontWeight="700">
                     {" "}
                     TIME LEFT
+                  </Text>
+                  <Text fontSize="md" color="emphasized">
+                    {timeLeftToFund(projectData.kickstarter?.close_timestamp)}
+                  </Text>
+                </Stack>
+              )}
+
+            {getPeriod(projectData.kickstarter) === PERIOD.NOT_OPEN &&
+              timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
+                <Stack
+                  align={{ base: "center", lg: "flex-start" }}
+                  spacing="4"
+                  p="1rem"
+                >
+                  <Text fontSize="xs" fontWeight="700">
+                    {" "}
+                    OPEN IN
                   </Text>
                   <Text fontSize="md" color="emphasized">
                     {timeLeftToFund(projectData.kickstarter?.close_timestamp)}

@@ -95,6 +95,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                 objectFit="cover"
                 src="/logo.svg"
                 alt="logo"
+                height={{ base: "25px", md: "35px" }}
               />
             </Flex>
             <Spacer />
