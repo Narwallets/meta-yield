@@ -125,7 +125,28 @@ With PembRock, you can earn great yields from both lending and leveraged yield f
  {title:"Which wallets do PembRock Finance support?", content:`At the moment, PembRock Finance supports the NEAR wallet, but other wallets will be integrated once the protocol is up and running.`},
  {title:"Who is the team behind PembRock Finance?", content:`PembRock Finance was created by a team of blockchain experts, led by Igor Stadnyk, CEO of INC4. Everything about our team is transparent, as we understand the importance of trust when engaging with new DeFi projects. You can <a target="_blank" href="https://pembrock.finance/">read about each of our developers here.</a>` }
 ],
-about:``,
+about:`<b>PembRock Introduction</b><br><br><b>What is PembRock?</b><br><br>PembRock is the first leveraged yield farming protocol built on the NEAR blockchain. Users can provide liquidity, farm with leverage, stake, and take governance decisions to secure the future of the platform, all on a fast, secure, cheap, and user-friendly blockchain.
+<br><br><b>What is yield farming?</b><br><br>Yield farming is the act of lending your cryptocurrency to the most profitable platforms in order to earn the highest DeFi yields. Rather than the traditional order book model that matches real buyers and sellers of assets, DeFi applications employ the Automated Market Maker (AMM) model. AMMs allow trades to be executed immediately through the use of algorithms and pools of tokens. This is where users come in, helping to provide liquidity to pools in exchange for a percentage return on investment.
+<br><br>The main difference between staking and yield farming is that the latter is defined by its mobility. Yield farming often involves the quick movement of crypto funds — either manually or through automated tools — to chase the highest rate of return, calculated by APY; however this is not a strict rule, and yield farmers who find a great protocol can reap fantastic rewards over a long period of time.
+<br><br><b>What is leveraged yield farming?</b>Leveraged yield farming is simply normal yield farming but supercharged! It is the practice of borrowing external liquidity to farm a larger amount of crypto, thus gaining the ability to get increased returns.
+<br><br>While many DeFi lending platforms still require users to overcollateralize (put up funds of a greater value than those being borrowed), our leveraged yield farming platform undercollateralizes, meaning: <br><br>
+<ul><li>A lower barrier to entry</li><li>Fewer funds laying dormant</li><li>Greater rewards for users.</li></ul>
+<br><br><b>Why did we build PembRock?</b><br><br>Yield farming is one of the key drivers of the DeFi ecosystem, with the liquidity provided by users helping protocols to innovate, building new features for the benefit of the entire community. Despite this symbiotic relationship, the DeFi sector is still in its experimental stages, meaning that current yield farming projects can be temperamental, hard-to-use, and occasionally, less than secure. It is only through trusted projects that decentralized finance can move into a more mature phase.
+<br><br>We wanted to play our part in this exciting sector, and what better opportunity could we get than building on NEAR, a blockchain which has made huge strides over the past year but is yet to house a leveraged yield farming platform.<br><br>Like our developers, NEAR Protocol wishes to accelerate the dream of DeFi as an integral part of Web 3.0 that is accessible to all. NEAR: <br><br>
+<ul><li>Is a fast, inexpensive and carbon-neutral blockchain.</li><li>Incorporates a user-friendly wallet.</li><li>Operates with the Delegated Proof of Stake (DPoS) consensus mechanism, encouraging greater community participation.</li><li>Has a large dedicated community.</li></ul>
+<br><br>One of the most exciting things about NEAR is its promotion of Guilds — teams of developers from the community who are creating innovative apps that are accessible to all users, which is one of the important aspects of continued DeFi growth. PembRock Finance is supported by both INC4 and Minerall Guilds in its development.
+<br><br>The NEAR ecosystem is expanding, with volume on DEXs such as Ref.finance increasing. With the demand for NEAR’s native products and a desire by crypto users to get maximum returns, now is a great time for PembRock Finance’s release. The NEAR Team seems to agree, which is why they provided us with a grant to assist us with the development of PembRock.
+<br><br><b>The PembRock protocol</b><img alt src="https://3621490034-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fop6AI95zTHVsmsuW1IpF%2Fuploads%2F5mai9Nrna8L68ol1Lhnv%2F0?alt=media>"
+<br><br><b>How does PembRock work?</b><br><br>PembRock couples lenders and yield farmers who are rewarded for providing liquidity within the NEAR ecosystem. On launch, we will support two base assets — NEAR and USDT — and integrate our leveraged farming with Ref Finance.‌
+<br><br><b>Lender</b>
+<br><br>The lender deposits their NEAR and earns interest from the borrowing fees paid by yield farmers.
+<br><br><b>Leveraged Farmer</b>
+<br><br>The yield farmer opens a leveraged yield farming position on a trading pair, borrowing NEAR from the vault and joining the farming pool with leverage. The yield farmer gets higher returns due to the larger stake, but pays a 10% premium for the privilege of using borrowed funds.
+<br><br><b>Liquidator bot</b>
+<br><br>The liquidator bot monitors all yield farming positions, liquidating those that become too risky. If a leveraged yield farming position does get liquidated, 5% of the position’s fee goes to the protocol, and is then distributed among those who have staked the PEM token.
+
+
+`,
 documents:[{title:"Download Pitch Deck", url:"https://drive.google.com/file/d/1oCTRy_9I7pEUv3qyEYWGrGLOUCF4YsMt/view?usp=sharing"}]
   },
   {
