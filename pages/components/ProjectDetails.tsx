@@ -623,8 +623,9 @@ const ProjectDetails = (props: { id: any }) => {
                 </Text>
                 <Text fontSize="lg" fontWeight="extrabold">
                   Our Vision
-                </Text>
-                {parse(project?.campaignHtml)}
+
+                  </Text>                
+                  <div dangerouslySetInnerHTML={{__html: project?.campaignHtml}}></div>
               </TabPanel>
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
@@ -659,7 +660,7 @@ const ProjectDetails = (props: { id: any }) => {
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
                 </Text>
-                {parse(project?.about)}
+                <div dangerouslySetInnerHTML={{__html: project?.about}}></div>
               </TabPanel>
             </TabPanels>
           </Tabs>
