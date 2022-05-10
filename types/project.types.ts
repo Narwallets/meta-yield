@@ -5,11 +5,8 @@ export interface SupportedKickstarter {
   successful?: boolean;
 }
 export interface TeamMemberProps {
-    id: number;
     name: string;
     bio: string;
-    avatarUrl: string;
-    handle: string;
   }
   export interface KickstarterGoalProps {
     cliff_timestamp: number;
@@ -45,6 +42,11 @@ export interface TeamMemberProps {
     title: string;
     url: string;
   }
+
+  export interface RoadmapProps{
+    imageUrl: string;
+    linkUrl: string;
+  }
   export interface ProjectProps {
     id: number;
     slug:string;
@@ -60,7 +62,7 @@ export interface TeamMemberProps {
     tags: string[];
     campaignHtml: string;
     team: TeamMemberProps[];
-    roadmapImageUrl: string;
+    roadmap: RoadmapProps;
     kickstarter?: KickstarterProps;
     faq: FAQItem[],
     about: string;

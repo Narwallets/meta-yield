@@ -64,7 +64,8 @@ import FAQ from "./FAQ";
 import Documents from "./Documents";
 import PageLoading from "./PageLoading";
 import { colors } from "../../constants/colors";
-import { Link as LinkI, TwitterLogo } from "phosphor-react";
+import { ArrowSquareOut, Link as LinkI, TwitterLogo } from "phosphor-react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -154,7 +155,7 @@ const ProjectDetails = (props: { id: any }) => {
           }
         }
       } else {
-        if ( getPeriod(project.kickstarter) === PERIOD.CLOSE ) {
+        if (getPeriod(project.kickstarter) === PERIOD.CLOSE) {
           if (project.kickstarter.successful && thisProjectFounded) {
             setStatus(ProjectStatus.SUCCESS);
           } else {
@@ -202,15 +203,9 @@ const ProjectDetails = (props: { id: any }) => {
       const formatDate = "YYYY/MM/DD HH:MM";
       const rewards = yton(myProjectFounded.available_rewards.toString());
       setRewards(rewards);
-      setLockupDate(
-        moment(winnerGoal.unfreeze_timestamp).format(formatDate)
-      );
-      setEndDate(
-        moment(winnerGoal.end_timestamp).format(formatDate)
-      );
-      setCliffDate(
-        moment(winnerGoal.cliff_timestamp).format(formatDate)
-      );
+      setLockupDate(moment(winnerGoal.unfreeze_timestamp).format(formatDate));
+      setEndDate(moment(winnerGoal.end_timestamp).format(formatDate));
+      setCliffDate(moment(winnerGoal.cliff_timestamp).format(formatDate));
     }
   };
 
@@ -222,18 +217,18 @@ const ProjectDetails = (props: { id: any }) => {
     );
   };
 
-  const isUnfreeze = ()=> {
+  const isUnfreeze = () => {
     const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
     const now = Date.now();
     // const result = moment.utc().diff(moment(winnerGoal.unfreeze_timestamp)) > 0;
     return now > winnerGoal.unfreeze_timestamp;
-  }
+  };
 
-  const isCliffOpen = ()=> {
+  const isCliffOpen = () => {
     const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
     const now = Date.now();
     return now > winnerGoal.cliff_timestamp;
-  }
+  };
 
   useEffect(() => {
     setShowWithdraw(false);
@@ -478,7 +473,9 @@ const ProjectDetails = (props: { id: any }) => {
                                   >
                                     BOND DUE
                                   </Text>
-                                  <Text fontWeight={700} fontSize={"14px"}>{lockupDate}</Text>
+                                  <Text fontWeight={700} fontSize={"14px"}>
+                                    {lockupDate}
+                                  </Text>
                                 </VStack>
                                 <VStack h={"80px"}>
                                   <Text
@@ -494,7 +491,10 @@ const ProjectDetails = (props: { id: any }) => {
                                 </VStack>
                               </Stack>
                               <Button
-                                disabled={ !isUnfreeze() || myProjectFounded.deposit_in_near <= 0 }
+                                disabled={
+                                  !isUnfreeze() ||
+                                  myProjectFounded.deposit_in_near <= 0
+                                }
                                 colorScheme="blue"
                                 size="lg"
                                 onClick={withdrawAllStnear}
@@ -566,7 +566,9 @@ const ProjectDetails = (props: { id: any }) => {
                                 >
                                   BOND DUE
                                 </Text>
-                                <Text fontWeight={700} fontSize={"14px"}>{cliffDate} TO <br></br> {endDate} </Text>
+                                <Text fontWeight={700} fontSize={"14px"}>
+                                  {cliffDate} TO <br></br> {endDate}{" "}
+                                </Text>
                               </VStack>
                               <VStack h={"80px"} justify={"space-between"}>
                                 <Text
@@ -582,7 +584,10 @@ const ProjectDetails = (props: { id: any }) => {
                               </VStack>
                             </Stack>
                             <Button
-                              disabled={!isCliffOpen || myProjectFounded.available_rewards <= 0}
+                              disabled={
+                                !isCliffOpen ||
+                                myProjectFounded.available_rewards <= 0
+                              }
                               colorScheme="blue"
                               size="lg"
                               onClick={claim}
@@ -626,45 +631,51 @@ const ProjectDetails = (props: { id: any }) => {
                 <Text fontSize="sm" fontWeight="subtle">
                   CAMPAIGN
                 </Text>
-                <Text fontSize="lg" fontWeight="extrabold">
-                  Our Vision
-
-                  </Text>                
-                  <div dangerouslySetInnerHTML={{__html: project?.campaignHtml}}></div>
+                <Stack mt={5}>
+                  <Text fontSize="lg" fontWeight="extrabold">
+                    Our Vision
+                  </Text>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: project?.campaignHtml }}
+                  ></div>
+                </Stack>
               </TabPanel>
               <TabPanel>
-                <Text fontSize="sm" fontWeight="subtle">
-                  TEAM
-                </Text>
-                <Text fontSize="lg" fontWeight="extrabold">
-                  Our founding team
-                </Text>
                 <Team team={project?.team} />
               </TabPanel>
               <TabPanel>
                 <FAQ data={project?.faq} />
               </TabPanel>
               <TabPanel>
-                <Text fontSize="sm" fontWeight="subtle">
-                  ROADMAP
-                </Text>
-                <Text fontSize="lg" fontWeight="extrabold">
-                  Our Timeline
-                </Text>
-                <Image
-                  src={project?.roadmapImageUrl}
-                  alt="project"
-                  width="400"
-                  objectFit="cover"
-                />
+                <>
+                  <Text fontSize="sm" fontWeight="subtle">
+                    ROADMAP
+                  </Text>
+                  <Stack mt={5}>
+                    <Image
+                      src={project?.roadmap.imageUrl}
+                      alt="project"
+                      width="400"
+                      objectFit="cover"
+                    />
+                    <Link href={project?.roadmap.linkUrl} isExternal>
+                      Full Roadmap <ExternalLinkIcon mx='2px' />
+                    </Link>
+                  </Stack>
+                </>
               </TabPanel>
               <TabPanel>
                 <Documents data={project?.documents} />
               </TabPanel>
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
+                  ABOUT
                 </Text>
-                <div dangerouslySetInnerHTML={{__html: project?.about}}></div>
+                <Stack mt={5}>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: project?.about }}
+                  ></div>
+                </Stack>
               </TabPanel>
             </TabPanels>
           </Tabs>
@@ -677,34 +688,39 @@ const ProjectDetails = (props: { id: any }) => {
 const Team = (props: { team: TeamMemberProps[] }) => {
   const team = props.team;
   return (
-    <Stack divider={<StackDivider />} spacing="4">
-      {team.map((member) => (
-        <Stack key={member.id} fontSize="sm" px="4" spacing="4">
-          <Stack direction="row" justify="space-between" spacing="4">
-            <HStack spacing="3">
-              <Avatar src={member.avatarUrl} boxSize="10" />
-              <Box>
-                <Text fontWeight="medium" color="emphasized">
-                  {member.name}
-                </Text>
-                {/* <Text color="muted">{member.handle}</Text> */}
-              </Box>
-            </HStack>
+    <>
+      <Text fontSize="sm" fontWeight="subtle">
+        TEAM
+      </Text>
+      <Stack divider={<StackDivider />} spacing="4" mt="5">
+        {team.map((member, index) => (
+          <Stack key={index} fontSize="sm" px="4" spacing="4">
+            <Stack direction="row" justify="space-between" spacing="4">
+              <HStack spacing="3">
+                <Avatar name={member.name} boxSize="10" />
+                <Box>
+                  <Text fontWeight="medium" color="emphasized">
+                    {member.name}
+                  </Text>
+                  {/* <Text color="muted">{member.handle}</Text> */}
+                </Box>
+              </HStack>
+            </Stack>
+            <Text
+              color="muted"
+              sx={{
+                "-webkit-box-orient": "vertical",
+                "-webkit-line-clamp": "2",
+                overflow: "hidden",
+                display: "-webkit-box",
+              }}
+            >
+              {member.bio}
+            </Text>
           </Stack>
-          <Text
-            color="muted"
-            sx={{
-              "-webkit-box-orient": "vertical",
-              "-webkit-line-clamp": "2",
-              overflow: "hidden",
-              display: "-webkit-box",
-            }}
-          >
-            {member.bio}
-          </Text>
-        </Stack>
-      ))}
-    </Stack>
+        ))}
+      </Stack>
+    </>
   );
 };
 
