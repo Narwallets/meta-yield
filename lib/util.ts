@@ -61,11 +61,11 @@ export const yoctoToDollarStr = (
 };
 
 export const timeLeftToFund = (time: any) => {
-  if (!time || moment(time).diff(moment()) < 0) {
+  if (!time || moment(time).diff(moment.utc()) < 0) {
     return "";
   }
   const timeMoment = moment(time);
-  const now = moment();
+  const now = moment.utc();
 
   return timeMoment.diff(now, "days") > 0
     ? `${timeMoment.diff(now, "days")} days`
@@ -74,8 +74,41 @@ export const timeLeftToFund = (time: any) => {
     : `${timeMoment.diff(now, "minutes")} minutes`;
 };
 
-export const isOpenPeriod = (openDate: any) => {
-  return moment().diff(moment(openDate)) > 0;
+export const isOpenPeriod = (kickstarter: any) => {
+  return getPeriod(kickstarter) === PERIOD.OPEN;
+}
+
+export enum PERIOD {
+  NOT_OPEN,
+  OPEN,
+  CLOSE
+}
+
+export const getPeriod = (kickstarter: any) => {
+  const nowDate = Date.now();
+  if (!kickstarter) {
+    return null;
+  }
+  if (nowDate < kickstarter.open_timestamp) {
+    return PERIOD.NOT_OPEN;
+  }
+
+  if ( kickstarter.open_timestamp <= nowDate && nowDate <= kickstarter.close_timestamp) {
+    return PERIOD.OPEN;
+  }
+
+  if ( nowDate > kickstarter.close_timestamp) {
+    return PERIOD.CLOSE;
+  }
+
+  /* if (moment.utc().diff(moment(kickstarter.open_timestamp)) < 0) {
+    return PERIOD.NOT_OPEN;
+  }
+
+  if ( moment.utc().isBetween(moment(kickstarter.open_timestamp), moment(kickstarter.close_timestamp))) {
+    return PERIOD.OPEN;
+  }
+  return PERIOD.CLOSE; */
 }
 
 export const getMyProjectsFounded = async (id: string, wallet: any) => {

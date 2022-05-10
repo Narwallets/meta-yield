@@ -3,7 +3,9 @@ import { HStack, Stack, Text, Flex, Spacer, Box } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
 import {
+  getPeriod,
   isOpenPeriod,
+  PERIOD,
   timeLeftToFund,
   yoctoToDollarStr,
   yton,
@@ -65,7 +67,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
           </Box>
           <Spacer />
           <Box>
-            {isOpenPeriod(kickstarter?.open_timestamp) &&
+            {getPeriod(kickstarter) === PERIOD.OPEN &&
               timeLeftToFund(kickstarter?.close_timestamp) && (
                 <>
                   <Text fontSize="sm" fontWeight="subtle">
@@ -80,7 +82,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
                   </Text>
                 </>
               )}
-            {!isOpenPeriod(kickstarter?.open_timestamp) && (
+            {getPeriod(kickstarter) === PERIOD.NOT_OPEN && (
               <>
                 <Text fontSize="sm" fontWeight="subtle">
                   OPEN IN
@@ -94,7 +96,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
                 </Text>
               </>
             )}
-            {!timeLeftToFund(kickstarter?.close_timestamp) && (
+            {getPeriod(kickstarter) === PERIOD.CLOSE && (
               <>
                 <Text fontSize="sm" fontWeight="subtle">
                   STATUS

@@ -48,8 +48,10 @@ import {
 } from "../../lib/near";
 import {
   getMyProjectsFounded,
+  getPeriod,
   getWinnerGoal,
   isOpenPeriod,
+  PERIOD,
   yton,
 } from "../../lib/util";
 
@@ -92,6 +94,8 @@ const ProjectDetails = (props: { id: any }) => {
   const [status, setStatus] = useState<ProjectStatus>(ProjectStatus.NOT_LOGGIN);
   const [ammountClaim, setRewards] = useState<any>(0);
   const [lockupDate, setLockupDate] = useState<any>();
+  const [endDate, setEndDate] = useState<any>();
+  const [cliffDate, setCliffDate] = useState<any>();
 
   const [myProjectFounded, setMyProjectFounded] = useState<any>();
   const [ammountWithdraw, setAmmountWithdraw] = useState(0);
@@ -133,7 +137,7 @@ const ProjectDetails = (props: { id: any }) => {
   const refreshStatus = (project: any, thisProjectFounded: any) => {
     if (isLogin) {
       setStatus(ProjectStatus.LOGGIN);
-      if (isOpenPeriod(project.kickstarter?.open_timestamp)) {
+      if (isOpenPeriod(project.kickstarter)) {
         if (project.kickstarter.active) {
           setStatus(ProjectStatus.ACTIVE);
           if (
@@ -150,8 +154,16 @@ const ProjectDetails = (props: { id: any }) => {
           }
         }
       } else {
-        // The project is not yet open
-        setStatus(ProjectStatus.FUTURE);
+        if ( getPeriod(project.kickstarter) === PERIOD.CLOSE ) {
+          if (project.kickstarter.successful && thisProjectFounded) {
+            setStatus(ProjectStatus.SUCCESS);
+          } else {
+            setStatus(ProjectStatus.UNSUCCESS);
+          }
+        } else {
+          // The project is not yet open
+          setStatus(ProjectStatus.FUTURE);
+        }
       }
     }
   };
@@ -183,18 +195,21 @@ const ProjectDetails = (props: { id: any }) => {
     }
   };
 
-  const isPeriodEnded = () => {
-    return moment().diff(moment(project.kickstarter.close_timestamp)) < 0;
-  };
-
   const calculateTokensToClaim = () => {
     const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
 
     if (winnerGoal && myProjectFounded) {
+      const formatDate = "YYYY/MM/DD HH:MM";
       const rewards = yton(myProjectFounded.available_rewards.toString());
       setRewards(rewards);
       setLockupDate(
-        moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
+        moment(winnerGoal.unfreeze_timestamp).format(formatDate)
+      );
+      setEndDate(
+        moment(winnerGoal.end_timestamp).format(formatDate)
+      );
+      setCliffDate(
+        moment(winnerGoal.cliff_timestamp).format(formatDate)
       );
     }
   };
@@ -206,6 +221,14 @@ const ProjectDetails = (props: { id: any }) => {
       project.kickstarter.token_contract_address
     );
   };
+
+  const isUnfreeze = ()=> {
+    const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
+    const now = Date.now();
+    const unfreeze = winnerGoal.unfreeze_timestamp;
+    const result = moment.utc().diff(moment(winnerGoal.unfreeze_timestamp)) > 0;
+    return result;
+  }
 
   useEffect(() => {
     setShowWithdraw(false);
@@ -419,7 +442,7 @@ const ProjectDetails = (props: { id: any }) => {
                                   src={project.kickstarter.project_token_icon}
                                   alt="near"
                                 />
-                                <VStack h={"50px"}>
+                                <VStack h={"80px"}>
                                   <Text
                                     color={"grey"}
                                     fontSize={"xxs"}
@@ -442,7 +465,7 @@ const ProjectDetails = (props: { id: any }) => {
                                 }}
                                 alignItems="center"
                               >
-                                <VStack h={"50px"}>
+                                <VStack h={"80px"}>
                                   <Text
                                     color={"grey"}
                                     fontSize={"xxs"}
@@ -450,9 +473,9 @@ const ProjectDetails = (props: { id: any }) => {
                                   >
                                     BOND DUE
                                   </Text>
-                                  <Text fontSize={"14px"}>{lockupDate}</Text>
+                                  <Text fontWeight={700} fontSize={"14px"}>{lockupDate}</Text>
                                 </VStack>
-                                <VStack h={"50px"}>
+                                <VStack h={"80px"}>
                                   <Text
                                     color={"grey"}
                                     fontSize={"xxs"}
@@ -479,7 +502,7 @@ const ProjectDetails = (props: { id: any }) => {
                       }
 
                       {
-                        // show if there are pending rewards to claim
+                        // show if there are pending rewards tokens to claim
                         myProjectFounded && myProjectFounded.rewards > 0 && (
                           <Stack
                             direction={{ base: "column", md: "row" }}
@@ -504,7 +527,7 @@ const ProjectDetails = (props: { id: any }) => {
                                 src={project.kickstarter.project_token_icon}
                                 alt="ptoken"
                               />
-                              <VStack h={"50px"} justify={"space-between"}>
+                              <VStack h={"80px"} justify={"space-between"}>
                                 <Text
                                   color={"grey"}
                                   fontSize={"xxs"}
@@ -530,7 +553,7 @@ const ProjectDetails = (props: { id: any }) => {
                               }}
                               alignItems="center"
                             >
-                              <VStack h={"50px"} justify={"space-between"}>
+                              <VStack h={"80px"} justify={"space-between"}>
                                 <Text
                                   color={"grey"}
                                   fontSize={"xxs"}
@@ -538,9 +561,9 @@ const ProjectDetails = (props: { id: any }) => {
                                 >
                                   BOND DUE
                                 </Text>
-                                <Text fontSize={"14px"}>{lockupDate}</Text>
+                                <Text fontWeight={700} fontSize={"14px"}>{cliffDate} TO <br></br> {endDate} </Text>
                               </VStack>
-                              <VStack h={"50px"} justify={"space-between"}>
+                              <VStack h={"80px"} justify={"space-between"}>
                                 <Text
                                   color={"grey"}
                                   fontSize={"xxs"}
