@@ -60,7 +60,7 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
 
     const goal = getCurrentFundingGoal();
     if (goal) {
-      const isOpen = isOpenPeriod(kickstarter.open_timestamp)
+      const isOpen = isOpenPeriod(kickstarter)
       if (isOpen) {
         return "In Progress...";
       } else 
