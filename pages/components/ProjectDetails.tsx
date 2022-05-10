@@ -654,7 +654,6 @@ const ProjectDetails = (props: { id: any }) => {
                   src={project?.roadmapImageUrl}
                   alt="project"
                   width="400"
-                  height={"100%"}
                   objectFit="cover"
                 />
               </TabPanel>
