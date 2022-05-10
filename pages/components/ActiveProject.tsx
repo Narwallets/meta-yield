@@ -146,7 +146,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
               )}
 
             {getPeriod(projectData.kickstarter) === PERIOD.NOT_OPEN &&
-              timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
+              timeLeftToFund(projectData.kickstarter?.open_timestamp) && (
                 <Stack
                   align={{ base: "center", lg: "flex-start" }}
                   spacing="4"
@@ -157,7 +157,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
                     OPEN IN
                   </Text>
                   <Text fontSize="md" color="emphasized">
-                    {timeLeftToFund(projectData.kickstarter?.close_timestamp)}
+                    {timeLeftToFund(projectData.kickstarter?.open_timestamp)}
                   </Text>
                 </Stack>
               )}
