@@ -20,6 +20,8 @@ import {
   katherineViewMethods,
   katherineChangeMethods,
   metaPoolMethods,
+  projectTokenViewMethods,
+  projectTokenChangeMethods,
 } from "./methods";
 import {
   decodeJsonRpcData,
@@ -31,8 +33,8 @@ import {
 } from "./util";
 import { ExecutionError } from "near-api-js/lib/providers/provider";
 
-export const CONTRACT_ID = process.env.CONTRACT_ID;
-export const METAPOOL_CONTRACT_ID = process.env.METAPOOL_CONTRACT_ID;
+export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
+export const METAPOOL_CONTRACT_ID = process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
 export const gas = new BN("70000000000000");
 const nearConfig = getConfig("development");
 const provider = new providers.JsonRpcProvider({ url: nearConfig.nodeUrl });
@@ -304,11 +306,51 @@ export const getContractMetadata = async (contract: string) => {
     request_type: "call_function",
     finality: "final",
     account_id: contract,
-    method_name: "ft_metadata",
+    method_name: projectTokenViewMethods.metadata,
     args_base64: encodeJsonRpcData({}),
   });
   return decodeJsonRpcData(response.result);
 };
+
+export const getBalanceOfTokenForSupporter = async (wallet: WalletConnection, tokenContractAddress: string) => {
+  const response: any = await provider.query({
+    request_type: "call_function",
+    finality: "final",
+    account_id: tokenContractAddress,
+    method_name: projectTokenViewMethods.storageBalanceOf,
+    args_base64: encodeJsonRpcData({account_id: wallet.getAccountId()}),
+  });
+  return decodeJsonRpcData(response.result);
+
+}
+
+export const storageDepositOfTokenForSupporter = async (wallet: WalletConnection, tokenContractAddress: string) => {
+  const bounds: any = await getStorageBalanceBounds(tokenContractAddress)
+  const response = await wallet
+    .account()
+    .functionCall(
+      tokenContractAddress!,
+      projectTokenChangeMethods.storageDeposit,
+      {},
+      "300000000000000",
+      bounds.min
+    );
+  return providers.getTransactionLastResult(response);
+
+
+}
+
+const getStorageBalanceBounds = async (contract: string) => {
+ const response: any = await provider.query({
+    request_type: "call_function",
+    finality: "final",
+    account_id: contract,
+    method_name: projectTokenViewMethods.storageBalanceBounds,
+    args_base64: encodeJsonRpcData({}),
+  });
+  return decodeJsonRpcData(response.result);
+}
+
 const callPublicKatherineMethod = async (method: string, args: any) => {
   const response: any = await provider.query({
     request_type: "call_function",

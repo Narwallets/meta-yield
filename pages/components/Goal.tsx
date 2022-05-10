@@ -67,7 +67,7 @@ const Goal = (props: GoalProps) => {
           orientation={orientation}
           borderWidth="1px"
           borderColor={
-            isCompleted ? "accent" : isLastGoal ? "transparent" : "inherit"
+            isCompleted && !isLastGoal ? "accent" : isLastGoal ? "transparent" : "inherit"
           }
         />
       </Stack>
@@ -77,7 +77,7 @@ const Goal = (props: GoalProps) => {
         align={{ base: "start", md: "center" }}
       >
         <Text color="emphasized" fontWeight="medium">
-          {kickstarterGoal?.name}
+          {kickstarterGoal?.name.replaceAll('_',' ')}
         </Text>
         <Text color="emphasized" fontWeight="medium">
           {kickstarterGoal

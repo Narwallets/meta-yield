@@ -2,19 +2,20 @@ import Hero from "./components/Hero";
 import ActiveProject from "./components/ActiveProject";
 import Projects from "./components/Projects";
 import HowItWorks from "./components/HowItWorks";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Container, Text } from "@chakra-ui/react";
 import * as React from "react";
 import { useGetActiveProjects } from "./../hooks/projects";
 import ErrorHandlerHash from "./components/ErrorHandlerHash";
+import PageLoading from "./components/PageLoading";
 
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
-  if (isLoading) return <></>;
+  if (isLoading) return <PageLoading />;
 
   return (
     <>
       <ErrorHandlerHash></ErrorHandlerHash>
-      <Box px={{ base: "2rem", lg: "8rem" }}>
+      <Container maxW="container.xl">
         <Hero />
         <Box
           id="projects"
@@ -33,7 +34,7 @@ const Home = () => {
         </Box>
         {data.active.length > 0 && <Projects data={data.active} />}
         <HowItWorks />
-      </Box>
+      </Container>
     </>
   );
 };

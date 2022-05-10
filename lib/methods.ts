@@ -29,3 +29,13 @@ export const metaPoolMethods = {
   getStNearPrice: "get_st_near_price",
   getAccountInfo: "get_account_info"
 };
+
+export const projectTokenViewMethods = {
+  storageBalanceOf: "storage_balance_of",
+  metadata: "ft_metadata",
+  storageBalanceBounds: "storage_balance_bounds"
+}
+
+export const projectTokenChangeMethods = {
+  storageDeposit: "storage_deposit"
+}

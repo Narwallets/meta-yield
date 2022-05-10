@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useStore } from "../../stores/wallet";
 import ProjectDetails from "../components/ProjectDetails";
 import ErrorHandlerHash from "../components/ErrorHandlerHash";
+import PageLoading from "../components/PageLoading";
 
 export default function ProjectDetailsContainer() {
   const router = useRouter();
@@ -20,10 +21,12 @@ export default function ProjectDetailsContainer() {
     })();
   }, [transactionHashes, wallet, toast]);
 
-  if (!id || !isLoaded) return <></>;
+  if (!id || !isLoaded) return <PageLoading />;
 
-  return <>
-        <ErrorHandlerHash></ErrorHandlerHash>
-        <ProjectDetails id={id} />
-  </>;
+  return (
+    <>
+      <ErrorHandlerHash></ErrorHandlerHash>
+      <ProjectDetails id={id} />
+    </>
+  );
 }

@@ -7,13 +7,11 @@ const nextConfig = {
       "3621490034-files.gitbook.io",
       "twitter.com",
       "pbs.twimg.com",
-      "pembrock.finance",
+      "pembrock.finance"
     ],
   },
   env: {
-    CONTRACT_ID: "v0_1_6.katherine_fundraising.testnet",
-    METAPOOL_CONTRACT_ID: "meta-v2.pool.testnet",
-    GA_TRACKING_ID: 'G-330HH1R960'
+    MINIMUM_AMOUNT_DEPOSIT: 1
   },
   pageExtensions: ["page.tsx", "ts", "tsx"],
 };
