@@ -658,8 +658,8 @@ const ProjectDetails = (props: { id: any }) => {
               </TabPanel>
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
-                  ABOUT
                 </Text>
+                {parse(project?.about)}
               </TabPanel>
             </TabPanels>
           </Tabs>
