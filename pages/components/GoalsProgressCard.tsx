@@ -100,7 +100,7 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
                 key={goal.id}
                 kickstarterGoal={goal}
                 isActive={currentGoalId === goal.id}
-                isCompleted={currentGoalId >= goal.id}
+                isCompleted={parseInt(kickstarter.total_deposited) >= parseInt(goal.desired_amount)}
                 isFirstGoal={goal.id === 0}
                 isLastGoal={kickstarter.goals.length === goal.id + 1}
               />
