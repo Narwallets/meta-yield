@@ -225,9 +225,14 @@ const ProjectDetails = (props: { id: any }) => {
   const isUnfreeze = ()=> {
     const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
     const now = Date.now();
-    const unfreeze = winnerGoal.unfreeze_timestamp;
-    const result = moment.utc().diff(moment(winnerGoal.unfreeze_timestamp)) > 0;
-    return result;
+    // const result = moment.utc().diff(moment(winnerGoal.unfreeze_timestamp)) > 0;
+    return now > winnerGoal.unfreeze_timestamp;
+  }
+
+  const isCliffOpen = ()=> {
+    const winnerGoal: KickstarterGoalProps = getWinnerGoal(project.kickstarter);
+    const now = Date.now();
+    return now > winnerGoal.cliff_timestamp;
   }
 
   useEffect(() => {
@@ -489,7 +494,7 @@ const ProjectDetails = (props: { id: any }) => {
                                 </VStack>
                               </Stack>
                               <Button
-                                disabled={myProjectFounded.deposit_in_near <= 0}
+                                disabled={ !isUnfreeze() || myProjectFounded.deposit_in_near <= 0 }
                                 colorScheme="blue"
                                 size="lg"
                                 onClick={withdrawAllStnear}
@@ -577,7 +582,7 @@ const ProjectDetails = (props: { id: any }) => {
                               </VStack>
                             </Stack>
                             <Button
-                              disabled={myProjectFounded.available_rewards <= 0}
+                              disabled={!isCliffOpen || myProjectFounded.available_rewards <= 0}
                               colorScheme="blue"
                               size="lg"
                               onClick={claim}
