@@ -86,6 +86,9 @@ export enum PERIOD {
 
 export const getPeriod = (kickstarter: any) => {
   const nowDate = Date.now();
+  if (!kickstarter) {
+    return null;
+  }
   if (nowDate < kickstarter.open_timestamp) {
     return PERIOD.NOT_OPEN;
   }
