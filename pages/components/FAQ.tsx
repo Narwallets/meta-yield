@@ -11,7 +11,7 @@ const FAQ = (props: { data: FAQItem[] }) => {
     <Text fontSize="sm" fontWeight="subtle">
     FAQ
   </Text>
-    <Accordion>
+    <Accordion mt={5}>
         {data.map((item: FAQItem, index: number) => 
             ( <AccordionItem key={`faq_item_${index}`}>
                 <h2>

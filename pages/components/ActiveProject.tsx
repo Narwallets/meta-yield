@@ -65,7 +65,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
       <Flex
         borderRadius={{ base: "md", md: "lg" }}
         minW={{ base: "100%", lg: "300px", xl: "400px" }}
-        minH={310}
+        minH={210}
         backgroundColor={"black"}
         alignItems={"center"}
       >
