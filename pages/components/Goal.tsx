@@ -67,7 +67,7 @@ const Goal = (props: GoalProps) => {
           orientation={orientation}
           borderWidth="1px"
           borderColor={
-            isCompleted ? "accent" : isLastGoal ? "transparent" : "inherit"
+            isCompleted && !isLastGoal ? "accent" : isLastGoal ? "transparent" : "inherit"
           }
         />
       </Stack>
