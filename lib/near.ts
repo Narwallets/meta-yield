@@ -209,7 +209,7 @@ export const fundToKickstarter = async (
       METAPOOL_CONTRACT_ID!,
       "ft_transfer_call",
       args,
-      "300000000000000",
+      "200000000000000",
       "1"
     );
   return providers.getTransactionLastResult(response);
@@ -253,7 +253,7 @@ export const withdrawAll = async (
   const args = {
     kickstarter_id: kickstarter_id,
   };
-  const response = (contract as any)["withdraw_all"](args, "300000000000000");
+  const response = (contract as any)["withdraw_all"](args, "200000000000000");
   return response;
 };
 
@@ -267,7 +267,7 @@ export const withdraw = async (
     kickstarter_id: kickstarter_id,
     amount,
   };
-  const response = (contract as any)["withdraw"](args, "300000000000000");
+  const response = (contract as any)["withdraw"](args, "200000000000000");
   return response;
 };
 
@@ -281,7 +281,7 @@ export const claimAll = async (
   };
   const response = (contract as any)["claim_all_kickstarter_tokens"](
     args,
-    "300000000000000"
+    "200000000000000"
   );
   return response;
 };
@@ -298,7 +298,7 @@ export const claimPartial = async (
   };
   const response = (contract as any)["claim_all_kickstarter_tokens"](
     args,
-    "300000000000000"
+    "200000000000000"
   );
   return response;
 };
@@ -334,7 +334,7 @@ export const storageDepositOfTokenForSupporter = async (wallet: WalletConnection
       tokenContractAddress!,
       projectTokenChangeMethods.storageDeposit,
       {},
-      "300000000000000",
+      "200000000000000",
       bounds.min
     );
   return providers.getTransactionLastResult(response);
