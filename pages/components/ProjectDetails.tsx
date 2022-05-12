@@ -647,7 +647,7 @@ const ProjectDetails = (props: { id: any }) => {
                 <FAQ data={project?.faq} />
               </TabPanel>
               <TabPanel>
-                <>
+                <Box>
                   <Text fontSize="sm" fontWeight="subtle">
                     ROADMAP
                   </Text>
@@ -662,7 +662,7 @@ const ProjectDetails = (props: { id: any }) => {
                       Full Roadmap <ExternalLinkIcon mx='2px' />
                     </Link>
                   </Stack>
-                </>
+                </Box>
               </TabPanel>
               <TabPanel>
                 <Documents data={project?.documents} />
