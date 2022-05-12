@@ -13,19 +13,20 @@ export const data = [
       "Is the first leveraged yield farming application on NEAR Protocol. It is aimed at providing users with larger yields and greater liquidity — all on the NEAR blockchain.",
     verified: true,
     tags: ["Finance", "Infrastructure", "Security", "Vault"],
-    campaignHtml: `<b>Supported by Near Foundation</b><br>
-    PembRock Finance has been created with the support of the NEAR Foundation, which delivers grants to developers wishing to expand the NEAR ecosystem with new financial tools.<br><br>
-    <b>Managed by Community</b><br>
-    Our community is in the driver’s seat of PembRock Finance’s development and evolution.<br><br>
-    <b>Greater Profits Unlocked</b><br>
-    Boost your portfolio — leveraged yield farming gives participants the opportunity to increase their stake with borrowed funds and maximize their profits.<br><br>
-    <b>The only leveraged yield farming on NEAR</b>
-    <ul>
-    <li>NEAR is still in a rapid growth, coupled with increased volumes flowing through Ref. finance.</li>
-    <li>The huge buzz around farming on Ethereum, BSC, Terra, and Avalanche brings NEAR a clear opportunity to attract new users and bring greater value to existing ones.</li>
-    <li>There is currently no opportunity for users to get loans for farming on NEAR. Yet.</li>
-    </ul><br><br>
-    <img alt src="https://res.cloudinary.com/metayield/image/upload/v1652215639/Pembrock/How_It_Works_omx6dw.png">`,
+    campaignHtml: `PembRock Finance is the first leveraged yield farming project on NEAR! Founded by NEAR guild masters and having secured a $75,000 grant from the NEAR Foundation, PembRock will provide new tools to reach a wider usership, attracting more investment and expanding the NEAR ecosystem.<br><br>
+    Lenders earn passive income by depositing their crypto into the vaults which fund liquidity pools, while yield farmers can maximize their profits by opening a leveraged position. <br><br>
+    The financial ecosystem of PembRock finance will be supported by native and versative <b>PEM Token</b>. It is used: <br><br>
+    <ul><li>To stake within the PembRock Finance ecosystem — with rewards paid out in PEM.</li>
+    <li>As a part of our reward mechanism for interacting with our protocol.</li>
+    <li>As an additional bonus for those who provide funds to our liquidity pools.</li>
+    <li>For DAO participation — users can stake PEM to receive xPEM, our governance token.</li></ul> <br><br>
+    All fees are collected as profit and are distributed among PEM holders who have staked in our protocol! <br><br>
+    <b>How the protocol collects fees</b>
+    <ul><li>Farmers are charged 10% of their yield farming rewards.</li>
+    <li>Lenders are charged 10% of their borrowing profit.</li>
+    <li>Every time a position is liquidated, 5% of the position’s value is paid as a fee.</li></ul>  <br>
+    Detailed Tokenomics - <a target="_blank" href="https://docs.pembrock.finance/tokenomics">https://docs.pembrock.finance/tokenomics </a>
+    `,
     team: [
       {
         name: "Igor Stadnyk",
@@ -99,7 +100,7 @@ With PembRock, you can earn great yields from both lending and leveraged yield f
   <li>To stake within the PembRock Finance ecosystem — with rewards paid out in PEM.</li>
   <li>As a part of our reward mechanism for interacting with our protocol.</li>
   <li>As an additional bonus for those who provide funds to our liquidity pools.</li>
-  <li>For DAO participation — users can stake PEM to receive xPEM, our governance token.</li></ul><br>
+  <li>For DAO participation — users can stake PEM to receive xPEM, our governance token.</li></ul> <br>
   The 10% of the borrowing and farming interest profits that we collect from people, as well as the 5% fee that is charged when a position is liquidated, is distributed among the PEM holders who have staked in our protocol!<br><br>
   As leveraged yield farming allows you to profit regardless of market trends, the $PEM token has utility in both bull and bear markets.`},
   {title: "Where can I buy the $PEM token?", content:`First of all, stay tuned for our upcoming IDO on Meta Yield, Boca Chica, SmartPad, and Skyward. Moreover, will have the opportunity to buy the $PEM token on Ref Finance, which will be progressively rolled out to further CEXes and DEXes afterward.`},
@@ -127,29 +128,24 @@ With PembRock, you can earn great yields from both lending and leveraged yield f
  {title:"Which wallets do PembRock Finance support?", content:`At the moment, PembRock Finance supports the NEAR wallet, but other wallets will be integrated once the protocol is up and running.`},
  {title:"Who is the team behind PembRock Finance?", content:`PembRock Finance was created by a team of blockchain experts, led by Igor Stadnyk, CEO of INC4. Everything about our team is transparent, as we understand the importance of trust when engaging with new DeFi projects. You can <a target="_blank" href="https://pembrock.finance/">read about each of our developers here.</a>` }
 ],
-about:`<b>PembRock Introduction</b><br><br><b>What is PembRock?</b><br><br>PembRock is the first leveraged yield farming protocol built on the NEAR blockchain. Users can provide liquidity, farm with leverage, stake, and take governance decisions to secure the future of the platform, all on a fast, secure, cheap, and user-friendly blockchain.
-<br><br><b>What is yield farming?</b><br><br>Yield farming is the act of lending your cryptocurrency to the most profitable platforms in order to earn the highest DeFi yields. Rather than the traditional order book model that matches real buyers and sellers of assets, DeFi applications employ the Automated Market Maker (AMM) model. AMMs allow trades to be executed immediately through the use of algorithms and pools of tokens. This is where users come in, helping to provide liquidity to pools in exchange for a percentage return on investment.
-<br><br>The main difference between staking and yield farming is that the latter is defined by its mobility. Yield farming often involves the quick movement of crypto funds — either manually or through automated tools — to chase the highest rate of return, calculated by APY; however this is not a strict rule, and yield farmers who find a great protocol can reap fantastic rewards over a long period of time.
-<br><br><b>What is leveraged yield farming?</b>Leveraged yield farming is simply normal yield farming but supercharged! It is the practice of borrowing external liquidity to farm a larger amount of crypto, thus gaining the ability to get increased returns.
-<br><br>While many DeFi lending platforms still require users to overcollateralize (put up funds of a greater value than those being borrowed), our leveraged yield farming platform undercollateralizes, meaning: <br><br>
-<ul><li>A lower barrier to entry</li><li>Fewer funds laying dormant</li><li>Greater rewards for users.</li></ul>
-<br><br><b>Why did we build PembRock?</b><br><br>Yield farming is one of the key drivers of the DeFi ecosystem, with the liquidity provided by users helping protocols to innovate, building new features for the benefit of the entire community. Despite this symbiotic relationship, the DeFi sector is still in its experimental stages, meaning that current yield farming projects can be temperamental, hard-to-use, and occasionally, less than secure. It is only through trusted projects that decentralized finance can move into a more mature phase.
-<br><br>We wanted to play our part in this exciting sector, and what better opportunity could we get than building on NEAR, a blockchain which has made huge strides over the past year but is yet to house a leveraged yield farming platform.<br><br>Like our developers, NEAR Protocol wishes to accelerate the dream of DeFi as an integral part of Web 3.0 that is accessible to all. NEAR: <br><br>
-<ul><li>Is a fast, inexpensive and carbon-neutral blockchain.</li><li>Incorporates a user-friendly wallet.</li><li>Operates with the Delegated Proof of Stake (DPoS) consensus mechanism, encouraging greater community participation.</li><li>Has a large dedicated community.</li></ul>
-<br><br>One of the most exciting things about NEAR is its promotion of Guilds — teams of developers from the community who are creating innovative apps that are accessible to all users, which is one of the important aspects of continued DeFi growth. PembRock Finance is supported by both INC4 and Minerall Guilds in its development.
-<br><br>The NEAR ecosystem is expanding, with volume on DEXs such as Ref.finance increasing. With the demand for NEAR’s native products and a desire by crypto users to get maximum returns, now is a great time for PembRock Finance’s release. The NEAR Team seems to agree, which is why they provided us with a grant to assist us with the development of PembRock.
-<br><br><b>The PembRock protocol</b><br><br><img alt src="https://res.cloudinary.com/metayield/image/upload/v1652215639/Pembrock/How_It_Works_omx6dw.png">
-<br><br><b>How does PembRock work?</b><br><br>PembRock couples lenders and yield farmers who are rewarded for providing liquidity within the NEAR ecosystem. On launch, we will support two base assets — NEAR and USDT — and integrate our leveraged farming with Ref Finance.‌
-<br><br><b>Lender</b>
+about:`PembRock couples lenders and yield farmers who are rewarded for providing liquidity within the NEAR ecosystem. On launch, we will support two base assets — NEAR and USDT — and integrate our leveraged farming with Ref Finance.‌ <br><br>
 <br><br>The lender deposits their NEAR and earns interest from the borrowing fees paid by yield farmers.
 <br><br><b>Leveraged Farmer</b>
 <br><br>The yield farmer opens a leveraged yield farming position on a trading pair, borrowing NEAR from the vault and joining the farming pool with leverage. The yield farmer gets higher returns due to the larger stake, but pays a 10% premium for the privilege of using borrowed funds.
 <br><br><b>Liquidator bot</b>
 <br><br>The liquidator bot monitors all yield farming positions, liquidating those that become too risky. If a leveraged yield farming position does get liquidated, 5% of the position’s fee goes to the protocol, and is then distributed among those who have staked the PEM token.
-
-
+<br><br> 
+<img alt src="https://res.cloudinary.com/metayield/image/upload/v1652215639/Pembrock/How_It_Works_omx6dw.png">
 `,
-documents:[{title:"Download Pitch Deck", url:"https://drive.google.com/file/d/1oCTRy_9I7pEUv3qyEYWGrGLOUCF4YsMt/view?usp=sharing"}]
+documents:[
+
+  {title:"Tokenomics",
+  url:"https://docs.pembrock.finance/tokenomics "},
+  {title:"Roadmap", 
+  url:"https://docs.pembrock.finance/roadmap"},
+  {title:"Roadmap", 
+  url:"https://pembrock.finance/team"},
+]
   }  
 ];
 

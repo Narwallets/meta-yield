@@ -632,9 +632,6 @@ const ProjectDetails = (props: { id: any }) => {
                   CAMPAIGN
                 </Text>
                 <Stack mt={5}>
-                  <Text fontSize="lg" fontWeight="extrabold">
-                    Our Vision
-                  </Text>
                   <div
                     dangerouslySetInnerHTML={{ __html: project?.campaignHtml }}
                   ></div>
@@ -647,7 +644,7 @@ const ProjectDetails = (props: { id: any }) => {
                 <FAQ data={project?.faq} />
               </TabPanel>
               <TabPanel>
-                <>
+                <Box>
                   <Text fontSize="sm" fontWeight="subtle">
                     ROADMAP
                   </Text>
@@ -662,7 +659,7 @@ const ProjectDetails = (props: { id: any }) => {
                       Full Roadmap <ExternalLinkIcon mx='2px' />
                     </Link>
                   </Stack>
-                </>
+                </Box>
               </TabPanel>
               <TabPanel>
                 <Documents data={project?.documents} />
