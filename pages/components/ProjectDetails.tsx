@@ -632,9 +632,6 @@ const ProjectDetails = (props: { id: any }) => {
                   CAMPAIGN
                 </Text>
                 <Stack mt={5}>
-                  <Text fontSize="lg" fontWeight="extrabold">
-                    Our Vision
-                  </Text>
                   <div
                     dangerouslySetInnerHTML={{ __html: project?.campaignHtml }}
                   ></div>
