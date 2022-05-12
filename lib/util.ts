@@ -69,7 +69,7 @@ export const timeLeftToFund = (time: any) => {
 
   return timeMoment.diff(now, "days") > 0
     ? `${timeMoment.diff(now, "days")} days`
-    : timeMoment.diff(now, "hours") > 1
+    : timeMoment.diff(now, "hours") >= 1
     ? `${timeMoment.diff(now, "hours")} hours`
     : `${timeMoment.diff(now, "minutes")} minutes`;
 };
