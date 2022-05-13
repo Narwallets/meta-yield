@@ -6,7 +6,7 @@ export const data = [
     motto: "Leveraged yield farming is NEAR.",
     projectUrl: "https://pembrock.finance/",
     twitter: "https://twitter.com/PembrockFi",
-    imageUrl:"https://res.cloudinary.com/metayield/image/upload/v1652215658/Pembrock/Pembrock_Cover_pm5jne.png",
+    imageUrl:"https://res.cloudinary.com/metayield/image/upload/v1652446802/Pembrock/Pembrock_Cover_2_ccvd3n.png",
     avatarUrl:
       "https://pbs.twimg.com/profile_images/1496155033389391873/d4H_TCLF_400x400.jpg",
     description:
@@ -143,7 +143,7 @@ documents:[
   url:"https://docs.pembrock.finance/tokenomics "},
   {title:"Roadmap", 
   url:"https://docs.pembrock.finance/roadmap"},
-  {title:"Roadmap", 
+  {title:"Team", 
   url:"https://pembrock.finance/team"},
 ]
   }  
