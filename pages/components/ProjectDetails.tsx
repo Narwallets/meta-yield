@@ -173,7 +173,7 @@ const ProjectDetails = (props: { id: any }) => {
     getSupporterEstimatedStNear(wallet, id, price);
 
   const calculateAmmountToWithdraw = async () => {
-    if (project.kickstarter.sucess && !project.kickstarter.active && myProjectFounded) {
+    if (project.kickstarter.successful && !project.kickstarter.active && myProjectFounded) {
       calculateTokensToClaim();
       const price = await getStNearPrice();
       const amount =
@@ -347,7 +347,7 @@ const ProjectDetails = (props: { id: any }) => {
             )}
 
             <HStack>
-              <Link href={project.projectUrl} isExternal>
+              <Link href={project?.projectUrl} isExternal>
                 <Button
                   colorScheme="gray"
                   leftIcon={<LinkI />}
@@ -356,8 +356,8 @@ const ProjectDetails = (props: { id: any }) => {
                   Website
                 </Button>
               </Link>
-              {project.twitter && (
-                <Link href={project.twitter} isExternal>
+              {project?.twitter && (
+                <Link href={project?.twitter} isExternal>
                   <Button colorScheme="gray" variant="outline" rounded="full">
                     <TwitterLogo weight="fill" />
                   </Button>
