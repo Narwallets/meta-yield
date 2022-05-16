@@ -36,7 +36,7 @@ import { colors } from "../../constants/colors";
 import { useStore as useWallet } from "../../stores/wallet";
 import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
-import { formatLocaleNear } from "../../lib/util";
+import { formatToLocaleNear } from "../../lib/util";
 
 const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, isLogin, setWallet, setLogin } = useWallet();
@@ -142,7 +142,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       alt="stnear"
                     />
                   </Square>
-                  <Text>{formatLocaleNear(balance)}</Text>
+                  <Text>{formatToLocaleNear(balance)}</Text>
 
                   <Button colorScheme="indigo">
                     <LinkOverlay href={nearConfig.metapoolUrl} isExternal>

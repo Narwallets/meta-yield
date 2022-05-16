@@ -65,7 +65,7 @@ export const yoctoToDollarStr = (
  * @param value amount expressed in yoctos
  * @param decimals decimals to truncate result value. default to 2
  */
-export const formatLocaleNear = (value: number, decimals: number = 4) => {
+export const formatToLocaleNear = (value: number, decimals: number = 4) => {
   return value.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 })
 }
 export const timeLeftToFund = (time: any) => {
