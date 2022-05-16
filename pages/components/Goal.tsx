@@ -6,7 +6,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { yton } from "../../lib/util";
+import { formatToLocaleNear, yton } from "../../lib/util";
 import { KickstarterGoalProps } from "../../types/project.types";
 import GoalCircle from "./GoalCircle";
 
@@ -81,7 +81,7 @@ const Goal = (props: GoalProps) => {
         </Text>
         <Text color="emphasized" fontWeight="medium">
           {kickstarterGoal
-            ? `${yton(kickstarterGoal?.desired_amount)} stNEAR `
+            ? `${formatToLocaleNear(yton(kickstarterGoal?.desired_amount))} stNEAR `
             : "N/D"}
         </Text>
       </Stack>

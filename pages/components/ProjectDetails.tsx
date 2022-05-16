@@ -625,7 +625,7 @@ const ProjectDetails = (props: { id: any }) => {
               <Tab>About</Tab>
             </TabList>
 
-            <TabPanels>
+            <TabPanels minHeight="580px">
               <TabPanel>
                 <Text fontSize="sm" fontWeight="subtle">
                   CAMPAIGN
