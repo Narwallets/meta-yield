@@ -3,6 +3,7 @@ import { HStack, Stack, Text, Flex, Spacer, Box } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
 import {
+  formatLocaleNear,
   getPeriod,
   isOpenPeriod,
   PERIOD,
@@ -46,7 +47,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
               lineHeight="10"
               fontWeight="bold"
             >
-              {yton(kickstarter?.total_deposited)} stNEAR
+              {formatLocaleNear(yton(kickstarter?.total_deposited))} stNEAR
             </Text>
             
           </Stack>

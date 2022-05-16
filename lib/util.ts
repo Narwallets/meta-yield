@@ -53,13 +53,21 @@ export function yton(yoctos: string) {
 export const yoctoToDollarStr = (
   value: string,
   nearPrice: number,
-  decimals: number = 2
+  decimals: number = 3
 ) => {
   // const result = new BN(value).div(new BN(10).pow(new BN(24))).mul(new BN(nearPrice))
   const result = yton(value) * nearPrice;
-  return result.toFixed(decimals);
+  return result.toLocaleString();
 };
 
+/**
+ * returns near amount formatted in locale string. Result is truncated, default to 4 decimal places
+ * @param value amount expressed in yoctos
+ * @param decimals decimals to truncate result value. default to 2
+ */
+export const formatLocaleNear = (value: number, decimals: number = 4) => {
+  return value.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 })
+}
 export const timeLeftToFund = (time: any) => {
   if (!time || moment(time).diff(moment.utc()) < 0) {
     return "";
