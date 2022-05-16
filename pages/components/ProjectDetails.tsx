@@ -173,7 +173,7 @@ const ProjectDetails = (props: { id: any }) => {
     getSupporterEstimatedStNear(wallet, id, price);
 
   const calculateAmmountToWithdraw = async () => {
-    if (!project.kickstarter.active && myProjectFounded) {
+    if (project.kickstarter.successful && !project.kickstarter.active && myProjectFounded) {
       calculateTokensToClaim();
       const price = await getStNearPrice();
       const amount =
@@ -251,13 +251,11 @@ const ProjectDetails = (props: { id: any }) => {
       case ProjectStatus.FUNDED:
         calculateAmmountToWithdraw();
         setShowFund(true);
-        setShowWithdraw(true);
         setShowRewardsEstimated(true);
         break;
 
       case ProjectStatus.SUCCESS:
         calculateAmmountToWithdraw();
-        setShowWithdraw(false);
         setShowFund(false);
         setShowClaim(true);
         break;
@@ -349,7 +347,7 @@ const ProjectDetails = (props: { id: any }) => {
             )}
 
             <HStack>
-              <Link href={project.projectUrl} isExternal>
+              <Link href={project?.projectUrl} isExternal>
                 <Button
                   colorScheme="gray"
                   leftIcon={<LinkI />}
@@ -358,8 +356,8 @@ const ProjectDetails = (props: { id: any }) => {
                   Website
                 </Button>
               </Link>
-              {project.twitter && (
-                <Link href={project.twitter} isExternal>
+              {project?.twitter && (
+                <Link href={project?.twitter} isExternal>
                   <Button colorScheme="gray" variant="outline" rounded="full">
                     <TwitterLogo weight="fill" />
                   </Button>
@@ -393,9 +391,10 @@ const ProjectDetails = (props: { id: any }) => {
                 ></RewardsEstimated>
               )}
               <Stack w={"100%"}>
-                {isLogin && showFund && (
+                {isLogin && (showFund || showWithdraw) && (
                   <Funding
                     project={project}
+                    showOnlyWithdraw = {showWithdraw}
                     supportedDeposited={
                       myProjectFounded && myProjectFounded.supporter_deposit
                         ? yton(myProjectFounded.supporter_deposit)
@@ -451,7 +450,7 @@ const ProjectDetails = (props: { id: any }) => {
                                     NEARS{" "}
                                   </Text>
                                   <Text color={"black"} fontWeight={700}>
-                                    {yton(myProjectFounded.deposit_in_near)}{" "}
+                                  {yton(myProjectFounded.deposit_in_near)}{" "}
                                   </Text>
                                   <Text>{} </Text>
                                 </VStack>
@@ -486,7 +485,7 @@ const ProjectDetails = (props: { id: any }) => {
                                     AVAILABLE{" "}
                                   </Text>
                                   <Text>
-                                    {yton(myProjectFounded.deposit_in_near)}{" "}
+                                  {yton(myProjectFounded.deposit_in_near)}{" "}
                                   </Text>
                                 </VStack>
                               </Stack>

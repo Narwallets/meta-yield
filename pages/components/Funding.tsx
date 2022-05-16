@@ -28,7 +28,7 @@ import { getCurrentFundingGoal, ntoy, yton } from "../../lib/util";
 import depositSchemaValidation from "../../validation/fundSchemaValidation";
 import withdrawSchemaValidation from "../../validation/withdrawSchemaValidation";
 
-const Funding = (props: { project: any; supportedDeposited: number }) => {
+const Funding = (props: { project: any; supportedDeposited: number, showOnlyWithdraw: boolean }) => {
   const project = props.project;
   const supportedDeposited = props.supportedDeposited;
   const isWithdrawEnabled = supportedDeposited > 0;
@@ -90,7 +90,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   });
 
   const initialValuesWithdraw: any = {
-    amount_withdraw: 0,
+    amount_withdraw:  props.showOnlyWithdraw ? supportedDeposited : 0,
     supporterDeposited: 0,
   };
 
@@ -163,9 +163,9 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   if (!project) return <></>;
 
   return (
-    <Tabs defaultIndex={0}>
+    <Tabs defaultIndex={props.showOnlyWithdraw ? 1 : 0}>
       <TabList>
-        <Tab>Deposit</Tab>
+        <Tab isDisabled={props.showOnlyWithdraw} >Deposit</Tab>
         <Tab isDisabled={!isWithdrawEnabled}>Withdraw</Tab>
       </TabList>
 
@@ -239,13 +239,14 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
                 id="amount_withdraw"
                 name="amount_withdraw"
                 placeholder="0"
+                isDisabled= {props.showOnlyWithdraw}
                 value={formikWithdraw.values.amount_withdraw}
                 onPaste={formikWithdraw.handleChange}
                 onBlur={formikWithdraw.handleBlur}
                 onChange={formikWithdraw.handleChange}
               />
               <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={onMaxClickWithdraw}>
+                <Button isDisabled={props.showOnlyWithdraw} h="1.75rem" size="sm" onClick={onMaxClickWithdraw}>
                   Max
                 </Button>
               </InputRightElement>
