@@ -7,6 +7,9 @@ const Card = (props: BoxProps) => (
     mx="auto"
     p={{ base: '3', md: '8' }}
     rounded={{ base: 'lg' }}
+    border="2px"
+    borderColor='gray.200'
+    borderRadius={'16px'}
     shadow={{ base: 'base' }}
     {...props}
   />
