@@ -1,7 +1,7 @@
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box, Container, Flex, Heading, Text, Circle, Divider } from '@chakra-ui/react';
 import React from 'react';
-import { FAQ, Question } from './faq';
+import { FAQ, Question } from '../../../constants/faq';
 
 type Props = {}
 
@@ -57,4 +57,4 @@ const FrequentlyAskQuestion = (props: Props) => {
   );
 };
 
-export default FrequentlyAskQuestion
+export default FrequentlyAskQuestion;
