@@ -114,7 +114,7 @@ const Header: React.FC<ButtonProps> = (props) => {
             </Flex>
             <Spacer />
             <Show above="md">
-              <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
+              <ButtonGroup variant="link" spacing="2" alignItems="flex-end">
                 <Link href="/#projects">
                   <Button
                     fontWeight={600}
@@ -131,6 +131,12 @@ const Header: React.FC<ButtonProps> = (props) => {
                   <Button fontWeight={600} fontSize={"16px"} variant="nav">
                     {" "}
                     How it works{" "}
+                  </Button>
+                </Link>
+                <Link href="/#faq">
+                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                    {" "}
+                    FAQ{" "}
                   </Button>
                 </Link>
               </ButtonGroup>
@@ -184,6 +190,9 @@ const Header: React.FC<ButtonProps> = (props) => {
                       </MenuItem>
                       <MenuItem onClick={() => router.push("/#how-it-works")}>
                         How it works
+                      </MenuItem>
+                      <MenuItem onClick={() => router.push("/#faq")}>
+                        FAQ
                       </MenuItem>
                     </Show>
                   </MenuList>
