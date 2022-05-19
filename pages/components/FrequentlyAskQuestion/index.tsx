@@ -9,7 +9,7 @@ const FrequentlyAskQuestion = (props: Props) => {
   const faq = FAQ;
   return (
     <section>
-      <Container>
+      <Container id="faq">
         <Flex justifyContent={{ base: 'center', md: 'center' }} flexDirection={{ base: 'column', md: 'column' }} >
           <Heading lineHeight={'133%'} textAlign={'center'} fontWeight={700} color="gray.900" fontSize={'3xl'}> Frequently asked questions</Heading>
           <Text mt={8} textAlign={'center'} fontWeight={400} color="gray.500" fontSize={'lg'}>Everything you need to know about Meta Yield.</Text>
