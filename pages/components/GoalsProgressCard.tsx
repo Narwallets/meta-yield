@@ -8,6 +8,7 @@ import {
   Container,
   Progress,
   Box,
+  Heading,
 } from "@chakra-ui/react";
 import Card from "./Card";
 import {
@@ -91,7 +92,7 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
   if (!props || !props.kickstarter) return <></>;
   return (
     <Card>
-      <Text>GOALS</Text>
+      <Heading fontSize={'xs'} color="gray.400">GOALS</Heading>
       <Container py={{ base: "4", md: "8" }}>
         <Stack>
           <Stack spacing="0" direction={{ base: "column", md: "row" }}>
