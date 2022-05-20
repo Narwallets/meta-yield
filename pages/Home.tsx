@@ -7,6 +7,7 @@ import * as React from "react";
 import { useGetActiveProjects } from "./../hooks/projects";
 import ErrorHandlerHash from "./components/ErrorHandlerHash";
 import PageLoading from "./components/PageLoading";
+import FrequentlyAskQuestion from "./components/FrequentlyAskQuestion";
 
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
@@ -34,6 +35,7 @@ const Home = () => {
         </Box>
         {data.active.length > 0 && <Projects data={data.active} />}
         <HowItWorks />
+        <FrequentlyAskQuestion/>
       </Container>
     </>
   );
