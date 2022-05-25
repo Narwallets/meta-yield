@@ -72,7 +72,7 @@ const Goal = (props: GoalProps) => {
   useEffect(() => {
     setcolor(getColor(true));
     setProgress(getProgressPercentage());
-  }, [isCompleted,isActive])
+  }, [])
   
   const getColor= (considerTimeout?: boolean)=>{
 
@@ -86,9 +86,9 @@ const Goal = (props: GoalProps) => {
    
     if (isActive) {
       return ACTIVE_COLOR;
-    } else {
+    } 
       return INACTIVE_COLOR;
-    }
+    
   }
 
   const getProgressPercentage = ()=> {
@@ -147,7 +147,7 @@ const Goal = (props: GoalProps) => {
           />)
           }
           <GoalCircle
-            backgroundColor={getColor(true)}
+            backgroundCircleColor={color}
             isActive={isActive}
             isTimeout={isTimeout()}
             isCompleted={isCompleted}
@@ -183,7 +183,7 @@ const Goal = (props: GoalProps) => {
         isLastGoal ={isLastGoal}
         isFirstGoal ={isFirstGoal}
         progress = {progress}
-        colorBar= {getColor(true)}
+        colorBar= {color}
         totalDeposited={totalDeposited} />
     </>
   );

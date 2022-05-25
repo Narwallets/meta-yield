@@ -4,19 +4,20 @@ import { Check } from "phosphor-react";
 interface RadioCircleProps extends SquareProps {
   isCompleted: boolean;
   isActive: boolean;
-  backgroundColor: any;
+  backgroundCircleColor: any;
   isTimeout: boolean;
   goalNumber: number;
 }
 
 const GoalCircle = (props: RadioCircleProps) => {
-  const { backgroundColor, isCompleted, isActive, goalNumber } = props;
+  const { backgroundCircleColor, isCompleted, isActive, goalNumber } = props;
+
   return (
     <Circle
       zIndex={9}
       size="7"
      // bg={isCompleted ? "accent" : "inherit"}
-      backgroundColor={backgroundColor.colorScheme +'.'+backgroundColor.variant}
+      backgroundColor={backgroundCircleColor && backgroundCircleColor.colorScheme +'.'+ backgroundCircleColor.variant}
       color={isCompleted ? "white" :  "gray.400"}
     >
       {isCompleted ? (
