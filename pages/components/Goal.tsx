@@ -62,8 +62,12 @@ const Goal = (props: GoalProps) => {
     variant: '600'
   }; 
 
-  const [color, setcolor] = useState(INACTIVE_COLOR)
-  const [progress, setProgress] = useState(0)
+  const [color, setcolor] = useState(INACTIVE_COLOR);
+  const [progress, setProgress] = useState(0);
+
+  const isTimeout = ()=> {
+    return isActive && ((projectStatus as ProjectStatus) === ProjectStatus.SUCCESS || (projectStatus as ProjectStatus) === ProjectStatus.UNSUCCESS);
+  }
 
   useEffect(() => {
     setcolor(getColor(true));
@@ -76,7 +80,7 @@ const Goal = (props: GoalProps) => {
       return COMPLETE_COLOR;
     }
 
-    if(considerTimeout && isActive && ((projectStatus as ProjectStatus) === ProjectStatus.SUCCESS || (projectStatus as ProjectStatus) === ProjectStatus.UNSUCCESS)) {
+    if(considerTimeout && isActive && isTimeout()) {
         return TIMEOUT_COLOR;
     }
    
@@ -106,7 +110,7 @@ const Goal = (props: GoalProps) => {
     if (isCompleted ) {
       return (<Tag size={'sm'} h={'20px'} backgroundColor={color.colorScheme +'.200'} color={color.colorScheme +'.500'} > {'Completed'}</Tag>)
     } else {
-      if (isActive && ((projectStatus as ProjectStatus) === ProjectStatus.SUCCESS || (projectStatus as ProjectStatus) === ProjectStatus.UNSUCCESS)) {
+      if (isTimeout()) {
         if (isActive ) {
           return (<Tag size={'sm'} h={'20px'} backgroundColor={'orange.600'} color={'white'} > {'Timeout'}</Tag>)
         }
@@ -145,6 +149,7 @@ const Goal = (props: GoalProps) => {
           <GoalCircle
             backgroundColor={getColor(true)}
             isActive={isActive}
+            isTimeout={isTimeout()}
             isCompleted={isCompleted}
             goalNumber={kickstarterGoal?.id + 1}
           />
