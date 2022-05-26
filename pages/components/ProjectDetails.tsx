@@ -383,7 +383,7 @@ const ProjectDetails = (props: { id: any }) => {
               <FundingStatusCard kickstarter={project?.kickstarter} />
               {project?.kickstarter.goals &&
                 project?.kickstarter.goals.length > 0 && (
-                  <GoalsProgressCard kickstarter={project?.kickstarter} />
+                  <GoalsProgressCard projectStatus={status} kickstarter={project?.kickstarter} />
                 )}
               {showRewardEstimated && isLogin && (
                 <RewardsEstimated

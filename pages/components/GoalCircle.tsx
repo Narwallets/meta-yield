@@ -4,24 +4,26 @@ import { Check } from "phosphor-react";
 interface RadioCircleProps extends SquareProps {
   isCompleted: boolean;
   isActive: boolean;
+  backgroundCircleColor: any;
+  isTimeout: boolean;
   goalNumber: number;
 }
 
 const GoalCircle = (props: RadioCircleProps) => {
-  const { isCompleted, isActive, goalNumber } = props;
+  const { backgroundCircleColor, isCompleted, isActive, goalNumber } = props;
+
   return (
     <Circle
-      size="8"
+      zIndex={9}
+      size="7"
      // bg={isCompleted ? "accent" : "inherit"}
-      backgroundColor={isCompleted ? "green.400" :  isActive ? "indigo.500" : "lightgrey"}
+      backgroundColor={backgroundCircleColor && backgroundCircleColor.colorScheme +'.'+ backgroundCircleColor.variant}
       color={isCompleted ? "white" :  "gray.400"}
-      borderWidth={isCompleted ? "0" : "2px"}
-      borderColor={isActive ? "accent" : "none"}
     >
       {isCompleted ? (
-        <Check size={32} />
+        <Check size={20} />
       ) : (
-        <Circle  color={isActive ? "white" : "gray.900"} size="3">
+        <Circle fontSize={'sm'} color={isActive ? "white" : "gray.900"} size="1">
           {goalNumber}
         </Circle>
       )}
