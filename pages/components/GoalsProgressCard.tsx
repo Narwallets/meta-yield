@@ -8,6 +8,7 @@ import {
   Container,
   Progress,
   Box,
+  Heading,
 } from "@chakra-ui/react";
 import Card from "./Card";
 import {

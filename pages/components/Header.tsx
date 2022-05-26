@@ -105,7 +105,12 @@ const Header: React.FC<ButtonProps> = (props) => {
               cursor="pointer"
               alignItems="center"
             >
-              <Image objectFit="cover" src="/logo.svg" alt="logo" />
+              <Image 
+              objectFit="cover" 
+              src="/logo.svg" 
+              alt="logo" 
+              width={{ base: "126px", md: "184px" }}
+              height={{ base: "22px", md: "32px" }}/>
             </Flex>
             <Spacer />
             <Show above="md">

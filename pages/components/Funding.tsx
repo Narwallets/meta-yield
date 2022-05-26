@@ -175,8 +175,8 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
-                  <Text ml={2}>stNEAR</Text>
+                  <Avatar boxSize="25x" objectFit="cover" src="/stNEARorig.svg" />
+                  <Text fontSize={'xs'}  fontWeight={600} color="gray.400" ml={2}>stNEAR</Text>
                 </Square>
               </InputLeftAddon>
               <Input
@@ -198,7 +198,7 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
               </InputRightElement>
             </InputGroup>
             <Button
-              colorScheme="blue"
+              colorScheme="indigo"
               size="lg"
               // disabled={!formikDeposit.isValid}
               onClick={(e: any) => formikDeposit.handleSubmit(e)}
@@ -215,15 +215,22 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
           }
           
           <Stack mt={4}>
-            <Text
-              fontSize="md"
-              lineHeight="6"
-              fontWeight="semibold"
-              color="gray.500"
-            >
-              ESTIMATED REWARDS: {estimatedRewards}{" "}
-              {project.kickstarter.project_token_symbol}
-            </Text>
+            <HStack>
+              <Text
+                fontSize="xs"
+                lineHeight="6"
+                fontWeight="semibold"
+                color="gray.400"
+              >
+                ESTIMATED REWARDS: 
+              </Text>
+              <Text
+                fontSize="sm"
+                lineHeight="6"
+                fontWeight="semibold"
+                color="gray.600"
+              >{estimatedRewards}{" "}{project.kickstarter.project_token_symbol}</Text>
+            </HStack>
           </Stack>
         </TabPanel>
         <TabPanel>
@@ -231,8 +238,8 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
-                  <Text ml={2}>stNEAR</Text>
+                  <Avatar boxSize="25x" objectFit="cover" src="/stNEARorig.svg" />
+                  <Text fontSize={'xs'} fontWeight={600}  color={'gray.400'} ml={2}>stNEAR</Text>
                 </Square>
               </InputLeftAddon>
               <Input
@@ -252,7 +259,7 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
               </InputRightElement>
             </InputGroup>
             <Button
-              colorScheme="blue"
+              colorScheme="indigo"
               size="lg"
               disabled={!formikWithdraw.isValid}
               onClick={(e: any) => {
@@ -263,14 +270,26 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
             </Button>
           </HStack>
           <Stack mt={4}>
+            <HStack>
             <Text
-              fontSize="md"
+              fontSize="xs"
               lineHeight="6"
               fontWeight="semibold"
-              color="gray.500"
+              color="gray.400"
             >
-              CURRENT DEPOSITS: {supportedDeposited} stNEAR
+              CURRENT DEPOSITS: 
             </Text>
+            <Text
+              fontSize="sm"
+              lineHeight="6"
+              fontWeight="semibold"
+              color="gray.600"
+            >
+              {supportedDeposited} stNEAR
+            </Text>
+            </HStack>
+            
+            
           </Stack>
         </TabPanel>
       </TabPanels>
