@@ -19,9 +19,13 @@ import Goal from "./Goal";
 import { useGoal } from "../../hooks/useGoal";
 import moment from "moment";
 import { isOpenPeriod } from "../../lib/util";
+import ProgressGoal from "./ProgressGoal";
+import { ProjectStatus } from "./ProjectDetails";
 
-const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
+const GoalsProgressCard = (props: { kickstarter: KickstarterProps, projectStatus: ProjectStatus }) => {
   const kickstarter = props.kickstarter as KickstarterProps;
+  const projectStatus = props.projectStatus as ProjectStatus;
+
   const getCurrentFundingGoal = () => {
     if (kickstarter && kickstarter.goals) {
       const [current] = kickstarter.goals.filter(
@@ -43,79 +47,39 @@ const GoalsProgressCard = (props: { kickstarter: KickstarterProps }) => {
       return kickstarter?.winner_goal_id
     return undefined;
   }
-  
-  const [goal, setGoal] = useState<KickstarterGoalProps>();
-  const [goalRaised, setGoalRaised] = useState(0);
-  const [goalProgress, setGoalProgress] = useState(0);
-  const [goalStatus, setGoalStatus] = useState<string | undefined>(undefined);
+
   const [currentGoalId, { setGoalId }] = useGoal({
     maxGoal: kickstarter && kickstarter.goals ? kickstarter.goals.length : 0,
     initialGoal: getCurrentGoalId()
   });
-  const getGoalStatus = () => {
-    if (!kickstarter.active) {
-      if (kickstarter.successful) 
-        return "Completed"
-      return "Timed Out"
-    }
 
-    const goal = getCurrentFundingGoal();
-    if (goal) {
-      const isOpen = isOpenPeriod(kickstarter)
-      if (isOpen) {
-        return "In Progress...";
-      } else 
-        return "Coming soon...";
-    }
-    return "";
-  };
   useEffect(() => {
     if (kickstarter && kickstarter.goals) {
       const goal = kickstarter.goals.find((g) => g.id === currentGoalId);
-      if (goal) {
-        const goalDesiredAmount = parseInt(goal.desired_amount);
-        const deposited = parseInt(kickstarter.total_deposited);
-        const raised =
-          currentGoalId === 0
-            ? deposited
-            : deposited > goalDesiredAmount
-            ? deposited
-            : goalDesiredAmount - deposited;
-        setGoal(goal);
-        setGoalRaised(raised);
-        setGoalProgress((raised * 100) / goalDesiredAmount);
-        setGoalStatus(getGoalStatus());
-      }
     }
-    console.log("@current", currentGoalId)
   }, [currentGoalId, kickstarter]);
   if (!props || !props.kickstarter) return <></>;
   return (
     <Card>
-      <Heading fontSize={'xs'} color="gray.400">GOALS</Heading>
-      <Container py={{ base: "4", md: "8" }}>
-        <Stack>
-          <Stack spacing="0" direction={{ base: "column", md: "row" }}>
+      <Text fontWeight={700} color={'gray.400'} fontSize='xs'>GOALS</Text>
+      <Container paddingTop={10}  maxW={'container.lg'}>
+          <Stack  direction={{ base: "column", md: "column" }}>
             {kickstarter.goals.map((goal) => (
-              <Goal
-                key={goal.id}
-                kickstarterGoal={goal}
-                isActive={currentGoalId === goal.id}
-                isCompleted={parseInt(kickstarter.total_deposited) >= parseInt(goal.desired_amount)}
-                isFirstGoal={goal.id === 0}
-                isLastGoal={kickstarter.goals.length === goal.id + 1}
-              />
+              <Box key={goal.id}>
+                <Goal
+                  key={goal.id}
+                  kickstarterGoal={goal}
+                  isActive={currentGoalId === goal.id}
+                  isCompleted={parseInt(kickstarter.total_deposited) >= parseInt(goal.desired_amount)}
+                  isFirstGoal={goal.id === 0}
+                  isLastGoal={kickstarter.goals.length === goal.id + 1}
+                  totalDeposited={parseInt(kickstarter.total_deposited)}
+                  projectStatus={projectStatus}
+                />
+              </Box>
             ))}
           </Stack>
-          <Progress colorScheme="indigo" value={goalProgress} height='28px' rounded={"2xl"} shadow="sm" />
-        </Stack>
       </Container>
-      <Flex>
-        <Spacer />
-        <Box>
-          <Tag>{goalStatus}</Tag>
-        </Box>
-      </Flex>
     </Card>
   );
 };
