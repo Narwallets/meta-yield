@@ -69,6 +69,10 @@ const Goal = (props: GoalProps) => {
     return isActive && ((projectStatus as ProjectStatus) === ProjectStatus.SUCCESS || (projectStatus as ProjectStatus) === ProjectStatus.UNSUCCESS);
   }
 
+  const isInactive = ()=> {
+    return !isActive && !isCompleted;
+  }
+
   useEffect(() => {
     setcolor(getColor(true));
     setProgress(getProgressPercentage());
@@ -161,10 +165,10 @@ const Goal = (props: GoalProps) => {
           alignItems={'center'}
         >
           <HStack>
-            <Text fontSize={'xs'} color={color.colorScheme+'.500'} fontWeight={700} mr={'8px'}>
+            <Text fontSize={'xs'} color={isInactive() ?  'indigo.300': color.colorScheme+'.500' } fontWeight={700} mr={'8px'}>
               {kickstarterGoal?.name.replaceAll('_',' ')} 
             </Text>
-            <Text fontSize={'xs'} color="gray.800" fontWeight={700}>
+            <Text fontSize={'xs'} color={isInactive() ? 'gray.300' : 'gray.800'} fontWeight={700}>
               {kickstarterGoal
                 ? `${formatToLocaleNear(yton(kickstarterGoal?.desired_amount))} stNEAR `
                 : "N/D"}
@@ -172,7 +176,7 @@ const Goal = (props: GoalProps) => {
           </HStack>
           <HStack>
             { getTag() }
-            <Text fontSize={'xs'} color="gray.800" fontWeight={700}> { progress.toFixed(2)  + '%' }</Text>
+            <Text fontSize={'xs'} color={isInactive() ? 'gray.300' : 'gray.800'} fontWeight={700}> { progress.toFixed(2)  + '%' }</Text>
           </HStack>
         </Flex>
       </Stack>
