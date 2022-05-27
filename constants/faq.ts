@@ -3,19 +3,7 @@ export interface Question {
     text: string
 }
 export const FAQ = [
-    { 
-        title: 'What is the purpose of Meta Yield?',
-        text: `<b>Meta Yield</b> is a kickstarter for new projects on NEAR to get funded by the community. It leverages staking to de-risks the financing of these projects:
-        <br><br>
-        <b>Projects</b> can request an amount of $NEAR that they need to launch their product/dApp. 
-        <br><br>
-        <b>Backers</b> get the opportunity to back project(s) they like and feel will increase in value over time and be deemed valuable for the NEAR ecosystem and the community. 
-        <br><br>
-        Backers will receive a certain number (proportional to their support) of the project's native tokens in exchange for supporting the project.
-        <br><br>
-        In the short term, a secondary market platform will be aggregated to Meta Yield so that bac
-        `
-    },
+
     { 
         title: 'What are the benefits of Meta Yield?',
         text: `<b>For Backers:</b> 
@@ -66,6 +54,19 @@ export const FAQ = [
         </ul>
         <br><br>
         Additionally we are working with different entities of the NEAR ecosystem that are interested in the opportunity of financially supporting these new projects on NEAR.ment to the project) for $NEAR.
+        `
+    },
+    { 
+        title: 'What is the purpose of Meta Yield?',
+        text: `<b>Meta Yield</b> is a kickstarter for new projects on NEAR to get funded by the community. It leverages staking to de-risks the financing of these projects:
+        <br><br>
+        <b>Projects</b> can request an amount of $NEAR that they need to launch their product/dApp. 
+        <br><br>
+        <b>Backers</b> get the opportunity to back project(s) they like and feel will increase in value over time and be deemed valuable for the NEAR ecosystem and the community. 
+        <br><br>
+        Backers will receive a certain number (proportional to their support) of the project's native tokens in exchange for supporting the project.
+        <br><br>
+        In the short term, a secondary market platform will be aggregated to Meta Yield so that bac
         `
     },
     { 

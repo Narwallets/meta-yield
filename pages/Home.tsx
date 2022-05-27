@@ -35,7 +35,7 @@ const Home = () => {
         </Box>
         {data.active.length > 0 && <Projects data={data.active} />}
         <HowItWorks />
-        <FrequentlyAskQuestion/>
+        <FrequentlyAskQuestion shortVersion={true}/>
       </Container>
     </>
   );
