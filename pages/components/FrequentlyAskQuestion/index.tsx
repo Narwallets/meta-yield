@@ -2,11 +2,14 @@ import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box, Container, Flex, Heading, Text, Circle, Divider } from '@chakra-ui/react';
 import React from 'react';
 import { FAQ, Question } from '../../../constants/faq';
+import StillQuestions from './StillQuestions';
 
-type Props = {}
+type Props = {
+  shortVersion?: boolean
+}
 
 const FrequentlyAskQuestion = (props: Props) => {
-  const faq = FAQ;
+  const faq = props.shortVersion ? FAQ.slice(0,3) :FAQ;
   return (
     <section>
       <Container id="faq">
@@ -18,7 +21,6 @@ const FrequentlyAskQuestion = (props: Props) => {
             { 
               faq.map((item: Question, index: any)=> { 
                 return ( 
-      
                 <Box key={'faq'+index}  borderTop={'1px'} borderColor="gray.200" >
                   <AccordionItem >
                     {({ isExpanded }) => (
@@ -45,12 +47,14 @@ const FrequentlyAskQuestion = (props: Props) => {
                     )}
                   </AccordionItem>
                 </Box>
-    
                 )
               })
             }
           </Accordion>
         </Flex>
+        { props.shortVersion && (
+          <StillQuestions/>
+        )}
       </Container>
 
     </section>

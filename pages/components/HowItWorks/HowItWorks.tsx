@@ -16,6 +16,7 @@ const HowItWorks = () => (
     id="how-it-works"
     maxWidth="1xl"
     mx="auto"
+    mb={20}
     py={{ base: "12", md: "24" }}
   >
     <>
