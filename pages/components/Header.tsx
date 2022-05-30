@@ -108,7 +108,7 @@ const Header: React.FC<ButtonProps> = (props) => {
               <Image objectFit="cover" src="/logo.svg" alt="logo" />
             </Flex>
             <Spacer />
-            <Show above="md">
+            { isDesktop && (
               <ButtonGroup variant="link"  alignItems="flex-end">
                 <Link href="/#projects">
                   <Button
@@ -135,7 +135,8 @@ const Header: React.FC<ButtonProps> = (props) => {
                   </Button>
                 </Link>
               </ButtonGroup>
-            </Show>
+            )}
+
             <Spacer />
             {isLogin ? (
               <>
