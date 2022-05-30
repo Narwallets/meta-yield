@@ -14,10 +14,10 @@ const StillQuestions = (props: Props) => {
     <section>
       <Container mt={20} id="questions">
         <Flex justifyContent={{ base: 'center', md: 'center' }} alignItems={'center'} flexDirection={{ base: 'column', md: 'column' }} >
-          <Heading lineHeight={'133%'} textAlign={'center'} fontWeight={700} color="gray.900" fontSize={'xl'}> Still have questions?</Heading>
-          <Text  textAlign={'center'} fontWeight={400} color="gray.500" fontSize={'lg'}>Can’t find the answer you’re looking for? Write us your questions and we will be more than happy to help you.</Text>
+          <Heading lineHeight={'133%'} textAlign={'center'} fontWeight={700} color="gray.900" fontSize={'xl'}> Can’t find the answer you’re looking for?</Heading>
+          <Text  textAlign={'center'} fontWeight={400} color="gray.500" fontSize={'lg'}>Read all the answers to the most frequent 17 questions.</Text>
             <Button mt={10}  onClick={() => goToFaq()} colorScheme="indigo">
-                    Get in touch
+                Find more answers
             </Button>
           
         </Flex>
