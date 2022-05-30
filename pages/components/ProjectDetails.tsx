@@ -379,11 +379,11 @@ const ProjectDetails = (props: { id: any }) => {
             py={{ base: "0", md: "6" }}
             borderRadius="lg"
           >
-            <Stack spacing={{ base: "3", md: "10" }}>
+            <Stack spacing={{ base: "3", md: "3" }}>
               <FundingStatusCard kickstarter={project?.kickstarter} />
               {project?.kickstarter.goals &&
                 project?.kickstarter.goals.length > 0 && (
-                  <GoalsProgressCard kickstarter={project?.kickstarter} />
+                  <GoalsProgressCard projectStatus={status} kickstarter={project?.kickstarter} />
                 )}
               {showRewardEstimated && isLogin && (
                 <RewardsEstimated

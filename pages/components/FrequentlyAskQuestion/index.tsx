@@ -21,8 +21,7 @@ const FrequentlyAskQuestion = (props: Props) => {
             { 
               faq.map((item: Question, index: any)=> { 
                 return ( 
-           
-                <Box key={index} borderTop={'1px'} borderColor="gray.200" >
+                <Box key={'faq'+index}  borderTop={'1px'} borderColor="gray.200" >
                   <AccordionItem >
                     {({ isExpanded }) => (
                       <>
@@ -48,7 +47,6 @@ const FrequentlyAskQuestion = (props: Props) => {
                     )}
                   </AccordionItem>
                 </Box>
-
                 )
               })
             }
