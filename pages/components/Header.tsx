@@ -36,6 +36,7 @@ import { colors } from "../../constants/colors";
 import { useStore as useWallet } from "../../stores/wallet";
 import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
+import { formatToLocaleNear } from "../../lib/util";
 
 const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, isLogin, setWallet, setLogin } = useWallet();
@@ -112,8 +113,8 @@ const Header: React.FC<ButtonProps> = (props) => {
               height={{ base: "22px", md: "32px" }}/>
             </Flex>
             <Spacer />
-            <Show above="md">
-              <ButtonGroup variant="link" spacing="1" alignItems="flex-end">
+            { isDesktop && (
+              <ButtonGroup variant="link"  alignItems="flex-end">
                 <Link href="/#projects">
                   <Button
                     fontWeight={600}
@@ -132,8 +133,15 @@ const Header: React.FC<ButtonProps> = (props) => {
                     How it works{" "}
                   </Button>
                 </Link>
+                <Link href="/faq">
+                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                    {" "}
+                    FAQ{" "}
+                  </Button>
+                </Link>
               </ButtonGroup>
-            </Show>
+            )}
+
             <Spacer />
             {isLogin ? (
               <>
@@ -146,7 +154,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       alt="stnear"
                     />
                   </Square>
-                  <Text>{balance}</Text>
+                  <Text>{formatToLocaleNear(balance)}</Text>
 
                   <Button colorScheme="indigo">
                     <LinkOverlay href={nearConfig.metapoolUrl} isExternal>
@@ -183,6 +191,9 @@ const Header: React.FC<ButtonProps> = (props) => {
                       </MenuItem>
                       <MenuItem onClick={() => router.push("/#how-it-works")}>
                         How it works
+                      </MenuItem>
+                      <MenuItem onClick={() => router.push("/#faq")}>
+                        FAQ
                       </MenuItem>
                     </Show>
                   </MenuList>

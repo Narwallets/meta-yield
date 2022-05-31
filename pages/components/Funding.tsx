@@ -28,7 +28,7 @@ import { getCurrentFundingGoal, ntoy, yton } from "../../lib/util";
 import depositSchemaValidation from "../../validation/fundSchemaValidation";
 import withdrawSchemaValidation from "../../validation/withdrawSchemaValidation";
 
-const Funding = (props: { project: any; supportedDeposited: number }) => {
+const Funding = (props: { project: any; supportedDeposited: number, showOnlyWithdraw: boolean }) => {
   const project = props.project;
   const supportedDeposited = props.supportedDeposited;
   const isWithdrawEnabled = supportedDeposited > 0;
@@ -90,7 +90,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   });
 
   const initialValuesWithdraw: any = {
-    amount_withdraw: 0,
+    amount_withdraw:  props.showOnlyWithdraw ? supportedDeposited : 0,
     supporterDeposited: 0,
   };
 
@@ -163,9 +163,9 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
   if (!project) return <></>;
 
   return (
-    <Tabs defaultIndex={0}>
+    <Tabs defaultIndex={props.showOnlyWithdraw ? 1 : 0}>
       <TabList>
-        <Tab>Deposit</Tab>
+        <Tab isDisabled={props.showOnlyWithdraw} >Deposit</Tab>
         <Tab isDisabled={!isWithdrawEnabled}>Withdraw</Tab>
       </TabList>
 
@@ -175,8 +175,8 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
-                  <Text ml={2}>stNEAR</Text>
+                  <Avatar boxSize="25x" objectFit="cover" src="/stNEARorig.svg" />
+                  <Text fontSize={'xs'}  fontWeight={600} color="gray.400" ml={2}>stNEAR</Text>
                 </Square>
               </InputLeftAddon>
               <Input
@@ -198,7 +198,7 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
               </InputRightElement>
             </InputGroup>
             <Button
-              colorScheme="blue"
+              colorScheme="indigo"
               size="lg"
               // disabled={!formikDeposit.isValid}
               onClick={(e: any) => formikDeposit.handleSubmit(e)}
@@ -215,15 +215,22 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
           }
           
           <Stack mt={4}>
-            <Text
-              fontSize="md"
-              lineHeight="6"
-              fontWeight="semibold"
-              color="gray.500"
-            >
-              ESTIMATED REWARDS: {estimatedRewards}{" "}
-              {project.kickstarter.project_token_symbol}
-            </Text>
+            <HStack>
+              <Text
+                fontSize="xs"
+                lineHeight="6"
+                fontWeight="semibold"
+                color="gray.400"
+              >
+                ESTIMATED REWARDS: 
+              </Text>
+              <Text
+                fontSize="sm"
+                lineHeight="6"
+                fontWeight="semibold"
+                color="gray.600"
+              >{estimatedRewards}{" "}{project.kickstarter.project_token_symbol}</Text>
+            </HStack>
           </Stack>
         </TabPanel>
         <TabPanel>
@@ -231,27 +238,28 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar boxSize="30px" objectFit="cover" src="/stNEARorig.svg" />
-                  <Text ml={2}>stNEAR</Text>
+                  <Avatar boxSize="25x" objectFit="cover" src="/stNEARorig.svg" />
+                  <Text fontSize={'xs'} fontWeight={600}  color={'gray.400'} ml={2}>stNEAR</Text>
                 </Square>
               </InputLeftAddon>
               <Input
                 id="amount_withdraw"
                 name="amount_withdraw"
                 placeholder="0"
+                isDisabled= {props.showOnlyWithdraw}
                 value={formikWithdraw.values.amount_withdraw}
                 onPaste={formikWithdraw.handleChange}
                 onBlur={formikWithdraw.handleBlur}
                 onChange={formikWithdraw.handleChange}
               />
               <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={onMaxClickWithdraw}>
+                <Button isDisabled={props.showOnlyWithdraw} h="1.75rem" size="sm" onClick={onMaxClickWithdraw}>
                   Max
                 </Button>
               </InputRightElement>
             </InputGroup>
             <Button
-              colorScheme="blue"
+              colorScheme="indigo"
               size="lg"
               disabled={!formikWithdraw.isValid}
               onClick={(e: any) => {
@@ -262,14 +270,26 @@ const Funding = (props: { project: any; supportedDeposited: number }) => {
             </Button>
           </HStack>
           <Stack mt={4}>
+            <HStack>
             <Text
-              fontSize="md"
+              fontSize="xs"
               lineHeight="6"
               fontWeight="semibold"
-              color="gray.500"
+              color="gray.400"
             >
-              CURRENT DEPOSITS: {supportedDeposited} stNEAR
+              CURRENT DEPOSITS: 
             </Text>
+            <Text
+              fontSize="sm"
+              lineHeight="6"
+              fontWeight="semibold"
+              color="gray.600"
+            >
+              {supportedDeposited} stNEAR
+            </Text>
+            </HStack>
+            
+            
           </Stack>
         </TabPanel>
       </TabPanels>

@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
 import Script from "next/script";
 import NProgress from "nprogress";
+import NextHead from "next/head";
 
 import "../styles/nprogress.css";
 
@@ -41,6 +42,11 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
+        <NextHead>
+          <meta charSet="UTF-8" />
+          <title>  Meta Yield - Allow any project to bootstrap liquidity through staking
+            on Meta Pool.</title>
+        </NextHead>
         <Header />
         <Component {...pageProps} />
         <Footer />

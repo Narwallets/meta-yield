@@ -3,6 +3,7 @@ import { HStack, Stack, Text, Flex, Spacer, Box } from "@chakra-ui/react";
 import Card from "./Card";
 import { KickstarterProps } from "../../types/project.types";
 import {
+  formatToLocaleNear,
   getPeriod,
   isOpenPeriod,
   PERIOD,
@@ -34,31 +35,42 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
     <Card w={"100%"} mx="0">
       <Stack spacing={4}>
         <Stack>
-          <Text fontSize="sm" fontWeight="subtle">
+          <Text fontSize={'xs'} color="gray.400" fontWeight="700">
             TOTAL DEPOSITED
           </Text>
           <Stack
             direction={{ base: "column", sm: "row" }}
             alignItems={{ base: "flex-start", sm: "center" }}
           >
-            <Text
-              fontSize={{ base: "2xl", md: "4xl" }}
-              lineHeight="10"
-              fontWeight="bold"
-            >
-              {yton(kickstarter?.total_deposited)} stNEAR
-            </Text>
+            <HStack>
+              <Text
+                fontSize={{ base: "2xl", md: "4xl" }}
+                lineHeight="10"
+                fontWeight="bold"
+              >
+                {formatToLocaleNear(yton(kickstarter?.total_deposited))} 
+              </Text>
+              <Text
+                fontSize={{ base: "2xl", md: "4xl" }}
+                color="gray.400"
+                lineHeight="10"
+                fontWeight="bold"
+              >
+                stNEAR
+              </Text>
+            </HStack>
+            
             
           </Stack>
           <Stack>
-            <Text fontSize="lg" whiteSpace={"nowrap"}>
+            <Text fontSize="md" fontWeight={500} color={'black'} whiteSpace={"nowrap"}>
             ~ ${totalRaised} USD
               </Text>
           </Stack>
         </Stack>
         <Stack direction="row">
           <Box>
-            <Text fontSize="sm" fontWeight="subtle">
+            <Text fontSize={'xs'} color="gray.400" fontWeight="700">
               SUPPORTERS
             </Text>
             <Text fontSize={{ base: "lg", md: "2xl" }} fontWeight="bold" lineHeight="8">
@@ -70,7 +82,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             {getPeriod(kickstarter) === PERIOD.OPEN &&
               timeLeftToFund(kickstarter?.close_timestamp) && (
                 <>
-                  <Text fontSize="sm" fontWeight="subtle">
+                  <Text fontSize={'xs'} color="gray.400" fontWeight="700">
                     LEFT TO FUND
                   </Text>
                   <Text
@@ -84,7 +96,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
               )}
             {getPeriod(kickstarter) === PERIOD.NOT_OPEN && (
               <>
-                <Text fontSize="sm" fontWeight="subtle">
+                <Text fontSize={'xs'} color="gray.400" fontWeight="700">
                   OPEN IN
                 </Text>
                 <Text
@@ -98,7 +110,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
             )}
             {getPeriod(kickstarter) === PERIOD.CLOSE && (
               <>
-                <Text fontSize="sm" fontWeight="subtle">
+                <Text fontSize={'xs'} color="gray.400" fontWeight="700">
                   STATUS
                 </Text>
                 <Text
@@ -113,7 +125,7 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
           </Box>
           <Spacer />
           <Box>
-            <Text fontSize="sm" fontWeight="subtle">
+            <Text fontSize={'xs'} color="gray.400" fontWeight="700">
               TOKEN
             </Text>
             <Text

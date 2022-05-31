@@ -9,6 +9,7 @@ import {
   Wrap,
   Square,
   Avatar,
+  Heading,
 } from "@chakra-ui/react";
 import {
   KickstarterGoalProps,
@@ -58,14 +59,14 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
 
   return (
     <Stack>
-      <Text fontSize="sm" fontWeight="subtle">
+      <Heading fontSize="xs" color="gray.400" fontWeight="bold">
         YOUR INVESTMENT
-      </Text>
+      </Heading>
       <Flex justifyContent={"center"}>
         <Box>
           <Stack w={"600px"}>
             <Stack>
-              <Box p={"40px"} bg="light">
+              <Box bg="light">
                 <Stack spacing="4">
                   <Flex>
                     <Text
