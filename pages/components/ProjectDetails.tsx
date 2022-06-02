@@ -86,7 +86,7 @@ const ProjectDetails = (props: { id: any }) => {
   const [showFund, setShowFund] = useState<boolean>(true);
   const [showWithdraw, setShowWithdraw] = useState<boolean>(false);
   const [showClaim, setShowClaim] = useState<boolean>(false);
-  const [showAprove, setShowAprove] = useState<boolean>(false);
+  const [showApprove, setShowApprove] = useState<boolean>(false);
   const [showRewardsCalculator, setShowRewardsCalculator] =
     useState<boolean>(true);
   const [showRewardEstimated, setShowRewardsEstimated] =
@@ -277,7 +277,7 @@ const ProjectDetails = (props: { id: any }) => {
         setMyProjectFounded(thisProjectFounded);
         refreshStatus(project, thisProjectFounded);
         const isApproved = await isReadyForClaimPToken();
-        setShowAprove(isApproved === null);
+        setShowApprove(isApproved === null);
       }
     })();
   }, [wallet, props, project]);
@@ -592,7 +592,7 @@ const ProjectDetails = (props: { id: any }) => {
                               onClick={claim}
                               w={{ base: "full", md: "min-content" }}
                             >
-                              {showAprove ? "Aprove" : "Claim"}
+                              {showApprove ? "Approve" : "Claim"}
                             </Button>
                           </Stack>
                         )
