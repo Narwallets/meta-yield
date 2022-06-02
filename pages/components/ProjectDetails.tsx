@@ -438,7 +438,7 @@ const ProjectDetails = (props: { id: any }) => {
                                 <Image
                                   boxSize={{ base: "80px", md: "40px" }}
                                   objectFit="cover"
-                                  src={project.kickstarter.project_token_icon}
+                                  src="/near_icon.svg"
                                   alt="near"
                                 />
                                 <VStack h={"80px"}>
@@ -447,7 +447,7 @@ const ProjectDetails = (props: { id: any }) => {
                                     fontSize={"xxs"}
                                     fontWeight={700}
                                   >
-                                    NEARS{" "}
+                                    NEAR{" "}
                                   </Text>
                                   <Text color={"black"} fontWeight={700}>
                                   {yton(myProjectFounded.deposit_in_near)}{" "}
