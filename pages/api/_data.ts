@@ -320,12 +320,12 @@ export const data = [
         }
       ],
       roadmap:{
-        imageUrl: 'https://res.cloudinary.com/metayield/image/upload/v1652215642/Pembrock/Roadmap_rw4qd8.png',
-        linkUrl: "https://docs.pembrock.finance/roadmap"
+        imageUrl: '/projects/daorecords/roadmap.png',
+        linkUrl: "/projects/daorecords/roadmap.png"
       },
       faq: [
-        {title: 'What is PembRock?', content: 'PembRock is the first leveraged yield farming protocol built on the NEAR blockchain. Users can provide liquidity, farm with leverage, stake, and take governance decisions to secure the future of the platform, all on a fast, secure, cheap, and user-friendly blockchain.'}, 
-        {title: 'What is PembRock?', content: 'PembRock is the first leveraged yield farming protocol built on the NEAR blockchain. Users can provide liquidity, farm with leverage, stake, and take governance decisions to secure the future of the platform, all on a fast, secure, cheap, and user-friendly blockchain.'}, 
+        {title: 'Have any questions?', content: `Please join our very active Discord and Telegram communities. Additionally we are having AMA every Monday.
+        <a href="https://discord.com/invite/Zp8KPJB">Discord</a>         <a href="https://t.me/DAOrecords_Community">Telegram</a> `}, 
   
       ],
   about:`<p><span style="font-weight: 400;">Please join our very active Discord and Telegram communities. Additionally we are having AMA every Monday.</span></p>
