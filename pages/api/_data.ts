@@ -168,7 +168,7 @@ export const data = [
       <p><strong>About $SPLASH token</strong></p><br/>
       <p><span style="font-weight: 400;">$SPLASH token will be used to fuel the SoundSplash micro-economy</span></p> 
       <ul style="margin-left: 20px">
-      <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Token Account ID: splash.near (tbc)</span></li>
+      <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Token Account ID: ft.soundsplash.near (tbc)</span></li>
       <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Total Supply: 1,000,000 $SPLASH</span></li>
       <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Precision: 8</span></li>
       <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Current circulating supply: 0</span></li>
