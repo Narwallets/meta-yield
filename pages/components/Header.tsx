@@ -150,7 +150,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                     <Image
                       boxSize="20px"
                       objectFit="cover"
-                      src="/stNEARorig.svg"
+                      src="/stNEAR_token-white_dark_purple-circle.svg"
                       alt="stnear"
                     />
                   </Square>
