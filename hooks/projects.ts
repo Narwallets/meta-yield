@@ -35,7 +35,7 @@ export const useGetActiveProjects = () => {
 };
 
 export const useGetFinishedProjects = () => {
-  return useQuery("finish-projects", () => fetchFinishedProjects(), {
+  return useQuery("finished-projects", () => fetchFinishedProjects(), {
     onError: (err) => {
       console.error(err);
     },
