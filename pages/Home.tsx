@@ -4,14 +4,16 @@ import Projects from "./components/Projects";
 import HowItWorks from "./components/HowItWorks";
 import { Box, Container, Text } from "@chakra-ui/react";
 import * as React from "react";
-import { useGetActiveProjects } from "./../hooks/projects";
+import { useGetActiveProjects, useGetFinishedProjects } from "./../hooks/projects";
 import ErrorHandlerHash from "./components/ErrorHandlerHash";
 import PageLoading from "./components/PageLoading";
 import FrequentlyAskQuestion from "./components/FrequentlyAskQuestion";
 
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
-  if (isLoading) return <PageLoading />;
+  const { data: dataFinished, isLoading: isLoadingFinished } = useGetFinishedProjects();
+
+  if (isLoading && isLoadingFinished) return <PageLoading />;
 
   return (
     <>
@@ -25,15 +27,26 @@ const Home = () => {
           pb={{ base: "12", md: "24" }}
         >
           <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-            Current Projects
+            Funding Now!
           </Text>
-          {data.open.map((p: any) => (
+          {data && data.length && data.map((p: any) => (
             <div key={p.kickstarter.id}>
               <ActiveProject data={p} />
             </div>
           ))}
         </Box>
-        {data.active.length > 0 && <Projects data={data.active} />}
+        { dataFinished && dataFinished.length > 0 && (
+          <>
+            <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
+              Closed Funding 
+            </Text>
+            {dataFinished.map((p: any) => (
+              <div key={p.kickstarter.id}>
+                <ActiveProject data={p} />
+              </div>
+            ))}
+          </>
+        )}
         <HowItWorks />
         <FrequentlyAskQuestion shortVersion={true}/>
       </Container>

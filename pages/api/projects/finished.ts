@@ -13,10 +13,10 @@ export default async function handler(
 ) {
   let result: Array<any> = [];
 
-  const activeProjects = await getKickstarters();
+  const finishedProjects = await getKickstarters();
   // TODO check active and successful flags to filter projects accordantly
-  if (activeProjects) {
-    for (const project of activeProjects) {
+  if (finishedProjects) {
+    for (const project of finishedProjects) {
       const projectOnChain = await getProjectDetails(project.id);
       const projectStatic = data.find((sp) => sp.id === project.id);
       result.push({
@@ -24,9 +24,9 @@ export default async function handler(
         kickstarter: projectOnChain,
       });
     }
-    // filter the open projects
+    // filter the close projects
     result = result.filter((val:any)=>{
-      return isOpenPeriod(val.kickstarter);
+      return !isOpenPeriod(val.kickstarter);
     })
   }
 
