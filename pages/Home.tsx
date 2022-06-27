@@ -29,7 +29,7 @@ const Home = () => {
           <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
             Funding Now!
           </Text>
-          {data.map((p: any) => (
+          {data && data.length && data.map((p: any) => (
             <div key={p.kickstarter.id}>
               <ActiveProject data={p} />
             </div>
