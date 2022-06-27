@@ -8,6 +8,11 @@ export const fetchProjectDetails = async (id: number) => {
   return await response.json();
 };
 
+export const fetchVotedProjects = async () => {
+  const response = await fetch("/api/projects/vote");
+  return await response.json();
+};
+
 export const fetchActiveProjects = async () => {
   const response = await fetch("/api/projects/active");
   return await response.json();

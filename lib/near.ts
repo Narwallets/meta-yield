@@ -22,6 +22,8 @@ import {
   metaPoolMethods,
   projectTokenViewMethods,
   projectTokenChangeMethods,
+  metavoteViewMethods,
+  metavoteChangeMethods,
 } from "./methods";
 import {
   decodeJsonRpcData,
@@ -35,6 +37,8 @@ import { ExecutionError } from "near-api-js/lib/providers/provider";
 
 export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID = process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
+export const METAVOTE_CONTRACT_ID = process.env.NEXT_PUBLIC_METAVOTE_CONTRACT_ID;
+export const CONTRACT_ADDRESS_METAVOTE = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_METAVOTE;
 export const gas = new BN("70000000000000");
 const env = process.env.NODE_ENV;
 console.log('@env', env)
@@ -73,6 +77,8 @@ export const getContract = async (wallet: WalletConnection) => {
     changeMethods: Object.values(katherineChangeMethods),
   });
 };
+
+
 
 export const getMetapoolContract = async (wallet: WalletConnection) => {
   return new Contract(wallet.account(), METAPOOL_CONTRACT_ID!, {
@@ -384,4 +390,65 @@ const callViewMetapoolMethod = async (
 ) => {
   const contract = await getMetapoolContract(wallet);
   return (contract as any)[method](args);
+};
+
+
+/******************** METAVOTE CONTRACT CALLS **********************************/
+
+export const getMetaVoteContract = async (wallet: WalletConnection) => {
+  return new Contract(wallet.account(), METAVOTE_CONTRACT_ID!, {
+    viewMethods: Object.values(metavoteViewMethods),
+    changeMethods: Object.values(metavoteChangeMethods),
+  });
+};
+
+const callPublicMetavoteMethod = async (method: string, args: any) => {
+  const response: any = await provider.query({
+    request_type: "call_function",
+    finality: "final",
+    account_id: METAVOTE_CONTRACT_ID,
+    method_name: method,
+    args_base64: encodeJsonRpcData(args),
+  });
+
+  return decodeJsonRpcData(response.result);
+};
+
+const callChangeMetavoteMethod = async (wallet: any, args: any, method: string, deposit?: string) => {
+  const contract = await getMetaVoteContract(wallet); 
+  let response;
+  if (deposit) {
+    response = (contract as any)[method](args, "200000000000000", deposit);
+  } else {
+    response = (contract as any)[method](args, "200000000000000");
+  }
+  return response;
+};
+
+/*********** METAVOTE VIEW METHODS *************/
+
+export const getVotes = async (id: string) => {
+  return callPublicMetavoteMethod(metavoteViewMethods.getTotalVotes, {
+    contract_address: CONTRACT_ADDRESS_METAVOTE,
+    votable_object_id: id
+  });
+};
+
+/*********** METAVOTE CHANGE METHODS *************/
+
+export const voteProject = async (id: string,  votingPower: string, wallet: any ) => {
+  const args = {
+    voting_power: votingPower,
+    contract_address: CONTRACT_ADDRESS_METAVOTE,
+    votable_object_id: id
+  }
+  return  callChangeMetavoteMethod(wallet, args, metavoteChangeMethods.vote);
+};
+
+export const unvoteProject = async (id: string, contractNameId: string, wallet: any ) => {
+  const args = {
+    contract_address: contractNameId,
+    votable_object_id: id
+  }
+  return  callChangeMetavoteMethod(wallet, args, metavoteChangeMethods.unvote);
 };
