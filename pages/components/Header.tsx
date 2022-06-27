@@ -119,7 +119,6 @@ const Header: React.FC<ButtonProps> = (props) => {
                   <Button
                     fontWeight={600}
                     fontSize={"md"}
-                    color={colors.indigo[500]}
                     aria-current="page"
                     variant="nav"
                   >
@@ -137,6 +136,12 @@ const Header: React.FC<ButtonProps> = (props) => {
                   <Button fontWeight={600} fontSize={"16px"} variant="nav">
                     {" "}
                     FAQ{" "}
+                  </Button>
+                </Link>
+                <Link href="/vote">
+                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                    {" "}
+                    Votes{" "}
                   </Button>
                 </Link>
               </ButtonGroup>

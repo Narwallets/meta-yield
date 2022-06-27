@@ -5,11 +5,9 @@ import {
   fetchActiveProjects,
   fetchSupportedProjects,
   fetchFinishedProjects,
+  fetchVotedProjects,
 } from "../queries/projects";
-import { getActiveProjects, getProjectDetails } from "../lib/near";
-import { number } from "yup";
-import { ProjectProps } from "../types/project.types";
-import { getFips } from "crypto";
+
 export const useGetProjects = () => {
   return useQuery("projects", () => fetchProjects(), {
     onError: (err) => {
@@ -36,6 +34,13 @@ export const useGetActiveProjects = () => {
 
 export const useGetFinishedProjects = () => {
   return useQuery("finished-projects", () => fetchFinishedProjects(), {
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+};
+    export const useGetProjectsToVote = () => {
+  return useQuery("vote-projects", () => fetchVotedProjects(), {
     onError: (err) => {
       console.error(err);
     },
