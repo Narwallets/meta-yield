@@ -175,7 +175,7 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar boxSize="25x" objectFit="cover" src="/stNEAR_token-white_dark_purple-circle.svg" />
+                  <Avatar size={'xs'}   src="/stNEAR_token-white_dark_purple-circle.svg" />
                   <Text fontSize={'xs'}  fontWeight={600} color="gray.400" ml={2}>stNEAR</Text>
                 </Square>
               </InputLeftAddon>
@@ -238,7 +238,7 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar boxSize="25x" objectFit="cover" src="/stNEAR_token-white_dark_purple-circle.svg" />
+                  <Avatar size={'xs'}   src="/stNEAR_token-white_dark_purple-circle.svg" />
                   <Text fontSize={'xs'} fontWeight={600}  color={'gray.400'} ml={2}>stNEAR</Text>
                 </Square>
               </InputLeftAddon>
