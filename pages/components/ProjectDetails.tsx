@@ -78,7 +78,7 @@ export enum ProjectStatus {
   UNSUCCESS,
 }
 
-const ProjectDetails = (props: { id: any }) => {
+const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -374,7 +374,9 @@ const ProjectDetails = (props: { id: any }) => {
           />
         </GridItem>
         <GridItem rowSpan={{ base: 0, lg: 2 }}>
-          <Box
+          { /* **********FUNDING SIDEBAR ***************/}
+          { !props.votingMode && (
+            <Box
             px={{ base: "0", md: "6" }}
             py={{ base: "0", md: "6" }}
             borderRadius="lg"
@@ -598,14 +600,18 @@ const ProjectDetails = (props: { id: any }) => {
                         )
                       }
                     </Stack>
-                  </>
+                    </>
+                  )}
+                </Stack>
+                {showRewardsCalculator && (
+                  <RewardsCalculator kickstarter={project?.kickstarter} />
                 )}
               </Stack>
-              {showRewardsCalculator && (
-                <RewardsCalculator kickstarter={project?.kickstarter} />
-              )}
-            </Stack>
-          </Box>
+            </Box>
+            )
+          }
+          
+
         </GridItem>
         <GridItem>
           <Tabs>
