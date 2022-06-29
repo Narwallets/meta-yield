@@ -66,6 +66,7 @@ import PageLoading from "./PageLoading";
 import { colors } from "../../constants/colors";
 import { ArrowSquareOut, Link as LinkI, TwitterLogo } from "phosphor-react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import VotingStatusCard from "./VotingStatusCard";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -608,6 +609,10 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                 )}
               </Stack>
             </Box>
+            )
+          }
+          { props.votingMode && ( 
+            <VotingStatusCard project={project}></VotingStatusCard>
             )
           }
           
