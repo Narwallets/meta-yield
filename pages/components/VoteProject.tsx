@@ -31,11 +31,6 @@ const VoteProject = (props: { data: any }) => {
   const { wallet } = useWallet();
   const [votes, setVotes] = useState('0');
 
-  const vote = (slug: string, amount?: any)=>{
-    voteProject(slug,  ntoy(1), wallet);
-  }
-
-
   useEffect(() => {
     (async () => {
       const myVotes = await getVotes(projectData.slug);
