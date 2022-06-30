@@ -125,40 +125,45 @@ const VotingStatusCard = (props: { project: any }) => {
         
     </Card>
     <Card>
-    <HStack>
-            <InputGroup>
-              <InputLeftAddon>
-                <Square minW="30px">
-                  <Avatar size={'xs'}   src="/stNEAR_token-white_dark_purple-circle.svg" />
-                  <Text fontSize={'xs'}  fontWeight={600} color="gray.400" ml={2}>stNEAR</Text>
-                </Square>
-              </InputLeftAddon>
-              <Input
-                id="amount_deposit"
-                name="amount_deposit"
-                placeholder="0"
-                value={formikVote.values.amount}
-                onPaste={formikVote.handleChange}
-                onBlur={formikVote.handleBlur}
-                onChange={(e) => {
-                  formikVote.handleChange(e);
-                }}
-              />
-              <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={onMaxClick}>
-                  Max
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <Button
-              colorScheme="indigo"
-              size="lg"
-              // disabled={!formikDeposit.isValid}
-              onClick={(e: any) => formikVote.handleSubmit(e)}
-            >
-              Vote
-            </Button>
-          </HStack>
+      <VStack align={'flex-start'}>
+        <Text fontSize={'xs'} color="gray.400" fontWeight="700">
+            VOTE
+        </Text>
+        <HStack>
+          <InputGroup>
+            <InputLeftAddon>
+              <Square minW="30px">
+                <Avatar size={'xs'}   src="/stNEAR_token-white_dark_purple-circle.svg" />
+                <Text fontSize={'xs'}  fontWeight={600} color="gray.400" ml={2}>Voting Power</Text>
+              </Square>
+            </InputLeftAddon>
+            <Input
+              id="amount_deposit"
+              name="amount_deposit"
+              placeholder="0"
+              value={formikVote.values.amount}
+              onPaste={formikVote.handleChange}
+              onBlur={formikVote.handleBlur}
+              onChange={(e) => {
+                formikVote.handleChange(e);
+              }}
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={onMaxClick}>
+                Max
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+          <Button
+            colorScheme="indigo"
+            size="lg"
+            // disabled={!formikDeposit.isValid}
+            onClick={(e: any) => formikVote.handleSubmit(e)}
+          >
+            Vote
+          </Button>
+        </HStack>
+      </VStack>
     </Card>
     </>
   );
