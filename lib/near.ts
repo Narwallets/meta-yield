@@ -434,12 +434,14 @@ export const getVotes = async (id: string) => {
   });
 };
 
-export const getVotingPower = async (id: string) => {
-  return callPublicMetavoteMethod(metavoteViewMethods.getTotalVotes, {
-    contract_address: CONTRACT_ADDRESS_METAVOTE,
-    votable_object_id: id
-  });
+export const getAvailableVotingPower = async (wallet: any) => {
+  return callPublicMetavoteMethod(metavoteViewMethods.getAvailableVotingPower, {voter_id: wallet.getAccountId()});
 };
+
+export const getInUseVotingPower = async (wallet: any) => {
+  return callPublicMetavoteMethod(metavoteViewMethods.getUsedVotingPower, {voter_id: wallet.getAccountId()});
+};
+
 
 /*********** METAVOTE CHANGE METHODS *************/
 

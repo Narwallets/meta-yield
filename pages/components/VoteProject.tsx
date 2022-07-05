@@ -15,7 +15,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { CaretRight } from "phosphor-react";
-
 import { useRouter } from "next/router";
 import { getPeriod, ntoy, PERIOD, timeLeftToFund, yton } from "../../lib/util";
 import { getVotes, voteProject } from '../../lib/near';
@@ -171,9 +170,6 @@ const VoteProject = (props: { data: any }) => {
                   </Text>
                 </Stack>
               )}
-
-
-
             <Stack
               mt={"2rem"}
               align={{ base: "center", lg: "flex-start" }}
