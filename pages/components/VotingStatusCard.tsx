@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  Stack, Text, Spacer, Box, VStack, Button, InputGroup, Input, InputLeftAddon, HStack, Square, Avatar, InputRightElement, toast, useToast } from "@chakra-ui/react";
+import {  Stack, Text, Spacer, Box, VStack, Button, InputGroup, Input, InputLeftAddon, HStack, Square, Avatar, InputRightElement, useToast } from "@chakra-ui/react";
 import Card from "./Card";
 import { CaretRight } from "phosphor-react";
 import {
@@ -12,21 +12,20 @@ import { getAvailableVotingPower, getInUseVotingPower, getVotes, voteProject } f
 import { useStore as useWallet} from '../../stores/wallet';
 import { useFormik } from "formik";
 
-
 const VotingStatusCard = (props: { project: any }) => {
   const project = props.project;
   const [votes, setVotes] = useState('0');
   const [votingPower, setVotingPower] = useState('0');
-  const [inUse, setInUse] = useState('0');
+  const [votingPowerInUse, setVotingPowerInUse] = useState('0');
 
   const { wallet } = useWallet();
   const toast = useToast();
   const vote = ( amount: any)=>{
-    voteProject(project.slug,  ntoy(amount), wallet);
+    voteProject(project.id +'|' +project.slug,  ntoy(amount), wallet);
   }
 
   const onMaxClick = async (event: any) =>
-    formikVote.setFieldValue("amount", votingPower);
+    formikVote.setFieldValue("amount", yton(votingPower));
 
   const formikVote = useFormik({
     initialValues: {
@@ -56,12 +55,15 @@ const VotingStatusCard = (props: { project: any }) => {
   useEffect(() => {
     (async () => {
       if(wallet && wallet.isSignedIn()) {
-        const myVotes = await getVotes(project.slug);
+
+        const myVotes = await getVotes(project.id + '|'+project.slug);
         setVotes(myVotes);
+
         const myVotinPower = await getAvailableVotingPower(wallet);
         setVotingPower(myVotinPower);
+
         const myVotinPowerInUse = await getInUseVotingPower(wallet);
-        setVotingPower(myVotinPower);
+        setVotingPowerInUse(myVotinPowerInUse);
       }
     })();
   }, [project, wallet]);
@@ -73,7 +75,7 @@ const VotingStatusCard = (props: { project: any }) => {
           <Stack direction="row">
             <Box>
               <Text fontSize={'xs'} color="gray.400" fontWeight="700">
-                VOTES
+                PROJECT VOTES
               </Text>
               <Text fontSize={{ base: "lg", md: "2xl" }} fontWeight="bold" lineHeight="8">
                 {yton(votes)}
@@ -95,40 +97,7 @@ const VotingStatusCard = (props: { project: any }) => {
           </Stack>
         </Stack>
       </Card>
-      <Card>
-        <VStack align={'flex-start'}>
-            <VStack align={'flex-start'}>
-              <Text fontSize={'xs'} color="gray.400" fontWeight="700">
-                YOUR VOTING POWER
-              </Text>
-              <Text fontSize={{ base: "lg", md: "2xl" }} fontWeight="bold" lineHeight="8">
-                {yton(votingPower)}
-              </Text>
-            </VStack>
-            <VStack align={'flex-start'}>
-              <Text fontSize={'xs'} color="gray.400" fontWeight="700">
-                IN USE
-              </Text>
-              <Text
-                fontSize={{ base: "lg", md: "2xl" }}
-                fontWeight="bold"
-                lineHeight="8"
-                color={'red'}
-              >
-                {yton(votes)}
-              </Text>
-            </VStack>
-            <Button
-                  w={"100%"}
-                  h={"48px"}
-                  colorScheme={"indigo"}
-                  rightIcon={<CaretRight />}
-                  onClick={() => {}}
-                >
-                  Get Voting Power
-                </Button>
-          </VStack>
-      </Card>
+      
       <Card>
         <VStack align={'flex-start'}>
           <Text fontSize={'xs'} color="gray.400" fontWeight="700">
@@ -138,7 +107,6 @@ const VotingStatusCard = (props: { project: any }) => {
             <InputGroup>
               <InputLeftAddon>
                 <Square minW="30px">
-                  <Avatar size={'xs'}   src="/stNEAR_token-white_dark_purple-circle.svg" />
                   <Text fontSize={'xs'}  fontWeight={600} color="gray.400" ml={2}>Voting Power</Text>
                 </Square>
               </InputLeftAddon>
@@ -169,6 +137,40 @@ const VotingStatusCard = (props: { project: any }) => {
             </Button>
           </HStack>
         </VStack>
+      </Card>
+      <Card>
+        <VStack align={'flex-start'}>
+            <VStack align={'flex-start'}>
+              <Text fontSize={'xs'} color="gray.400" fontWeight="700">
+                YOUR VOTING POWER
+              </Text>
+              <Text fontSize={{ base: "lg", md: "2xl" }} fontWeight="bold" lineHeight="8">
+                {yton(votingPower)}
+              </Text>
+            </VStack>
+            <VStack align={'flex-start'}>
+              <Text fontSize={'xs'} color="gray.400" fontWeight="700">
+                IN USE
+              </Text>
+              <Text
+                fontSize={{ base: "lg", md: "2xl" }}
+                fontWeight="bold"
+                lineHeight="8"
+                color={'red'}
+              >
+                {yton(votingPowerInUse)}
+              </Text>
+            </VStack>
+            <Button
+                  w={"100%"}
+                  h={"48px"}
+                  colorScheme={"indigo"}
+                  rightIcon={<CaretRight />}
+                  onClick={() => {}}
+                >
+                  Get Voting Power
+                </Button>
+          </VStack>
       </Card>
     </>
   );

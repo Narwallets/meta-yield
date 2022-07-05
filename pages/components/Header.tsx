@@ -138,12 +138,16 @@ const Header: React.FC<ButtonProps> = (props) => {
                     FAQ{" "}
                   </Button>
                 </Link>
-                <Link href="/vote">
-                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
-                    {" "}
-                    Votes{" "}
-                  </Button>
-                </Link>
+                {
+                  /* 
+                    <Link href="/vote">
+                      <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                        {" "}
+                        Votes{" "}
+                      </Button>
+                    </Link>
+                  */
+                }
               </ButtonGroup>
             )}
 

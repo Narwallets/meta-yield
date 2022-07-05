@@ -32,7 +32,7 @@ const VoteProject = (props: { data: any }) => {
 
   useEffect(() => {
     (async () => {
-      const myVotes = await getVotes(projectData.slug);
+      const myVotes = await getVotes(projectData.id + '|' +projectData.slug);
       setVotes(myVotes);
     })();
   }, [projectData]);
