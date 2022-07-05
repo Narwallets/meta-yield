@@ -28,21 +28,27 @@ const Home = () => {
           pt={{ base: "50", md: "100" }}
           pb={{ base: "12", md: "24" }}
         >
-          <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-            Funding Now!
-          </Text>
-          {data && data.length && data.map((p: any) => (
-            <div key={p.kickstarter.id}>
-              <ActiveProject data={p} />
-            </div>
-          ))}
+          {data && data.length > 0 && (
+            <>
+              <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
+                Funding Now!
+              </Text>
+              {
+                data.map((p: any) => (
+                  <div key={p.kickstarter.id}>
+                    <ActiveProject data={p} />
+                  </div>
+                ))
+              }
+            </>
+          )}
         </Box>
         { dataFinished && dataFinished.length > 0 && (
           <Box id="projects"
             as="section"
             pb={{ base: "12", md: "24" }}>
             <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-              Closed Funding 
+              Funding Completed 
             </Text>
             {dataFinished.map((p: any) => (
               <div key={p.kickstarter.id}>

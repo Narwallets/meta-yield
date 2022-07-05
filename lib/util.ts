@@ -135,7 +135,6 @@ export const getEndVotingPeriod = ()=> {
    // return moment(VOTE_CONFIGS.END_VOTE_PERIOD ).format('MM-DD-YYYY')
 }
 
-
 export const getCurrentFundingGoal = (goals: any, total_deposited: any) => {
   const [currentFundingGoal] = goals.filter(
     (g: KickstarterGoalProps) => parseInt(g.desired_amount) >= total_deposited
