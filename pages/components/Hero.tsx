@@ -7,6 +7,7 @@ import {
   Text,
   useBreakpointValue,
   Link,
+  Box,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import * as React from "react";
@@ -33,19 +34,18 @@ const Hero = () => {
       minHeight={{ base: 400, md: 600 }}
       borderRadius={16}
       as="section"
-      bg="bg-accent"
-      color="on-accent"
+      bg="#F5F5FF"
     >
       <Container py={{ base: "12", md: "24" }}>
         <Stack spacing={{ base: "8", md: "10" }}>
           <Stack spacing={{ base: "4", md: "5" }} align="center">
             <Heading
               textAlign={"center"}
-              fontWeight={900}
+              fontWeight={700}
               lineHeight={{ base: "3rem", md: "4rem" }}
-              size={useBreakpointValue({ base: "lg", md: "2xl" })}
+              size={useBreakpointValue({ base: "md", md: "2xl" })}
             >
-              Stake. Support. <br></br> Earn.
+              The launchpad of the NEAR ecosystem.
             </Heading>
             <Text
               color="on-accent-muteed"
@@ -53,8 +53,7 @@ const Hero = () => {
               textAlign="center"
               fontSize="xl"
             >
-              Stake NEAR and use your tokens to support crypto-based projects,
-              and earn their tokens.
+              Stake NEAR and use your tokens to support crypto-based projects, and earn their tokens.
             </Text>
           </Stack>
           <Stack
@@ -63,20 +62,38 @@ const Hero = () => {
             justify="center"
             alignItems={"center"}
           >
-            {!isConnected && (
-              <Button
-                colorScheme="indigo"
-                size="lg"
-                onClick={() => onConnect()}
-              >
-                Connect Wallet
+              <Button borderColor={'indigo.500'} border={'2px'} borderRadius={5} fontWeight={600} color={'indigo.500'} pl={20} pr={20} variant='outline' size="lg" bg="#F5F5FF">
+                HOW IT WORKS
               </Button>
-            )}
-            <Link href="#how-it-works">
-              <Button variant="secondary-on-accent" size="lg">
-                How it works
-              </Button>
-            </Link>
+          </Stack>
+          <Stack
+            spacing="3"
+            direction={{ base: "column", sm: "row" }}
+            justify="center"
+            alignItems={"center"}
+          >
+              <Stack p={5} borderRadius={8} justify={'flex-start'} bg={'indigo.500'}>
+                <Heading
+                  color={'white'}
+                  fontWeight={700}
+                  lineHeight={{ base: "3rem", md: "4rem" }}
+                  size={useBreakpointValue({ base: "sm", md: "md" })}
+                >
+                  Vote
+                </Heading>
+                <Text color={'white'} opacity={0.5}>Vote which project can be elegible to get funded.</Text>
+              </Stack>
+              <Stack p={5} borderRadius={8} justify={'flex-start'} bg={'indigo.500'}>
+                <Heading
+                  color={'white'}
+                  fontWeight={700}
+                  lineHeight={{ base: "3rem", md: "4rem" }}
+                  size={useBreakpointValue({ base: "sm", md: "md" })}
+                >
+                  Fund
+                </Heading>
+                <Text color={'white'} opacity={0.5}>Stake NEAR and use your tokens to support crypto-based projects.</Text>
+              </Stack>
           </Stack>
         </Stack>
       </Container>
