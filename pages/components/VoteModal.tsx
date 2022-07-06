@@ -17,12 +17,10 @@ import {
   useToast
 } from '@chakra-ui/react';
 import React from 'react';
-import { colors } from '../../../constants/colors';
-import { voteProject } from '../../../lib/near';
+import { colors } from '../../constants/colors';
+import { voteProject } from '../../lib/near';
 import { useFormik } from 'formik';
-import { ntoy, yton } from '../../../lib/util';
-import voteValidation from '../../../validation/votesValidation';
-import { useStore as useVoter } from "../../../stores/voter";
+import { ntoy, yton } from '../../lib/util';
 
 
 type Props = {
@@ -31,10 +29,10 @@ type Props = {
   onClose: any,
   id: string,
   contractAdress: string,
+  voterData: string
 }
 
 const VoteModal = (props: Props) => {
-  const { voterData } = useVoter();
 
   const {wallet, isOpen, onClose, id, contractAdress} = props;
   const toast = useToast();
@@ -45,7 +43,6 @@ const VoteModal = (props: Props) => {
 
   const formikLock = useFormik({
     initialValues: initialValuesDeposit,
-    validationSchema: voteValidation,
     validateOnMount: true,
     enableReinitialize: true,
     validateOnBlur: true,
@@ -63,7 +60,7 @@ const VoteModal = (props: Props) => {
         });
       } else {
         try {
-          voteProject(id, contractAdress, ntoy(formikLock.values.amount_vote), wallet);
+          // voteProject(id, contractAdress, ntoy(formikLock.values.amount_vote), wallet);
         }
         catch (error: any) {
           console.error(error);
@@ -89,7 +86,7 @@ const VoteModal = (props: Props) => {
           <ModalCloseButton/>
           <ModalBody>
             <VStack spacing={4} align={'flex-start'}>
-              <Text fontSize={'xs'}>Voting power available: {yton(voterData.votingPower)}</Text>
+              <Text fontSize={'xs'}>Voting power available: </Text>
               <HStack spacing={10}>
                   <Text fontSize={'sm'}>Amount to vote:</Text>
                   <InputGroup colorScheme={colors.primary} size='sm'>

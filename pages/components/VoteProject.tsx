@@ -19,23 +19,13 @@ import { useRouter } from "next/router";
 import { getPeriod, ntoy, PERIOD, timeLeftToFund, yton } from "../../lib/util";
 import { getVotes, voteProject } from '../../lib/near';
 import { useStore as useWallet} from '../../stores/wallet';
+import { useStoreProjects } from "../../stores/projects";
 
 const VoteProject = (props: { data: any }) => {
   const projectData = props.data;
-  const [totalRaised, setTotalRaised] = useState("");
   const tagColor = useColorModeValue("gray.600", "gray.300");
   const router = useRouter();
   const isMobile = useBreakpointValue({ base: true, md: false });
-
-  const { wallet } = useWallet();
-  const [votes, setVotes] = useState('0');
-
-  useEffect(() => {
-    (async () => {
-      const myVotes = await getVotes(projectData.id + '|' +projectData.slug);
-      setVotes(myVotes);
-    })();
-  }, [projectData]);
 
   if (!projectData)
     return (
@@ -99,14 +89,6 @@ const VoteProject = (props: { data: any }) => {
           <Text as="h2" mr={"10px"} fontWeight="bold" fontSize="2xl">
             {projectData.name}
           </Text>
-          {/* {project?.verified && (
-              <Image
-                src={"/check.svg"}
-                alt="check"
-                width={"16px"}
-                height={"16px"}
-              />
-            )} */}
         </Stack>
         <Text mt="2">{projectData.description}</Text>
         <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor}>
@@ -134,7 +116,7 @@ const VoteProject = (props: { data: any }) => {
                 VOTES
               </Text>
               <Text mt={14} fontSize="md" color="emphasized">
-                <b>{yton(votes)} </b>
+                <b>{yton(projectData.votes)} </b>
               </Text>
             </Stack>
             {getPeriod(projectData.kickstarter) === PERIOD.OPEN &&

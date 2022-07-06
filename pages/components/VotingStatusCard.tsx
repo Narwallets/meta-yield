@@ -169,7 +169,7 @@ const VotingStatusCard = (props: { project: any }) => {
                   onClick={() => {}}
                 >
                   Get Voting Power
-                </Button>
+            </Button>
           </VStack>
       </Card>
     </>
