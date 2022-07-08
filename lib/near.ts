@@ -40,7 +40,7 @@ export const METAPOOL_CONTRACT_ID = process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID
 export const METAVOTE_CONTRACT_ID = process.env.NEXT_PUBLIC_METAVOTE_CONTRACT_ID;
 export const CONTRACT_ADDRESS_METAVOTE = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_METAVOTE;
 export const gas = new BN("70000000000000");
-const env = process.env.NODE_ENV;
+const env = 'development';
 console.log('@env', env)
 const nearConfig = getConfig(env);
 const provider = new providers.JsonRpcProvider({ url: nearConfig.nodeUrl });
