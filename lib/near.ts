@@ -434,6 +434,15 @@ export const getVotes = async (id: string) => {
   });
 };
 
+export const getMyVotesByProject = async (id: string, wallet: any) => {
+  return callPublicMetavoteMethod(metavoteViewMethods.getVotesForObject, {
+    contract_address: CONTRACT_ADDRESS_METAVOTE,
+    votable_object_id: id,
+    voter_id: wallet.getAccountId(),
+  });
+};
+
+
 export const getAvailableVotingPower = async (wallet: any) => {
   return callPublicMetavoteMethod(metavoteViewMethods.getAvailableVotingPower, {voter_id: wallet.getAccountId()});
 };

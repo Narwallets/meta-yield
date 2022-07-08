@@ -51,7 +51,8 @@ export const metavoteViewMethods = {
   getUsedVotingPower: "get_used_voting_power",
   getTotalVotes: "get_total_votes",
   getVotesByContract: "get_votes_by_contract",
-  getVotesByVoter: "get_votes_by_voter"
+  getVotesByVoter: "get_votes_by_voter",
+  getVotesForObject :"get_votes_for_object"
 
 };
 

@@ -8,7 +8,7 @@ import {
   yton,
 } from "../../lib/util";
 
-import { getAvailableVotingPower, getInUseVotingPower, getVotes, voteProject } from '../../lib/near';
+import { getAvailableVotingPower, getInUseVotingPower, getMyVotesByProject, getVotes, voteProject } from '../../lib/near';
 import { useStore as useWallet} from '../../stores/wallet';
 import { useFormik } from "formik";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
@@ -16,7 +16,7 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 const VotingStatusCard = (props: { project: any }) => {
   const project = props.project;
   const [votes, setVotes] = useState('0');
-  const [myVotes, setMyVotes] = useState('0');
+  const [myVotesInThisProject, setMyVotes] = useState('0');
   const [votingPower, setVotingPower] = useState('0');
   const [votingPowerInUse, setVotingPowerInUse] = useState('0');
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -58,9 +58,12 @@ const VotingStatusCard = (props: { project: any }) => {
   useEffect(() => {
     (async () => {
       if(wallet && wallet.isSignedIn()) {
-
-        const myVotes = await getVotes(project.id + '|'+project.slug);
+        const id = project.id + '|'+project.slug;
+        const myVotes = await getVotes(id);
         setVotes(myVotes);
+
+        const myVotesInPrj = await getMyVotesByProject(id, wallet);
+        setMyVotes(myVotesInPrj);
 
         const myVotinPower = await getAvailableVotingPower(wallet);
         setVotingPower(myVotinPower);
@@ -89,7 +92,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 YOUR VOTE
               </Text>
               <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" lineHeight="8">
-                {yton(myVotes)}
+                {yton(myVotesInThisProject)}
               </Text>
             </Box>
             <Box>

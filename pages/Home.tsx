@@ -94,7 +94,7 @@ const Home = () => {
               <Box py={'8px'} px={'28px'}  bg={'#FDFF9F'}>
                 <Text fontWeight="bold">The most voted starts with 🎉 20,000 stNEAR</Text>
               </Box>
-              <VStack>
+              <VStack hidden={!isMobile}>
                 <Text textAlign={{base:'center', md: 'start'}} opacity={0.5} fontSize={{base:'xl', md:"2xl"}}  fontWeight="bold">ENDS IN </Text>
                 <Text  textAlign={{base:'center', md: 'start'}} fontSize={{base:'4xl', md:"2xl"}}  fontWeight="bold">{getEndVotingPeriod()}</Text>
               </VStack>
