@@ -57,19 +57,21 @@ const VotingStatusCard = (props: { project: any }) => {
 
   useEffect(() => {
     (async () => {
-      if(wallet && wallet.isSignedIn()) {
+      if(wallet ) {
         const id = project.id + '|'+project.slug;
         const myVotes = await getVotes(id);
         setVotes(myVotes);
 
-        const myVotesInPrj = await getMyVotesByProject(id, wallet);
-        setMyVotes(myVotesInPrj);
-
-        const myVotinPower = await getAvailableVotingPower(wallet);
-        setVotingPower(myVotinPower);
-
-        const myVotinPowerInUse = await getInUseVotingPower(wallet);
-        setVotingPowerInUse(myVotinPowerInUse);
+        if (wallet.isSignedIn()) {
+          const myVotesInPrj = await getMyVotesByProject(id, wallet);
+          setMyVotes(myVotesInPrj);
+  
+          const myVotinPower = await getAvailableVotingPower(wallet);
+          setVotingPower(myVotinPower);
+  
+          const myVotinPowerInUse = await getInUseVotingPower(wallet);
+          setVotingPowerInUse(myVotinPowerInUse);
+        }
       }
     })();
   }, [project, wallet]);
@@ -87,14 +89,14 @@ const VotingStatusCard = (props: { project: any }) => {
                 {yton(votes)}
               </Text>
             </Box>
-            <Box>
+            { wallet?.isSignedIn() && (<Box>
               <Text fontSize={{ base: "xs", md: "md" }} mb={4} color="gray.400" fontWeight="700">
                 YOUR VOTE
               </Text>
               <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" lineHeight="8">
                 {yton(myVotesInThisProject)}
               </Text>
-            </Box>
+            </Box>)}
             <Box>
               <Text fontSize={{ base: "xs", md: "md" }} mb={4} color="gray.400" fontWeight="700">
                 ENDS IN
@@ -112,11 +114,11 @@ const VotingStatusCard = (props: { project: any }) => {
       </Card>
       
       <Card>
-        <VStack align={'flex-start'}>
+        <VStack  align={'flex-start'}>
           <Text hidden={!isMobile} fontSize={'xs'} color="gray.400" fontWeight="700">
               VOTE
           </Text>
-          <Stack w={'100%'} direction={{base: 'column', md: 'row'}}>
+          <Stack  w={'100%'} direction={{base: 'column', md: 'row'}}>
             <InputGroup border={'1px'} borderColor={'#E5E7EB'} borderRadius={'6px'}>
               <InputLeftAddon hidden={isMobile}>
                 <Square minW="30px">
