@@ -56,7 +56,7 @@ const Hero = () => {
               maxW="2xl"
               textAlign="center"
               fontSize="xl">
-              Stake NEAR and use your tokens to support crypto-based projects, and earn their tokens.
+              Stake NEAR and use your yield to support crypto-based projects, and earn their tokens.
             </Text>
           </Stack>
           <Stack
