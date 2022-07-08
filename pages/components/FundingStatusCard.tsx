@@ -5,7 +5,6 @@ import { KickstarterProps } from "../../types/project.types";
 import {
   formatToLocaleNear,
   getPeriod,
-  isOpenPeriod,
   PERIOD,
   timeLeftToFund,
   yoctoToDollarStr,

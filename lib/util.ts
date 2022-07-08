@@ -69,19 +69,27 @@ export const yoctoToDollarStr = (
 export const formatToLocaleNear = (value: number, decimals: number = 4) => {
   return value.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 })
 }
-export const timeLeftToFund = (time: any) => {
+export const timeLeftToFund = (time: any, formatDHM? : boolean) => {
   if (!time || moment(time).diff(moment.utc()) < 0) {
     return "";
   }
+
   const timeMoment = moment(time);
   const now = moment.utc();
 
-  return timeMoment.diff(now, "days") > 0
-    ? `${timeMoment.diff(now, "days")} days`
+  if (formatDHM) {
+    const duration = moment.duration(timeMoment.diff(now));  
+    return `${duration.days() > 0 ? duration.days() + 'd' : ''} ${duration.hours() > 0 ? duration.hours() + 'h' : ''} ${duration.minutes()}m`
+  } else {
+    return timeMoment.diff(now, "days") > 0
+    ? `${timeMoment.diff(now, "days")} Days`
     : timeMoment.diff(now, "hours") >= 1
-    ? `${timeMoment.diff(now, "hours")} hours`
-    : `${timeMoment.diff(now, "minutes")} minutes`;
+    ? `${timeMoment.diff(now, "hours")} Hours`
+    : `${timeMoment.diff(now, "minutes")} Minutes`;
+  }
 };
+
+
 
 export const isOpenPeriod = (kickstarter: any) => {
   return getPeriod(kickstarter) === PERIOD.OPEN;
@@ -131,9 +139,11 @@ export const getMyProjectsFounded = async (id: string, wallet: any) => {
 };
 
 export const getEndVotingPeriod = ()=> {
-  return timeLeftToFund(VOTE_CONFIGS.END_VOTE_PERIOD)
+  return timeLeftToFund(VOTE_CONFIGS.END_VOTE_PERIOD, true)
    // return moment(VOTE_CONFIGS.END_VOTE_PERIOD ).format('MM-DD-YYYY')
 }
+
+
 
 export const getCurrentFundingGoal = (goals: any, total_deposited: any) => {
   const [currentFundingGoal] = goals.filter(
