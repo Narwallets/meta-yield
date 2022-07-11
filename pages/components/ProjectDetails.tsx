@@ -66,6 +66,7 @@ import PageLoading from "./PageLoading";
 import { colors } from "../../constants/colors";
 import { ArrowSquareOut, Link as LinkI, TwitterLogo } from "phosphor-react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import VotingStatusCard from "./VotingStatusCard";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -78,8 +79,9 @@ export enum ProjectStatus {
   UNSUCCESS,
 }
 
-const ProjectDetails = (props: { id: any }) => {
-  const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
+const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
+  const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id), props.votingMode);
+
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const isMobile = useBreakpointValue({ base: true, md: false });
 
@@ -93,6 +95,7 @@ const ProjectDetails = (props: { id: any }) => {
     useState<boolean>(false);
 
   const [status, setStatus] = useState<ProjectStatus>(ProjectStatus.NOT_LOGGIN);
+
   const [ammountClaim, setRewards] = useState<any>(0);
   const [lockupDate, setLockupDate] = useState<any>();
   const [endDate, setEndDate] = useState<any>();
@@ -269,7 +272,7 @@ const ProjectDetails = (props: { id: any }) => {
 
   useEffect(() => {
     (async () => {
-      if (project && isLogin) {
+      if (project && isLogin && !props.votingMode) {
         const thisProjectFounded = await getMyProjectsFounded(
           project.kickstarter.id,
           wallet
@@ -282,7 +285,7 @@ const ProjectDetails = (props: { id: any }) => {
     })();
   }, [wallet, props, project]);
 
-  if (isLoading) return <PageLoading />;
+  if (isLoading && !project) return <PageLoading />;
 
   return (
     <Container maxW="container.xl">
@@ -374,7 +377,9 @@ const ProjectDetails = (props: { id: any }) => {
           />
         </GridItem>
         <GridItem rowSpan={{ base: 0, lg: 2 }}>
-          <Box
+          { /* **********FUNDING SIDEBAR ***************/}
+          { !props.votingMode && (
+            <Box
             px={{ base: "0", md: "6" }}
             py={{ base: "0", md: "6" }}
             borderRadius="lg"
@@ -598,14 +603,22 @@ const ProjectDetails = (props: { id: any }) => {
                         )
                       }
                     </Stack>
-                  </>
+                    </>
+                  )}
+                </Stack>
+                {showRewardsCalculator && (
+                  <RewardsCalculator kickstarter={project?.kickstarter} />
                 )}
               </Stack>
-              {showRewardsCalculator && (
-                <RewardsCalculator kickstarter={project?.kickstarter} />
-              )}
-            </Stack>
-          </Box>
+            </Box>
+            )
+          }
+          { props.votingMode && ( 
+            <VotingStatusCard project={project}></VotingStatusCard>
+            )
+          }
+          
+
         </GridItem>
         <GridItem>
           <Tabs>
@@ -649,12 +662,12 @@ const ProjectDetails = (props: { id: any }) => {
                   </Text>
                   <Stack mt={5}>
                     <Image
-                      src={project?.roadmap.imageUrl}
+                      src={project?.roadmap?.imageUrl}
                       alt="project"
                       width="400"
                       objectFit="cover"
                     />
-                    <Link href={project?.roadmap.linkUrl} isExternal>
+                    <Link href={project?.roadmap?.linkUrl} isExternal>
                       Full Roadmap <ExternalLinkIcon mx='2px' />
                     </Link>
                   </Stack>
@@ -689,7 +702,7 @@ const Team = (props: { team: TeamMemberProps[] }) => {
         TEAM
       </Text>
       <Stack divider={<StackDivider />} spacing="4" mt="5">
-        {team.map((member, index) => (
+        {team?.map((member, index) => (
           <Stack key={index} fontSize="sm" px="4" spacing="4">
             <Stack direction="row" justify="space-between" spacing="4">
               <HStack spacing="3">

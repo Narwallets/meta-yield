@@ -115,18 +115,6 @@ const Header: React.FC<ButtonProps> = (props) => {
             <Spacer />
             { isDesktop && (
               <ButtonGroup variant="link"  alignItems="flex-end">
-                <Link href="/#projects">
-                  <Button
-                    fontWeight={600}
-                    fontSize={"md"}
-                    color={colors.indigo[500]}
-                    aria-current="page"
-                    variant="nav"
-                  >
-                    {" "}
-                    Projects{" "}
-                  </Button>
-                </Link>
                 <Link href="/#how-it-works">
                   <Button fontWeight={600} fontSize={"16px"} variant="nav">
                     {" "}
@@ -139,6 +127,22 @@ const Header: React.FC<ButtonProps> = (props) => {
                     FAQ{" "}
                   </Button>
                 </Link>
+                <Link href="/#completed">
+                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                    {" "}
+                    Funded projects{" "}
+                  </Button>
+                </Link>
+                {
+                  /* 
+                    <Link href="/vote">
+                      <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                        {" "}
+                        Votes{" "}
+                      </Button>
+                    </Link>
+                  */
+                }
               </ButtonGroup>
             )}
 
