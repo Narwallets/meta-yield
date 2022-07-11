@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import {  dataToVote } from "../_data";
+import {  dataToVote } from "../../_data";
 
 export default async function handler(
   req: NextApiRequest,

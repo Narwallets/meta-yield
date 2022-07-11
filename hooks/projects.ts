@@ -16,8 +16,8 @@ export const useGetProjects = () => {
   });
 };
 
-export const useGetProjectDetails = (id: number) => {
-  return useQuery("project-fund", () => fetchProjectDetails(id), {
+export const useGetProjectDetails = (id: number, votingMode?: boolean) => {
+  return useQuery("project-fund", () => fetchProjectDetails(id, votingMode), {
     onError: (err) => {
       console.error(err);
     },
