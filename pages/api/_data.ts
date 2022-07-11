@@ -348,7 +348,7 @@ export const data = [
     twitter: "https://twitter.com/none",
     imageUrl:"https://thumbs.dreamstime.com/z/generic-logo-image-isolated-white-background-your-web-mo-mobile-app-design-133876456.jpg",
     avatarUrl:
-      "/projects/demo1/logo2.png",
+      "/projects/demo1/demologo2.png",
     description:
       "Is the first leveraged yield farming application on NEAR Protocol. It is aimed at providing users with larger yields and greater liquidity — all on the NEAR blockchain.",
     verified: true,
@@ -487,7 +487,7 @@ export const data = [
       projectUrl: "https://www.none.org/",
       twitter: "https://twitter.com/none_",
       imageUrl:"https://www.seekpng.com/png/detail/141-1416951_generic-company-logo-png.png",
-      avatarUrl:"/projects/demo1/logo.png",
+      avatarUrl:"/projects/demo1/demologo.png",
       description:
         `SoundSplash is the official launch of the Crypto Panadas Records Alpha. Through a 12 week Metaverse Music Event Series we will host 12 Audio NFT drops, each on individual “Splash” pages using our FonoRoot NFT system, showcasing some amazing talents from across the globe.
         To power the SoundSplash micro-economy we have created $SPLASH, a token available only to event participants, Splash Pass holders and through our Meta Yield Fundraiser.
@@ -685,7 +685,7 @@ export const dataToVote = [
     twitter: "https://twitter.com/none",
     imageUrl:"https://thumbs.dreamstime.com/z/generic-logo-image-isolated-white-background-your-web-mo-mobile-app-design-133876456.jpg",
     avatarUrl:
-      "/projects/demo1/logo2.png",
+      "/projects/demo1/demologo2.png",
     description:
       "Is the first leveraged yield farming application on NEAR Protocol. It is aimed at providing users with larger yields and greater liquidity — all on the NEAR blockchain.",
     verified: true,
@@ -824,7 +824,7 @@ export const dataToVote = [
       projectUrl: "https://www.none.org/",
       twitter: "https://twitter.com/none_",
       imageUrl:"/projects/daorecords/cover.png",
-      avatarUrl:"/projects/demo1/logo.png",
+      avatarUrl:"/projects/demo1/demologo.png",
       description:
         `SoundSplash is the official launch of the Crypto Panadas Records Alpha. Through a 12 week Metaverse Music Event Series we will host 12 Audio NFT drops, each on individual “Splash” pages using our FonoRoot NFT system, showcasing some amazing talents from across the globe.
         To power the SoundSplash micro-economy we have created $SPLASH, a token available only to event participants, Splash Pass holders and through our Meta Yield Fundraiser.
