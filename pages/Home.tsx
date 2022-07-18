@@ -13,6 +13,7 @@ const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
   const { data: dataFinished, isLoading: isLoadingFinished } = useGetFinishedProjects();
 
+  // check if data is still loading
   if (isLoading && isLoadingFinished) return <PageLoading />;
 
   return (
