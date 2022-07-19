@@ -12,6 +12,7 @@ import { getAvailableVotingPower, getInUseVotingPower, getMyVotesByProject, getV
 import { useStore as useWallet} from '../../stores/wallet';
 import { useFormik } from "formik";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
+import voteSchemaValidation from "../../validation/voteSchemaValidation";
 
 const VotingStatusCard = (props: { project: any }) => {
   const project = props.project;
@@ -34,7 +35,7 @@ const VotingStatusCard = (props: { project: any }) => {
     initialValues: {
       amount: '0'
     },
-    // validationSchema: withdrawSchemaValidation,
+    validationSchema: voteSchemaValidation,
     validateOnMount: true,
     enableReinitialize: true,
     validateOnBlur: true,
@@ -129,6 +130,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 id="amount"
                 name="amount"
                 textAlign={'end'}
+                type="number"
                 placeholder="0"
                 fontSize={'xl'} 
                 fontWeight={'bold'}
@@ -141,7 +143,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 }}
               />
               <InputRightElement width="4.5rem">
-                <Button colorScheme={'indigo'} bg={{base: 'indigo.500', md: '#EEEFF8'}} p={2} variant={isMobile ? 'solid' : 'link'} h="1.75rem" size="sm" onClick={onMaxClick}>
+                <Button disabled={!formikVote.isValid} colorScheme={'indigo'} bg={{base: 'indigo.500', md: '#EEEFF8'}} p={2} variant={isMobile ? 'solid' : 'link'} h="1.75rem" size="sm" onClick={onMaxClick}>
                   {isMobile ? 'Max' : 'Use max' } 
                 </Button>
               </InputRightElement>
@@ -160,6 +162,10 @@ const VotingStatusCard = (props: { project: any }) => {
               Vote
             </Button>
           </Stack>
+          { formikVote.dirty && (
+          <Stack w={'100%'} textAlign={'end'}>
+            <Text fontSize={'xs'} color={'red'}> {formikVote.errors.amount} </Text>
+          </Stack>)}
         </VStack>
       </Card>
       <Card>

@@ -183,6 +183,7 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
                 id="amount_deposit"
                 name="amount_deposit"
                 placeholder="0"
+                min="0"
                 value={formikDeposit.values.amount_deposit}
                 onPaste={formikDeposit.handleChange}
                 onBlur={formikDeposit.handleBlur}
@@ -200,7 +201,7 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
             <Button
               colorScheme="indigo"
               size="lg"
-              // disabled={!formikDeposit.isValid}
+              disabled={!formikDeposit.isValid}
               onClick={(e: any) => formikDeposit.handleSubmit(e)}
             >
               Deposit
