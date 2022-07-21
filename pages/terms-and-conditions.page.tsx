@@ -25,20 +25,20 @@ const TermsAndConditions = () => (
       <br />
       <Section index="1" title="General">
         <Paragraph>
-          These terms and conditions (“Terms”) govern the use of the Website
+          These terms and conditions (&quot;Terms&quot;) govern the use of the Website
           (defined below) and the Services (defined below). These Terms also
           include any guidelines, announcements, additional terms, policies, and
           disclaimers made available or issued by us from time to time. These
           Terms constitute a binding and enforceable legal contract between Meta
           Staking Pool Limited, and its affiliates (
-          <b>“Company”, “Meta Pool”, “we”, “us”</b>) and you, an end user of the
-          services (<b>“you” or “User”</b>) at{" "}
+          <b>&quot;Company&quot;, &quot;Meta Pool&quot;, &quot;we&quot;, &quot;us&quot;</b>) and you, an end user of the
+          services (<b>&quot;you&quot; or &quot;User&quot;</b>) at{" "}
           <Link href="https://metayield.app/" textDecor={"underline"}>
             https://metayield.app/
           </Link>{" "}
-          (“Services”). By accessing, using or clicking on our website (and all:
+          (&quot;Services&quot;). By accessing, using or clicking on our website (and all:
           ; related subdomains) or its mobile applications (
-          <b>“Website” or “Platform”</b>) or accessing, using or attempting to
+          <b>&quot;Website&quot; or &quot;Platform&quot;</b>) or accessing, using or attempting to
           use the Services, you agree that you have read, understood, and to are
           bound by these Terms and that you comply with the requirements listed
           herein. If you do not agree to all of these Terms or comply with the
@@ -69,7 +69,7 @@ const TermsAndConditions = () => (
           This Website and the Services are not available to residents or
           citizens of Afghanistan, Angola, Azerbpaijian, Bahamas, Bosnia and
           Herzegovina, Botswana, Burundi, Cambodia, Cameroon, Canada, Chad,
-          China, Crimea of Ukraine, Cuba, Democratic People's Republic of Korea,
+          China, Crimea of Ukraine, Cuba, Democratic People&apos;s Republic of Korea,
           Democratic Republic of the Congo, Eritrea, Ethiopia, Ghana, Guinea,
           Guinea-Bissau, Haiti, Iran, Iraq, Japan, Laos, Libya, Madagascar,
           Mozambique, Nicaragua, Pakistan, Republic of Korea, Republic of the
@@ -77,7 +77,7 @@ const TermsAndConditions = () => (
           Stria, Sudan, Tajikistan, Trinidad and Tobago, Tunisia, Turkmenistan,
           Uganda, United States, Uzbekistan, Vanuatu, Venezuela, Yemen, and
           Zimbabwe and any other jurisdiction in which accessing or using our
-          protocol is prohibited (each a “Restricted Country”). We reserve the
+          protocol is prohibited (each a &quot;Restricted Country&quot;). We reserve the
           right to choose markets and jurisdictions to conduct business and may
           restrict or refuse the access of Website and our Services in other
           countries or regions in our sole discretion.
@@ -105,7 +105,7 @@ const TermsAndConditions = () => (
               your use of the Services is not prohibited by applicable law, and
               at all times compliant with applicable law, including but not
               limited to regulations on anti-money laundering, anti-corruption,
-              and counter-terrorist financing (<b>“CTF”</b>);
+              and counter-terrorist financing (<b>&quot;CTF&quot;</b>);
             </li>
             <li>
               you are not a citizen, resident or domiciliary in a Restricted
@@ -350,7 +350,7 @@ const TermsAndConditions = () => (
           expressly or are intended to survive termination or expiry.
         </Paragraph>
         <Paragraph>
-          OUR SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS
+          OUR SERVICES ARE PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS
           WITHOUT ANY REPRESENTATION OR WARRANTY, WHETHER EXPRESS, IMPLIED OR
           STATUTORY. YOU HEREBY ACKNOWLEDGE AND AGREE THAT YOU HAVE NOT RELIED
           UPON ANY OTHER STATEMENT OR AGREEMENT, WHETHER WRITTEN OR ORAL, WITH
@@ -588,7 +588,7 @@ const TermsAndConditions = () => (
           Any dispute that is not resolved after good faith negotiations may be
           referred by either party for final, binding resolution by arbitration
           under the arbitration rules of the British Virgin Islands
-          International Arbitration Centre (“BVIIAC”) under the BVIIAC
+          International Arbitration Centre (&quot;BVIIAC&quot;) under the BVIIAC
           Administered Arbitration Rules in force when the notice of arbitration
           is submitted. The law of this arbitration clause shall be the laws of
           British Virgin Islands. The seat of arbitration shall be the British
@@ -676,7 +676,7 @@ const TermsAndConditions = () => (
         ARE AWARE OF THE RISKS ASSOCIATED WITH TRANSACTIONS OF ENCRYPTED OR
         DIGITAL TOKENS OR CRYPTOCURRENCIES WITH A CERTAIN VALUE THAT ARE BASED
         ON BLOCKCHAIN AND CRYPTOGRAPHY TECHNOLOGIES AND ARE ISSUED AND MANAGED
-        IN A DECENTRALIZED FORM (“DIGITIAL CURRENCIES”); (B) YOU SHALL ASSUME
+        IN A DECENTRALIZED FORM (&quot;DIGITIAL CURRENCIES&quot;); (B) YOU SHALL ASSUME
         ALL RISKS RELATED TO THE USE OF THE SERVICES AND TRANSACTIONS OF DIGITAL
         CURRENCIES; AND (C) META POOL SHALL NOT BE LIABLE FOR ANY SUCH RISKS OR
         ADVERSE OUTCOMES. AS WITH ANY ASSET, THE VALUES OF DIGITAL CURRENCIES
