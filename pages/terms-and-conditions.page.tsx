@@ -626,8 +626,8 @@ const TermsAndConditions = () => (
       <Section index="17" title="Notices">
         <Paragraph>
           All notices, requests, demands, and determinations for us under these
-          Terms (other than routine operational communications) shall be sent to
-          [insert email].
+          Terms (other than routine operational communications) shall be sent to {" "}
+          <Link href="mailto:info@metapool.app">info@metapool.app</Link>.
         </Paragraph>
       </Section>
 
