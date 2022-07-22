@@ -37,7 +37,7 @@ const Footer: React.FC<ButtonProps> = (props) => {
         <Link href="https://rctracks.io/privacy-policy/" target={"_blank"} fontSize="xs">
           Privacy
         </Link>
-        <Link href="https://metapool.app/legal-notice-risk-disclosures.html" target={"_blank"} fontSize="xs">
+        <Link href="/terms-and-conditions" fontSize="xs">
           Terms and Conditions
         </Link>
       </Stack>
