@@ -145,7 +145,7 @@ export const data = [
   ]
     },
     {
-      id: 2, // key para proyectos en katherine
+      id: 1, // key para proyectos en katherine
       slug: "daorecords", // unique friendly identifier per project. katherine smart contract would retrieve this field
       name: "DAOrecords",
       motto: "Reinventing The Record Label",
@@ -341,7 +341,7 @@ export const data = [
   ]
   },
   {
-    id: 4, // key para proyectos en katherine
+    id: 2, // key para proyectos en katherine
     slug: "cheddar", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "Cheddar",
     motto: "Loyalty is Rewarding!",
