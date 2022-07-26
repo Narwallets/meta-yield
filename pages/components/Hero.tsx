@@ -93,7 +93,7 @@ const Hero = () => {
                     </Button>
                   </Link>
                 </HStack>
-                <Text color={'white'} opacity={0.5}>Vote which project can be elegible to get funded.</Text>
+                <Text color={'white'} opacity={0.5}>Vote which project can be eligible to get funded.</Text>
               </Stack>
               <Stack hidden={!isMobile} p={5} borderRadius={8} justify={'flex-start'} bg={'indigo.500'}>
                 <HStack justify={'space-between'}>
@@ -124,7 +124,7 @@ const Hero = () => {
                   size={useBreakpointValue({ base: "sm", md: "md" })}>
                   Vote
                 </Heading>
-                <Text  textAlign={'center'} w={'70%'} opacity={0.5}>Vote which project can be elegible to get funded.</Text>
+                <Text  textAlign={'center'} w={'70%'} opacity={0.5}>Vote which project can be eligible to get funded.</Text>
                 <Link  href="/#vote" w={'100%'} >
                   <Button mt={'20px'} borderColor={'indigo.500'}  borderRadius={5} fontWeight={600} colorScheme={'indigo'} w={'100%'}  py={6} variant={'solid'}  >
                     Projects to Vote
