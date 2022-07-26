@@ -6,7 +6,7 @@ import {
   getKickstarters,
   getProjectDetails,
 } from "../../../lib/near";
-import { isOpenPeriod } from "../../../lib/util";
+import { getPeriod, isOpenPeriod, PERIOD } from "../../../lib/util";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
@@ -26,7 +26,7 @@ export default async function handler(
     }
     // filter the close projects
     result = result.filter((val:any)=>{
-      return !isOpenPeriod(val.kickstarter);
+      return getPeriod(val.kickstarter) === PERIOD.CLOSE;
     })
   }
 
