@@ -25,7 +25,6 @@ export default async function handler(
     }
     // filter the not open projects
     result = result.filter((val:any)=>{
-      console.log("val",val.kickstarter.id, getPeriod(val.kickstarter) === PERIOD.NOT_OPEN)
       return getPeriod(val.kickstarter) === PERIOD.NOT_OPEN;
     })
     // console.log("result", result)
