@@ -342,7 +342,7 @@ export const data = [
   },
   {
     id: 2, // key para proyectos en katherine
-    slug: "cheddar", // unique friendly identifier per project. katherine smart contract would retrieve this field
+    slug: "cheddar-proto", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "Cheddar",
     motto: "Loyalty is Rewarding!",
     projectUrl: "https://cheddar.farm/",
