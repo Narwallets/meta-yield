@@ -400,7 +400,7 @@ export const data = [
     name: "Cheddar",
     motto: "Loyalty is Rewarding!",
     projectDisabled: {
-      disabled: false,
+      disabled: true,
       bodyHtml: ` <p>We found a mouse in the cheese</p>
       <p>Please be patient a little more!</p>`,
       title: "Project paused",
