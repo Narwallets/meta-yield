@@ -18,10 +18,12 @@ export default async function handler(
     for (const project of comingProjects) {
       const projectOnChain = await getProjectDetails(project.id);
       const projectStatic = data.find((sp) => sp.id === project.id);
-      result.push({
-        ...projectStatic,
-        kickstarter: projectOnChain,
-      });
+      if (projectStatic) {
+        result.push({
+          ...projectStatic,
+          kickstarter: projectOnChain,
+        });
+      }
     }
     // filter the not open projects
     result = result.filter((val:any)=>{

@@ -1,8 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Project, data } from "../_data";
+import { data } from "../_data";
 import {
-  getActiveProjects,
   getKickstarters,
   getProjectDetails,
 } from "../../../lib/near";
@@ -19,10 +18,12 @@ export default async function handler(
     for (const project of activeProjects) {
       const projectOnChain = await getProjectDetails(project.id);
       const projectStatic = data.find((sp) => sp.id === project.id);
-      result.push({
-        ...projectStatic,
-        kickstarter: projectOnChain,
-      });
+      if (projectStatic) {
+        result.push({
+          ...projectStatic,
+          kickstarter: projectOnChain,
+        });
+      }
     }
     // filter the open projects
     result = result.filter((val:any)=>{
