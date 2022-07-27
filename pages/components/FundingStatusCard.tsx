@@ -59,8 +59,6 @@ const FundingStatusCard = (props: { kickstarter: KickstarterProps }) => {
                 stNEAR
               </Text>
             </HStack>
-            
-            
           </Stack>
           <Stack>
             <Text fontSize="md" fontWeight={500} color={'black'} whiteSpace={"nowrap"}>
