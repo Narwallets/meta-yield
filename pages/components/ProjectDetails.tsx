@@ -288,6 +288,15 @@ const ProjectDetails = (props: { id: any }) => {
   }, [status]);
 
   useEffect(() => {
+    if (
+      project &&
+      project.projectDisabled &&
+      project.projectDisabled.disabled == true
+    ) {
+      onOpen();
+    }
+  }, [project]);
+  useEffect(() => {
     (async () => {
       if (project && isLogin) {
         const thisProjectFounded = await getMyProjectsFounded(
@@ -298,9 +307,6 @@ const ProjectDetails = (props: { id: any }) => {
         refreshStatus(project, thisProjectFounded);
         const isApproved = await isReadyForClaimPToken();
         setShowApprove(isApproved === null);
-        if (project.projectDisabled && project.projectDisabled.disabled == true) {
-          onOpen();
-        }
       }
     })();
   }, [wallet, props, project]);
@@ -321,7 +327,9 @@ const ProjectDetails = (props: { id: any }) => {
           <ModalBody pb={6}>
             <Stack fontSize={"xl"} textAlign="center">
               <div
-                dangerouslySetInnerHTML={{ __html: project.projectDisabled.bodyHtml }}
+                dangerouslySetInnerHTML={{
+                  __html: project.projectDisabled.bodyHtml,
+                }}
               ></div>
             </Stack>
           </ModalBody>
@@ -751,7 +759,11 @@ const Team = (props: { team: TeamMemberProps[] }) => {
           <Stack key={index} fontSize="sm" px="4" spacing="4">
             <Stack direction="row" justify="space-between" spacing="4">
               <HStack spacing="3">
-                <Avatar src={member.avatar ? member.avatar : '' } name={member.name} boxSize="10" />
+                <Avatar
+                  src={member.avatar ? member.avatar : ""}
+                  name={member.name}
+                  boxSize="10"
+                />
                 <Box>
                   <Text fontWeight="medium" color="emphasized">
                     {member.name}
