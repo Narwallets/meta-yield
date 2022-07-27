@@ -395,12 +395,12 @@ export const data = [
     documents: [{ title: "DAOrecords", url: "https://medium.com/@daorecords" }],
   },
   {
-    id: 2, // key para proyectos en katherine
+    id: 3, // key para proyectos en katherine
     slug: "cheddar-proto", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "Cheddar",
     motto: "Loyalty is Rewarding!",
     projectDisabled: {
-      disabled: true,
+      disabled: false,
       bodyHtml: ` <p>We found a mouse in the cheese</p>
       <p>Please be patient a little more!</p>`,
       title: "Project paused",
