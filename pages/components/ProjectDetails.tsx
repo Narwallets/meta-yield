@@ -693,7 +693,7 @@ const Team = (props: { team: TeamMemberProps[] }) => {
           <Stack key={index} fontSize="sm" px="4" spacing="4">
             <Stack direction="row" justify="space-between" spacing="4">
               <HStack spacing="3">
-                <Avatar name={member.name} boxSize="10" />
+                <Avatar src={member.avatar ? member.avatar : null } name={member.name} boxSize="10" />
                 <Box>
                   <Text fontWeight="medium" color="emphasized">
                     {member.name}

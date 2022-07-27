@@ -7,6 +7,7 @@ export interface SupportedKickstarter {
 export interface TeamMemberProps {
     name: string;
     bio: string;
+    avatar?: string;
   }
   export interface KickstarterGoalProps {
     cliff_timestamp: number;
