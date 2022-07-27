@@ -513,28 +513,34 @@ export const data = [
     team: [
       {
         name: "Blaze (NEARGEN 0)",
+        avatar: "/projects/cheddar/avatar/blaze.png",
         bio: "Product Manager and Biz Dev.",
       },
       {
         name: "Chee (NEARGEN 0)",
-        bio: "Experienced Senior Rust Dev working across NEAR and Cosmos.",
+        avatar: "/projects/cheddar/avatar/chee.png",
+        bio: "Experienced Senior Rust Dev working across NEAR and Cosmos."
       },
       {
         name: "Goudam (NEARGEN 0)",
-        bio: "Experienced Senior Rust Developer working across NEAR and Solana.",
+        avatar: "/projects/cheddar/avatar/goudam.png",
+        bio: "Experienced Senior Rust Developer working across NEAR and Solana."
       },
       {
-        name: "Fotojenic",
-        bio: "Marketing and Promotion.",
+        name:"Fotojenic",
+        avatar: "/projects/cheddar/avatar/fotojenic.png",
+        bio:"Marketing and Promotion."
       },
       {
         name: "SilkKing",
-        bio: "Social Media Manager for DAOrecords and EMD DJ & Producer, Tech1 provides the designs and manages the keys posts across the socials.Front dev with experience in Javascript, React and Typescript.",
+        avatar: "/projects/cheddar/avatar/silkking.png",
+        bio: "Social Media Manager for DAOrecords and EMD DJ & Producer, Tech1 provides the designs and manages the keys posts across the socials.Front dev with experience in Javascript, React and Typescript."
       },
       {
-        name: "Rmsnlk",
-        bio: "Experienced Backend Rust Developer.",
-      },
+        name:"Rmsnlk",
+        avatar: "/projects/cheddar/avatar/rmlsnk.png",
+        bio:"Experienced Backend Rust Developer."
+      }
     ],
     roadmap: {
       imageUrl: "/projects/cheddar/roadmap.png",
