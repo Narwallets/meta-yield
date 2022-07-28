@@ -314,8 +314,8 @@ const ProjectDetails = (props: { id: any }) => {
   if (isLoading) return <PageLoading />;
 
   return (
-    <>
-      <Modal
+    <> {project.projectDisabled && 
+      (<Modal
         closeOnOverlayClick={false}
         isOpen={isOpen}
         onClose={() => onCloseModal()}
@@ -344,7 +344,7 @@ const ProjectDetails = (props: { id: any }) => {
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal>)}
       <Container maxW="container.xl">
         <Grid
           as="section"
