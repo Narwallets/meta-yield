@@ -37,6 +37,13 @@ import { useStore as useWallet } from "../../stores/wallet";
 import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
 import { formatToLocaleNear } from "../../lib/util";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
+import { providers } from "near-api-js";
+import { AccountView } from "near-api-js/lib/providers/provider";
+
+export type Account = AccountView & {
+  account_id: string;
+};
 
 const Header: React.FC<ButtonProps> = (props) => {
   const { wallet, isLogin, setWallet, setLogin } = useWallet();
@@ -46,6 +53,46 @@ const Header: React.FC<ButtonProps> = (props) => {
   const router = useRouter();
   const toast = useToast();
   const nearConfig = getNearConfig();
+  const { selector, modal, accounts, accountId } = useWalletSelector();
+  const [account, setAccount] = useState<Account | null>(null);
+
+  const handleSignIn = () => {
+    modal.show();
+  };
+
+  const handleSwitchWallet = () => {
+    modal.show();
+  };
+
+  const handleSignOut = async () => {
+    const wallet = await selector.wallet();
+
+    wallet.signOut().catch((err) => {
+      console.log("Failed to sign out");
+      console.error(err);
+    });
+  };
+
+  const getAccount = React.useCallback(async (): Promise<Account | null> => {
+    if (!accountId) {
+      return null;
+    }
+
+    const { network } = selector.options;
+    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+
+    return provider
+      .query<AccountView>({
+        request_type: "view_account",
+        finality: "final",
+        account_id: accountId,
+      })
+      .then((data) => ({
+        ...data,
+        account_id: accountId,
+      }));
+  }, [accountId, selector.options]);
+
   const onConnect = async () => {
     try {
       wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");

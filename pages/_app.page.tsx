@@ -14,6 +14,7 @@ import NProgress from "nprogress";
 import NextHead from "next/head";
 
 import "../styles/nprogress.css";
+import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
 
 const isProduction = process.env.NODE_ENV === "production";
 function App({ Component, pageProps }: AppProps) {
@@ -41,34 +42,36 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <NextHead>
-          <meta charSet="UTF-8" />
-          <title>  Meta Yield - Allow any project to bootstrap liquidity through staking
-            on Meta Pool.</title>
-        </NextHead>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
-        {/* enable analytics script only for production */}
-        {isProduction && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-              strategy="lazyOnload"
-            />
-            <Script id="google-analytics" strategy="lazyOnload">
-              {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){window.dataLayer.push(arguments);}
-              gtag('js', new Date());
+      <WalletSelectorContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <NextHead>
+            <meta charSet="UTF-8" />
+            <title>  Meta Yield - Allow any project to bootstrap liquidity through staking
+              on Meta Pool.</title>
+          </NextHead>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+          {/* enable analytics script only for production */}
+          {isProduction && (
+            <>
+              <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+                strategy="lazyOnload"
+              />
+              <Script id="google-analytics" strategy="lazyOnload">
+                {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
 
-              gtag('config', '${gtag.GA_TRACKING_ID}');
-            `}
-            </Script>
-          </>
-        )}
-      </QueryClientProvider>
+                gtag('config', '${gtag.GA_TRACKING_ID}');
+              `}
+              </Script>
+            </>
+          )}
+        </QueryClientProvider>
+      </WalletSelectorContextProvider>
     </ChakraProvider>
   );
 }
