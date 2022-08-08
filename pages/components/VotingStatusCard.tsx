@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  Stack, Text, Spacer, Box, VStack, Button, InputGroup, Input, InputLeftAddon, HStack, Square, Avatar, InputRightElement, useToast, useBreakpointValue, Circle } from "@chakra-ui/react";
+import {  Stack, Text, Spacer, Box, VStack, Button, InputGroup, Input, InputLeftAddon, HStack, Square, Avatar, InputRightElement, useToast, useBreakpointValue, Circle, Link, LinkOverlay } from "@chakra-ui/react";
 import Card from "./Card";
 import { CaretRight } from "phosphor-react";
 import {
@@ -8,7 +8,7 @@ import {
   yton,
 } from "../../lib/util";
 
-import { getAvailableVotingPower, getInUseVotingPower, getMyVotesByProject, getVotes, voteProject } from '../../lib/near';
+import { getAvailableVotingPower, getInUseVotingPower, getMyVotesByProject, getNearConfig, getVotes, voteProject } from '../../lib/near';
 import { useStore as useWallet} from '../../stores/wallet';
 import { useFormik } from "formik";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
@@ -208,15 +208,20 @@ const VotingStatusCard = (props: { project: any }) => {
                 </Text>
               </HStack>
             </HStack>
+
             <Button
                   w={"100%"}
                   h={"48px"}
                   colorScheme={"indigo"}
                   rightIcon={<CaretRight />}
-                  onClick={() => {}}
+                  
                 >
-                  Get Voting Power
+                  <LinkOverlay href={getNearConfig()?.metavoteUrl} isExternal>
+                    Get Voting Power
+                  </LinkOverlay>
+
             </Button>
+
           </VStack>
       </Card>
     </>

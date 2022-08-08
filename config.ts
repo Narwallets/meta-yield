@@ -11,7 +11,8 @@ export const getConfig = (env: string)  => {
         walletUrl: "https://wallet.near.org",
         helperUrl: "https://helper.mainnet.near.org",
         explorerUrl: "https://explorer.mainnet.near.org",
-        metapoolUrl: "https://metapool.app/dapp/mainnet/meta"
+        metapoolUrl: "https://metapool.app/dapp/mainnet/meta",
+        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/"
       };
     case "development":
     case "testnet":
@@ -22,7 +23,8 @@ export const getConfig = (env: string)  => {
         walletUrl: "https://wallet.testnet.near.org",
         helperUrl: "https://helper.testnet.near.org",
         explorerUrl: "https://explorer.testnet.near.org",
-        metapoolUrl: "https://metapool.app/dapp/testnet/meta"
+        metapoolUrl: "https://metapool.app/dapp/testnet/meta",
+        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/"
       };
     case "betanet":
       return {
@@ -32,7 +34,8 @@ export const getConfig = (env: string)  => {
         walletUrl: "https://wallet.betanet.near.org",
         helperUrl: "https://helper.betanet.near.org",
         explorerUrl: "https://explorer.betanet.near.org",
-        metapoolUrl: "https://metapool.app/dapp/testnet/meta"
+        metapoolUrl: "https://metapool.app/dapp/testnet/meta",
+        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/"
       };
     case "local":
       return {
@@ -41,6 +44,7 @@ export const getConfig = (env: string)  => {
         keyPath: `${process.env.HOME}/.near/validator_key.json`,
         walletUrl: "http://localhost:4000/wallet",
         metapoolUrl: "https://metapool.app/dapp/testnet/meta",
+        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/",
         contractName: CONTRACT_NAME,
       };
     case "test":
