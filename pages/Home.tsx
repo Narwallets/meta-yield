@@ -2,7 +2,7 @@ import Hero from "./components/Hero";
 import ActiveProject from "./components/ActiveProject";
 import Projects from "./components/Projects";
 import HowItWorks from "./components/HowItWorks";
-import { AlertDialogOverlay, Box, Container, Flex, HStack, Stack, Text, useBreakpointValue, VStack } from "@chakra-ui/react";
+import { AlertDialogOverlay, Box, Container, Divider, Flex, HStack, Spacer, Stack, StackDivider, Text, useBreakpointValue, VStack } from "@chakra-ui/react";
 import * as React from "react";
 import { useGetActiveProjects, useGetFinishedProjects, useGetProjectsToVote } from "./../hooks/projects";
 import ErrorHandlerHash from "./components/ErrorHandlerHash";
@@ -56,27 +56,29 @@ const Home = () => {
       <ErrorHandlerHash></ErrorHandlerHash>
       <Container maxW="container.xl">
         <Hero />
-        <VStack spacing={100}>
-          <Stack
+        <VStack mt={'150px'} spacing={100}>
+          
+
+          {data && data.length > 0 && (
+            <Stack
             id="fund"
+            w={'100%'}
+            spacing={{base: 5, md: 30}}
             as="section"
           >
-
-            {data && data.length > 0 && (
-              <>
-                <Text textAlign={{base:'center', md: 'start'}} fontSize="4xl" lineHeight="10" fontWeight="bold">
-                  Funding Now!
-                </Text>
-                {
-                  data.map((p: any) => (
-                    <div key={p.kickstarter.id}>
-                      <ActiveProject data={p} />
-                    </div>
-                  ))
-                }
-              </>
-            )}
-          </Stack>
+              <Text textAlign={{base:'center', md: 'start'}} fontSize="4xl" lineHeight="10" fontWeight="bold">
+                Funding Now!
+              </Text>
+              {
+                data.map((p: any) => (
+                  <div key={p.kickstarter.id}>
+                    <ActiveProject data={p} />
+                  </div>
+                ))
+              }
+            </Stack>
+          )}
+          
           { projectsToVote && projectsToVote.length > 0 && (
             <Stack id="vote"               
               w={'100%'}
