@@ -534,7 +534,7 @@ export const data = [
       {
         name: "SilkKing",
         avatar: "/projects/cheddar/avatar/silkking.png",
-        bio: "Social Media Manager for DAOrecords and EMD DJ & Producer, Tech1 provides the designs and manages the keys posts across the socials.Front dev with experience in Javascript, React and Typescript."
+        bio: "Front dev with experience in Javascript, React and Typescript."
       },
       {
         name:"Rmsnlk",
