@@ -1,22 +1,21 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Project, data } from "../_data";
+import { data } from "../_data";
 import {
-  getActiveProjects,
   getKickstarters,
   getProjectDetails,
 } from "../../../lib/near";
-import { getPeriod, isOpenPeriod, PERIOD } from "../../../lib/util";
+import { getPeriod, PERIOD } from "../../../lib/util";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
   let result: Array<any> = [];
 
-  const finishedProjects = await getKickstarters();
+  const comingProjects = await getKickstarters();
   // TODO check active and successful flags to filter projects accordantly
-  if (finishedProjects) {
-    for (const project of finishedProjects) {
+  if (comingProjects) {
+    for (const project of comingProjects) {
       const projectOnChain = await getProjectDetails(project.id);
       const projectStatic = data.find((sp) => sp.id === project.id);
       if (projectStatic) {
@@ -26,10 +25,11 @@ export default async function handler(
         });
       }
     }
-    // filter the close projects
+    // filter the not open projects
     result = result.filter((val:any)=>{
-      return getPeriod(val.kickstarter) === PERIOD.CLOSE;
+      return getPeriod(val.kickstarter) === PERIOD.NOT_OPEN;
     })
+    // console.log("result", result)
   }
 
   // sort by open timestamp

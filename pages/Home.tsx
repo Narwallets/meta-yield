@@ -4,7 +4,7 @@ import Projects from "./components/Projects";
 import HowItWorks from "./components/HowItWorks";
 import { AlertDialogOverlay, Box, Container, Divider, Flex, HStack, Spacer, Stack, StackDivider, Text, useBreakpointValue, VStack } from "@chakra-ui/react";
 import * as React from "react";
-import { useGetActiveProjects, useGetFinishedProjects, useGetProjectsToVote } from "./../hooks/projects";
+import { useComingSoonProjects, useGetActiveProjects, useGetFinishedProjects, useGetProjectsToVote } from "./../hooks/projects";
 import ErrorHandlerHash from "./components/ErrorHandlerHash";
 import PageLoading from "./components/PageLoading";
 import FrequentlyAskQuestion from "./components/FrequentlyAskQuestion";
@@ -20,7 +20,9 @@ const Home = () => {
   const { data: dataToVote, isLoading: isLoadingVote } = useGetProjectsToVote();
   const { projectsToVote, setProjects } = useStoreProjects();
   const isMobile = useBreakpointValue({ base: true, md: false });
+  const { data: comingSoon, isLoading: comingSoonFinished } = useComingSoonProjects();
 
+  // check if data is still loading
   const sortByVotes = (projects: any) =>
      projects.sort(function (a: any, b: any) {
       if (a.votes > b.votes) {
@@ -96,6 +98,25 @@ const Home = () => {
               <Box py={'8px'} px={'28px'}  bg={'#FDFF9F'}>
                 <Text fontWeight="bold">The most voted starts with 🎉 20,000 stNEAR</Text>
               </Box>
+        
+        { comingSoon && comingSoon.length > 0 && (
+          <Box
+            id="projects"
+            as="section"
+            pb={{ base: "12", md: "24" }}
+        >
+            <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
+              Coming soon 
+            </Text>
+            {comingSoon.map((p: any) => (
+              <div key={p.kickstarter.id}>
+                <ActiveProject data={p} />
+              </div>
+            ))}
+          </Box>
+        )}  
+        
+        
               <VStack hidden={!isMobile}>
                 <Text textAlign={{base:'center', md: 'start'}} opacity={0.5} fontSize={{base:'xl', md:"2xl"}}  fontWeight="bold">ENDS IN </Text>
                 <Text  textAlign={{base:'center', md: 'start'}} fontSize={{base:'4xl', md:"2xl"}}  fontWeight="bold">{getEndVotingPeriod()}</Text>

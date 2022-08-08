@@ -5,6 +5,7 @@ import {
   fetchActiveProjects,
   fetchSupportedProjects,
   fetchFinishedProjects,
+  fetchComingSoonProjects,
   fetchVotedProjects,
 } from "../queries/projects";
 
@@ -26,6 +27,14 @@ export const useGetProjectDetails = (id: number, votingMode?: boolean) => {
 
 export const useGetActiveProjects = () => {
   return useQuery("active-projects", () => fetchActiveProjects(), {
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+};
+
+export const useComingSoonProjects = () => {
+  return useQuery("comingsoon-projects", () => fetchComingSoonProjects(), {
     onError: (err) => {
       console.error(err);
     },
