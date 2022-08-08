@@ -34,9 +34,9 @@ const Footer: React.FC<ButtonProps> = (props) => {
       </Stack>
       <Stack direction={{ base: "column", sm: "row" }} alignItems={{base: "center", sm: "flex-start"}} spacing={6}>
         <Text fontSize="xs">© 2022 Meta Pool Inc</Text>
-        <Link href="https://rctracks.io/privacy-policy/" target={"_blank"} fontSize="xs">
+        {/* <Link href="https://rctracks.io/privacy-policy/" target={"_blank"} fontSize="xs">
           Privacy
-        </Link>
+        </Link> */}
         <Link href="/terms-and-conditions" fontSize="xs">
           Terms and Conditions
         </Link>
