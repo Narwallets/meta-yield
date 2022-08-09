@@ -7,7 +7,7 @@ import { signInWallet } from "../../lib/near";
 import { useStore } from "../../stores/wallet";
 
 interface Props {
-  text: string;
+  text?: string;
 }
 
 const ConnectButton = (props: Props) => {

@@ -13,6 +13,7 @@ import { useStore as useWallet} from '../../stores/wallet';
 import { useFormik } from "formik";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import voteSchemaValidation from "../../validation/voteSchemaValidation";
+import ConnectButton from "./ConnectButton";
 
 const VotingStatusCard = (props: { project: any }) => {
   const project = props.project;
@@ -119,49 +120,60 @@ const VotingStatusCard = (props: { project: any }) => {
           <Text hidden={!isMobile} fontSize={'xs'} color="gray.400" fontWeight="700">
               VOTE
           </Text>
-          <Stack  w={'100%'} direction={{base: 'column', md: 'row'}}>
-            <InputGroup border={'1px'} borderColor={'#E5E7EB'} borderRadius={'6px'}>
-              <InputLeftAddon hidden={isMobile}>
-                <Square minW="30px">
-                  <Text fontSize={'xs'}  fontWeight={600} color="gray.400" mx={2}>VOTING POWER <InfoOutlineIcon  fontSize={'md'} ml={2}/></Text>
-                </Square>
-              </InputLeftAddon>
-              <Input
-                id="amount"
-                name="amount"
-                textAlign={'end'}
-                type="number"
-                placeholder="0"
-                fontSize={'xl'} 
-                fontWeight={'bold'}
-                pr={{base: '70px' , md : '80px'}}
-                value={formikVote.values.amount}
-                onPaste={formikVote.handleChange}
-                onBlur={formikVote.handleBlur}
-                onChange={(e) => {
-                  formikVote.handleChange(e);
-                }}
-              />
-              <InputRightElement width="4.5rem">
-                <Button disabled={!formikVote.isValid} colorScheme={'indigo'} bg={{base: 'indigo.500', md: '#EEEFF8'}} p={2} variant={isMobile ? 'solid' : 'link'} h="1.75rem" size="sm" onClick={onMaxClick}>
-                  {isMobile ? 'Max' : 'Use max' } 
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <Square hidden={!isMobile} minW="30px">
-                  <Text fontSize={'md'}  fontWeight={600} color="gray.400" mx={2}>VOTING POWER <InfoOutlineIcon  fontSize={'md'} ml={2}/></Text>
-            </Square>
-            <Button
-              colorScheme="indigo"
-              size="lg"
-              px={10}
-              py={5}
-              // disabled={!formikDeposit.isValid}
-              onClick={(e: any) => formikVote.handleSubmit(e)}
-            >
-              Vote
-            </Button>
-          </Stack>
+          {
+              wallet?.isSignedIn() ? ( <>
+            <Stack  w={'100%'} direction={{base: 'column', md: 'row'}}>
+              <InputGroup border={'1px'} borderColor={'#E5E7EB'} borderRadius={'6px'}>
+                <InputLeftAddon hidden={isMobile}>
+                  <Square minW="30px">
+                    <Text fontSize={'xs'}  fontWeight={600} color="gray.400" mx={2}>VOTING POWER <InfoOutlineIcon  fontSize={'md'} ml={2}/></Text>
+                  </Square>
+                </InputLeftAddon>
+                <Input
+                  id="amount"
+                  name="amount"
+                  textAlign={'end'}
+                  type="number"
+                  placeholder="0"
+                  fontSize={'xl'} 
+                  fontWeight={'bold'}
+                  pr={{base: '70px' , md : '80px'}}
+                  value={formikVote.values.amount}
+                  onPaste={formikVote.handleChange}
+                  onBlur={formikVote.handleBlur}
+                  onChange={(e) => {
+                    formikVote.handleChange(e);
+                  }}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button disabled={!formikVote.isValid} colorScheme={'indigo'} bg={{base: 'indigo.500', md: '#EEEFF8'}} p={2} variant={isMobile ? 'solid' : 'link'} h="1.75rem" size="sm" onClick={onMaxClick}>
+                    {isMobile ? 'Max' : 'Use max' } 
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              
+              <Square hidden={!isMobile} minW="30px">
+                    <Text fontSize={'md'}  fontWeight={600} color="gray.400" mx={2}>VOTING POWER <InfoOutlineIcon  fontSize={'md'} ml={2}/></Text>
+              </Square>
+              
+              
+                  <Button
+                    colorScheme="indigo"
+                    size="lg"
+                    px={10}
+                    py={5}
+                    // disabled={!formikDeposit.isValid}
+                    onClick={(e: any) => formikVote.handleSubmit(e)}
+                  >
+                    Vote
+                  </Button>
+            </Stack>
+          </>
+              ) :
+              (
+                <ConnectButton text="Connect Wallet to Vote"/>
+                )
+            }
           { formikVote.dirty && (
           <Stack w={'100%'} textAlign={'end'}>
             <Text fontSize={'xs'} color={'red'}> {formikVote.errors.amount} </Text>
@@ -169,7 +181,7 @@ const VotingStatusCard = (props: { project: any }) => {
         </VStack>
       </Card>
       <Card>
-        <VStack spacing={8} align={'flex-start'}>
+        <VStack hidden={!wallet?.isSignedIn()} spacing={8} align={'flex-start'}>
             <Text fontSize={'md'} color="gray.400" fontWeight="700">
                 YOUR VOTING POWER
             </Text>

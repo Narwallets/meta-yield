@@ -155,7 +155,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   };
 
   const refreshStatus = (project: any, thisProjectFounded: any) => {
-    if (isLogin) {
+    if (wallet?.isSignedIn()) {
       setStatus(ProjectStatus.LOGGIN);
       if (isOpenPeriod(project.kickstarter)) {
         if (project.kickstarter.active) {
@@ -301,7 +301,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   }, [project]);
   useEffect(() => {
     (async () => {
-      if (project && isLogin && !props.votingMode) {
+      if (project && wallet?.isSignedIn() && !props.votingMode) {
         const thisProjectFounded = await getMyProjectsFounded(
           project.kickstarter.id,
           wallet
@@ -453,13 +453,13 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                       kickstarter={project?.kickstarter}
                     />
                   )}
-                {showRewardEstimated && isLogin && (
+                {showRewardEstimated && wallet?.isSignedIn() && (
                   <RewardsEstimated
                     kickstarter={project?.kickstarter}
                   ></RewardsEstimated>
                 )}
                 <Stack w={"100%"}>
-                  {isLogin && (showFund || showWithdraw) && (
+                  {wallet?.isSignedIn() && (showFund || showWithdraw) && (
                     <Funding
                       project={project}
                       showOnlyWithdraw={showWithdraw}
@@ -470,13 +470,13 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                       }
                     ></Funding>
                   )}
-                  {!isLogin && (
+                  {!wallet?.isSignedIn() && (
                     <ConnectButton
                       text={"Connect wallet to fund"}
                     ></ConnectButton>
                   )}
 
-                  {showClaim && isLogin && (
+                  {showClaim && wallet?.isSignedIn() && (
                     <>
                       <Stack w={"100%"}>
                         {myProjectFounded &&
