@@ -128,7 +128,7 @@ const VotingStatusCard = (props: { project: any }) => {
           {
               wallet?.isSignedIn() ? ( <>
             <Stack  w={'100%'} direction={{base: 'column', md: 'row'}}>
-              <InputGroup border={'1px'} borderColor={'#E5E7EB'} borderRadius={'6px'}>
+              <InputGroup borderRadius={'6px'}>
                 <InputLeftAddon hidden={isMobile}>
                   <Square minW="30px">
                     <Text fontSize={'xs'}  fontWeight={600} color="gray.400" mx={2}>VOTING POWER <InfoOutlineIcon  fontSize={'md'} ml={2}/></Text>
@@ -164,9 +164,9 @@ const VotingStatusCard = (props: { project: any }) => {
               
                   <Button
                     colorScheme="indigo"
-                    size="lg"
+                    size="md"
                     px={10}
-                    py={5}
+                    
                     // disabled={!formikDeposit.isValid}
                     onClick={(e: any) => formikVote.handleSubmit(e)}
                   >
