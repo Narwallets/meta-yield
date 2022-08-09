@@ -29,6 +29,11 @@ const VotingStatusCard = (props: { project: any }) => {
     voteProject(project.id +'|' +project.slug,  ntoy(amount), wallet);
   }
 
+  const ERROR_MESSAGES = {
+    AMOUNT_ZERO: 'The amount to vote must be greater than 0',
+    NOT_ENOUGH: 'You dont have enough Voting Power'
+  }
+
   const onMaxClick = async (event: any) =>
     formikVote.setFieldValue("amount", yton(votingPower));
 
@@ -42,12 +47,12 @@ const VotingStatusCard = (props: { project: any }) => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values: any) => {
-      if (values.amount <= 0) {
+      if (values.amount <= 0 || values.amount > votingPower) {
         toast({
           title: "Transaction error.",
-          description: "The amount to vote must be greater than 0",
+          description: values.amount <= 0  ? ERROR_MESSAGES.AMOUNT_ZERO : ERROR_MESSAGES.NOT_ENOUGH,
           status: "error",
-          duration: 9000,
+          duration: 3000,
           position: "top-right",
           isClosable: true,
         });
