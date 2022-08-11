@@ -1,10 +1,17 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { map, distinctUntilChanged } from "rxjs";
-import { NetworkId, setupWalletSelector, Wallet } from "@near-wallet-selector/core";
+import {
+  NetworkId,
+  setupWalletSelector,
+  Wallet,
+} from "@near-wallet-selector/core";
 import type { WalletSelector, AccountState } from "@near-wallet-selector/core";
 import { setupModal } from "@near-wallet-selector/modal-ui";
 import type { WalletSelectorModal } from "@near-wallet-selector/modal-ui";
-import { NearWalletParams, setupNearWallet } from "@near-wallet-selector/near-wallet";
+import {
+  NearWalletParams,
+  setupNearWallet,
+} from "@near-wallet-selector/near-wallet";
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
 import { setupSender } from "@near-wallet-selector/sender";
 import { setupMathWallet } from "@near-wallet-selector/math-wallet";
@@ -12,8 +19,7 @@ import { setupNightly } from "@near-wallet-selector/nightly";
 import { setupLedger } from "@near-wallet-selector/ledger";
 import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
 import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
-import { METAPOOL_CONTRACT_ID, NETWORK_ID } from "../lib/near";
-
+import { CONTRACT_ID, METAPOOL_CONTRACT_ID, NETWORK_ID } from "../lib/near";
 
 declare global {
   interface Window {
@@ -31,11 +37,9 @@ interface WalletSelectorContextValue {
   accountId: string | null;
 }
 
-
-
 const WalletSelectorContext =
   React.createContext<WalletSelectorContextValue | null>(null);
-  
+
 export const WalletSelectorContextProvider: React.FC = ({ children }) => {
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
@@ -47,11 +51,11 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         walletUrl: "https://wallet.testnet.near.org",
         iconUrl: "./assets/near-wallet-iconx.png",
       })(options);
-  
+
       if (!wallet) {
         return null;
       }
-  
+
       return {
         ...wallet,
         id: "near-wallet",
@@ -65,7 +69,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         },
       };
     };
-  }
+  };
 
   const init = useCallback(async () => {
     const _selector = await setupWalletSelector({
@@ -99,15 +103,17 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
       ],
     });
 
-    console.log('CONTRACT ID en ws context', METAPOOL_CONTRACT_ID)
-    const _modal = setupModal(_selector, { contractId: METAPOOL_CONTRACT_ID || '' });
+    console.log("CONTRACT ID en ws context", CONTRACT_ID);
+    const _modal = setupModal(_selector, { contractId: CONTRACT_ID || "" });
     const state = _selector.store.getState();
-
     setAccounts(state.accounts);
 
     window.selector = _selector;
     window.modal = _modal;
-    window.account_id = _selector.isSignedIn() ? _selector.store.getState().accounts.find((account) => account.active)?.accountId || null : null;
+    window.account_id = _selector.isSignedIn()
+      ? _selector.store.getState().accounts.find((account) => account.active)
+          ?.accountId || null
+      : null;
     window.wallet = _selector.isSignedIn() ? await _selector.wallet() : null;
     setSelector(_selector);
     setModal(_modal);

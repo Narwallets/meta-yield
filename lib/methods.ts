@@ -22,15 +22,13 @@ export const katherineViewMethods = {
 export const katherineChangeMethods = {
   withdraw: "withdraw",
   withdrawAll: "withdraw_all",
-  claimAll: "claim_all_kickstarter_tokens"
+  claim: "claim_all_kickstarter_tokens"
 };
 
 export const metaPoolMethods = {
   getStNearPrice: "get_st_near_price",
   getAccountInfo: "get_account_info",
   ftTransferCall: "ft_transfer_call",
-  withdraw: "withdraw",
-  withdrawAll: "withdraw_all"
 };
 
 export const projectTokenViewMethods = {
