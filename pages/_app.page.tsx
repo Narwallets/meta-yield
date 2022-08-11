@@ -12,7 +12,7 @@ import * as gtag from "../lib/gtag";
 import Script from "next/script";
 import NProgress from "nprogress";
 import NextHead from "next/head";
-
+import "@near-wallet-selector/modal-ui/styles.css";
 import "../styles/nprogress.css";
 import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
 

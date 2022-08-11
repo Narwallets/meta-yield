@@ -31,11 +31,14 @@ import {
   ntoy,
   yton,
 } from "./util";
-import { ExecutionError } from "near-api-js/lib/providers/provider";
+import { AccountView, ExecutionError } from "near-api-js/lib/providers/provider";
+import { Wallet } from "@near-wallet-selector/core";
 
 export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID = process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
-export const gas = new BN("70000000000000");
+export const NETWORK_ID =  process.env.NEXT_PUBLIC_NETWORK_ID || 'testnet';
+export const GAS = "200000000000000";
+export const DEPOSIT = "1";
 const env = process.env.NODE_ENV;
 console.log('@env', env)
 const nearConfig = getConfig(env);
@@ -44,6 +47,39 @@ const provider = new providers.JsonRpcProvider({ url: nearConfig.nodeUrl });
 export const getNearConfig = () => {
   return nearConfig;
 };
+
+
+export const getConnection = async () => {
+  const connectConfig: ConnectConfig = {
+    ...nearConfig,
+    headers: {},
+    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+  };
+  const nearConnection = await connect(connectConfig);
+  return  nearConnection;
+}
+
+// export const getAccount = async () => {
+//   const account_id = window.account_id;
+//   const nearConnection = await getConnection();
+//   const account = await nearConnection.account(account_id!);
+//   return account;
+// }
+
+export const getAccount = () => {
+  const accountId = window.account_id;
+  const account =  provider
+    .query<AccountView>({
+      request_type: "view_account",
+      finality: "final",
+      account_id: accountId,
+    })
+    .then((data) => ({
+      ...data,
+      account_id: accountId,
+    }));
+  return account;
+}
 
 export const getWallet = async () => {
   const connectConfig: ConnectConfig = {
@@ -67,15 +103,17 @@ export const signOutWallet = async () => {
   wallet!.signOut();
 };
 
-export const getContract = async (wallet: WalletConnection) => {
-  return new Contract(wallet.account(), CONTRACT_ID!, {
+export const getContract = async () => {
+  const account = await getAccount();
+  return new Contract(account, CONTRACT_ID!, {
     viewMethods: Object.values(katherineViewMethods),
     changeMethods: Object.values(katherineChangeMethods),
   });
 };
 
-export const getMetapoolContract = async (wallet: WalletConnection) => {
-  return new Contract(wallet.account(), METAPOOL_CONTRACT_ID!, {
+export const getMetapoolContract = async () => {
+  const account = await getAccount();
+  return new Contract(account, METAPOOL_CONTRACT_ID!, {
     viewMethods: Object.values(metaPoolMethods),
     changeMethods: ["ft_transfer_call"],
   });
@@ -117,14 +155,14 @@ export const getSupporterTotalDepositInKickstarter = async (
 };
 
 export const getSupporterEstimatedStNear = async (
-  wallet: WalletConnection,
   kickstarter_id: number,
   price: string
 ) => {
+  const account_id = window.account_id;
   return callPublicKatherineMethod(
     katherineViewMethods.getSupporterEstimatedStNear,
     {
-      supporter_id: wallet.getAccountId(),
+      supporter_id: account_id,
       kickstarter_id,
       st_near_price: price,
     }
@@ -168,14 +206,15 @@ export const getStNearPrice = async () => {
   return callPublicMetapoolMethod(metaPoolMethods.getStNearPrice, {});
 };
 
-export const getMetapoolAccountInfo = async (wallet: WalletConnection) => {
-  return callViewMetapoolMethod(wallet, metaPoolMethods.getAccountInfo, {
-    account_id: wallet.getAccountId(),
+export const getMetapoolAccountInfo = async () => {
+  const account_id = window.account_id;
+  return callPublicMetapoolMethod(metaPoolMethods.getAccountInfo, {
+    account_id: account_id!
   });
 };
 
-export const getBalance = async (wallet: WalletConnection): Promise<number> => {
-  const accountInfo = await getMetapoolAccountInfo(wallet);
+export const getBalance = async (): Promise<number> => {
+  const accountInfo = await getMetapoolAccountInfo();
   return yton(accountInfo.st_near);
 };
 
@@ -193,27 +232,38 @@ export const getSupporterDetailedList = async (supporter_id: string) => {
 };
 
 export const fundToKickstarter = async (
-  wallet: WalletConnection,
   kickstarter_id: number,
   amountOnStNear: number
 ) => {
-  const contract = await getMetapoolContract(wallet);
+  const wallet = window.wallet;
+  const account_id = window.account_id;
   const args = {
     receiver_id: CONTRACT_ID,
     amount: ntoy(amountOnStNear),
     msg: kickstarter_id.toString(),
   };
-  const response = await wallet
-    .account()
-    .functionCall(
-      METAPOOL_CONTRACT_ID!,
-      "ft_transfer_call",
-      args,
-      "200000000000000",
-      "1"
-    );
-  return providers.getTransactionLastResult(response);
+const result = wallet!
+  .signAndSendTransaction({
+    signerId: account_id!,
+    actions: [
+      {
+        type: "FunctionCall",
+        params: {
+          methodName: "ft_transfer_call",
+          args: args,
+          gas: GAS,
+          deposit: DEPOSIT,
+        },
+      },
+    ],
+  })
+  .catch((err) => {
+    console.log("Failed to fund to kickstarter");
+    throw err;
+  });
+  return result;
 };
+
 
 export const getTxStatus = async (
   txHash: string,
@@ -246,10 +296,9 @@ export const getTxStatus = async (
   };
 };
 export const withdrawAll = async (
-  wallet: WalletConnection,
   kickstarter_id: number
 ) => {
-  const contract = await getContract(wallet);
+  const contract = await getContract();
   const args = {
     kickstarter_id: kickstarter_id,
   };
@@ -258,11 +307,10 @@ export const withdrawAll = async (
 };
 
 export const withdraw = async (
-  wallet: WalletConnection,
   kickstarter_id: number,
   amount: string
 ) => {
-  const contract = await getContract(wallet);
+  const contract = await getContract();
   const args = {
     kickstarter_id: kickstarter_id,
     amount,
@@ -272,10 +320,9 @@ export const withdraw = async (
 };
 
 export const claimAll = async (
-  wallet: WalletConnection,
   kickstarter_id: number
 ) => {
-  const contract = await getContract(wallet);
+  const contract = await getContract();
   const args = {
     kickstarter_id: kickstarter_id,
   };
@@ -287,11 +334,10 @@ export const claimAll = async (
 };
 
 export const claimPartial = async (
-  wallet: WalletConnection,
   kickstarter_id: number,
   amount: string
 ) => {
-  const contract = await getContract(wallet);
+  const contract = await getContract();
   const args = {
     kickstarter_id: kickstarter_id,
     amount,
@@ -314,23 +360,23 @@ export const getContractMetadata = async (contract: string) => {
   return decodeJsonRpcData(response.result);
 };
 
-export const getBalanceOfTokenForSupporter = async (wallet: WalletConnection, tokenContractAddress: string) => {
+export const getBalanceOfTokenForSupporter = async (tokenContractAddress: string) => {
+  const account_id = window.account_id;
   const response: any = await provider.query({
     request_type: "call_function",
     finality: "final",
     account_id: tokenContractAddress,
     method_name: projectTokenViewMethods.storageBalanceOf,
-    args_base64: encodeJsonRpcData({account_id: wallet.getAccountId()}),
+    args_base64: encodeJsonRpcData({account_id: account_id }),
   });
   return decodeJsonRpcData(response.result);
 
 }
 
-export const storageDepositOfTokenForSupporter = async (wallet: WalletConnection, tokenContractAddress: string) => {
-  const bounds: any = await getStorageBalanceBounds(tokenContractAddress)
-  const response = await wallet
-    .account()
-    .functionCall(
+export const storageDepositOfTokenForSupporter = async (tokenContractAddress: string) => {
+  const bounds: any = await getStorageBalanceBounds(tokenContractAddress);
+  const account = await getAccount();
+  const response = await account.functionCall(
       tokenContractAddress!,
       projectTokenChangeMethods.storageDeposit,
       {},
@@ -338,8 +384,6 @@ export const storageDepositOfTokenForSupporter = async (wallet: WalletConnection
       bounds.min
     );
   return providers.getTransactionLastResult(response);
-
-
 }
 
 const getStorageBalanceBounds = async (contract: string) => {
@@ -351,6 +395,31 @@ const getStorageBalanceBounds = async (contract: string) => {
     args_base64: encodeJsonRpcData({}),
   });
   return decodeJsonRpcData(response.result);
+}
+
+const callChangeKatherineMethod = async (method: string, args: any) => {
+  const wallet = window.wallet;
+  const account_id = window.account_id;
+const result = wallet!
+  .signAndSendTransaction({
+    signerId: account_id!,
+    actions: [
+      {
+        type: "FunctionCall",
+        params: {
+          methodName: method,
+          args: args,
+          gas: GAS,
+          deposit: DEPOSIT,
+        },
+      },
+    ],
+  })
+  .catch((err) => {
+    console.log("Failed to fund to kickstarter");
+    throw err;
+  });
+  return result;
 }
 
 const callPublicKatherineMethod = async (method: string, args: any) => {
@@ -368,7 +437,7 @@ const callPublicKatherineMethod = async (method: string, args: any) => {
 const callPublicMetapoolMethod = async (method: string, args: any) => {
   const response: any = await provider.query({
     request_type: "call_function",
-    finality: "final",
+    finality: "optimistic",
     account_id: METAPOOL_CONTRACT_ID,
     method_name: method,
     args_base64: encodeJsonRpcData(args),
@@ -378,10 +447,21 @@ const callPublicMetapoolMethod = async (method: string, args: any) => {
 };
 
 const callViewMetapoolMethod = async (
-  wallet: WalletConnection,
   method: string,
   args: any
 ) => {
-  const contract = await getMetapoolContract(wallet);
-  return (contract as any)[method](args);
+  // const contract = await getMetapoolContract();
+  // return (contract as any)[method](args);
+console.log('ACCOUNT ',CONTRACT_ID), 
+console.log('method', method)
+  const response: any = await provider.query({
+    request_type: "call_function",
+    finality: "optimistic",
+    account_id: CONTRACT_ID,
+    method_name: method,
+    args_base64: encodeJsonRpcData(args),
+  });
+
+  return decodeJsonRpcData(response.result);
+
 };

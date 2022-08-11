@@ -22,19 +22,18 @@ import moment from "moment";
 import { useFormik } from "formik";
 import { KickstarterGoalProps } from "../../types/project.types";
 import { fundToKickstarter, getBalance, withdraw } from "../../lib/near";
-import { useStore as useWallet} from "../../stores/wallet";
 import { useStore  as useBalance} from "../../stores/balance";
 import { getCurrentFundingGoal, ntoy, yton } from "../../lib/util";
 import depositSchemaValidation from "../../validation/fundSchemaValidation";
 import withdrawSchemaValidation from "../../validation/withdrawSchemaValidation";
-
+import { useWalletSelector } from "../../context/WalletSelectorContext";
 const Funding = (props: { project: any; supportedDeposited: number, showOnlyWithdraw: boolean }) => {
   const project = props.project;
   const supportedDeposited = props.supportedDeposited;
   const isWithdrawEnabled = supportedDeposited > 0;
   const router = useRouter();
-  const { wallet } = useWallet();
   const { balance } = useBalance();
+  const { selector, modal, accounts, accountId } = useWalletSelector();
   const toast = useToast();
   const MINIMUM_TO_FUND = process.env.MINIMUM_AMOUNT_DEPOSIT ? process.env.MINIMUM_AMOUNT_DEPOSIT : 0;
   const [amountDeposit, setAmountDeposit] = useState<number>(0);
@@ -51,7 +50,7 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
     setAmountDeposit(event.target.value);
 
   const onMaxClickDeposit = async (event: any) => {
-    const balance = await getBalance(wallet!);
+    const balance = await getBalance();
     formikDeposit.setFieldValue("amount_deposit", balance);
     setAmountDeposit(balance);
   }
@@ -81,7 +80,6 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
         });
       } else {
         const result = await fundToKickstarter(
-          wallet!,
           project.id,
           values.amount_deposit
         );
@@ -118,7 +116,7 @@ const Funding = (props: { project: any; supportedDeposited: number, showOnlyWith
   });
 
   const withdrawAmount = async (amount: string) => {
-    withdraw(wallet!, project.id, amount).then((val) => {
+    withdraw(project.id, amount).then((val) => {
       console.log("Return withdraw success", val);
     });
   };

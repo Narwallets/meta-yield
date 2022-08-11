@@ -119,9 +119,10 @@ export const getPeriod = (kickstarter: any) => {
   return PERIOD.CLOSE; */
 }
 
-export const getMyProjectsFounded = async (id: string, wallet: any) => {
+export const getMyProjectsFounded = async (id: string) => {
+  const account_id = window.account_id;
   const projectsFounded: any[] = await getSupportedKickstarters(
-    wallet.getAccountId()
+    account_id
   );
   if (!projectsFounded) {
     return null;

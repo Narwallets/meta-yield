@@ -10,23 +10,11 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import * as React from "react";
-import { getWallet, METAPOOL_CONTRACT_ID } from "../../lib/near";
-import { useStore } from "../../stores/wallet";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
+import ConnectButton from "./ConnectButton";
 
 const Hero = () => {
-  const { wallet, setWallet } = useStore();
-  const [isConnected, setIsConnected] = useState(false);
-  const onConnect = async () => {
-    wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
-  };
-  useEffect(() => {
-    (async () => {
-      const tempWallet = await getWallet();
-      if (tempWallet.getAccountId()!) {
-        setIsConnected(true);
-      }
-    })();
-  }, []);
+  const { selector, modal, accounts, accountId } = useWalletSelector();
 
   return (
     <Square
@@ -63,17 +51,11 @@ const Hero = () => {
             justify="center"
             alignItems={"center"}
           >
-            {!isConnected && (
-              <Button
-                colorScheme="indigo"
-                size="lg"
-                onClick={() => onConnect()}
-              >
-                Connect Wallet
-              </Button>
+            {!selector.isSignedIn() && (
+              <ConnectButton text={"Connect wallet to fund"}></ConnectButton>
             )}
             <Link href="#how-it-works">
-              <Button variant="secondary-on-accent" size="lg">
+              <Button variant="secondary-on-accent">
                 How it works
               </Button>
             </Link>
