@@ -76,7 +76,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
       network: NETWORK_ID as NetworkId,
       debug: true,
       modules: [
-        setupNearWalletCustom(),
+        // setupNearWalletCustom(),
         setupMyNearWallet(),
         setupSender(),
         setupMathWallet(),
