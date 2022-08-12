@@ -103,7 +103,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
       ],
     });
 
-    console.log("CONTRACT ID en ws context", CONTRACT_ID);
+  
     const _modal = setupModal(_selector, { contractId: CONTRACT_ID || "" });
     const state = _selector.store.getState();
     setAccounts(state.accounts);

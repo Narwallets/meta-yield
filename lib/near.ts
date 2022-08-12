@@ -245,6 +245,7 @@ export const fundToKickstarter = async (
   return result;
 };
 
+
 export const getTxStatus = async (
   txHash: string,
   account_id: string
@@ -393,7 +394,7 @@ const callChangeKatherineMethod = async (method: string, args: any) => {
             methodName: method,
             args: args,
             gas: GAS,
-            deposit: DEPOSIT,
+            deposit: '',
           },
         },
       ],
