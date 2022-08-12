@@ -362,7 +362,6 @@ export const storageDepositOfTokenForSupporter = async (
           methodName: projectTokenChangeMethods.storageDeposit,
           args: {},
           gas: GAS,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           deposit: bounds.min,
         },
       },
