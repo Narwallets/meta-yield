@@ -34,6 +34,7 @@ import {
   ModalHeader,
   Modal,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import {
   KickstarterGoalProps,
@@ -112,7 +113,7 @@ const ProjectDetails = (props: { id: any }) => {
 
   const { selector, modal, accounts, accountId } = useWalletSelector();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
-
+  const toast = useToast();
   const onCloseModal = () => {
     onClose();
     router.push("/");
@@ -129,9 +130,14 @@ const ProjectDetails = (props: { id: any }) => {
   });
 
   const withdrawAllStnear = async () => {
-    // call to contract for withdraw
     withdrawAll(parseInt(props.id)).then((val) => {
-      console.log("Return withdrawAll", val);
+      toast({
+        title: "Transaction success.",
+        status: "success",
+        duration: 9000,
+        position: "top-right",
+        isClosable: true,
+      });
     });
   };
 
@@ -142,7 +148,15 @@ const ProjectDetails = (props: { id: any }) => {
         project.kickstarter.token_contract_address
       );
     } else {
-      claimAll(parseInt(props.id));
+      claimAll(parseInt(props.id)).then((val) => {
+        toast({
+          title: "Transaction success.",
+          status: "success",
+          duration: 9000,
+          position: "top-right",
+          isClosable: true,
+        });
+      });
     }
   };
 
