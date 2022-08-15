@@ -51,10 +51,10 @@ export const useGetFinishedProjects = () => {
   });
 };
 
-export const useGetSupportedProjects = (wallet_id: string) => {
+export const useGetSupportedProjects = (account_id: string) => {
   return useQuery(
     "supported-projects",
-    () => fetchSupportedProjects(wallet_id),
+    () => fetchSupportedProjects(account_id),
     {
       onError: (err) => {
         console.error(err);

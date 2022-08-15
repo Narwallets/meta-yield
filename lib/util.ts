@@ -79,6 +79,8 @@ export const timeLeftToFund = (time: any) => {
     ? `${timeMoment.diff(now, "days")} days`
     : timeMoment.diff(now, "hours") >= 1
     ? `${timeMoment.diff(now, "hours")} hours`
+    : timeMoment.diff(now, "seconds") < 60
+    ? `${timeMoment.diff(now, "seconds")} seconds`
     : `${timeMoment.diff(now, "minutes")} minutes`;
 };
 
@@ -119,9 +121,10 @@ export const getPeriod = (kickstarter: any) => {
   return PERIOD.CLOSE; */
 }
 
-export const getMyProjectsFounded = async (id: string, wallet: any) => {
+export const getMyProjectsFounded = async (id: string) => {
+  const account_id = window.account_id;
   const projectsFounded: any[] = await getSupportedKickstarters(
-    wallet.getAccountId()
+    account_id
   );
   if (!projectsFounded) {
     return null;

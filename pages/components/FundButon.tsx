@@ -2,7 +2,6 @@ import React from "react";
 import { Button, ButtonProps } from "@chakra-ui/react";
 import { CaretRight } from "phosphor-react";
 import { useState } from "react";
-import { useStore } from "../../stores/wallet";
 
 interface FundButtonProps extends ButtonProps {
   show: boolean;
@@ -10,7 +9,6 @@ interface FundButtonProps extends ButtonProps {
 }
 
 const FundButton: React.FC<FundButtonProps> = (p) => {
-  const { wallet, setWallet } = useStore();
   const { show, completed, ...props } = p;
   const [disabled, setDisabled] = useState<boolean>(false);
   const fundText = "Fund Now";
