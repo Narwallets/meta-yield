@@ -53,7 +53,7 @@ export const FAQ = [
             <li>Weekly on going promotion during the fundraising time window</li>
         </ul>
         <br><br>
-        Additionally we are working with different entities of the NEAR ecosystem that are interested in the opportunity of financially supporting these new projects on NEAR.ment to the project) for $NEAR.
+        Additionally we are working with different entities of the NEAR ecosystem that are interested in the opportunity of financially supporting these new projects on NEAR.
         `
     },
     { 

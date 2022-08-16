@@ -5,17 +5,17 @@ import {
   getKickstarters,
   getProjectDetails,
 } from "../../../lib/near";
-import { isOpenPeriod } from "../../../lib/util";
+import { getPeriod, PERIOD } from "../../../lib/util";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
   let result: Array<any> = [];
 
-  const activeProjects = await getKickstarters();
+  const comingProjects = await getKickstarters();
   // TODO check active and successful flags to filter projects accordantly
-  if (activeProjects) {
-    for (const project of activeProjects) {
+  if (comingProjects) {
+    for (const project of comingProjects) {
       const projectOnChain = await getProjectDetails(project.id);
       const projectStatic = data.find((sp) => sp.id === project.id);
       if (projectStatic) {
@@ -25,10 +25,11 @@ export default async function handler(
         });
       }
     }
-    // filter the open projects
+    // filter the not open projects
     result = result.filter((val:any)=>{
-      return isOpenPeriod(val.kickstarter);
+      return getPeriod(val.kickstarter) === PERIOD.NOT_OPEN;
     })
+    // console.log("result", result)
   }
 
   // sort by open timestamp

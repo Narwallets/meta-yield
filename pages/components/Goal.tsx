@@ -105,7 +105,7 @@ const Goal = (props: GoalProps) => {
     } else {
       const goalDesiredAmount = parseInt(kickstarterGoal.desired_amount);
       const deposited = totalDeposited;
-      const raised = kickstarterGoal.id === 0 ? deposited : deposited > goalDesiredAmount ? deposited : goalDesiredAmount - deposited;
+      const raised = kickstarterGoal.id === 0 ? deposited : deposited > goalDesiredAmount ? deposited : (goalDesiredAmount - (goalDesiredAmount - deposited));
       return goalDesiredAmount ? ((raised * 100) / goalDesiredAmount): 0;
     }
   }

@@ -4,6 +4,8 @@ import {
   fetchProjectDetails,
   fetchActiveProjects,
   fetchSupportedProjects,
+  fetchFinishedProjects,
+  fetchComingSoonProjects,
 } from "../queries/projects";
 import { getActiveProjects, getProjectDetails } from "../lib/near";
 import { number } from "yup";
@@ -27,6 +29,22 @@ export const useGetProjectDetails = (id: number) => {
 
 export const useGetActiveProjects = () => {
   return useQuery("active-projects", () => fetchActiveProjects(), {
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+};
+
+export const useComingSoonProjects = () => {
+  return useQuery("comingsoon-projects", () => fetchComingSoonProjects(), {
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+};
+
+export const useGetFinishedProjects = () => {
+  return useQuery("finished-projects", () => fetchFinishedProjects(), {
     onError: (err) => {
       console.error(err);
     },
