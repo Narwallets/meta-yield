@@ -75,6 +75,8 @@ import { ArrowSquareOut, Link as LinkI, TwitterLogo } from "phosphor-react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import { useWalletSelector } from "../../context/WalletSelectorContext";
+import { FinalExecutionOutcome } from "@near-wallet-selector/core";
+import TxErrorHandler from "./TxErrorHandler";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -88,7 +90,11 @@ export enum ProjectStatus {
 }
 
 const ProjectDetails = (props: { id: any }) => {
-  const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
+  const {
+    isLoading,
+    data: project,
+    refetch,
+  } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const isMobile = useBreakpointValue({ base: true, md: false });
   const router = useRouter();
@@ -110,7 +116,8 @@ const ProjectDetails = (props: { id: any }) => {
 
   const [myProjectFounded, setMyProjectFounded] = useState<any>();
   const [ammountWithdraw, setAmmountWithdraw] = useState(0);
-
+  const [finalExecutionOutcome, setFinalExecutionOutcome] =
+    useState<FinalExecutionOutcome | null>(null);
   const { selector, modal, accounts, accountId } = useWalletSelector();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
   const toast = useToast();
@@ -130,15 +137,13 @@ const ProjectDetails = (props: { id: any }) => {
   });
 
   const withdrawAllStnear = async () => {
-    withdrawAll(parseInt(props.id)).then((val) => {
-      toast({
-        title: "Transaction success.",
-        status: "success",
-        duration: 9000,
-        position: "top-right",
-        isClosable: true,
-      });
-    });
+    const result = await withdrawAll(parseInt(props.id));
+    refetch();
+    setFinalExecutionOutcome(result);
+  };
+
+  const onWithdrawFinished = () => {
+    refetch();
   };
 
   const claim = async () => {
@@ -148,15 +153,9 @@ const ProjectDetails = (props: { id: any }) => {
         project.kickstarter.token_contract_address
       );
     } else {
-      claimAll(parseInt(props.id)).then((val) => {
-        toast({
-          title: "Transaction success.",
-          status: "success",
-          duration: 9000,
-          position: "top-right",
-          isClosable: true,
-        });
-      });
+      const result = await claimAll(parseInt(props.id));
+      refetch();
+      setFinalExecutionOutcome(result);
     }
   };
 
@@ -318,7 +317,7 @@ const ProjectDetails = (props: { id: any }) => {
 
   return (
     <>
-      {" "}
+      <TxErrorHandler finalExecutionOutcome={finalExecutionOutcome} />{" "}
       {project.projectDisabled && (
         <Modal
           closeOnOverlayClick={false}
@@ -469,6 +468,7 @@ const ProjectDetails = (props: { id: any }) => {
                           ? yton(myProjectFounded.supporter_deposit)
                           : 0
                       }
+                      onWithdrawFinished={onWithdrawFinished}
                     ></Funding>
                   )}
                   {!selector.isSignedIn() && (
