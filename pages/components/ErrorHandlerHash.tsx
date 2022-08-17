@@ -1,8 +1,8 @@
-import { BoxProps, useToast } from '@chakra-ui/react'
-import { useRouter } from 'next/router';
-import * as React from 'react'
-import { useEffect, useState } from 'react';
-import { ErrorHashHandler } from '../../utils/errorHandlers';
+import { BoxProps, useToast } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { ErrorHashHandler } from "../../utils/errorHandlers";
 
 const ErrorHandlerHash = (props: BoxProps) => {
   const router = useRouter();
@@ -14,11 +14,11 @@ const ErrorHandlerHash = (props: BoxProps) => {
   useEffect(() => {
     (async () => {
       ErrorHashHandler(router, toast);
-
       setIsLoaded(true);
     })();
   }, [transactionHashes, toast]);
 
-  return (<></>)}
+  return <></>;
+};
 
 export default ErrorHandlerHash;

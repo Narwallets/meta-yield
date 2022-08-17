@@ -20,8 +20,8 @@ import { setupLedger } from "@near-wallet-selector/ledger";
 import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
 import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
 import { CONTRACT_ID, METAPOOL_CONTRACT_ID, NETWORK_ID } from "../lib/near";
-
-declare global {
+import { getConfig } from "../config";
+ declare global {
   interface Window {
     selector: WalletSelector;
     modal: WalletSelectorModal;
@@ -50,6 +50,8 @@ const WalletSelectorContext =
   React.createContext<WalletSelectorContextValue | null>(null);
 
 export const WalletSelectorContextProvider: React.FC = ({ children }) => {
+  const env = process.env.NODE_ENV;
+  const nearConfig = getConfig(env);
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);
@@ -60,8 +62,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
   const setupNearWalletCustom = () => {
     return async (options: any) => {
       const wallet = await setupMyNearWallet({
-        walletUrl: "https://wallet.testnet.near.org",
-        iconUrl: "./assets/near-wallet-iconx.png",
+        walletUrl: nearConfig.walletUrl
       })(options);
 
       if (!wallet) {

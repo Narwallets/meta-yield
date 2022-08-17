@@ -6,10 +6,11 @@ import {
   utils,
   Contract,
   providers,
-  ConnectConfig,
+  ConnectConfig
 } from "near-api-js";
 import { parseRpcError } from "near-api-js/lib/utils/rpc_errors";
 import {
+  FinalExecutionOutcome,
   FinalExecutionStatus,
   getTransactionLastResult,
 } from "near-api-js/lib/providers";
@@ -383,7 +384,7 @@ const getStorageBalanceBounds = async (contract: string) => {
 const callChangeKatherineMethod = async (method: string, args: any) => {
   const wallet = window.wallet;
   const account_id = window.account_id;
-  const result = wallet!
+  const result = await wallet!
     .signAndSendTransaction({
       signerId: account_id!,
       actions: [
@@ -402,7 +403,11 @@ const callChangeKatherineMethod = async (method: string, args: any) => {
       console.log(`Failed to call katherine contract -- method: ${method}`);
       throw err;
     });
-  return result;
+  if (result instanceof Object) {
+    return result;
+
+  }
+  return null;
 };
 
 const callViewKatherineMethod = async (method: string, args: any) => {

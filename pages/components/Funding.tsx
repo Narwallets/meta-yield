@@ -27,10 +27,13 @@ import { getCurrentFundingGoal, ntoy, yton } from "../../lib/util";
 import depositSchemaValidation from "../../validation/fundSchemaValidation";
 import withdrawSchemaValidation from "../../validation/withdrawSchemaValidation";
 import { useWalletSelector } from "../../context/WalletSelectorContext";
+import TxErrorHandler from "./TxErrorHandler";
+import { FinalExecutionOutcome } from "@near-wallet-selector/core";
 const Funding = (props: {
   project: any;
   supportedDeposited: number;
   showOnlyWithdraw: boolean;
+  onWithdrawFinished: any;
 }) => {
   const project = props.project;
   const supportedDeposited = props.supportedDeposited;
@@ -52,6 +55,7 @@ const Funding = (props: {
   const [currentFundingGoal, setCurrentFundingGoal] =
     useState<KickstarterGoalProps>();
   const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
+  const [finalExecutionOutcome, setFinalExecutionOutcome] = useState<FinalExecutionOutcome | null>(null)
   const handleChangeDeposit = (event: any) =>
     setAmountDeposit(event.target.value);
 
@@ -122,15 +126,9 @@ const Funding = (props: {
   });
 
   const withdrawAmount = async (amount: string) => {
-    withdraw(project.id, amount).then((val) => {
-      toast({
-        title: "Transaction success.",
-        status: "success",
-        duration: 9000,
-        position: "top-right",
-        isClosable: true,
-      }); 
-    });
+    const result = await withdraw(project.id, amount);
+    props.onWithdrawFinished();
+    setFinalExecutionOutcome(result)
   };
 
   const getFormikError = () => {
@@ -176,6 +174,8 @@ const Funding = (props: {
   if (!project) return <></>;
 
   return (
+    <>
+    <TxErrorHandler finalExecutionOutcome={finalExecutionOutcome}/>
     <Tabs defaultIndex={props.showOnlyWithdraw ? 1 : 0}>
       <TabList>
         <Tab isDisabled={props.showOnlyWithdraw}>Deposit</Tab>
@@ -333,6 +333,7 @@ const Funding = (props: {
         </TabPanel>
       </TabPanels>
     </Tabs>
+    </>
   );
 };
 export default Funding;
