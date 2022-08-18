@@ -34,6 +34,8 @@ const Funding = (props: {
   supportedDeposited: number;
   showOnlyWithdraw: boolean;
   onWithdrawFinished: any;
+  isTxInProgress: boolean;
+  setIsTxInProgress: any;
 }) => {
   const project = props.project;
   const supportedDeposited = props.supportedDeposited;
@@ -126,7 +128,9 @@ const Funding = (props: {
   });
 
   const withdrawAmount = async (amount: string) => {
+    props.setIsTxInProgress(true);
     const result = await withdraw(project.id, amount);
+    props.setIsTxInProgress(false);
     props.onWithdrawFinished();
     setFinalExecutionOutcome(result)
   };
@@ -302,7 +306,7 @@ const Funding = (props: {
             <Button
               colorScheme="indigo"
               size="lg"
-              disabled={!formikWithdraw.isValid}
+              disabled={!formikWithdraw.isValid || props.isTxInProgress}
               onClick={(e: any) => {
                 formikWithdraw.handleSubmit(e);
               }}

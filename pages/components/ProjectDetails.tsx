@@ -93,6 +93,7 @@ const ProjectDetails = (props: { id: any }) => {
   const {
     isLoading,
     data: project,
+    isRefetching,
     refetch,
   } = useGetProjectDetails(parseInt(props.id));
   const tagsColor = useColorModeValue("gray.600", "gray.300");
@@ -118,6 +119,7 @@ const ProjectDetails = (props: { id: any }) => {
   const [ammountWithdraw, setAmmountWithdraw] = useState(0);
   const [finalExecutionOutcome, setFinalExecutionOutcome] =
     useState<FinalExecutionOutcome | null>(null);
+  const [isTxInProgress, setIsTxInProgress] = useState(false);
   const { selector, modal, accounts, accountId } = useWalletSelector();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
   const toast = useToast();
@@ -137,8 +139,10 @@ const ProjectDetails = (props: { id: any }) => {
   });
 
   const withdrawAllStnear = async () => {
+    setIsTxInProgress(true);
     const result = await withdrawAll(parseInt(props.id));
     refetch();
+    setIsTxInProgress(false);
     setFinalExecutionOutcome(result);
   };
 
@@ -313,7 +317,12 @@ const ProjectDetails = (props: { id: any }) => {
     })();
   }, [props, project, selector]);
 
-  if (isLoading) return <PageLoading />;
+  useEffect(() => {
+    // Initial fetch
+    refetch();
+  }, []);
+
+  if (!project || isLoading || isRefetching) return <PageLoading />;
 
   return (
     <>
@@ -469,6 +478,8 @@ const ProjectDetails = (props: { id: any }) => {
                           : 0
                       }
                       onWithdrawFinished={onWithdrawFinished}
+                      isTxInProgress={isTxInProgress}
+                      setIsTxInProgress={setIsTxInProgress}
                     ></Funding>
                   )}
                   {!selector.isSignedIn() && (
