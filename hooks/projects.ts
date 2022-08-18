@@ -21,10 +21,13 @@ export const useGetProjects = () => {
 
 export const useGetProjectDetails = (id: number) => {
   return useQuery("project-fund", () => fetchProjectDetails(id), {
+    refetchOnWindowFocus: false,
+    enabled: false, // disable this query from automatically running
     onError: (err) => {
       console.error(err);
     },
-  });
+  }
+  );
 };
 
 export const useGetActiveProjects = () => {
