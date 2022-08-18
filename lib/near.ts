@@ -28,6 +28,7 @@ import {
   decodeJsonRpcData,
   encodeJsonRpcData,
   getPanicError,
+  getPanicErrorFromText,
   getTxFunctionCallMethod,
   ntoy,
   yton,
@@ -400,8 +401,8 @@ const callChangeKatherineMethod = async (method: string, args: any) => {
       ],
     })
     .catch((err) => {
-      console.log(`Failed to call katherine contract -- method: ${method}`);
-      throw err;
+      console.log(`Failed to call katherine contract -- method: ${method} - error message: ${err.message}`);
+      throw getPanicErrorFromText(err.message);
     });
   if (result instanceof Object) {
     return result;
