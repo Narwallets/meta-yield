@@ -57,7 +57,8 @@ const Funding = (props: {
   const [currentFundingGoal, setCurrentFundingGoal] =
     useState<KickstarterGoalProps>();
   const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
-  const [finalExecutionOutcome, setFinalExecutionOutcome] = useState<FinalExecutionOutcome | null>(null)
+  const [finalExecutionOutcome, setFinalExecutionOutcome] =
+    useState<FinalExecutionOutcome | null>(null);
   const handleChangeDeposit = (event: any) =>
     setAmountDeposit(event.target.value);
 
@@ -122,17 +123,30 @@ const Funding = (props: {
           isClosable: true,
         });
       } else {
-        const result = await withdrawAmount(ntoy(values.amount_withdraw));
+        withdrawAmount(ntoy(values.amount_withdraw));
       }
     },
   });
 
   const withdrawAmount = async (amount: string) => {
     props.setIsTxInProgress(true);
-    const result = await withdraw(project.id, amount);
-    props.setIsTxInProgress(false);
-    props.onWithdrawFinished();
-    setFinalExecutionOutcome(result)
+    withdraw(project.id, amount)
+      .then((result) => {
+        props.setIsTxInProgress(false);
+        props.onWithdrawFinished();
+        setFinalExecutionOutcome(result);
+      })
+      .catch((error) => {
+        props.setIsTxInProgress(false);
+        toast({
+          title: "Transaction error.",
+          description: error,
+          status: "error",
+          duration: 9000,
+          position: "top-right",
+          isClosable: true,
+        });
+      });
   };
 
   const getFormikError = () => {
@@ -179,164 +193,164 @@ const Funding = (props: {
 
   return (
     <>
-    <TxErrorHandler finalExecutionOutcome={finalExecutionOutcome}/>
-    <Tabs defaultIndex={props.showOnlyWithdraw ? 1 : 0}>
-      <TabList>
-        <Tab isDisabled={props.showOnlyWithdraw}>Deposit</Tab>
-        <Tab isDisabled={!isWithdrawEnabled}>Withdraw</Tab>
-      </TabList>
+      <TxErrorHandler finalExecutionOutcome={finalExecutionOutcome} />
+      <Tabs defaultIndex={props.showOnlyWithdraw ? 1 : 0}>
+        <TabList>
+          <Tab isDisabled={props.showOnlyWithdraw}>Deposit</Tab>
+          <Tab isDisabled={!isWithdrawEnabled}>Withdraw</Tab>
+        </TabList>
 
-      <TabPanels>
-        <TabPanel>
-          <HStack>
-            <InputGroup>
-              <InputLeftAddon>
-                <Square minW="30px">
-                  <Avatar
-                    size={"xs"}
-                    src="/stNEAR_token-white_dark_purple-circle.svg"
-                  />
-                  <Text
-                    fontSize={"xs"}
-                    fontWeight={600}
-                    color="gray.400"
-                    ml={2}
-                  >
-                    stNEAR
-                  </Text>
-                </Square>
-              </InputLeftAddon>
-              <Input
-                id="amount_deposit"
-                name="amount_deposit"
-                placeholder="0"
-                value={formikDeposit.values.amount_deposit}
-                onPaste={formikDeposit.handleChange}
-                onBlur={formikDeposit.handleBlur}
-                onChange={(e) => {
-                  handleChangeDeposit(e);
-                  formikDeposit.handleChange(e);
-                }}
-              />
-              <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={onMaxClickDeposit}>
-                  Max
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <Button
-              colorScheme="indigo"
-              size="lg"
-              // disabled={!formikDeposit.isValid}
-              onClick={(e: any) => formikDeposit.handleSubmit(e)}
-            >
-              Deposit
-            </Button>
-          </HStack>
-          {!formikDeposit.isValid && (
-            <HStack mt={5}>
-              <Text
-                dangerouslySetInnerHTML={getFormikError()}
-                color={"red"}
-              ></Text>
-            </HStack>
-          )}
-
-          <Stack mt={4}>
+        <TabPanels>
+          <TabPanel>
             <HStack>
-              <Text
-                fontSize="xs"
-                lineHeight="6"
-                fontWeight="semibold"
-                color="gray.400"
+              <InputGroup>
+                <InputLeftAddon>
+                  <Square minW="30px">
+                    <Avatar
+                      size={"xs"}
+                      src="/stNEAR_token-white_dark_purple-circle.svg"
+                    />
+                    <Text
+                      fontSize={"xs"}
+                      fontWeight={600}
+                      color="gray.400"
+                      ml={2}
+                    >
+                      stNEAR
+                    </Text>
+                  </Square>
+                </InputLeftAddon>
+                <Input
+                  id="amount_deposit"
+                  name="amount_deposit"
+                  placeholder="0"
+                  value={formikDeposit.values.amount_deposit}
+                  onPaste={formikDeposit.handleChange}
+                  onBlur={formikDeposit.handleBlur}
+                  onChange={(e) => {
+                    handleChangeDeposit(e);
+                    formikDeposit.handleChange(e);
+                  }}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={onMaxClickDeposit}>
+                    Max
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <Button
+                colorScheme="indigo"
+                size="lg"
+                // disabled={!formikDeposit.isValid}
+                onClick={(e: any) => formikDeposit.handleSubmit(e)}
               >
-                ESTIMATED REWARDS:
-              </Text>
-              <Text
-                fontSize="sm"
-                lineHeight="6"
-                fontWeight="semibold"
-                color="gray.600"
-              >
-                {estimatedRewards} {project.kickstarter.project_token_symbol}
-              </Text>
+                Deposit
+              </Button>
             </HStack>
-          </Stack>
-        </TabPanel>
-        <TabPanel>
-          <HStack>
-            <InputGroup>
-              <InputLeftAddon>
-                <Square minW="30px">
-                  <Avatar
-                    size={"xs"}
-                    src="/stNEAR_token-white_dark_purple-circle.svg"
-                  />
-                  <Text
-                    fontSize={"xs"}
-                    fontWeight={600}
-                    color={"gray.400"}
-                    ml={2}
-                  >
-                    stNEAR
-                  </Text>
-                </Square>
-              </InputLeftAddon>
-              <Input
-                id="amount_withdraw"
-                name="amount_withdraw"
-                placeholder="0"
-                isDisabled={props.showOnlyWithdraw}
-                value={formikWithdraw.values.amount_withdraw}
-                onPaste={formikWithdraw.handleChange}
-                onBlur={formikWithdraw.handleBlur}
-                onChange={formikWithdraw.handleChange}
-              />
-              <InputRightElement width="4.5rem">
-                <Button
-                  isDisabled={props.showOnlyWithdraw}
-                  h="1.75rem"
-                  size="sm"
-                  onClick={onMaxClickWithdraw}
+            {!formikDeposit.isValid && (
+              <HStack mt={5}>
+                <Text
+                  dangerouslySetInnerHTML={getFormikError()}
+                  color={"red"}
+                ></Text>
+              </HStack>
+            )}
+
+            <Stack mt={4}>
+              <HStack>
+                <Text
+                  fontSize="xs"
+                  lineHeight="6"
+                  fontWeight="semibold"
+                  color="gray.400"
                 >
-                  Max
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <Button
-              colorScheme="indigo"
-              size="lg"
-              disabled={!formikWithdraw.isValid || props.isTxInProgress}
-              onClick={(e: any) => {
-                formikWithdraw.handleSubmit(e);
-              }}
-            >
-              Withdraw
-            </Button>
-          </HStack>
-          <Stack mt={4}>
+                  ESTIMATED REWARDS:
+                </Text>
+                <Text
+                  fontSize="sm"
+                  lineHeight="6"
+                  fontWeight="semibold"
+                  color="gray.600"
+                >
+                  {estimatedRewards} {project.kickstarter.project_token_symbol}
+                </Text>
+              </HStack>
+            </Stack>
+          </TabPanel>
+          <TabPanel>
             <HStack>
-              <Text
-                fontSize="xs"
-                lineHeight="6"
-                fontWeight="semibold"
-                color="gray.400"
+              <InputGroup>
+                <InputLeftAddon>
+                  <Square minW="30px">
+                    <Avatar
+                      size={"xs"}
+                      src="/stNEAR_token-white_dark_purple-circle.svg"
+                    />
+                    <Text
+                      fontSize={"xs"}
+                      fontWeight={600}
+                      color={"gray.400"}
+                      ml={2}
+                    >
+                      stNEAR
+                    </Text>
+                  </Square>
+                </InputLeftAddon>
+                <Input
+                  id="amount_withdraw"
+                  name="amount_withdraw"
+                  placeholder="0"
+                  isDisabled={props.showOnlyWithdraw}
+                  value={formikWithdraw.values.amount_withdraw}
+                  onPaste={formikWithdraw.handleChange}
+                  onBlur={formikWithdraw.handleBlur}
+                  onChange={formikWithdraw.handleChange}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button
+                    isDisabled={props.showOnlyWithdraw}
+                    h="1.75rem"
+                    size="sm"
+                    onClick={onMaxClickWithdraw}
+                  >
+                    Max
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <Button
+                colorScheme="indigo"
+                size="lg"
+                disabled={!formikWithdraw.isValid || props.isTxInProgress}
+                onClick={(e: any) => {
+                  formikWithdraw.handleSubmit(e);
+                }}
               >
-                CURRENT DEPOSITS:
-              </Text>
-              <Text
-                fontSize="sm"
-                lineHeight="6"
-                fontWeight="semibold"
-                color="gray.600"
-              >
-                {supportedDeposited} stNEAR
-              </Text>
+                Withdraw
+              </Button>
             </HStack>
-          </Stack>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+            <Stack mt={4}>
+              <HStack>
+                <Text
+                  fontSize="xs"
+                  lineHeight="6"
+                  fontWeight="semibold"
+                  color="gray.400"
+                >
+                  CURRENT DEPOSITS:
+                </Text>
+                <Text
+                  fontSize="sm"
+                  lineHeight="6"
+                  fontWeight="semibold"
+                  color="gray.600"
+                >
+                  {supportedDeposited} stNEAR
+                </Text>
+              </HStack>
+            </Stack>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </>
   );
 };

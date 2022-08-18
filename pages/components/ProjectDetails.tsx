@@ -140,10 +140,23 @@ const ProjectDetails = (props: { id: any }) => {
 
   const withdrawAllStnear = async () => {
     setIsTxInProgress(true);
-    const result = await withdrawAll(parseInt(props.id));
-    refetch();
-    setIsTxInProgress(false);
-    setFinalExecutionOutcome(result);
+    await withdrawAll(parseInt(props.id))
+      .then((result) => {
+        refetch();
+        setIsTxInProgress(false);
+        setFinalExecutionOutcome(result);
+      })
+      .catch((error) => {
+        setIsTxInProgress(false);
+        toast({
+          title: "Transaction error.",
+          description: error,
+          status: "error",
+          duration: 9000,
+          position: "top-right",
+          isClosable: true,
+        });
+      });
   };
 
   const onWithdrawFinished = () => {

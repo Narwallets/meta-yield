@@ -201,6 +201,22 @@ export const getPanicError = (txResult: any) => {
   }
 };
 
+export const getPanicErrorFromText  = (text: string) => {
+  let result = text;
+  const KEY = "panicked at ";
+  const kl = KEY.length;
+  let n = text.indexOf(KEY);
+  if (n > 0 && n < text.length - kl - 5) {
+    const i = text.indexOf("'", n + kl + 4);
+    const cut = text.slice(n + kl, i);
+    if (cut.trim().length > 5) {
+      //debug: console.error(text.slice(n, i + 80)) //show info in the console before removing extra info
+      result = cut;
+    }
+  }
+  return result;
+}
+
 export const formatJSONErr = (obj: any) => {
   let text = JSON.stringify(obj);
   text = text.replace(/{/g, " ");
@@ -228,17 +244,6 @@ export const formatJSONErr = (obj: any) => {
 
   //if panicked-at: return relevant info only
   //debug: console.error(text); //show info in the console before removing extra info
-  const KEY = "panicked at ";
-  const kl = KEY.length;
-  let n = text.indexOf(KEY);
-  if (n > 0 && n < text.length - kl - 5) {
-    const i = text.indexOf("'", n + kl + 4);
-    const cut = text.slice(n + kl, i);
-    if (cut.trim().length > 5) {
-      //debug: console.error(text.slice(n, i + 80)) //show info in the console before removing extra info
-      text = cut;
-    }
-  }
-
+  text = getPanicErrorFromText(text)
   return text;
 };
