@@ -301,16 +301,10 @@ export const claimAll = async (kickstarter_id: number) => {
 };
 
 export const claimPartial = async (kickstarter_id: number, amount: string) => {
-  // const contract = await getContract();
   const args = {
     kickstarter_id: kickstarter_id,
     amount,
   };
-  // const response = (contract as any)["claim_all_kickstarter_tokens"](
-  //   args,
-  //   "200000000000000"
-  // );
-  // return response;
   return callChangeKatherineMethod(katherineChangeMethods.claim, args);
 };
 
@@ -343,15 +337,6 @@ export const storageDepositOfTokenForSupporter = async (
   tokenContractAddress: string
 ) => {
   const bounds: any = await getStorageBalanceBounds(tokenContractAddress);
-  // const account = await getAccount();
-  // const response = await account.functionCall(
-  //     tokenContractAddress!,
-  //     projectTokenChangeMethods.storageDeposit,
-  //     {},
-  //     "200000000000000",
-  //     bounds.min
-  //   );
-  // return providers.getTransactionLastResult(response);
   const wallet = window.wallet;
   const accountId = window.account_id;
   return wallet?.signAndSendTransaction({

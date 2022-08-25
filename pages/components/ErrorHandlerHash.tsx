@@ -10,7 +10,6 @@ const ErrorHandlerHash = (props: BoxProps) => {
   const id = router.query && router.query.id ? router.query.id : "";
   const transactionHashes = router.query.transactionHashes;
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
-  const [txSuccess, setTxSuccess] = useState<boolean>(false);
   useEffect(() => {
     (async () => {
       ErrorHashHandler(router, toast);
