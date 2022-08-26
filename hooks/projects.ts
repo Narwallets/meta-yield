@@ -17,12 +17,15 @@ export const useGetProjects = () => {
   });
 };
 
-export const useGetProjectDetails = (id: number, votingMode?: boolean) => {
-  return useQuery("project-fund", () => fetchProjectDetails(id, votingMode), {
+export const useGetProjectDetails = (id: number) => {
+  return useQuery("project-fund", () => fetchProjectDetails(id), {
+    refetchOnWindowFocus: false,
+    enabled: false, // disable this query from automatically running
     onError: (err) => {
       console.error(err);
     },
-  });
+  }
+  );
 };
 
 export const useGetActiveProjects = () => {
@@ -56,10 +59,10 @@ export const useGetFinishedProjects = () => {
   });
 };
 
-export const useGetSupportedProjects = (wallet_id: string) => {
+export const useGetSupportedProjects = (account_id: string) => {
   return useQuery(
     "supported-projects",
-    () => fetchSupportedProjects(wallet_id),
+    () => fetchSupportedProjects(account_id),
     {
       onError: (err) => {
         console.error(err);

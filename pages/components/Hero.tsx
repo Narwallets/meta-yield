@@ -13,27 +13,13 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import * as React from "react";
-import { getWallet, METAPOOL_CONTRACT_ID } from "../../lib/near";
-import { useStore } from "../../stores/wallet";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
+import ConnectButton from "./ConnectButton";
 
 const Hero = () => {
-  const { wallet, setWallet } = useStore();
-  const [isConnected, setIsConnected] = useState(false);
+  const { selector, modal, accounts, accountId } = useWalletSelector();
   const isMobile = useBreakpointValue({ base: true, md: false });
-
-  const onConnect = async () => {
-    wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
-  };
-  useEffect(() => {
-    (async () => {
-      const tempWallet = await getWallet();
-      if (tempWallet.getAccountId()!) {
-        setIsConnected(true);
-      }
-    })();
-  }, []);
-
   return (
     <Square
       minHeight={{ base: 400, md: 600 }}

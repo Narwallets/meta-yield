@@ -33,8 +33,8 @@ import {
   ModalFooter,
   ModalHeader,
   Modal,
-  Center,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import {
   KickstarterGoalProps,
@@ -66,8 +66,6 @@ import {
 
 import RewardsEstimated from "./RewardsEstimated";
 import ConnectButton from "./ConnectButton";
-
-import { useStore } from "../../stores/wallet";
 import Funding from "./Funding";
 import FAQ from "./FAQ";
 import Documents from "./Documents";
@@ -77,6 +75,9 @@ import { ArrowSquareOut, Link as LinkI, TwitterLogo } from "phosphor-react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import VotingStatusCard from "./VotingStatusCard";
 import { useRouter } from "next/router";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
+import { FinalExecutionOutcome } from "@near-wallet-selector/core";
+import TxErrorHandler from "./TxErrorHandler";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -90,8 +91,12 @@ export enum ProjectStatus {
 }
 
 const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
-  const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id), props.votingMode);
-
+  const {
+    isLoading,
+    data: project,
+    isRefetching,
+    refetch,
+  } = useGetProjectDetails(parseInt(props.id), props.votingMode);
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const isMobile = useBreakpointValue({ base: true, md: false });
   const router = useRouter();
@@ -114,10 +119,12 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
 
   const [myProjectFounded, setMyProjectFounded] = useState<any>();
   const [ammountWithdraw, setAmmountWithdraw] = useState(0);
-
-  const { wallet, isLogin } = useStore();
+  const [finalExecutionOutcome, setFinalExecutionOutcome] =
+    useState<FinalExecutionOutcome | null>(null);
+  const [isTxInProgress, setIsTxInProgress] = useState(false);
+  const { selector, modal, accounts, accountId } = useWalletSelector();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
-
+  const toast = useToast();
   const onCloseModal = () => {
     onClose();
     router.push("/");
@@ -134,28 +141,45 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   });
 
   const withdrawAllStnear = async () => {
-    // call to contract for withdraw
-    const tempWallet = await getWallet();
-    withdrawAll(tempWallet, parseInt(props.id)).then((val) => {
-      console.log("Return withdrawAll", val);
-    });
+    setIsTxInProgress(true);
+    await withdrawAll(parseInt(props.id))
+      .then((result) => {
+        refetch();
+        setIsTxInProgress(false);
+        setFinalExecutionOutcome(result);
+      })
+      .catch((error) => {
+        setIsTxInProgress(false);
+        toast({
+          title: "Transaction error.",
+          description: error,
+          status: "error",
+          duration: 9000,
+          position: "top-right",
+          isClosable: true,
+        });
+      });
+  };
+
+  const onWithdrawFinished = () => {
+    refetch();
   };
 
   const claim = async () => {
-    const tempWallet = await getWallet();
     const readyToClaim = await isReadyForClaimPToken();
     if (!readyToClaim) {
       storageDepositOfTokenForSupporter(
-        tempWallet,
         project.kickstarter.token_contract_address
       );
     } else {
-      claimAll(tempWallet, parseInt(props.id));
+      const result = await claimAll(parseInt(props.id));
+      refetch();
+      setFinalExecutionOutcome(result);
     }
   };
 
   const refreshStatus = (project: any, thisProjectFounded: any) => {
-    if (wallet?.isSignedIn()) {
+    if (selector?.isSignedIn()) {
       setStatus(ProjectStatus.LOGGIN);
       if (isOpenPeriod(project.kickstarter)) {
         if (project.kickstarter.active) {
@@ -188,8 +212,8 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
     }
   };
 
-  const getWithdrawAmmount = async (wallet: any, id: number, price: string) =>
-    getSupporterEstimatedStNear(wallet, id, price);
+  const getWithdrawAmmount = async (id: number, price: string) =>
+    getSupporterEstimatedStNear(id, price);
 
   const calculateAmmountToWithdraw = async () => {
     if (
@@ -202,11 +226,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
       const amount =
         parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
           ? project.kickstarter.stnear_price_at_unfreeze
-          : await getWithdrawAmmount(
-              wallet,
-              parseInt(props.id),
-              price.toString()
-            );
+          : await getWithdrawAmmount(parseInt(props.id), price.toString());
       if (amount) {
         setAmmountWithdraw(yton(amount));
       }
@@ -235,7 +255,6 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   const isReadyForClaimPToken = async () => {
     const tempWallet = await getWallet();
     return await getBalanceOfTokenForSupporter(
-      tempWallet,
       project.kickstarter.token_contract_address
     );
   };
@@ -301,10 +320,9 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   }, [project]);
   useEffect(() => {
     (async () => {
-      if (project && wallet?.isSignedIn() && !props.votingMode) {
+      if (project && selector?.isSignedIn()) {
         const thisProjectFounded = await getMyProjectsFounded(
-          project.kickstarter.id,
-          wallet
+          project.kickstarter.id
         );
         setMyProjectFounded(thisProjectFounded);
         refreshStatus(project, thisProjectFounded);
@@ -312,42 +330,50 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
         setShowApprove(isApproved === null);
       }
     })();
-  }, [wallet, props, project]);
+  }, [props, project, selector]);
 
-  if (isLoading && !project) return <PageLoading />;
+  useEffect(() => {
+    // Initial fetch
+    refetch();
+  }, []);
+
+  if (!project || isLoading || isRefetching) return <PageLoading />;
 
   return (
-    <> {project.projectDisabled && 
-      (<Modal
-        closeOnOverlayClick={false}
-        isOpen={isOpen}
-        onClose={() => onCloseModal()}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{project.projectDisabled.title}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <Stack fontSize={"xl"} textAlign="center">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: project.projectDisabled.bodyHtml,
-                }}
-              ></div>
-            </Stack>
-          </ModalBody>
+    <>
+      <TxErrorHandler finalExecutionOutcome={finalExecutionOutcome} />{" "}
+      {project.projectDisabled && (
+        <Modal
+          closeOnOverlayClick={false}
+          isOpen={isOpen}
+          onClose={() => onCloseModal()}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>{project.projectDisabled.title}</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <Stack fontSize={"xl"} textAlign="center">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: project.projectDisabled.bodyHtml,
+                  }}
+                ></div>
+              </Stack>
+            </ModalBody>
 
-          <ModalFooter>
-            <Button
-              onClick={() => {
-                onCloseModal();
-              }}
-            >
-              Back to projets
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>)}
+            <ModalFooter>
+              <Button
+                onClick={() => {
+                  onCloseModal();
+                }}
+              >
+                Back to projets
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      )}
       <Container maxW="container.xl">
         <Grid
           as="section"
@@ -453,13 +479,13 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                       kickstarter={project?.kickstarter}
                     />
                   )}
-                {showRewardEstimated && wallet?.isSignedIn() && (
+                {showRewardEstimated && selector.isSignedIn() && (
                   <RewardsEstimated
                     kickstarter={project?.kickstarter}
                   ></RewardsEstimated>
                 )}
                 <Stack w={"100%"}>
-                  {wallet?.isSignedIn() && (showFund || showWithdraw) && (
+                  {selector?.isSignedIn() && (showFund || showWithdraw) && (
                     <Funding
                       project={project}
                       showOnlyWithdraw={showWithdraw}
@@ -468,15 +494,18 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                           ? yton(myProjectFounded.supporter_deposit)
                           : 0
                       }
+                      onWithdrawFinished={onWithdrawFinished}
+                      isTxInProgress={isTxInProgress}
+                      setIsTxInProgress={setIsTxInProgress}
                     ></Funding>
                   )}
-                  {!wallet?.isSignedIn() && (
+                  {!selector.isSignedIn() && (
                     <ConnectButton
                       text={"Connect wallet to fund"}
                     ></ConnectButton>
                   )}
 
-                  {showClaim && wallet?.isSignedIn() && (
+                  {showClaim && selector?.isSignedIn() && (
                     <>
                       <Stack w={"100%"}>
                         {myProjectFounded &&

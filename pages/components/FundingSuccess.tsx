@@ -22,16 +22,16 @@ import {
 import { getCurrentFundingGoal, yoctoToDollarStr, yton } from "../../lib/util";
 import { fetchStNearPrice } from "../../queries/prices";
 import moment from "moment";
-import { useStore } from "../../stores/wallet";
 import { useGetSupportedProjects } from "../../hooks/projects";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
 
 const FundingSuccess = (props: { id: any }) => {
   const router = useRouter();
   const kickstarter_id = parseInt(props.id as string);
-  const { wallet, setWallet } = useStore();
   const { data, isLoading } = useGetProjectDetails(kickstarter_id);
+  const { selector, modal, accounts, accountId } = useWalletSelector();
   const { data: supportedProjets, isLoading: isLoadingSupportedProjects } =
-    useGetSupportedProjects(wallet?.getAccountId());
+    useGetSupportedProjects(accountId!);
   const [rewards, setRewards] = useState<string>("");
   const [invested, setInvested] = useState<string>("");
   const [lockupTime, setLockupTime] = useState<string>("");
