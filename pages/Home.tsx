@@ -87,54 +87,55 @@ const Home = () => {
               spacing={{base: 5, md: 30}}
               as="section">
               <HStack justify={{base:'center', md: 'space-between'}}>
-                <Text textAlign={{base:'center', md: 'start'}}  fontSize={{base:'2xl', md:"4xl"}} lineHeight="10" fontWeight="bold">
-                  Upcoming projects 
+                <Text  w={'50%'}  textAlign={{base:'center', md: 'start'}}  fontSize={{base:'2xl', md:"4xl"}} lineHeight="10" fontWeight="bold">
+                    You Next Favorite Project to Launch a Fundraising Campaign
                 </Text>
-                <HStack>
+                <Box  w={'389px'}  p={'35px'} bg={'#2B2B2B'}>
+                  <Text fontSize={'24px'} fontWeight={500} color={'white'}>Fundraising Campaign Kick Start of 20,000 stNEAR</Text>
+                </Box>
+              </HStack>
+              <HStack justify={{base:'center', md: 'space-between'}}>
+                <Text w={'439px'} fontSize={'16px'}>
+                  Every week, the Project of the Leaderboard with the most votes will become an active Fundraising Campaign with an initial 20,000 stNEAR in financial support.
+                </Text>
+                <VStack >
                   <Text hidden={isMobile} textAlign={{base:'center', md: 'start'}} opacity={0.5} fontSize={"lg"} lineHeight="10" fontWeight="bold">Voting ends in</Text>
                   <Text hidden={isMobile} textAlign={{base:'center', md: 'start'}} fontSize={"2xl"} lineHeight="10" fontWeight="bold">{getEndVotingPeriod()}</Text>
-                </HStack>
+                </VStack>
               </HStack>
-              <Box py={'8px'} px={'28px'}  bg={'#FDFF9F'}>
-                <Text fontWeight="bold">The most voted starts with 🎉 20,000 stNEAR</Text>
-              </Box>
-        
-        { comingSoon && comingSoon.length > 0 && (
-          <Box
-            id="projects"
-            as="section"
-            pb={{ base: "12", md: "24" }}
-        >
-            <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-              Coming soon 
-            </Text>
-            {comingSoon.map((p: any) => (
-              <div key={p.kickstarter.id}>
-                <ActiveProject data={p} />
-              </div>
-            ))}
-          </Box>
-        )}  
-        
-        
+              
               <VStack hidden={!isMobile}>
                 <Text textAlign={{base:'center', md: 'start'}} opacity={0.5} fontSize={{base:'xl', md:"2xl"}}  fontWeight="bold">ENDS IN </Text>
-                <Text  textAlign={{base:'center', md: 'start'}} fontSize={{base:'4xl', md:"2xl"}}  fontWeight="bold">{getEndVotingPeriod()}</Text>
+                <Text  textAlign={{base:'center', md: 'start'}} fontSize={{base:'4xl', md:"40px"}}  fontWeight="bold">{getEndVotingPeriod()}</Text>
               </VStack>
-              <Stack spacing={5} flexWrap={'wrap'} direction={{base: 'column', md: 'row'}}>
+              <Stack spacing={1} flexWrap={'wrap'} direction={{base: 'column', md: 'column'}}>
               {
                 projectsToVote.map((p: any) => {
                   const myVotes =  getVotes(p.id + '|' +p.slug);
                   return (
-                    <div key={p.id}>
-                      <VoteProject data={p}/>
-                    </div>
+                      <VoteProject key={p.id} data={p}/>
                   )
                 })
               }
               </Stack>
             </Stack>
           )}
+          { comingSoon && comingSoon.length > 0 && (
+            <Box
+              id="projects"
+              as="section"
+              pb={{ base: "12", md: "24" }}
+          >
+              <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
+                Coming soon 
+              </Text>
+              {comingSoon.map((p: any) => (
+                <div key={p.kickstarter.id}>
+                  <ActiveProject data={p} />
+                </div>
+              ))}
+            </Box>
+          )}  
           { dataFinished && dataFinished.length > 0 && (
             <Box id="completed"
               as="section">
