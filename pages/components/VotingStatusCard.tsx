@@ -9,12 +9,11 @@ import {
 } from "../../lib/util";
 
 import { getAvailableVotingPower, getInUseVotingPower, getMyVotesByProject, getNearConfig, getVotes, voteProject } from '../../lib/near';
-import { useStore as useWallet} from '../../stores/wallet';
 import { useFormik } from "formik";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import voteSchemaValidation from "../../validation/voteSchemaValidation";
 import ConnectButton from "./ConnectButton";
-
+import { useWalletSelector } from "../../context/WalletSelectorContext";
 const VotingStatusCard = (props: { project: any }) => {
   const project = props.project;
   const [votes, setVotes] = useState('0');
@@ -22,11 +21,10 @@ const VotingStatusCard = (props: { project: any }) => {
   const [votingPower, setVotingPower] = useState('0');
   const [votingPowerInUse, setVotingPowerInUse] = useState('0');
   const isMobile = useBreakpointValue({ base: true, md: false });
-
-  const { wallet } = useWallet();
+  const { selector, modal, accounts, accountId } = useWalletSelector();
   const toast = useToast();
   const vote = ( amount: any)=>{
-    voteProject(project.id +'|' +project.slug,  ntoy(amount), wallet);
+    voteProject(project.id +'|' +project.slug,  ntoy(amount));
   }
 
   const ERROR_MESSAGES = {
@@ -64,24 +62,24 @@ const VotingStatusCard = (props: { project: any }) => {
 
   useEffect(() => {
     (async () => {
-      if(wallet ) {
+      if(selector?.isSignedIn() ) {
         const id = project.id + '|'+project.slug;
         const myVotes = await getVotes(id);
         setVotes(myVotes);
 
-        if (wallet.isSignedIn()) {
-          const myVotesInPrj = await getMyVotesByProject(id, wallet);
+        if(selector?.isSignedIn() ) {
+          const myVotesInPrj = await getMyVotesByProject(id);
           setMyVotes(myVotesInPrj);
   
-          const myVotinPower = await getAvailableVotingPower(wallet);
+          const myVotinPower = await getAvailableVotingPower();
           setVotingPower(myVotinPower);
   
-          const myVotinPowerInUse = await getInUseVotingPower(wallet);
+          const myVotinPowerInUse = await getInUseVotingPower();
           setVotingPowerInUse(myVotinPowerInUse);
         }
       }
     })();
-  }, [project, wallet]);
+  }, [project, selector]);
 
   return (
     <>
@@ -96,7 +94,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 {yton(votes)}
               </Text>
             </Box>
-            { wallet?.isSignedIn() && (<Box>
+            { selector?.isSignedIn() && (<Box>
               <Text fontSize={{ base: "xs", md: "md" }} mb={4} color="gray.400" fontWeight="700">
                 YOUR VOTE
               </Text>
@@ -126,7 +124,7 @@ const VotingStatusCard = (props: { project: any }) => {
               VOTE
           </Text>
           {
-              wallet?.isSignedIn() ? ( <>
+              selector?.isSignedIn() ? ( <>
             <Stack  w={'100%'} direction={{base: 'column', md: 'row'}}>
               <InputGroup borderRadius={'6px'}>
                 <InputLeftAddon hidden={isMobile}>
@@ -186,7 +184,7 @@ const VotingStatusCard = (props: { project: any }) => {
         </VStack>
       </Card>
       <Card>
-        <VStack hidden={!wallet?.isSignedIn()} spacing={8} align={'flex-start'}>
+        <VStack hidden={!selector?.isSignedIn()} spacing={8} align={'flex-start'}>
             <Text fontSize={'md'} color="gray.400" fontWeight="700">
                 YOUR VOTING POWER
             </Text>
