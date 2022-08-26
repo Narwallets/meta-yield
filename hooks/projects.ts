@@ -17,10 +17,9 @@ export const useGetProjects = () => {
   });
 };
 
-export const useGetProjectDetails = (id: number) => {
-  return useQuery("project-fund", () => fetchProjectDetails(id), {
+export const useGetProjectDetails = (id: number, votingMode?: boolean) => {
+  return useQuery("project-fund", () => fetchProjectDetails(id, votingMode), {
     refetchOnWindowFocus: false,
-    enabled: false, // disable this query from automatically running
     onError: (err) => {
       console.error(err);
     },
