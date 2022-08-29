@@ -92,7 +92,7 @@ const Header: React.FC<ButtonProps> = (props) => {
   }, [selector]);
 
   return (
-    <Box as="section" pb={{ base: "12", md: "24" }}>
+    <Box as="section" position={'relative'} zIndex={99}>
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <HStack justify="space-between">

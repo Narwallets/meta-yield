@@ -26,6 +26,11 @@ const Hero = () => {
       borderRadius={16}
       as="section"
       bg="#F5F5FF"
+      position={'relative'}
+      top={'-100px'}
+      paddingTop={{ base: "102px", md: "204px" }}
+      paddingBottom={{ base: "32px", md: "50px" }}
+      px={{ base: "102px", md: "204px" }}
     >
       <Container >
         <Stack spacing={{ base: "8", md: "10" }}>

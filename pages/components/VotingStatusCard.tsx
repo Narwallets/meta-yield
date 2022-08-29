@@ -87,7 +87,7 @@ const VotingStatusCard = (props: { project: any }) => {
         <Stack spacing={4}>
           <Stack justify={'space-between'} direction="row">
             <Box>
-              <Text fontSize={{ base: "xs", md: "md" }} mb={4} color="gray.400" fontWeight="700">
+              <Text fontSize={{ base: "xs", md: "xs" }} mb={4} color="gray.400" fontWeight="700">
                 PROJECT VOTES
               </Text>
               <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" lineHeight="8">
@@ -95,7 +95,7 @@ const VotingStatusCard = (props: { project: any }) => {
               </Text>
             </Box>
             { selector?.isSignedIn() && (<Box>
-              <Text fontSize={{ base: "xs", md: "md" }} mb={4} color="gray.400" fontWeight="700">
+              <Text fontSize={{ base: "xs", md: "xs" }} mb={4} color="gray.400" fontWeight="700">
                 YOUR VOTE
               </Text>
               <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" lineHeight="8">
@@ -103,7 +103,7 @@ const VotingStatusCard = (props: { project: any }) => {
               </Text>
             </Box>)}
             <Box>
-              <Text fontSize={{ base: "xs", md: "md" }} mb={4} color="gray.400" fontWeight="700">
+              <Text fontSize={{ base: "xs", md: "xs" }} mb={4} color="gray.400" fontWeight="700">
                 ENDS IN
               </Text>
               <Text
@@ -185,7 +185,7 @@ const VotingStatusCard = (props: { project: any }) => {
       </Card>
       <Card>
         <VStack hidden={!selector?.isSignedIn()} spacing={8} align={'flex-start'}>
-            <Text fontSize={'md'} color="gray.400" fontWeight="700">
+            <Text fontSize={'xs'} color="gray.400" fontWeight="700">
                 YOUR VOTING POWER
             </Text>
             <HStack align={'center'}  w={'100%'} justifyContent={'space-between'} >

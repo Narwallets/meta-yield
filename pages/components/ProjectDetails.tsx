@@ -215,6 +215,11 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   const getWithdrawAmmount = async (id: number, price: string) =>
     getSupporterEstimatedStNear(id, price);
 
+  const evaluateShowAproveButton = async () => {
+    const isApproved = await isReadyForClaimPToken();
+    setShowApprove(isApproved === null);
+  }
+
   const calculateAmmountToWithdraw = async () => {
     if (
       project.kickstarter.successful &&
@@ -294,6 +299,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
         calculateAmmountToWithdraw();
         setShowFund(true);
         setShowRewardsEstimated(true);
+        evaluateShowAproveButton();
         break;
 
       case ProjectStatus.SUCCESS:
@@ -326,8 +332,6 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
         );
         setMyProjectFounded(thisProjectFounded);
         refreshStatus(project, thisProjectFounded);
-        const isApproved = await isReadyForClaimPToken();
-        setShowApprove(isApproved === null);
       }
     })();
   }, [props, project, selector]);
@@ -722,12 +726,12 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                 minW={{ base: "0", lg: "0" }}
                 maxW={{ base: "none", lg: "none" }}
               >
-                <Tab>Campaign</Tab>
-                <Tab>Team</Tab>
-                <Tab>FAQ</Tab>
-                <Tab>Roadmap</Tab>
-                <Tab>Documents</Tab>
-                <Tab>About</Tab>
+                { project?.campaignHtml  && (<Tab>Campaign</Tab> )}
+                { project?.team  && (<Tab>Team</Tab> )}
+                { project?.faq  && (<Tab>FAQ</Tab> )}
+                { project?.roadmap  && (<Tab>Roadmap</Tab> )}
+                { project?.documents  && (<Tab>Documents</Tab> )}
+                { project?.about  && (<Tab>About</Tab> )}
               </TabList>
 
               <TabPanels minHeight="580px">
