@@ -1,6 +1,5 @@
 import Hero from "./components/Hero";
 import ActiveProject from "./components/ActiveProject";
-import Projects from "./components/Projects";
 import HowItWorks from "./components/HowItWorks";
 import { AlertDialogOverlay, Box, Container, Divider, Flex, HStack, Spacer, Stack, StackDivider, Text, useBreakpointValue, VStack } from "@chakra-ui/react";
 import * as React from "react";
@@ -13,6 +12,7 @@ import { useStoreProjects } from "../stores/projects";
 import { useEffect, useState } from "react";
 import { getVotes } from "../lib/near";
 import { getEndVotingPeriod } from "../lib/util";
+import Marquee from "react-fast-marquee";
 
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
@@ -86,17 +86,22 @@ const Home = () => {
               w={'100%'}
               spacing={{base: 5, md: 30}}
               as="section">
-              <HStack justify={{base:'center', md: 'space-between'}}>
-                <Text  w={'50%'}  textAlign={{base:'center', md: 'start'}}  fontSize={{base:'2xl', md:"4xl"}} lineHeight="10" fontWeight="bold">
-                    You Next Favorite Project to Launch a Fundraising Campaign
+              <VStack align={'flex-start'}>
+                <Text fontSize={'16px'} color={'#120E28'}>METAVOTE</Text>
+                <Text  w={{base: '100%', md: '50%'}}  textAlign={{base:'center', md: 'start'}}  fontSize={{base:'2xl', md:"4xl"}} lineHeight="10" fontWeight="bold">
+                    Vote for your Favorite Project to Launch a Fundraising Campaign
                 </Text>
-                <Box  w={'389px'}  p={'35px'} bg={'#2B2B2B'}>
-                  <Text fontSize={'24px'} fontWeight={500} color={'white'}>Fundraising Campaign Kick Start of 20,000 stNEAR</Text>
-                </Box>
-              </HStack>
+
+              </VStack>
+              <Box bg={'#FEE75C'} py={'10px'} w={'100%'}>
+                <Marquee gradient={false}>
+                <Text fontWeight={500}>💰 Winner starts with 20,000 stNEAR  📣 - 💰 Winner starts with 20,000 stNEAR 📣 - 💰 Winner starts with 20,000 stNEAR 📣 - 💰 Winner starts with 20,000 stNEAR 📣 - 💰 Winner starts with 20,000 stNEAR 📣</Text>
+                </Marquee>
+              </Box>
+              
               <HStack justify={{base:'center', md: 'space-between'}}>
                 <Text w={'439px'} fontSize={'16px'}>
-                  Every week, the Project of the Leaderboard with the most votes will become an active Fundraising Campaign with an initial 20,000 stNEAR in financial support.
+                The Project in the Leaderboard with the most votes will become an active Fundraising Campaign with an initial 20,000 stNEAR in financial support.
                 </Text>
                 <VStack >
                   <Text hidden={isMobile} textAlign={{base:'center', md: 'start'}} opacity={0.5} fontSize={"lg"} lineHeight="10" fontWeight="bold">Voting ends in</Text>

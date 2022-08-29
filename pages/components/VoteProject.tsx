@@ -36,7 +36,7 @@ const VoteProject = (props: { data: any }) => {
 
   return (
     <Stack
-      direction={{ base: "row", lg: "row" }}
+      direction={{ base: "column", lg: "row" }}
       key={projectData.slug}
       minW= {{base: '100%' ,md:'100%'}}
       maxW= {{base: '100%' ,md:'100%'}}
@@ -83,12 +83,12 @@ const VoteProject = (props: { data: any }) => {
       <Button
           px={'40px'}
           py={'10px'}
-
+          w={{base: '100%', md: 'inherit'}}
           colorScheme={"indigo"}
           onClick={() => router.push(`/vote/${projectData.id}`)}
         >
           Vote now
-        </Button>
+      </Button>
     </Stack>
   );
 };
