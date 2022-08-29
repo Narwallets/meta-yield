@@ -735,6 +735,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
               </TabList>
 
               <TabPanels minHeight="580px">
+              { project?.campaignHtml  && (
                 <TabPanel>
                   <Text fontSize="sm" fontWeight="subtle">
                     CAMPAIGN
@@ -747,12 +748,18 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                     ></div>
                   </Stack>
                 </TabPanel>
+                )}
+                { project?.team  && (
                 <TabPanel>
                   <Team team={project?.team} />
                 </TabPanel>
+                )}
+                { project?.faq  && (
                 <TabPanel>
                   <FAQ data={project?.faq} />
                 </TabPanel>
+                )}
+                { project?.roadmap  && (
                 <TabPanel>
                   <Box>
                     <Text fontSize="sm" fontWeight="subtle">
@@ -771,9 +778,13 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                     </Stack>
                   </Box>
                 </TabPanel>
+                )}
+                { project?.documents  && (
                 <TabPanel>
                   <Documents data={project?.documents} />
                 </TabPanel>
+                )}
+                { project?.about  && (
                 <TabPanel>
                   <Text fontSize="sm" fontWeight="subtle">
                     ABOUT
@@ -784,6 +795,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                     ></div>
                   </Stack>
                 </TabPanel>
+                )}
               </TabPanels>
             </Tabs>
           </GridItem>
