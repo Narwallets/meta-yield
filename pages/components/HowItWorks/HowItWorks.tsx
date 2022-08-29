@@ -17,6 +17,7 @@ const HowItWorks = () => (
     maxWidth="1xl"
     mx="auto"
     mb={20}
+    px={30}
     py={{ base: "12", md: "24" }}
   >
     <>
