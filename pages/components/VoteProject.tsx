@@ -15,12 +15,11 @@ import {
 import { useRouter } from "next/router";
 import { yton } from "../../lib/util";
 
-const VoteProject = (props: { data: any }) => {
+const VoteProject = (props: { data: any, position: number }) => {
   const projectData = props.data;
   const tagColor = useColorModeValue("gray.600", "gray.300");
   const router = useRouter();
   const isMobile = useBreakpointValue({ base: true, md: false });
-
   if (!projectData)
     return (
       <Box
@@ -36,11 +35,13 @@ const VoteProject = (props: { data: any }) => {
 
   return (
     <Stack
+      position={'relative'}
       direction={{ base: "column", lg: "row" }}
       key={projectData.slug}
-      minW= {{base: '100%' ,md:'100%'}}
-      maxW= {{base: '100%' ,md:'100%'}}
+      minW= {{base: '100%' ,md: '100%'}}
+      maxW= {{base: '100%' ,md: '100%'}}
       p={5}
+      transform={props.position === 0 ? 'scale(1.03)' : ''}
       boxShadow="sm"
       border={'1px'}
       borderColor={'lightgray'}
@@ -49,6 +50,7 @@ const VoteProject = (props: { data: any }) => {
       align={'center'}>
 
       <HStack spacing={10}>
+        <Text bg={'#F0F0F0'} fontWeight={600} fontSize={'24px'} borderRadius={100} px={'16px'} py={'8px'}>{props.position +1 }</Text>
         <Circle boxShadow="xl" >
           <Circle  >
             {projectData.avatarUrl && (

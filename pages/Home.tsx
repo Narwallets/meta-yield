@@ -115,10 +115,12 @@ const Home = () => {
               </VStack>
               <Stack spacing={1} flexWrap={'wrap'} direction={{base: 'column', md: 'column'}}>
               {
-                projectsToVote.map((p: any) => {
+                projectsToVote.map((p: any, index: number) => {
                   const myVotes =  getVotes(p.id + '|' +p.slug);
                   return (
-                      <VoteProject key={p.id} data={p}/>
+                    <Box key={p.id} scale={index === 0 ? 1.1 : 1}>
+                      <VoteProject   position={index} data={p}/>
+                    </Box>
                   )
                 })
               }
