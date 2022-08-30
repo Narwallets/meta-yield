@@ -47,23 +47,39 @@ const VoteProject = (props: { data: any, position: number }) => {
       border={'1px'}
       borderColor={'lightgray'}
       rounded="lg"
-      justify={'space-between'}
+      alignItems={{base: 'flex-start', md: 'center'}}
+      justify={{base: 'flex-start', md: 'space-between'}}
       align={'center'}>
 
-      <HStack spacing={10}>
-        <Text bg={'#F0F0F0'} fontWeight={600} fontSize={'24px'} borderRadius={100} px={'16px'} py={'8px'}>{props.position +1 }</Text>
-        <Circle boxShadow="xl" >
-          <Circle  >
-            {projectData.avatarUrl && (
-              <Avatar src={projectData.avatarUrl} boxSize="10" />
-            )}
+      <HStack justify={{base: 'flex-start', md: 'inherit'}} spacing={{base: 0 , md:10}}>
+        <Stack  hidden={isMobile}   direction={{ base: "column", lg: "row" }}>
+          <Text order={{base: 3 , md: 0}} bg={'#F0F0F0'} fontWeight={600} fontSize={{base:'16px',md:"24px"} }borderRadius={100} px={'16px'} py={'8px'}>{props.position +1 }</Text>
+          <Spacer />
+
+          <Circle order={{base: 0 , md: 3}} boxShadow="xl" >
+            <Circle  >
+              {projectData.avatarUrl && (
+                <Avatar src={projectData.avatarUrl} boxSize="10" />
+              )}
+            </Circle>
           </Circle>
-        </Circle>
+        </Stack>
         <VStack align={'flex-start'}>
-          <Text as="h2" mr={"10px"} fontWeight="bold" fontSize="24px">
-            {projectData.name}
-          </Text>
-          <Text as="h2" mr={"10px"} fontWeight={500} color={'#26274E'} fontSize="16px">
+          <HStack>
+            <Text hidden={!isMobile} bg={'#F0F0F0'} fontWeight={600} fontSize={{base:'16px',md:"24px"} }borderRadius={100} px={'16px'} py={'8px'}>{props.position +1 }</Text>
+
+            <Circle hidden={!isMobile}   boxShadow="xl" >
+              <Circle  >
+                {projectData.avatarUrl && (
+                  <Avatar src={projectData.avatarUrl} boxSize="10" />
+                )}
+              </Circle>
+            </Circle>            
+            <Text as="h2" mr={"10px"} fontWeight="bold" fontSize={{base:'16px',md:"24px"}}>
+              {projectData.name}
+            </Text>
+          </HStack>
+          <Text as="h2" mr={"10px"} fontWeight={500} color={'#26274E'} fontSize={{base:'12px',md:"16px"}}>
             {projectData.motto}
           </Text>
         </VStack>

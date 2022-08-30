@@ -61,7 +61,7 @@ const Home = () => {
             <VStack spacing={100}>
               {data && data.length > 0 && (
                 <Stack
-                  p={30}
+                  p={{base: 5, md: 30}}
                   id="fund"
                   w={'100%'}
                   spacing={{base: 5, md: 30}}
@@ -82,7 +82,7 @@ const Home = () => {
               
               { projectsToVote && projectsToVote.length > 0 && (
                 <Stack id="vote"    
-                  p={30}           
+                  p={{base: 5, md: 30}}           
                   w={'100%'}
                   spacing={{base: 5, md: 50}}
                   bg={'#F9FAFB'}
@@ -100,8 +100,8 @@ const Home = () => {
                     </Marquee>
                   </Box>
                   
-                  <Flex  align={'center'} justify={{base:'center', md: 'space-between'}}>
-                    <Text w={'439px'} fontSize={'16px'}>
+                  <Flex  align={'center'} direction={{base:'column', md: 'row'}} justify={{base:'center', md: 'space-between'}}>
+                    <Text w={{base: '100%', md: '439px'}} fontSize={'16px'}>
                     The Project in the Leaderboard with the most votes will become an active Fundraising Campaign with an initial 20,000 stNEAR in financial support.
                     </Text>
                     <VStack mr={200}>
@@ -114,7 +114,7 @@ const Home = () => {
                     <Text textAlign={{base:'center', md: 'start'}} opacity={0.5} fontSize={{base:'xl', md:"2xl"}}  fontWeight="bold">ENDS IN </Text>
                     <Text  textAlign={{base:'center', md: 'start'}} fontSize={{base:'4xl', md:"40px"}}  fontWeight="bold">{getEndVotingPeriod()}</Text>
                   </VStack>
-                  <Stack px={'80px'} spacing={1} flexWrap={'wrap'} direction={{base: 'column', md: 'column'}}>
+                  <Stack px={{base: 5, md: '80px'}} spacing={1} flexWrap={'wrap'} direction={{base: 'column', md: 'column'}}>
                   {
                     projectsToVote.map((p: any, index: number) => {
                       const myVotes =  getVotes(p.id + '|' +p.slug);
@@ -130,7 +130,7 @@ const Home = () => {
               )}
               { comingSoon && comingSoon.length > 0 && (
                 <Box
-                  p={30}
+                  p={{base: 5, md: 30}}
                   id="projects"
                   as="section"
                   pb={{ base: "12", md: "24" }}
@@ -147,7 +147,7 @@ const Home = () => {
               )}  
               { dataFinished && dataFinished.length > 0 && (
                 <Box id="completed"
-                  p={30}
+                  p={{base: 5, md: 30}}
                   as="section">
                   <Text textAlign={{base:'center', md: 'start'}} fontSize={{base:'2xl', md:"4xl"}} lineHeight="10" fontWeight="bold">
                     Funding Completed 
