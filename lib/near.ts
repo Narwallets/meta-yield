@@ -40,7 +40,7 @@ import { AccountView } from "near-api-js/lib/providers/provider";
 export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID =
   process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
-export const NETWORK_ID = process.env.NEXT_PUBLIC_NETWORK_ID || "testnet";
+export const NETWORK_ID = process.env.NEXT_PUBLIC_VERCEL_ENV == 'production' ? 'mainnet' : 'testnet';
 export const CONTRACT_ADDRESS_METAVOTE =
   process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_METAVOTE;
 export const METAVOTE_CONTRACT_ID =
