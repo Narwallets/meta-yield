@@ -1,4 +1,4 @@
-export const getConfig = (env: string)  => {
+export const getConfig = (env: string) => {
   const CONTRACT_NAME =
     process.env.CONTRACT_NAME || "v01.katherine_fundraising.testnet";
   switch (env) {
@@ -12,10 +12,11 @@ export const getConfig = (env: string)  => {
         helperUrl: "https://helper.mainnet.near.org",
         explorerUrl: "https://explorer.mainnet.near.org",
         metapoolUrl: "https://metapool.app/dapp/mainnet/meta",
-        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/"
+        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/",
       };
     case "development":
     case "testnet":
+    case "preview":
       return {
         networkId: "testnet",
         nodeUrl: "https://rpc.testnet.near.org",
@@ -24,7 +25,7 @@ export const getConfig = (env: string)  => {
         helperUrl: "https://helper.testnet.near.org",
         explorerUrl: "https://explorer.testnet.near.org",
         metapoolUrl: "https://metapool.app/dapp/testnet/meta",
-        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/"
+        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/",
       };
     case "betanet":
       return {
@@ -35,7 +36,7 @@ export const getConfig = (env: string)  => {
         helperUrl: "https://helper.betanet.near.org",
         explorerUrl: "https://explorer.betanet.near.org",
         metapoolUrl: "https://metapool.app/dapp/testnet/meta",
-        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/"
+        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/",
       };
     case "local":
       return {
@@ -67,4 +68,4 @@ export const getConfig = (env: string)  => {
         `Unconfigured environment '${env}'. Can be configured in src/config.js.`
       );
   }
-}
+};
