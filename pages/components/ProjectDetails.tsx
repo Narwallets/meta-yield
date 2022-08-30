@@ -766,15 +766,17 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                       ROADMAP
                     </Text>
                     <Stack mt={5}>
+                    { project?.roadmap.imageUrl  && (
                       <Image
                         src={project?.roadmap?.imageUrl}
                         alt="project"
                         width="400"
                         objectFit="cover"
-                      />
+                      />)}
+                      { project?.roadmap.linkUrl  && (
                       <Link href={project?.roadmap?.linkUrl} isExternal>
                         Full Roadmap <ExternalLinkIcon mx="2px" />
-                      </Link>
+                      </Link>)}
                     </Stack>
                   </Box>
                 </TabPanel>

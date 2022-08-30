@@ -47,7 +47,8 @@ export const METAVOTE_CONTRACT_ID =
   process.env.NEXT_PUBLIC_METAVOTE_CONTRACT_ID;
 export const GAS = "200000000000000";
 export const DEPOSIT = "1";
-const env = process.env.NODE_ENV;
+// const env = process.env.NODE_ENV;
+const env = 'development';
 console.log("@env", env);
 const nearConfig = getConfig(env);
 const provider = new providers.JsonRpcProvider({ url: nearConfig.nodeUrl });

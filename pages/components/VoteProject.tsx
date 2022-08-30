@@ -11,6 +11,7 @@ import {
   Avatar,
   Button,
   HStack,
+  Spacer,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { yton } from "../../lib/util";
@@ -67,6 +68,7 @@ const VoteProject = (props: { data: any, position: number }) => {
           </Text>
         </VStack>
       </HStack>
+      <Spacer />
       <HStack
         align={{ base: "center", lg: "center" }}
         px={'15px'}
