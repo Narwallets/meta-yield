@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  Stack, Text, Spacer, Box, VStack, Button, InputGroup, Input, InputLeftAddon, HStack, Square, Avatar, InputRightElement, useToast, useBreakpointValue, Circle, Link, LinkOverlay } from "@chakra-ui/react";
+import {  Stack, Text, Spacer, Box, VStack, Button, InputGroup, Input, InputLeftAddon, HStack, Square, Avatar, InputRightElement, useToast, useBreakpointValue, Circle, Link, LinkOverlay, Center } from "@chakra-ui/react";
 import Card from "./Card";
 import { CaretRight } from "phosphor-react";
 import {
@@ -174,7 +174,9 @@ const VotingStatusCard = (props: { project: any }) => {
           </>
               ) :
               (
-                <ConnectButton text="Connect Wallet to Vote"/>
+                <Center w={'100%'}>
+                  <ConnectButton text="Connect Wallet to Vote"/>
+                </Center>
                 )
             }
           { formikVote.dirty && (
@@ -183,7 +185,9 @@ const VotingStatusCard = (props: { project: any }) => {
           </Stack>)}
         </VStack>
       </Card>
-      <Card>
+      {
+        selector?.isSignedIn() && (
+<Card>
         <VStack hidden={!selector?.isSignedIn()} spacing={8} align={'flex-start'}>
             <Text fontSize={'xs'} color="gray.400" fontWeight="700">
                 YOUR VOTING POWER
@@ -239,6 +243,9 @@ const VotingStatusCard = (props: { project: any }) => {
 
           </VStack>
       </Card>
+        )
+      }
+      
     </>
   );
 };
