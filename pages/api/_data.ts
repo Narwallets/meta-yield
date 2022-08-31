@@ -970,7 +970,7 @@ documents:[
   name: "World of the Abyss",
   motto: "A true hardcore mobile MMORPG with a focus on real-time player interaction.",
   projectUrl: "https://www.worldoftheabyss.com/",
-  twitter: "https://www.worldoftheabyss.com/",
+  twitter: "https://twitter.com/wotaverse",
   imageUrl:"/projects/wota/cover.jpeg",
   avatarUrl:
     "/projects/wota/icon.jpeg",
