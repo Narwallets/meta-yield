@@ -6,7 +6,7 @@ import {
   utils,
   Contract,
   providers,
-  ConnectConfig
+  ConnectConfig,
 } from "near-api-js";
 import { parseRpcError } from "near-api-js/lib/utils/rpc_errors";
 import {
@@ -23,6 +23,8 @@ import {
   metaPoolMethods,
   projectTokenViewMethods,
   projectTokenChangeMethods,
+  metavoteViewMethods,
+  metavoteChangeMethods,
 } from "./methods";
 import {
   decodeJsonRpcData,
@@ -38,10 +40,14 @@ import { AccountView } from "near-api-js/lib/providers/provider";
 export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID =
   process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
-export const NETWORK_ID = process.env.NEXT_PUBLIC_NETWORK_ID || "testnet";
+export const NETWORK_ID = process.env.NEXT_PUBLIC_VERCEL_ENV == 'production' ? 'mainnet' : 'testnet';
+export const CONTRACT_ADDRESS_METAVOTE =
+  process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_METAVOTE;
+export const METAVOTE_CONTRACT_ID =
+  process.env.NEXT_PUBLIC_METAVOTE_CONTRACT_ID;
 export const GAS = "200000000000000";
 export const DEPOSIT = "1";
-const env = process.env.NODE_ENV;
+const env = process.env.NEXT_PUBLIC_VERCEL_ENV || 'production';
 console.log("@env", env);
 const nearConfig = getConfig(env);
 const provider = new providers.JsonRpcProvider({ url: nearConfig.nodeUrl });
@@ -101,10 +107,7 @@ export const signOutWallet = async () => {
 };
 
 export const getTotalKickstarters = async () => {
-  return callViewKatherineMethod(
-    katherineViewMethods.getTotalKickstarters,
-    {}
-  );
+  return callViewKatherineMethod(katherineViewMethods.getTotalKickstarters, {});
 };
 
 export const getSupportedKickstarters = async (supporter_id: any) => {
@@ -247,7 +250,6 @@ export const fundToKickstarter = async (
   return result;
 };
 
-
 export const getTxStatus = async (
   txHash: string,
   account_id: string
@@ -380,18 +382,19 @@ const callChangeKatherineMethod = async (method: string, args: any) => {
             methodName: method,
             args: args,
             gas: GAS,
-            deposit: '',
+            deposit: "",
           },
         },
       ],
     })
     .catch((err) => {
-      console.log(`Failed to call katherine contract -- method: ${method} - error message: ${err.message}`);
+      console.log(
+        `Failed to call katherine contract -- method: ${method} - error message: ${err.message}`
+      );
       throw getPanicErrorFromText(err.message);
     });
   if (result instanceof Object) {
     return result;
-
   }
   return null;
 };
@@ -418,4 +421,101 @@ const callViewMetapoolMethod = async (method: string, args: any) => {
   });
 
   return decodeJsonRpcData(response.result);
+};
+
+/******************** METAVOTE CONTRACT CALLS **********************************/
+
+const callViewMetavoteMethod = async (method: string, args: any) => {
+  const response: any = await provider.query({
+    request_type: "call_function",
+    finality: "optimistic",
+    account_id: METAVOTE_CONTRACT_ID,
+    method_name: method,
+    args_base64: encodeJsonRpcData(args),
+  });
+
+  return decodeJsonRpcData(response.result);
+};
+
+const callChangeMetavoteMethod = async (
+  method: string,
+  args: any,
+  deposit?: string
+) => {
+  const wallet = window.wallet;
+  const account_id = window.account_id;
+  const result = await wallet!
+    .signAndSendTransaction({
+      signerId: account_id!,
+      receiverId: METAVOTE_CONTRACT_ID,
+      actions: [
+        {
+          type: "FunctionCall",
+          params: {
+            methodName: method,
+            args: args,
+            gas: GAS,
+            deposit: deposit ? deposit : "",
+          },
+        },
+      ],
+    })
+    .catch((err) => {
+      console.log(
+        `Failed to call meta vote contract -- method: ${method} - error message: ${err.message}`
+      );
+      throw getPanicErrorFromText(err.message);
+    });
+  if (result instanceof Object) {
+    return result;
+  }
+  return null;
+};
+
+/*********** METAVOTE VIEW METHODS *************/
+
+export const getVotes = async (id: string) => {
+  return callViewMetavoteMethod(metavoteViewMethods.getTotalVotes, {
+    contract_address: CONTRACT_ADDRESS_METAVOTE,
+    votable_object_id: id,
+  });
+};
+
+export const getMyVotesByProject = async (id: string) => {
+  return callViewMetavoteMethod(metavoteViewMethods.getVotesForObject, {
+    contract_address: CONTRACT_ADDRESS_METAVOTE,
+    votable_object_id: id,
+    voter_id: window.account_id,
+  });
+};
+
+export const getAvailableVotingPower = async () => {
+  return callViewMetavoteMethod(metavoteViewMethods.getAvailableVotingPower, {
+    voter_id: window.account_id,
+  });
+};
+
+export const getInUseVotingPower = async () => {
+  return callViewMetavoteMethod(metavoteViewMethods.getUsedVotingPower, {
+    voter_id: window.account_id,
+  });
+};
+
+/*********** METAVOTE CHANGE METHODS *************/
+
+export const voteProject = async (id: string, votingPower: string) => {
+  const args = {
+    voting_power: votingPower,
+    contract_address: CONTRACT_ADDRESS_METAVOTE,
+    votable_object_id: id
+  };
+  return callChangeMetavoteMethod(metavoteChangeMethods.vote, args);
+};
+
+export const unvoteProject = async (id: string, contractNameId: string) => {
+  const args = {
+    contract_address: contractNameId,
+    votable_object_id: id,
+  };
+  return callChangeMetavoteMethod(metavoteChangeMethods.unvote, args);
 };

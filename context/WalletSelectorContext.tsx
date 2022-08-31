@@ -45,7 +45,7 @@ const WalletSelectorContext =
   React.createContext<WalletSelectorContextValue | null>(null);
 
 export const WalletSelectorContextProvider: React.FC = ({ children }) => {
-  const env = process.env.NODE_ENV;
+  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || 'production';
   const nearConfig = getConfig(env);
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
@@ -60,14 +60,15 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         case Wallets.Near: {
           modules.push(
             setupNearWallet({
-              walletUrl: nearConfig.walletUrl,
-              iconUrl: "./assets/near-wallet-icon.png",
+              walletUrl: nearConfig.walletUrl, 
+              iconUrl: "/assets/near-wallet-icon.png",
+             
             })
           );
           break;
         }
         case Wallets.Math: {
-          modules.push(setupMathWallet());
+          modules.push(setupMathWallet({iconUrl: "/assets/math-wallet-icon.png"}));
           break;
         }
       }

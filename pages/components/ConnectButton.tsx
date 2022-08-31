@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useWalletSelector } from "../../context/WalletSelectorContext";
 
 interface Props {
-  text: string;
+  text?: string;
 }
 
 const ConnectButton = (props: Props) => {

@@ -224,6 +224,7 @@ const Funding = (props: {
                   id="amount_deposit"
                   name="amount_deposit"
                   placeholder="0"
+                  min="0"
                   value={formikDeposit.values.amount_deposit}
                   onPaste={formikDeposit.handleChange}
                   onBlur={formikDeposit.handleBlur}
@@ -241,7 +242,7 @@ const Funding = (props: {
               <Button
                 colorScheme="indigo"
                 size="lg"
-                // disabled={!formikDeposit.isValid}
+                disabled={!formikDeposit.isValid}
                 onClick={(e: any) => formikDeposit.handleSubmit(e)}
               >
                 Deposit
@@ -255,6 +256,62 @@ const Funding = (props: {
                 ></Text>
               </HStack>
             )}
+
+            <Stack mt={4}>
+              <HStack>
+                <InputGroup>
+                  <InputLeftAddon>
+                    <Square minW="30px">
+                      <Avatar
+                        size={"xs"}
+                        src="/stNEAR_token-white_dark_purple-circle.svg"
+                      />
+                      <Text
+                        fontSize={"xs"}
+                        fontWeight={600}
+                        color="gray.400"
+                        ml={2}
+                      >
+                        stNEAR
+                      </Text>
+                    </Square>
+                  </InputLeftAddon>
+                  <Input
+                    id="amount_deposit"
+                    name="amount_deposit"
+                    placeholder="0"
+                    value={formikDeposit.values.amount_deposit}
+                    onPaste={formikDeposit.handleChange}
+                    onBlur={formikDeposit.handleBlur}
+                    onChange={(e) => {
+                      handleChangeDeposit(e);
+                      formikDeposit.handleChange(e);
+                    }}
+                  />
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.75rem" size="sm" onClick={onMaxClickDeposit}>
+                      Max
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+                <Button
+                  colorScheme="indigo"
+                  size="lg"
+                  // disabled={!formikDeposit.isValid}
+                  onClick={(e: any) => formikDeposit.handleSubmit(e)}
+                >
+                  Deposit
+                </Button>
+              </HStack>
+              {!formikDeposit.isValid && (
+                <HStack mt={5}>
+                  <Text
+                    dangerouslySetInnerHTML={getFormikError()}
+                    color={"red"}
+                  ></Text>
+                </HStack>
+              )}
+            </Stack>
 
             <Stack mt={4}>
               <HStack>

@@ -73,6 +73,7 @@ import PageLoading from "./PageLoading";
 import { colors } from "../../constants/colors";
 import { ArrowSquareOut, Link as LinkI, TwitterLogo } from "phosphor-react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import VotingStatusCard from "./VotingStatusCard";
 import { useRouter } from "next/router";
 import { useWalletSelector } from "../../context/WalletSelectorContext";
 import { FinalExecutionOutcome } from "@near-wallet-selector/core";
@@ -89,13 +90,13 @@ export enum ProjectStatus {
   UNSUCCESS,
 }
 
-const ProjectDetails = (props: { id: any }) => {
+const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   const {
     isLoading,
     data: project,
     isRefetching,
     refetch,
-  } = useGetProjectDetails(parseInt(props.id));
+  } = useGetProjectDetails(parseInt(props.id), props.votingMode);
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const isMobile = useBreakpointValue({ base: true, md: false });
   const router = useRouter();
@@ -109,6 +110,7 @@ const ProjectDetails = (props: { id: any }) => {
     useState<boolean>(false);
 
   const [status, setStatus] = useState<ProjectStatus>(ProjectStatus.NOT_LOGGIN);
+
   const [ammountClaim, setRewards] = useState<any>(0);
   const [lockupDate, setLockupDate] = useState<any>();
   const [endDate, setEndDate] = useState<any>();
@@ -213,6 +215,11 @@ const ProjectDetails = (props: { id: any }) => {
   const getWithdrawAmmount = async (id: number, price: string) =>
     getSupporterEstimatedStNear(id, price);
 
+  const evaluateShowAproveButton = async () => {
+    const isApproved = await isReadyForClaimPToken();
+    setShowApprove(isApproved === null);
+  }
+
   const calculateAmmountToWithdraw = async () => {
     if (
       project.kickstarter.successful &&
@@ -292,6 +299,7 @@ const ProjectDetails = (props: { id: any }) => {
         calculateAmmountToWithdraw();
         setShowFund(true);
         setShowRewardsEstimated(true);
+        evaluateShowAproveButton();
         break;
 
       case ProjectStatus.SUCCESS:
@@ -324,8 +332,6 @@ const ProjectDetails = (props: { id: any }) => {
         );
         setMyProjectFounded(thisProjectFounded);
         refreshStatus(project, thisProjectFounded);
-        const isApproved = await isReadyForClaimPToken();
-        setShowApprove(isApproved === null);
       }
     })();
   }, [props, project, selector]);
@@ -461,6 +467,8 @@ const ProjectDetails = (props: { id: any }) => {
             />
           </GridItem>
           <GridItem rowSpan={{ base: 0, lg: 2 }}>
+            { /* **********FUNDING SIDEBAR ***************/}
+          { !props.votingMode && (
             <Box
               px={{ base: "0", md: "6" }}
               py={{ base: "0", md: "6" }}
@@ -691,14 +699,22 @@ const ProjectDetails = (props: { id: any }) => {
                           )
                         }
                       </Stack>
-                    </>
+                      </>
+                    )}
+                  </Stack>
+                  {showRewardsCalculator && (
+                    <RewardsCalculator kickstarter={project?.kickstarter} />
                   )}
                 </Stack>
-                {showRewardsCalculator && (
-                  <RewardsCalculator kickstarter={project?.kickstarter} />
-                )}
-              </Stack>
-            </Box>
+              </Box>
+            )
+          }
+          { props.votingMode && ( 
+            <VotingStatusCard project={project}></VotingStatusCard>
+            )
+          }
+          
+
           </GridItem>
           <GridItem>
             <Tabs>
@@ -710,15 +726,16 @@ const ProjectDetails = (props: { id: any }) => {
                 minW={{ base: "0", lg: "0" }}
                 maxW={{ base: "none", lg: "none" }}
               >
-                <Tab>Campaign</Tab>
-                <Tab>Team</Tab>
-                <Tab>FAQ</Tab>
-                <Tab>Roadmap</Tab>
-                <Tab>Documents</Tab>
-                <Tab>About</Tab>
+                { project?.campaignHtml  && (<Tab>Campaign</Tab> )}
+                { project?.team  && (<Tab>Team</Tab> )}
+                { project?.faq  && (<Tab>FAQ</Tab> )}
+                { project?.roadmap  && (<Tab>Roadmap</Tab> )}
+                { project?.documents  && (<Tab>Documents</Tab> )}
+                { project?.about  && (<Tab>About</Tab> )}
               </TabList>
 
               <TabPanels minHeight="580px">
+              { project?.campaignHtml  && (
                 <TabPanel>
                   <Text fontSize="sm" fontWeight="subtle">
                     CAMPAIGN
@@ -731,33 +748,45 @@ const ProjectDetails = (props: { id: any }) => {
                     ></div>
                   </Stack>
                 </TabPanel>
+                )}
+                { project?.team  && (
                 <TabPanel>
                   <Team team={project?.team} />
                 </TabPanel>
+                )}
+                { project?.faq  && (
                 <TabPanel>
                   <FAQ data={project?.faq} />
                 </TabPanel>
+                )}
+                { project?.roadmap  && (
                 <TabPanel>
                   <Box>
                     <Text fontSize="sm" fontWeight="subtle">
                       ROADMAP
                     </Text>
                     <Stack mt={5}>
+                    { project?.roadmap.imageUrl  && (
                       <Image
-                        src={project?.roadmap.imageUrl}
+                        src={project?.roadmap?.imageUrl}
                         alt="project"
                         width="400"
                         objectFit="cover"
-                      />
-                      <Link href={project?.roadmap.linkUrl} isExternal>
+                      />)}
+                      { project?.roadmap.linkUrl  && (
+                      <Link href={project?.roadmap?.linkUrl} isExternal>
                         Full Roadmap <ExternalLinkIcon mx="2px" />
-                      </Link>
+                      </Link>)}
                     </Stack>
                   </Box>
                 </TabPanel>
+                )}
+                { project?.documents  && (
                 <TabPanel>
                   <Documents data={project?.documents} />
                 </TabPanel>
+                )}
+                { project?.about  && (
                 <TabPanel>
                   <Text fontSize="sm" fontWeight="subtle">
                     ABOUT
@@ -768,6 +797,7 @@ const ProjectDetails = (props: { id: any }) => {
                     ></div>
                   </Stack>
                 </TabPanel>
+                )}
               </TabPanels>
             </Tabs>
           </GridItem>
@@ -785,7 +815,7 @@ const Team = (props: { team: TeamMemberProps[] }) => {
         TEAM
       </Text>
       <Stack divider={<StackDivider />} spacing="4" mt="5">
-        {team.map((member, index) => (
+        {team?.map((member, index) => (
           <Stack key={index} fontSize="sm" px="4" spacing="4">
             <Stack direction="row" justify="space-between" spacing="4">
               <HStack spacing="3">

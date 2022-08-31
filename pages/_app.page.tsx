@@ -16,7 +16,7 @@ import "@near-wallet-selector/modal-ui/styles.css";
 import "../styles/nprogress.css";
 import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
 
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
 function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
   const router = useRouter();
