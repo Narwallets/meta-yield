@@ -60,14 +60,15 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         case Wallets.Near: {
           modules.push(
             setupNearWallet({
-              walletUrl: nearConfig.walletUrl,
-              iconUrl: "./assets/near-wallet-icon.png",
+              walletUrl: nearConfig.walletUrl, 
+              iconUrl: "/assets/near-wallet-icon.png",
+             
             })
           );
           break;
         }
         case Wallets.Math: {
-          modules.push(setupMathWallet());
+          modules.push(setupMathWallet({iconUrl: "/assets/math-wallet-icon.png"}));
           break;
         }
       }
