@@ -602,13 +602,13 @@ export const dataToVote = [
     motto: "A Blockchain-Powered Platform for Virtual Worlds",
     projectUrl: "https://ambergame.top/",
     twitter: "https://twitter.com/AMBER_metaverse",
-    imageUrl:"projects/amber/cover.png",
+    imageUrl:"/projects/amber/cover.png",
     avatarUrl:
-      "/projects/demo1/demologo2.png",
+      "/projects/amber/icon.jpeg",
     description:
       "Web3 Game based on blockchain NEAR with various of battle modes and FREE 2 PLAY (PLAY 2 OWN) mechanics. Our main mission is mass adoption of web2 user to web3 in the form of an interactive multiplayer game. At the heart of the economic model is the OWNERSHIP OF DIGITAL ASSETS. These assets are gaming NFT. It allows users to get a virtual experience traveling through themed spaces playing games, using microservices, chasing communities, and visiting events",
     verified: true,
-    tags: ["Game", "NFT"],
+    tags: ["Gaming"],
     campaignHtml: `<h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:20pt;margin-bottom:0pt;padding:0pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
     <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
     <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">AMBER is a Web3 Game based on blockchain NEAR with various of battle modes and FREE 2 PLAY (PLAY 2 OWN) mechanics. Our main mission is mass adoption of web2 user to web3 in the form of an interactive multiplayer game. At the heart of the economic model is the OWNERSHIP OF DIGITAL ASSETS. These assets are gaming NFT. It allows users to get a virtual experience traveling through themed spaces playing games, using microservices, chasing communities, and visiting events.</span></p>
@@ -713,11 +713,11 @@ export const dataToVote = [
       projectUrl: "https://www.landtoempire.com/",
       twitter: "https://twitter.com/LandToEmpire",
       imageUrl:"/projects/landtoempire/cover.png",
-      avatarUrl:"/projects/demo1/demologo.png",
+      avatarUrl:"/projects/landtoempire/icon.jpeg",
       description:
         `It is a play-to-earn mobile strategy game on Near Protocol. In this game you are a landlord of your own land.`,
       verified: true,
-      tags: ["NFTs", "Games"],
+      tags: ["Gaming"],
       campaignHtml: `<h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:20pt;margin-bottom:0pt;padding:0pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
       <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">It is a play-to-earn mobile strategy game on Near Protocol. In this game you are a landlord of your own land.&nbsp;</span></p>
       <p><br></p>
@@ -772,12 +772,12 @@ export const dataToVote = [
     motto: "Battle-and-earn Royale",
     projectUrl: "https://www.metamon.gg/",
     twitter: "https://www.twitter.com/metamonapp",
-    imageUrl:"/projects/landtoempire/cover.png",
-    avatarUrl:"/projects/demo1/demologo.png",
+    imageUrl:"/projects/metamon/cover.png",
+    avatarUrl:"/projects/metamon/icon.jpeg",
     description:
       `Metamon is a world of Sci-Fi and Fantasy where you venture into the stars to discover exciting new worlds and majestic life-forms with immeasurable power.`,
     verified: true,
-    tags: ["NFTs", "Games"],
+    tags: ["Gaming"],
     campaignHtml: `<h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
     <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Metamon is a world of Sci-Fi and Fantasy where you venture into the stars to discover exciting new worlds and majestic life-forms with immeasurable power.&nbsp;</span></p>
     <p><br></p>
@@ -817,11 +817,11 @@ export const dataToVote = [
   projectUrl: "http://pokerspace.io/",
   twitter: "https://twitter.com/Poker__Space",
   imageUrl:"/projects/pokerspace/cover.png",
-  avatarUrl:"/projects/demo1/demologo.png",
+  avatarUrl:"/projects/pokerspace/icon.jpeg",
   description:
     ``,
   verified: true,
-  tags: ["NFTs", "Games"],
+  tags: ["Gaming"],
   campaignHtml: `<h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><a href="http://pokerspace.io/" style="text-decoration:none;"><span style="font-size:11pt;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space</span></a><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp;is a blockchain platform where anyone can play poker and, even more importantly, try themselves as the founder of a community: unite your friends and acquaintances around a common hobby, set new trends, and unlimited use of classic and caste games.</span></p>
   <p><br></p>
@@ -918,11 +918,11 @@ export const dataToVote = [
   twitter: "https://twitter.com/waka_cool_app",
   imageUrl:"/projects/waka/cover.png",
   avatarUrl:
-    "/projects/waka/logo.png",
+    "/projects/waka/icon.jpeg",
   description:
     "Waka is on the way to making socializing with new people more fun than ever before.",
   verified: true,
-  tags: ["NFT", "Games"],
+  tags: ["Gaming"],
   campaignHtml: `<h1>Project Description</h1>
   <p>Waka is on the way to making socializing with new people more fun than ever before. Our plan is to invest resources in features that increase interaction between users and make meeting new people as smooth as playing a casual game.</p>
   <p><br></p>
@@ -973,11 +973,11 @@ documents:[
   twitter: "https://www.worldoftheabyss.com/",
   imageUrl:"/projects/wota/cover.jpeg",
   avatarUrl:
-    "/projects/wota/logo.png",
+    "/projects/wota/icon.jpeg",
   description:
     "World of the Abyss (WOTA) is a true hardcore mobile MMORPG with a focus on real-time player interaction.",
   verified: true,
-  tags: ["NFT", "Games"],
+  tags: ["Gaming"],
   campaignHtml: `<h1>Project Description</h1>
   <p>World of the Abyss (WOTA) is a true hardcore mobile MMORPG with a focus on real-time player interaction. WOTA has a classic free-to-play core as well as a Web3-component based on NEAR protocol (Play &amp; Earn, minting, owning and trading NFT-items (gear, loot boxes, etc), NFT Marketplace, DAO Clan governance, etc).</p>
   <h2>How does WOTA work?*</h2>
@@ -1130,13 +1130,13 @@ documents:[
   motto: "Play-To-Earn NFT Collectible Game.",
   projectUrl: "https://zomland.com",
   twitter: "https://twitter.com/Zomland_Game",
-  imageUrl:"/projects/zomland/banner.png",
+  imageUrl:"/projects/zomland/cover.jpeg",
   avatarUrl:
-    "/projects/zomland/logo.png",
+    "/projects/zomland/icon.jpeg",
   description:
     "Is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.",
   verified: true,
-  tags: ["NFT", "Games"],
+  tags: ["Gaming"],
   campaignHtml: `<p>&nbsp;</p>
   <p><a href="https://zomland.com/">ZomLand</a> is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.&nbsp;</p>
   <p>You take on the leader&apos;s role of the army of zombies and monsters to battle with other users all over the world.&nbsp;</p>
