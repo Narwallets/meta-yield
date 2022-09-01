@@ -83,7 +83,7 @@ const VotingStatusCard = (props: { project: any }) => {
 
   return (
     <>
-      <Card mt={30} w={"100%"} mx="0">
+      <Card mt={150} w={"100%"} mx="0">
         <Stack spacing={4}>
           <Stack justify={'space-between'} direction="row">
             <Box>
