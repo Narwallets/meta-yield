@@ -161,7 +161,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
       });
   };
 
-  const onWithdrawFinished = () => {
+  const onActioninished = () => {
     refetch();
   };
 
@@ -498,7 +498,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                           ? yton(myProjectFounded.supporter_deposit)
                           : 0
                       }
-                      onWithdrawFinished={onWithdrawFinished}
+                      onActioninished={onActioninished}
                       isTxInProgress={isTxInProgress}
                       setIsTxInProgress={setIsTxInProgress}
                     ></Funding>

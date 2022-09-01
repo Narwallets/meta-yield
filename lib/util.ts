@@ -263,3 +263,8 @@ export const formatJSONErr = (obj: any) => {
   text = getPanicErrorFromText(text)
   return text;
 };
+
+// truncate {account} and add "..." for accounts with more than {long} characters
+export function truncateAccountId(account: string, long: number) : string{
+  return account.length > long ? account.substring(0, long-3) + "..." : account;
+}

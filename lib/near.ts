@@ -218,7 +218,7 @@ export const getSupporterDetailedList = async (supporter_id: string) => {
 export const fundToKickstarter = async (
   kickstarter_id: number,
   amountOnStNear: number
-) => {
+): Promise<FinalExecutionOutcome | null> => {
   const wallet = window.wallet;
   const account_id = window.account_id;
   const args = {
@@ -227,7 +227,7 @@ export const fundToKickstarter = async (
     msg: kickstarter_id.toString(),
   };
 
-  const result = wallet!
+  const result = await wallet!
     .signAndSendTransaction({
       signerId: account_id!,
       receiverId: METAPOOL_CONTRACT_ID,
@@ -245,9 +245,13 @@ export const fundToKickstarter = async (
     })
     .catch((err) => {
       console.log("Failed to fund to kickstarter");
-      throw err;
+     
+      throw getPanicErrorFromText(err.message);
     });
-  return result;
+    if (result instanceof Object) {
+      return result;
+    }
+    return null;
 };
 
 export const getTxStatus = async (
