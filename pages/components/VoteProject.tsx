@@ -49,7 +49,10 @@ const VoteProject = (props: { data: any, position: number }) => {
       rounded="lg"
       alignItems={{base: 'flex-start', md: 'center'}}
       justify={{base: 'flex-start', md: 'space-between'}}
-      align={'center'}>
+      align={'center'}
+      onClick={() => router.push(`/vote/${projectData.id}`)}
+      cursor={'pointer'}
+      >
 
       <HStack justify={{base: 'flex-start', md: 'inherit'}} spacing={{base: 0 , md:10}}>
         <Stack  hidden={isMobile}   direction={{ base: "column", lg: "row" }}>

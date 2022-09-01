@@ -91,7 +91,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 PROJECT VOTES
               </Text>
               <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" lineHeight="8">
-                {yton(votes)}
+                {yton(votes).toFixed(2)}
               </Text>
             </Box>
             { selector?.isSignedIn() && (<Box>
@@ -99,7 +99,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 YOUR VOTE
               </Text>
               <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" lineHeight="8">
-                {yton(myVotesInThisProject)}
+                {yton(myVotesInThisProject).toFixed(2)}
               </Text>
             </Box>)}
             <Box>
@@ -193,7 +193,7 @@ const VotingStatusCard = (props: { project: any }) => {
                   Total
                 </Text>
                 <Text fontSize={{ base: "xl", md: "xl" }} fontWeight="bold" lineHeight="8">
-                  {yton(votingPower) + yton(votingPowerInUse)}
+                  {(yton(votingPower) + yton(votingPowerInUse)).toFixed(2)}
                 </Text>
               </HStack>
               <HStack align={'center'}>
@@ -205,7 +205,7 @@ const VotingStatusCard = (props: { project: any }) => {
                   fontWeight="bold"
                   lineHeight="8"
                 >
-                  {yton(votingPowerInUse)}
+                  {yton(votingPowerInUse).toFixed(2)}
                 </Text>
               </HStack>
               <HStack  align={'center'}>
@@ -218,7 +218,7 @@ const VotingStatusCard = (props: { project: any }) => {
                   fontWeight="bold"
                   lineHeight="8"
                 >
-                  {yton(votingPower)}
+                  {yton(votingPower).toFixed(2)}
                 </Text>
               </HStack>
             </HStack>
