@@ -87,6 +87,7 @@ const VoteProject = (props: { data: any, position: number }) => {
       <Spacer />
       <HStack
         align={{ base: "center", lg: "center" }}
+        alignSelf={{base: 'flex-end', md: 'inherit'}}
         px={'15px'}
         py={'5px'}
         bg={'#F0F0F0'}
