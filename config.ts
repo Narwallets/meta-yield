@@ -12,7 +12,7 @@ export const getConfig = (env: string) => {
         helperUrl: "https://helper.mainnet.near.org",
         explorerUrl: "https://explorer.mainnet.near.org",
         metapoolUrl: "https://metapool.app/dapp/mainnet/meta",
-        metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/",
+        metavoteUrl: "https://metavote.app/",
       };
     case "development":
     case "testnet":

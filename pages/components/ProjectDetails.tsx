@@ -378,7 +378,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
           </ModalContent>
         </Modal>
       )}
-      <Container maxW="container.xl">
+      <Container mt={50} maxW="container.xl">
         <Grid
           as="section"
           templateRows={{ base: "1fr", lg: "1fr" }}

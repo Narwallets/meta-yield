@@ -599,7 +599,7 @@ export const dataToVote = [
     id: 5, // key para proyectos en katherine
     slug: "amber", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "Amber Metaverse",
-    motto: "A Blockchain-Powered Platform for Virtual Worlds",
+    motto: "Compete, socialize, and create your own NFT assets. Free2play 3D game",
     projectUrl: "https://ambergame.top/",
     twitter: "https://twitter.com/AMBER_metaverse",
     imageUrl:"/projects/amber/cover.png",
@@ -612,6 +612,11 @@ export const dataToVote = [
     campaignHtml: `<h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:20pt;margin-bottom:0pt;padding:0pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
     <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
     <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">AMBER is a Web3 Game based on blockchain NEAR with various of battle modes and FREE 2 PLAY (PLAY 2 OWN) mechanics. Our main mission is mass adoption of web2 user to web3 in the form of an interactive multiplayer game. At the heart of the economic model is the OWNERSHIP OF DIGITAL ASSETS. These assets are gaming NFT. It allows users to get a virtual experience traveling through themed spaces playing games, using microservices, chasing communities, and visiting events.</span></p>
+    <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
+    
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/1OQlsDkzJK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/e5c6GyNpNC4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Technology</span></h2>
     <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">At the moment we have assembled our MVP, which works and can showcase our ideas and technologies quite easily.</span></p>
     <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">-&gt;&nbsp;</span><a href="https://ambergame.top/" style="text-decoration:none;"><span style="font-size:11pt;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">https://ambergame.top/</span></a><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp; - Game and NFT mint page (Mac and chrome are best)</span></p>
@@ -694,6 +699,7 @@ export const dataToVote = [
         bio: "Legal advisor"
       },
     ],
+    about: "AMBER metaverse is a free-to-play blockchain game & a platform for virtual worlds with various game modes and play 2 own economy. Our mission is blockchain mass adoption and creating a seamless transition for web2 users to web3. <br> The entire economy is based on using an AMBER token to buy a game pass, which gives you the opportunity to earn rewards in the form of virtual property.",
     roadmap:{
       imageUrl: 'projects/amber/roadmap.png'
     },
@@ -725,6 +731,12 @@ export const dataToVote = [
       <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Using the resources gained from buildings and attacks on other players, you can make a powerful settlement.</span></p>
       <p><br></p>
       <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Players can conjoin to create clans, participate in Clan Wars together, donate and receive troops, and chat with each other</span></p>
+      <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
+      <p><br></p>
+
+      <iframe src="https://drive.google.com/file/d/1GHgbd3MssFydDIGI6ADfAHQNnFVrt4mR/preview" width="640" height="480" allow="autoplay"></iframe>
+      <p><br></p>
+
       <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Resources</span></h2>
       <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Resources are the currencies used to purchase and upgrade assets. To attack, players train different types of troops using resources.</span></p>
       <p><br></p>
@@ -743,13 +755,13 @@ export const dataToVote = [
       <p><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Backers</span></p>
       <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">In gratitude for the support we are ready to provide additional bonuses:</span></p>
       <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
-          <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+          <li>
               <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Free Lands,</span></p>
           </li>
-          <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+          <li>
               <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">premium tokens,</span></p>
           </li>
-          <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+          <li>
               <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">and additional workers in the game.</span></p>
           </li>
       </ul>`,
@@ -784,8 +796,12 @@ export const dataToVote = [
     <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">You wield a Gauntlet-like device equipped with a rare Forma Crystal which enables you to capture, evolve and transform yourself into a Metamon. You travel across space and time to hunt for more power and resources, to become the very best Metamon warrior.&nbsp;</span></p>
     <p><br></p>
     <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">With the power of your Forma Gauntlet, you join an epic battle for the supremacy of your Faction in the Galactic Federation. Your actions will determine the future of this universe.&nbsp;</span></p>
-    <p><br></p>
     <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Metamon is a blockchain-powered gaming franchise starting with an online PvP Battle Royale game coupled with novel Play-to-Earn mechanics and with the goal of expanding into more gaming experiences. Metamon Games are built in Unreal Engine.</span></p>
+    <p><br></p>
+    <p><br></p>
+    <h2>Gameplay</h2>
+    <p><br></p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hWzat5c5D3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <p><br></p>
     <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Metamon Battle Royale</span></h2>
     <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The Metamon Battle Royale game pits players against each other on an alien world. You land on this new world with only your Gauntlet and your 3 most reliable Metamon forms. Players must battle each other, collect valuable resources and win the game to earn. A novel format for Battle Royale, which opens up new game dynamics for players.&nbsp;</span></p>
@@ -829,46 +845,49 @@ export const dataToVote = [
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Encourage people to perceive poker as a sport, not as gambling.</span></p>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Create a safe and transparent infrastructure for the poker clubs.</span></p>
   <p><br></p>
+  <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/hWzat5c5D3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <br>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Consists of:</span></p>
   <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li >
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Feed, where creators of exciting topics can participate in the Reward Pool</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NFT and in-game marketplace</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Crowdfunding for players based on internal statistics</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Online and offline tournaments</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">International poker academy</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Twitch guild</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:11pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Cash tournaments around the world</span></p>
       </li>
   </ul>
   <p><br></p>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Offers:</span></p>
   <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li >
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Safety and transparency of the gaming process</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Healthy and sporty business environment</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">AI tips for self-development of players</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Infrastructure for blogging, investing, agents and talent development</span></p>
       </li>
-      <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+      <li>
           <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:11pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Club chips in the form of cryptocurrency</span></p>
       </li>
   </ul>
@@ -913,7 +932,7 @@ export const dataToVote = [
   id: 9, // key para proyectos en katherine
   slug: "waka", // unique friendly identifier per project. katherine smart contract would retrieve this field
   name: "Waka",
-  motto: "Waka is on the way to making socializing with new people more fun than ever before.",
+  motto: "The digital sandbox for finding friends and dates",
   projectUrl: "https://web.waka.cool/",
   twitter: "https://twitter.com/waka_cool_app",
   imageUrl:"/projects/waka/cover.png",
@@ -930,6 +949,10 @@ export const dataToVote = [
   <p>2. We help to spark the conversation through our icebreakers, which are tied to the matching algorithm you chose.</p>
   <p>3. By equipping your chat with mini-games, we make sure the fire of your conversation will never fade away. Increase your bonding level with your new friend and unlock more fun activities within your chat.&nbsp;</p>
   <p>4. Talking to new people, going through waka-rooms, and creating your own fun test allows you to enrich your digital identity and level up and earn waka-tokens, which opens up possibilities for matching with presion and far more often. (edited)</p>
+  <br>
+  <h2>Gameplay</h2>
+  <iframe src="https://drive.google.com/file/d/1aZPDR_4MHazMyB3huGatlx3j_yed5gVc/preview" width="640" height="480" allow="autoplay"></iframe>
+  <br>
   <h2>Stats</h2>
   <p>- 70 000 registered users</p>
   <p>- $2.07 CPA-purchase (that&rsquo;s 50 times less than the market average)</p>
@@ -968,7 +991,7 @@ documents:[
   id: 10, // key para proyectos en katherine
   slug: "wota", // unique friendly identifier per project. katherine smart contract would retrieve this field
   name: "World of the Abyss",
-  motto: "A true hardcore mobile MMORPG with a focus on real-time player interaction.",
+  motto: "A true hardcore mobile MMORPG with a free2play core & Web3-component",
   projectUrl: "https://www.worldoftheabyss.com/",
   twitter: "https://twitter.com/wotaverse",
   imageUrl:"/projects/wota/cover.jpeg",
@@ -1014,6 +1037,11 @@ documents:[
           <p>We are also working on development of other blockchain and game mechanics to increase the P2E component of the game.</p>
       </li>
   </ul>
+  <p><br></p>
+  <h2>Gameplay</h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/p34rmdPksws?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <p><br></p>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/imG-U52FLF4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   <p><br></p>
   <p>*Points above are just general hints. We have a full Game design document and FlowChart that is constantly updated according to permanent gamedesign &amp; in-game economy amendments. More details may be provided upon request in the form of lightpaper, game design document, flowchart, etc.&nbsp;</p>
   <p>&nbsp;</p>
@@ -1184,8 +1212,8 @@ documents:[
     }
   ],
   roadmap:{
-    imageUrl: '/projects/zomland/logo.png',
-    linkUrl: "/projects/zomland/logo.png"
+    imageUrl: '/projects/zomland/roadmap.png',
+    linkUrl: "/projects/zomland/roadmap.png"
   },
   about: `PembRock couples lenders and yield farmers who are rewarded for providing liquidity within the NEAR ecosystem. On launch, we will support two base assets — NEAR and USDT — and integrate our leveraged farming with Ref Finance.‌ <br><br>
   <br><br>The lender deposits their NEAR and earns interest from the borrowing fees paid by yield farmers.

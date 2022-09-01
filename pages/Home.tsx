@@ -11,7 +11,7 @@ import VoteProject from "./components/VoteProject";
 import { useStoreProjects } from "../stores/projects";
 import { useEffect, useState } from "react";
 import { getVotes } from "../lib/near";
-import { getEndVotingPeriod } from "../lib/util";
+import { getEndVotingPeriod, yton } from "../lib/util";
 import Marquee from "react-fast-marquee";
 
 const Home = () => {
@@ -25,15 +25,15 @@ const Home = () => {
   // check if data is still loading
   const sortByVotes = (projects: any) =>
      projects.sort(function (a: any, b: any) {
-      if (a.votes > b.votes) {
+      console.log("sort",a.votes, b.votes, a.votes > b.votes)
+      if (yton(a.votes) > yton(b.votes)) {
         return -1;
       }
-      if (a.votes < b.votes) {
+      if (yton(a.votes) < yton(b.votes)) {
         return 1;
       }
       return 0;
     });
-  
 
   useEffect(() => {
       (async () => {

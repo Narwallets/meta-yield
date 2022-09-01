@@ -83,7 +83,7 @@ const VotingStatusCard = (props: { project: any }) => {
 
   return (
     <>
-      <Card w={"100%"} mx="0">
+      <Card mt={30} w={"100%"} mx="0">
         <Stack spacing={4}>
           <Stack justify={'space-between'} direction="row">
             <Box>
@@ -149,7 +149,7 @@ const VotingStatusCard = (props: { project: any }) => {
                   }}
                 />
                 <InputRightElement width="4.5rem">
-                  <Button disabled={!formikVote.isValid} colorScheme={'indigo'} bg={{base: 'indigo.500', md: '#EEEFF8'}} p={2} variant={isMobile ? 'solid' : 'link'} h="1.75rem" size="sm" onClick={onMaxClick}>
+                  <Button  colorScheme={'indigo'} bg={{base: 'indigo.500', md: '#EEEFF8'}} p={2} variant={isMobile ? 'solid' : 'link'} h="1.75rem" size="sm" onClick={onMaxClick}>
                     {isMobile ? 'Max' : 'Use max' } 
                   </Button>
                 </InputRightElement>
@@ -158,16 +158,11 @@ const VotingStatusCard = (props: { project: any }) => {
               <Square hidden={!isMobile} minW="30px">
                     <Text fontSize={'md'}  fontWeight={600} color="gray.400" mx={2}>VOTING POWER <InfoOutlineIcon  fontSize={'md'} ml={2}/></Text>
               </Square>
-              
-              
                   <Button
                     colorScheme="indigo"
                     size="md"
                     px={10}
-                    
-                    // disabled={!formikDeposit.isValid}
-                    onClick={(e: any) => formikVote.handleSubmit(e)}
-                  >
+                    onClick={(e: any) => formikVote.handleSubmit(e)}>
                     Vote
                   </Button>
             </Stack>
