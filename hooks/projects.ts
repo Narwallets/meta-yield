@@ -6,11 +6,9 @@ import {
   fetchSupportedProjects,
   fetchFinishedProjects,
   fetchComingSoonProjects,
+  fetchVotedProjects,
 } from "../queries/projects";
-import { getActiveProjects, getProjectDetails } from "../lib/near";
-import { number } from "yup";
-import { ProjectProps } from "../types/project.types";
-import { getFips } from "crypto";
+
 export const useGetProjects = () => {
   return useQuery("projects", () => fetchProjects(), {
     onError: (err) => {
@@ -19,12 +17,14 @@ export const useGetProjects = () => {
   });
 };
 
-export const useGetProjectDetails = (id: number) => {
-  return useQuery("project-fund", () => fetchProjectDetails(id), {
+export const useGetProjectDetails = (id: number, votingMode?: boolean) => {
+  return useQuery("project-fund", () => fetchProjectDetails(id, votingMode), {
+    refetchOnWindowFocus: false,
     onError: (err) => {
       console.error(err);
     },
-  });
+  }
+  );
 };
 
 export const useGetActiveProjects = () => {
@@ -50,11 +50,18 @@ export const useGetFinishedProjects = () => {
     },
   });
 };
+    export const useGetProjectsToVote = () => {
+  return useQuery("vote-projects", () => fetchVotedProjects(), {
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+};
 
-export const useGetSupportedProjects = (wallet_id: string) => {
+export const useGetSupportedProjects = (account_id: string) => {
   return useQuery(
     "supported-projects",
-    () => fetchSupportedProjects(wallet_id),
+    () => fetchSupportedProjects(account_id),
     {
       onError: (err) => {
         console.error(err);

@@ -1,5 +1,6 @@
 import moment from "moment";
 import { providers } from "near-api-js";
+import { VOTE_CONFIGS } from "../constants/vote.config";
 import { KickstarterGoalProps } from "../types/project.types";
 import { getSupportedKickstarters } from "./near";
 
@@ -68,19 +69,29 @@ export const yoctoToDollarStr = (
 export const formatToLocaleNear = (value: number, decimals: number = 4) => {
   return value.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 })
 }
-export const timeLeftToFund = (time: any) => {
+export const timeLeftToFund = (time: any, formatDHM? : boolean) => {
   if (!time || moment(time).diff(moment.utc()) < 0) {
     return "";
   }
+
   const timeMoment = moment(time);
   const now = moment.utc();
 
-  return timeMoment.diff(now, "days") > 0
-    ? `${timeMoment.diff(now, "days")} days`
+  if (formatDHM) {
+    const duration = moment.duration(timeMoment.diff(now));  
+    return `${duration.days() > 0 ? duration.days() + 'd' : ''} ${duration.hours() > 0 ? duration.hours() + 'h' : ''} ${duration.minutes()}m`
+  } else {
+    return timeMoment.diff(now, "days") > 0
+    ? `${timeMoment.diff(now, "days")} Days`
     : timeMoment.diff(now, "hours") >= 1
     ? `${timeMoment.diff(now, "hours")} hours`
+    : timeMoment.diff(now, "seconds") < 60
+    ? `${timeMoment.diff(now, "seconds")} seconds`
     : `${timeMoment.diff(now, "minutes")} minutes`;
+  }
 };
+
+
 
 export const isOpenPeriod = (kickstarter: any) => {
   return getPeriod(kickstarter) === PERIOD.OPEN;
@@ -119,15 +130,23 @@ export const getPeriod = (kickstarter: any) => {
   return PERIOD.CLOSE; */
 }
 
-export const getMyProjectsFounded = async (id: string, wallet: any) => {
+export const getMyProjectsFounded = async (id: string) => {
+  const account_id = window.account_id;
   const projectsFounded: any[] = await getSupportedKickstarters(
-    wallet.getAccountId()
+    account_id
   );
   if (!projectsFounded) {
     return null;
   }
   return projectsFounded.find((val: any) => val.kickstarter_id === id);
 };
+
+export const getEndVotingPeriod = ()=> {
+  return timeLeftToFund(VOTE_CONFIGS.END_VOTE_PERIOD, true)
+   // return moment(VOTE_CONFIGS.END_VOTE_PERIOD ).format('MM-DD-YYYY')
+}
+
+
 
 export const getCurrentFundingGoal = (goals: any, total_deposited: any) => {
   const [currentFundingGoal] = goals.filter(
@@ -198,6 +217,22 @@ export const getPanicError = (txResult: any) => {
   }
 };
 
+export const getPanicErrorFromText  = (text: string) => {
+  let result = text;
+  const KEY = "panicked at ";
+  const kl = KEY.length;
+  let n = text.indexOf(KEY);
+  if (n > 0 && n < text.length - kl - 5) {
+    const i = text.indexOf("'", n + kl + 4);
+    const cut = text.slice(n + kl, i);
+    if (cut.trim().length > 5) {
+      //debug: console.error(text.slice(n, i + 80)) //show info in the console before removing extra info
+      result = cut;
+    }
+  }
+  return result;
+}
+
 export const formatJSONErr = (obj: any) => {
   let text = JSON.stringify(obj);
   text = text.replace(/{/g, " ");
@@ -225,17 +260,6 @@ export const formatJSONErr = (obj: any) => {
 
   //if panicked-at: return relevant info only
   //debug: console.error(text); //show info in the console before removing extra info
-  const KEY = "panicked at ";
-  const kl = KEY.length;
-  let n = text.indexOf(KEY);
-  if (n > 0 && n < text.length - kl - 5) {
-    const i = text.indexOf("'", n + kl + 4);
-    const cut = text.slice(n + kl, i);
-    if (cut.trim().length > 5) {
-      //debug: console.error(text.slice(n, i + 80)) //show info in the console before removing extra info
-      text = cut;
-    }
-  }
-
+  text = getPanicErrorFromText(text)
   return text;
 };

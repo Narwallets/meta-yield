@@ -594,6 +594,644 @@ export const data = [
   },
 ];
 
+export const dataToVote = [
+  {
+    id: 5, // key para proyectos en katherine
+    slug: "amber", // unique friendly identifier per project. katherine smart contract would retrieve this field
+    name: "Amber Metaverse",
+    motto: "Compete, socialize, and create your own NFT assets. Free2play 3D game",
+    projectUrl: "https://ambergame.top/",
+    twitter: "https://twitter.com/AMBER_metaverse",
+    imageUrl:"/projects/amber/cover.png",
+    avatarUrl:
+      "/projects/amber/icon.jpeg",
+    description:
+      "Web3 Game based on blockchain NEAR with various of battle modes and FREE 2 PLAY (PLAY 2 OWN) mechanics. Our main mission is mass adoption of web2 user to web3 in the form of an interactive multiplayer game. At the heart of the economic model is the OWNERSHIP OF DIGITAL ASSETS. These assets are gaming NFT. It allows users to get a virtual experience traveling through themed spaces playing games, using microservices, chasing communities, and visiting events",
+    verified: true,
+    tags: ["Gaming"],
+    campaignHtml: `<h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:20pt;margin-bottom:0pt;padding:0pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">AMBER is a Web3 Game based on blockchain NEAR with various of battle modes and FREE 2 PLAY (PLAY 2 OWN) mechanics. Our main mission is mass adoption of web2 user to web3 in the form of an interactive multiplayer game. At the heart of the economic model is the OWNERSHIP OF DIGITAL ASSETS. These assets are gaming NFT. It allows users to get a virtual experience traveling through themed spaces playing games, using microservices, chasing communities, and visiting events.</span></p>
+    <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
+    
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/1OQlsDkzJK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/e5c6GyNpNC4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Technology</span></h2>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">At the moment we have assembled our MVP, which works and can showcase our ideas and technologies quite easily.</span></p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">-&gt;&nbsp;</span><a href="https://ambergame.top/" style="text-decoration:none;"><span style="font-size:11pt;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">https://ambergame.top/</span></a><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp; - Game and NFT mint page (Mac and chrome are best)</span></p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">We have the technology to &quot;stream&quot; 3D NFT into UNITY. Technology for creating game worlds in the form of NFT. Our group is sufficiently staffed to create a full-fledged game project on blockchain.&nbsp;</span></p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+    <h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:20pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Use of Proceeds</span></h1>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">We are currently in the VIP/SEED phase and are looking for &quot;angels&quot; and a lead fund to launch the next iteration of development and marketing. Legal registration of our structure.&nbsp;</span></p>
+    <p><br></p>
+    <h1 dir="ltr" style="line-height:1.38;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Backers</span></h1>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">We are extremely interested in getting backers to invest in our NFTs as they have amazing utilities.&nbsp;</span></p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The Smart NFT Avatar is a collection of 8888 unique PFP NFT avatars with a playable 3D model that could be used in games and AR/VR spaces.</span></p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">This is the only collection that will allow you to become a member of DAO.&nbsp;</span></p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Only rare and semi-rare NFTs will have token stream possibilities.&nbsp;</span></p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">All NFTs are randomly generated and have a rarity system that will determine the price on the secondary market: humans - 8799, reptiles - 80, cyborgs - 8, elf -1. All clothing is branded with partner company logos.</span></p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+    <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">But we are also interested in finding early investors for AMBER token.</span></p>`,
+    team: [
+      {
+        name: "Valentin/INFINITY",
+        bio: "Product Owner",
+      },
+      {
+        name: "Melody",
+        bio: "Influencer"
+      },
+      {
+        name: "Andreas Kobal",
+        bio: "CTO",
+      },
+      {
+        name: "Dennis Lee",
+        bio: "Back-end Dev",
+      },
+      {
+        name: "Animem",
+        bio: "Artist"
+      },
+      {
+        name: "Kornelius Petrus",
+        bio: "Product Manager"
+      },
+      {
+        name: "Louis Egan",
+        bio: "Front-end Dev"
+      },
+      {
+        name: "Anna Voevodina",
+        bio: "Legal Advisor"
+      },
+      {
+        name: "Eldar Yakub",
+        bio: "Model Engineer"
+      },
+      {
+        name: "Semion Adam",
+        bio: "Smart contract Dev"
+      },
+      {
+        name: "Vitaly Ivolgin",
+        bio: "Game Developer"
+      },
+      {
+        name: "Derrick",
+        bio: "Designer"
+      },
+      {
+        name: "Lonchi",
+        bio: "Tiktok influencer"
+      },
+      {
+        name: "Edgar Osipov",
+        bio: "Community Builder"
+      },
+      {
+        name: "Vasilly Ponomariov",
+        bio: "Legal advisor"
+      },
+    ],
+    about: "AMBER metaverse is a free-to-play blockchain game & a platform for virtual worlds with various game modes and play 2 own economy. Our mission is blockchain mass adoption and creating a seamless transition for web2 users to web3. <br> The entire economy is based on using an AMBER token to buy a game pass, which gives you the opportunity to earn rewards in the form of virtual property.",
+    roadmap:{
+      imageUrl: 'projects/amber/roadmap.png'
+    },
+  documents:[
+    {title: "Gameplay video #1", url: "https://youtu.be/1OQlsDkzJK0" },
+    {title: "Gameplay video #2", url: "https://youtu.be/e5c6GyNpNC4"},
+    {title: "Pitch Deck", url: "https://drive.google.com/file/d/1mkR_eBKTkdh-SzlyZid3NfxbezbS1Jof"},
+    {title: "Whitepaper", url: "https://docs.google.com/document/d/1UQjLMeIZ7HT4L2wSPsJr3cBKSPbzXf_0QaRQ_ulcNLU"},
+    {title: "Tokenomics", url: "https://docs.google.com/spreadsheets/d/1L06fjXUF1DTCBOR-_VrE9Tl-4rQtSUQUHgmOmWo9cGw"}
+  ]
+    },
+    {
+      id: 6, // key para proyectos en katherine
+      slug: "landtoempire", // unique friendly identifier per project. katherine smart contract would retrieve this field
+      name: "Land to Empire",
+      motto: "It is a play-to-earn mobile strategy game on Near Protocol. In this game you are a landlord of your own land.",
+      projectUrl: "https://www.landtoempire.com/",
+      twitter: "https://twitter.com/LandToEmpire",
+      imageUrl:"/projects/landtoempire/cover.png",
+      avatarUrl:"/projects/landtoempire/icon.jpeg",
+      description:
+        `It is a play-to-earn mobile strategy game on Near Protocol. In this game you are a landlord of your own land.`,
+      verified: true,
+      tags: ["Gaming"],
+      campaignHtml: `<h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:20pt;margin-bottom:0pt;padding:0pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">It is a play-to-earn mobile strategy game on Near Protocol. In this game you are a landlord of your own land.&nbsp;</span></p>
+      <p><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Players need to build their own village, army and defense infrastructure.</span></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Using the resources gained from buildings and attacks on other players, you can make a powerful settlement.</span></p>
+      <p><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Players can conjoin to create clans, participate in Clan Wars together, donate and receive troops, and chat with each other</span></p>
+      <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
+      <p><br></p>
+
+      <iframe src="https://drive.google.com/file/d/1GHgbd3MssFydDIGI6ADfAHQNnFVrt4mR/preview" width="640" height="480" allow="autoplay"></iframe>
+      <p><br></p>
+
+      <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Resources</span></h2>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Resources are the currencies used to purchase and upgrade assets. To attack, players train different types of troops using resources.</span></p>
+      <p><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">There are 3 main resources in Land to Empire: Gold, Elixir and Gems. These resources have buildings that are used for storing and generating them.</span></p>
+      <p><br></p>
+      <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Play-to-earn in Land to Empire</span></h2>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The gamer can take all in-game items to the marketplace in order to earn money from their NFT sale. All buildings and resources in the game are NFT&rsquo;s.&nbsp;</span></p>
+      <p><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The buyer can enter the purchased asset into the game and continue to use its properties, as well as to pump levels.</span></p>
+      <p><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">You can easily improve your settlement or find necessary resources by trading with other players using in-game marketplace or secondary markets.</span></p>
+      <p><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Use of Proceeds</span></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The game generates 8% royalty income from p2p nft sales. Sales are growing, but we would like to grow faster. That&apos;s why we are ready to share future revenue in return for supporting the game now.</span></p>
+      <p><br></p>
+      <p><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Backers</span></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">In gratitude for the support we are ready to provide additional bonuses:</span></p>
+      <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+          <li>
+              <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Free Lands,</span></p>
+          </li>
+          <li>
+              <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">premium tokens,</span></p>
+          </li>
+          <li>
+              <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">and additional workers in the game.</span></p>
+          </li>
+      </ul>`,
+      team: [
+        {
+          name: "The core of the team consists of two classmates with strong experience in development and startups",
+          bio: "To be announced later at the NearConWeek",
+        }
+      ],
+      documents:[
+        {title:"Gameplay",
+        url:"https://drive.google.com/file/d/1OQ9PwPr5FX-94R1Pte7aqWr9fcFm6eA7/view?usp=sharing"}
+      
+      ]
+  },
+  {
+    id: 7, // key para proyectos en katherine
+    slug: "metamon", // unique friendly identifier per project. katherine smart contract would retrieve this field
+    name: "Metamon",
+    motto: "Battle-and-earn Royale",
+    projectUrl: "https://www.metamon.gg/",
+    twitter: "https://www.twitter.com/metamonapp",
+    imageUrl:"/projects/metamon/cover.png",
+    avatarUrl:"/projects/metamon/icon.jpeg",
+    description:
+      `Metamon is a world of Sci-Fi and Fantasy where you venture into the stars to discover exciting new worlds and majestic life-forms with immeasurable power.`,
+    verified: true,
+    tags: ["Gaming"],
+    campaignHtml: `<h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
+    <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Metamon is a world of Sci-Fi and Fantasy where you venture into the stars to discover exciting new worlds and majestic life-forms with immeasurable power.&nbsp;</span></p>
+    <p><br></p>
+    <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">You wield a Gauntlet-like device equipped with a rare Forma Crystal which enables you to capture, evolve and transform yourself into a Metamon. You travel across space and time to hunt for more power and resources, to become the very best Metamon warrior.&nbsp;</span></p>
+    <p><br></p>
+    <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">With the power of your Forma Gauntlet, you join an epic battle for the supremacy of your Faction in the Galactic Federation. Your actions will determine the future of this universe.&nbsp;</span></p>
+    <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Metamon is a blockchain-powered gaming franchise starting with an online PvP Battle Royale game coupled with novel Play-to-Earn mechanics and with the goal of expanding into more gaming experiences. Metamon Games are built in Unreal Engine.</span></p>
+    <p><br></p>
+    <p><br></p>
+    <h2>Gameplay</h2>
+    <p><br></p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hWzat5c5D3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p><br></p>
+    <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Metamon Battle Royale</span></h2>
+    <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The Metamon Battle Royale game pits players against each other on an alien world. You land on this new world with only your Gauntlet and your 3 most reliable Metamon forms. Players must battle each other, collect valuable resources and win the game to earn. A novel format for Battle Royale, which opens up new game dynamics for players.&nbsp;</span></p>
+    <p><br></p>
+    <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Available on Windows at launch. To be released for Mac, Web and Mobile.</span></p>
+    <h1 dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:20pt 0pt 11pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Use of Proceeds</span></h1>
+    <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Funds will be allocated towards the project development, which include game &amp; art development, marketing, and other critical activities.</span></p>
+    <p><br></p>
+    <h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Backers</span></h1>
+    <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">In-game NFTs for a minimum contribution. NFTs and parameters to be determined and updated. NFTs will have utility in-game.</span></p>`,
+    team: [
+      {
+        name: "Team",
+        bio: "The Metamon Company is a multi-channel entertainment venture focused on developing immersive and interactive content through games, story, art, and more",
+      }
+    ],
+    documents:[
+      {title:"Gameplay",
+      url:"https://www.youtube.com/watch?v=hWzat5c5D3o "},
+      {title:"White Paper", url:"https://metamon.gitbook.io/metamon-whitepaper/metamon-battle-royale"},
+      {title: "Coincu Article", url:"https://news.coincu.com/83525-what-is-metamon/" }
+    ]
+},
+{
+  id: 8, // key para proyectos en katherine
+  slug: "pokerspace", // unique friendly identifier per project. katherine smart contract would retrieve this field
+  name: "Poker Space",
+  motto: "Unique NFT collection with in game utilities based on P2E model.",
+  projectUrl: "http://pokerspace.io/",
+  twitter: "https://twitter.com/Poker__Space",
+  imageUrl:"/projects/pokerspace/cover.png",
+  avatarUrl:"/projects/pokerspace/icon.jpeg",
+  description:
+    ``,
+  verified: true,
+  tags: ["Gaming"],
+  campaignHtml: `<h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><a href="http://pokerspace.io/" style="text-decoration:none;"><span style="font-size:11pt;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space</span></a><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp;is a blockchain platform where anyone can play poker and, even more importantly, try themselves as the founder of a community: unite your friends and acquaintances around a common hobby, set new trends, and unlimited use of classic and caste games.</span></p>
+  <p><br></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Mission:</span></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Encourage people to perceive poker as a sport, not as gambling.</span></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Create a safe and transparent infrastructure for the poker clubs.</span></p>
+  <p><br></p>
+  <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/hWzat5c5D3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <br>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Consists of:</span></p>
+  <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li >
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Feed, where creators of exciting topics can participate in the Reward Pool</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NFT and in-game marketplace</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Crowdfunding for players based on internal statistics</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Online and offline tournaments</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">International poker academy</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Twitch guild</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:11pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Cash tournaments around the world</span></p>
+      </li>
+  </ul>
+  <p><br></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Offers:</span></p>
+  <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li >
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Safety and transparency of the gaming process</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Healthy and sporty business environment</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">AI tips for self-development of players</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Infrastructure for blogging, investing, agents and talent development</span></p>
+      </li>
+      <li>
+          <p dir="ltr" style="line-height:1.3800000000000001;background-color:#ffffff;margin-top:0pt;margin-bottom:11pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Club chips in the form of cryptocurrency</span></p>
+      </li>
+  </ul>
+  <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">What&apos;s special about our NFT?</span></h2>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The poker clubs will be NFTs, and the ownership of the club will be assigned to the owner of the NFT.</span></p>
+  <p><br></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">VIP membership in our network, which gives every NFT owner rakeback, creation of clubs, alliances, and access to tournaments.</span></p>
+  <p><br></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Opportunity to bet on any of your NFTs and get exclusive remuneration by the DAO, depending on the rank of your NFT.</span></p>
+  <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Use of Proceeds</span></h2>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Keep developing, more listing contracts, marketing campaigns.&nbsp;</span></p>
+  <h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Backers</span></h1>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">That&rsquo;s a different kind of reward for every side being in and at the project. What we give to our backers - &nbsp;tokens.&nbsp;</span></p>
+  <p><br></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NFT&rsquo;s are for sale in 2step rounds.&nbsp;</span></p>
+  <p><br></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">But exclusively &nbsp;we think that we can give some equity too, but it&rsquo;s not a fund story, that&rsquo;s more for investor. Which can give to us not only money, or taking allocation, that&rsquo;s something more. Like support on different sides : poker, crypto, international legal entity support and etc.</span></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ns.</span></p>`,
+  team: [
+    {
+      name: "VASILY SINYUGIN",
+      bio: "CEO, CO-FOUNDER",
+    },
+    { name: "ASHOT KIRAKOSYAN", 
+     bio: "TECHNICAL DIRECTOR" },
+     {
+       name: "ARMEN AMBARTSUMYAN",
+       bio: 'CREATIVE DIRECTOR, CO-FOUNDER'
+     },
+     {bio: "HEAD OF ANALYTICS", name: "DARKHAN NURAKHMETOV"},
+     {bio:"SOCIAL MEDIA SPECIALIST", name:"DANIL LEGKOSTUP"},
+     {bio: "ADVISER",name:"ALEXANDR SALOMATOV"}
+  ],
+  documents:[
+    {title:"Gameplay",
+    url:"https://www.youtube.com/watch?v=hWzat5c5D3o "},
+    {title:"White Paper", url:"https://metamon.gitbook.io/metamon-whitepaper/metamon-battle-royale"},
+    {title: "Coincu Article", url:"https://news.coincu.com/83525-what-is-metamon/" }
+  ]
+},
+{
+  id: 9, // key para proyectos en katherine
+  slug: "waka", // unique friendly identifier per project. katherine smart contract would retrieve this field
+  name: "Waka",
+  motto: "The digital sandbox for finding friends and dates",
+  projectUrl: "https://web.waka.cool/",
+  twitter: "https://twitter.com/waka_cool_app",
+  imageUrl:"/projects/waka/cover.png",
+  avatarUrl:
+    "/projects/waka/icon.jpeg",
+  description:
+    "Waka is on the way to making socializing with new people more fun than ever before.",
+  verified: true,
+  tags: ["Gaming"],
+  campaignHtml: `<h1>Project Description</h1>
+  <p>Waka is on the way to making socializing with new people more fun than ever before. Our plan is to invest resources in features that increase interaction between users and make meeting new people as smooth as playing a casual game.</p>
+  <p><br></p>
+  <p>1. You get matched with a perfect stranger the way you choose (by swiping memes, by holding the same NFTs, by having the same personality or interests )</p>
+  <p>2. We help to spark the conversation through our icebreakers, which are tied to the matching algorithm you chose.</p>
+  <p>3. By equipping your chat with mini-games, we make sure the fire of your conversation will never fade away. Increase your bonding level with your new friend and unlock more fun activities within your chat.&nbsp;</p>
+  <p>4. Talking to new people, going through waka-rooms, and creating your own fun test allows you to enrich your digital identity and level up and earn waka-tokens, which opens up possibilities for matching with presion and far more often. (edited)</p>
+  <br>
+  <h2>Gameplay</h2>
+  <iframe src="https://drive.google.com/file/d/1aZPDR_4MHazMyB3huGatlx3j_yed5gVc/preview" width="640" height="480" allow="autoplay"></iframe>
+  <br>
+  <h2>Stats</h2>
+  <p>- 70 000 registered users</p>
+  <p>- $2.07 CPA-purchase (that&rsquo;s 50 times less than the market average)</p>
+  <p>- 0.22$ average CPR (that&rsquo;s 10 times less than the market average)</p>
+  <p>- 42% 30 day retention rate which is above industry standards</p>
+  <p>- 80% of our users are looking for friendship</p>
+  <h2>Story</h2>
+  <p>Waka was born more than a year ago as a response to increased loneliness and lack of social bonding opportunities in the digital world.&nbsp;</p>
+  <p><br></p>
+  <p>It has incorporated gamification techniques to take away the burden of breaking the ice and finding &lsquo;friends and dates&rsquo;. we have assembled the Bonding DAO from 7 projects and 150 researchers and industry professionals to find the solution to the problem of loneliness and build a metaverse of Socialization projects on the NEAR Blockchain.&nbsp;</p>
+  <p><br></p>
+  <p>Today waka has 70.000+ registered users and 180.000$ of funding from 6 angel investors.</p>`,
+  team: [
+    {
+      name: "CEO Dzmitry Leukavets",
+      bio: "With the 6-year of experience in the blockchain industry, leading marketing campaigns for blockchain startups and publishing research cited by Yahoo, Binance & investing.com.",
+    },
+    {
+      name: "CPO Stanislav Gogaev",
+      bio: "Has 4-years of experience building social gaming startups and leading Software and Game development teams."
+    },
+    {
+      name: "CTO Ilyia Savchuk",
+      bio: "And the rest of our development team have more than 20 years of software development experience and experience leading development teams at EPAM, EVA Studio, and RocketDAO.",
+    }
+  ],
+  roadmap:{
+    imageUrl: '/projects/waka/roadmap.jpeg'
+  },
+documents:[
+  {title:"Gameplay",
+  url:"https://drive.google.com/file/d/1aZPDR_4MHazMyB3huGatlx3j_yed5gVc/view"},
+]
+},
+{
+  id: 10, // key para proyectos en katherine
+  slug: "wota", // unique friendly identifier per project. katherine smart contract would retrieve this field
+  name: "World of the Abyss",
+  motto: "A true hardcore mobile MMORPG with a free2play core & Web3-component",
+  projectUrl: "https://www.worldoftheabyss.com/",
+  twitter: "https://twitter.com/wotaverse",
+  imageUrl:"/projects/wota/cover.jpeg",
+  avatarUrl:
+    "/projects/wota/icon.jpeg",
+  description:
+    "World of the Abyss (WOTA) is a true hardcore mobile MMORPG with a focus on real-time player interaction.",
+  verified: true,
+  tags: ["Gaming"],
+  campaignHtml: `<h1>Project Description</h1>
+  <p>World of the Abyss (WOTA) is a true hardcore mobile MMORPG with a focus on real-time player interaction. WOTA has a classic free-to-play core as well as a Web3-component based on NEAR protocol (Play &amp; Earn, minting, owning and trading NFT-items (gear, loot boxes, etc), NFT Marketplace, DAO Clan governance, etc).</p>
+  <h2>How does WOTA work?*</h2>
+  <p>Description:&nbsp;</p>
+  <ul>
+      <li>
+          <p>Open world, a fantastic medieval multi-level Abyss with magic and horrible monsters</p>
+      </li>
+      <li>
+          <p>The Abyss is divided into floors (vertically) and levels (horizontally)</p>
+      </li>
+      <li>
+          <p>Player&rsquo;s goal is &nbsp;to progress to their neverending maximum by looting, crafting and combating</p>
+      </li>
+      <li>
+          <p>There are dungeons, forts, castles, and the marketplace.&nbsp;</p>
+      </li>
+      <li>
+          <p>Players can play solo or create/join clans and even clan alliances to capture forts/castles and fight other players and mobs. &nbsp;</p>
+      </li>
+      <li>
+          <p>P2E part of the game is powered by Near protocol and includes: NFT - chests (loot boxes), - weapons, - armors, - jewelry and other NFT-items that are initially being sold at pre-sales before Global Launch (Dec 22) and then will be freely traded on an in-game marketplace (powered by Vorto 2.0 platform) or outside the game on Paras.id and similar markets.</p>
+      </li>
+      <li>
+          <p>$SHIC is an in-game stablecoin linked to USD and &nbsp;can only be obtained by selling NFT-items on in-game NFT-marketplace.&nbsp;</p>
+      </li>
+      <li>
+          <p>WOTA Token ($WOTA). $WOTA can only be purchased at external crypto exchanges at the present rate of exchange.&nbsp;</p>
+      </li>
+      <li>
+          <p>It is going to be a two way traffic, meaning that P2E players can monetise their in-game earnings by selling their NFT-items on the in-game marketplace. They can also exchange $SHIC for $WOTA to either hold them or exchange for other currencies.&nbsp;</p>
+      </li>
+      <li>
+          <p>We are also working on development of other blockchain and game mechanics to increase the P2E component of the game.</p>
+      </li>
+  </ul>
+  <p><br></p>
+  <h2>Gameplay</h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/p34rmdPksws?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <p><br></p>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/imG-U52FLF4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <p><br></p>
+  <p>*Points above are just general hints. We have a full Game design document and FlowChart that is constantly updated according to permanent gamedesign &amp; in-game economy amendments. More details may be provided upon request in the form of lightpaper, game design document, flowchart, etc.&nbsp;</p>
+  <p>&nbsp;</p>
+  <h2>What makes World of the Abyss (WOTA) unique?</h2>
+  <p><br></p>
+  <p>We are focusing on players&rsquo; live interaction and skills, no auto-play and auto-battles that most Mobile MMORPGs offer now. We want players to be completely engaged in the game and have the same old skool fun and excitement emotions as we had playing Lineage and similar games on PC and which we all miss with mobile games.&nbsp;</p>
+  <p><br></p>
+  <p>We are making WOTA for a huge number of players playing simultaneously. For example, we are implementing technology to have more than 500 live players in one location at a time. PvP battles can be performed anytime, anywhere on any location in real-time. We want to avoid excessive hero management.</p>
+  <p><br></p>
+  <p>Easy to change the profession of hero, just by getting another weapon, e.g. Bow, Swords, etc.&nbsp;</p>
+  <p><br></p>
+  <p>We will have a simplified crafting &amp; unique karma system (PvP/PK).</p>
+  <p><br></p>
+  <p>We are also doing our best to connect 2 gaming models: classic F2P model (for those millions of players who are addicted to this type of games) and P2E model for new generation of players who are interested in Blockchain mechanics, P2E, NFTs, GameFI, etc.</p>
+  <p><br></p>
+  <p>We&rsquo;ve just released the first NFT Chests drop and created our own DAO with AstroDAO.&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <h1>Use of Proceeds</h1>
+  <p>The funds will be used for development, operations, legal and marketing purposes to launch the project according to the road map at the end of 2022.</p>
+  <p><br></p>
+  <h1>Rewards for Backers</h1>
+  <p>We will give special limited edition NFT Chests (loot boxes) for this event, that will contain top NFT gear with unique characteristics (NFT-weapons, -armours, -jewelry, etc.).&nbsp;</p>
+  <p><br></p>
+  <p>Those NFT Chests may be sold unopened on Paras even now. Or may be opened in the game at the date of Global Launch (Dec 2022) to get top NFT gear stated above out of them. This gear could be used by player characters in the game itself or sold on p2p in-game marketplace (or outside the game on Paras).&nbsp;</p>
+  <p><br></p>
+  <p>When we issue game/project tokens, there will also be an option to use these NFT Chest to claim project tokens or just exchange these valuable artifacts to tokens.</p>`,
+  team: [
+    {
+      name: "Max Bondarenko",
+      bio: "CEO and main Dev Team Manager. He has more than 8+ Gamedev, 3D Design  Animation experience, as well as mobile apps marketing and ADs. He also ran his own AR/VR company called Mad Moil Co. for 2 years.",
+    },
+    {
+      name: "Yuri Shtepo",
+      bio: "CO-FOUNDER, CFO 20+ years of entrepreneurial and corporate experience in various areas:  project & ops management, finance, business consulting. Developed business & financial models and consulted for multiple companies and start-ups. Launched companies in the areas of manufacturing, business services and online therapy."
+    },
+    {
+      name: "Ilya Kulebyakin",
+      bio: "BizDev/Communication/PR/Fundraising, 13+ years of business development experience in various areas, ​3+ years of management, marketing, production & events organization, experience at TastySound music record-label, ​3+ years of online community management & PR experience.",
+    }
+  ],
+  roadmap:{
+    linkUrl: "https://drive.google.com/file/d/15x9BIong_C9vPBWcUPn-2Sp03kPNIyVZ/view"
+  },
+  about: `<h1>About the Game Tokens</h1>
+  <p>$WOTA (WOTA Token) is the project native token</p>
+  <p><br></p>
+  <p>$SHIC (Shining Coin) is an in-game native cryptocurrency&nbsp;</p>
+  <p><br></p>
+  <p>The game will be powered by two native tokens: $WOTA and $SHIC. Together they will build up the dual token economy.&nbsp;</p>
+  <p>$WOTA is the project token that will be used to support basic WOTA operations such as: &nbsp;</p>
+  <ul>
+      <li>
+          <p>buying in-game NFT-items</p>
+      </li>
+      <li>
+          <p>exchange operations of $WOTA token for other cryptocurrencies</p>
+      </li>
+      <li>
+          <p>DAO management of the Project</p>
+      </li>
+      <li>
+          <p>participation in DeFi projects/liquidity pools</p>
+      </li>
+      <li>
+          <p>purchasing in-game plots of land (TBD)&nbsp;</p>
+      </li>
+  </ul>
+  <p>$SHIC token is the in-game stablecoin, which will be&nbsp;</p>
+  <ul>
+      <li>
+          <p>issued by WOTA to players for selling their NFT-items on the in-game marketplace</p>
+      </li>
+      <li>
+          <p>used by players for upgrading in-game items, forts, castles, gear, skills, equipment; buying in-game lands; opening dungeons, bosses, marketplaces and their boosting; paying for caravans and for war against other clans, and some other game mechanics.&nbsp;</p>
+      </li>
+      <li>
+          <p>used as the governance tokens for the in-game P2E Clan DAOs to impact the decision-making related to P2E Clans policies and development</p>
+      </li>
+  </ul>
+  <p><br></p>
+  <p>$WOTA token is a native fungible token on NEAR Protocol that is used for buying NFT items, Governance of the Meta Pool protocol.</p>
+  <ul>
+      <li>
+          <p>Token Account ID: To be decided</p>
+      </li>
+      <li>
+          <p>Total Supply: 1,500,000,000 $WOTA</p>
+      </li>
+      <li>
+          <p>Precision: 24 digits</p>
+      </li>
+      <li>
+          <p>Current circulating supply: 0, not issued yet</p>
+      </li>
+  </ul>
+  <p><br></p>
+  <p>$SHIC: will be calculated in accordance with in-game economy&nbsp;</p>`,
+documents:[
+  {title:"Gameplay",
+  url:"https://youtu.be/p34rmdPksws"},
+  {title:"Gameplay 2",
+  url:"https://youtu.be/imG-U52FLF4"},
+  {title:"Full game development & release Roadmap",
+  url:"https://drive.google.com/file/d/15x9BIong_C9vPBWcUPn-2Sp03kPNIyVZ"},
+  {title:"NFT/Blockchain component Roadmap & details",
+  url:"https://www.mewota.com"},
+]
+},
+{
+  id: 11, // key para proyectos en katherine
+  slug: "zomland", // unique friendly identifier per project. katherine smart contract would retrieve this field
+  name: "ZomLand",
+  motto: "Play-To-Earn NFT Collectible Game.",
+  projectUrl: "https://zomland.com",
+  twitter: "https://twitter.com/Zomland_Game",
+  imageUrl:"/projects/zomland/cover.jpeg",
+  avatarUrl:
+    "/projects/zomland/icon.jpeg",
+  description:
+    "Is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.",
+  verified: true,
+  tags: ["Gaming"],
+  campaignHtml: `<p>&nbsp;</p>
+  <p><a href="https://zomland.com/">ZomLand</a> is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.&nbsp;</p>
+  <p>You take on the leader&apos;s role of the army of zombies and monsters to battle with other users all over the world.&nbsp;</p>
+  <p>The game combines elements of strategy that helps you to achieve maximum profit and earn more.&nbsp;</p>
+  <p>Collecting, Battles, land discovery, collaboration with users in your clan - are the main features of the ZomLand game</p>
+  <p>&nbsp;</p>
+  <p>Website:&nbsp;<a href="https://zomland.com/">https://zomland.com/</a>&nbsp;</p>
+  <p>&nbsp;</p>
+  <h1>Use of Proceeds</h1>
+  <p>ZomLand team needs fundings to achieve such goals as:&nbsp;</p>
+  <ul>
+      <li>
+          <p>complete gamify logic (battle arena)&nbsp;</p>
+      </li>
+      <li>
+          <p>to do successful marketing&nbsp;</p>
+      </li>
+      <li>
+          <p>token release (dex platforms, exchanges)&nbsp;</p>
+      </li>
+  </ul>
+  <p>&nbsp;</p>
+  <h1>Rewards for Backers</h1>
+  <p>Backers will be rewarded with $ZML tokens</p>`,
+  team: [
+    {
+      name: "Vlodkow (co-owner, developer, project coordinator)",
+      bio: "Volodymyr is co-founder ZomLand game. I'm a web & blockchain developer from Ukraine with 14+ years experience. Last year I decided to switch from web to blockchain development because I like new technologies and decentralisation.",
+    },
+    {
+      name: "Andriy (co-owner, developer, community manager)",
+      bio: "Andrii is a second co-founder of ZomLand game. In parallel - a software engineer with 10y of experience. Most of them are in web 2.0 and last few years in web 3.0 development. Team & Technical leader."
+    },
+    {
+      name: "Maria",
+      bio: "Designer with 7y of experience. Mostly working as a digital graphic designer. Interest in crypto and NFT.",
+    },
+    {
+      name: "Olha",
+      bio: "Content writer & crypto investor, translator and content writer in ZomLand team.",
+    },
+    {
+      name: "Lana",
+      bio: "QA & SMM manager.",
+    }
+  ],
+  roadmap:{
+    imageUrl: '/projects/zomland/roadmap.png',
+    linkUrl: "/projects/zomland/roadmap.png"
+  },
+  about: `PembRock couples lenders and yield farmers who are rewarded for providing liquidity within the NEAR ecosystem. On launch, we will support two base assets — NEAR and USDT — and integrate our leveraged farming with Ref Finance.‌ <br><br>
+  <br><br>The lender deposits their NEAR and earns interest from the borrowing fees paid by yield farmers.
+  <br><br><b>Leveraged Farmer</b>
+  <br><br>The yield farmer opens a leveraged yield farming position on a trading pair, borrowing NEAR from the vault and joining the farming pool with leverage. The yield farmer gets higher returns due to the larger stake, but pays a 10% premium for the privilege of using borrowed funds.
+  <br><br><b>Liquidator bot</b>
+  <br><br>The liquidator bot monitors all yield farming positions, liquidating those that become too risky. If a leveraged yield farming position does get liquidated, 5% of the position’s fee goes to the protocol, and is then distributed among those who have staked the PEM token.
+  <br><br> 
+  <img alt src="https://res.cloudinary.com/metayield/image/upload/v1652215639/Pembrock/How_It_Works_omx6dw.png">
+  `,
+documents:[
+  {title:"Whitepaper",
+  url:"https://zomland.gitbook.io/zomland-whitepaper/"},
+]
+}
+
+];
+
 export type ElementType<T extends ReadonlyArray<unknown>> =
   T extends ReadonlyArray<infer ElementType> ? ElementType : never;
 
