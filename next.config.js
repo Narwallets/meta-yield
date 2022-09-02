@@ -12,7 +12,8 @@ const nextConfig = {
     ],
   },
   env: {
-    MINIMUM_AMOUNT_DEPOSIT: 1
+    MINIMUM_AMOUNT_DEPOSIT: 1,
+    NEXT_PUBLIC_CONTRACT_ID:'dev-1662129854073-78820277190211'
   },
   pageExtensions: ["page.tsx", "ts", "tsx"],
 };
