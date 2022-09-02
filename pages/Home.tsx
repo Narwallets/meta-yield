@@ -25,7 +25,7 @@ const Home = () => {
   // check if data is still loading
   const sortByVotes = (projects: any) =>
      projects.sort(function (a: any, b: any) {
-      console.log("sort",a.votes, b.votes, a.votes > b.votes)
+  
       if (yton(a.votes) > yton(b.votes)) {
         return -1;
       }

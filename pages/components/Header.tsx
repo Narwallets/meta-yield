@@ -54,7 +54,6 @@ const Header: React.FC<ButtonProps> = (props) => {
   const [account, setAccount] = useState<Account | null>(null);
 
   const handleSignIn = () => {
-    console.log('sign in', modal)
     modal.show();
   };
 
@@ -70,29 +69,33 @@ const Header: React.FC<ButtonProps> = (props) => {
       console.error(err);
     });
   };
+  const updateBalance = () => {
+    (async () => {
+      if (selector.isSignedIn()) {
+        const balance = await getBalance();
+        setBalance(balance);
+      }
+    })();
+  };
 
   useEffect(() => {
     (async () => {
       try {
-        if (selector.isSignedIn()) {
-          const balance = await getBalance();
-          setBalance(balance);
-        }
+        updateBalance();
       } catch (e) {
         console.error(e);
       }
     })();
-    // setInterval(async () => {
-    //   const tempWallet = await getWallet();
-    //   if (tempWallet && tempWallet.getAccountId()) {
-    //     const balance = await getBalance(tempWallet);
-    //     setBalance(balance);
-    //   }
-    // }, 5000);
   }, [selector]);
 
+  useEffect(() => {
+    setInterval(async () => {
+      updateBalance();
+    }, 5000);
+  }, []);
+
   return (
-    <Box as="section" position={'relative'} zIndex={99}>
+    <Box as="section" position={"relative"} zIndex={99}>
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <HStack justify="space-between">
@@ -101,16 +104,17 @@ const Header: React.FC<ButtonProps> = (props) => {
               cursor="pointer"
               alignItems="center"
             >
-              <Image 
-              objectFit="cover" 
-              src="/logo.svg" 
-              alt="logo" 
-              width={{ base: "126px", md: "184px" }}
-              height={{ base: "22px", md: "32px" }}/>
+              <Image
+                objectFit="cover"
+                src="/logo.svg"
+                alt="logo"
+                width={{ base: "126px", md: "184px" }}
+                height={{ base: "22px", md: "32px" }}
+              />
             </Flex>
             <Spacer />
-            { isDesktop && (
-              <ButtonGroup variant="link"  alignItems="flex-end">
+            {isDesktop && (
+              <ButtonGroup variant="link" alignItems="flex-end">
                 <Link href="/#how-it-works">
                   <Button fontWeight={600} fontSize={"16px"} variant="nav">
                     {" "}
@@ -129,16 +133,14 @@ const Header: React.FC<ButtonProps> = (props) => {
                     Funded projects{" "}
                   </Button>
                 </Link>
-                {
-                  /* 
+                {/* 
                     <Link href="/vote">
                       <Button fontWeight={600} fontSize={"16px"} variant="nav">
                         {" "}
                         Votes{" "}
                       </Button>
                     </Link>
-                  */
-                }
+                  */}
               </ButtonGroup>
             )}
 
@@ -183,7 +185,9 @@ const Header: React.FC<ButtonProps> = (props) => {
                     >
                       My dashboard
                     </MenuItem>
-                    <MenuItem onClick={() => handleSignOut()}>Disconnect</MenuItem>
+                    <MenuItem onClick={() => handleSignOut()}>
+                      Disconnect
+                    </MenuItem>
                     <Show below="lg">
                       <MenuDivider />
                       <MenuItem onClick={() => router.push("/#projects")}>
