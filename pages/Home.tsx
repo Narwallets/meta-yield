@@ -120,7 +120,7 @@ const Home = () => {
                       const myVotes =  getVotes(p.id + '|' +p.slug);
                       return (
                         <Box key={p.id} scale={index === 0 ? 1.1 : 1}>
-                          <VoteProject   position={index} data={p}/>
+                          <VoteProject position={index} data={p}/>
                         </Box>
                       )
                     })
