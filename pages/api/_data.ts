@@ -1191,11 +1191,11 @@ documents:[
   <p>Backers will be rewarded with $ZML tokens</p>`,
   team: [
     {
-      name: "Vlodkow (co-owner, developer, project coordinator)",
+      name: "Vlodkow",
       bio: "Volodymyr is co-founder ZomLand game. I'm a web & blockchain developer from Ukraine with 14+ years experience. Last year I decided to switch from web to blockchain development because I like new technologies and decentralisation.",
     },
     {
-      name: "Andriy (co-owner, developer, community manager)",
+      name: "Andriy",
       bio: "Andrii is a second co-founder of ZomLand game. In parallel - a software engineer with 10y of experience. Most of them are in web 2.0 and last few years in web 3.0 development. Team & Technical leader."
     },
     {
@@ -1215,15 +1215,6 @@ documents:[
     imageUrl: '/projects/zomland/roadmap.png',
     linkUrl: "/projects/zomland/roadmap.png"
   },
-  about: `PembRock couples lenders and yield farmers who are rewarded for providing liquidity within the NEAR ecosystem. On launch, we will support two base assets — NEAR and USDT — and integrate our leveraged farming with Ref Finance.‌ <br><br>
-  <br><br>The lender deposits their NEAR and earns interest from the borrowing fees paid by yield farmers.
-  <br><br><b>Leveraged Farmer</b>
-  <br><br>The yield farmer opens a leveraged yield farming position on a trading pair, borrowing NEAR from the vault and joining the farming pool with leverage. The yield farmer gets higher returns due to the larger stake, but pays a 10% premium for the privilege of using borrowed funds.
-  <br><br><b>Liquidator bot</b>
-  <br><br>The liquidator bot monitors all yield farming positions, liquidating those that become too risky. If a leveraged yield farming position does get liquidated, 5% of the position’s fee goes to the protocol, and is then distributed among those who have staked the PEM token.
-  <br><br> 
-  <img alt src="https://res.cloudinary.com/metayield/image/upload/v1652215639/Pembrock/How_It_Works_omx6dw.png">
-  `,
 documents:[
   {title:"Whitepaper",
   url:"https://zomland.gitbook.io/zomland-whitepaper/"},
