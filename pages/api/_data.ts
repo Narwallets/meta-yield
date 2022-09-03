@@ -990,9 +990,9 @@ documents:[
 {
   id: 10, // key para proyectos en katherine
   slug: "wota", // unique friendly identifier per project. katherine smart contract would retrieve this field
-  name: "World of the Abyss",
+  name: "World of the Abyss (WOTA)",
   motto: "A true hardcore mobile MMORPG with a free2play core & Web3-component",
-  projectUrl: "https://www.worldoftheabyss.com/",
+  projectUrl: "http://mewota.com/",
   twitter: "https://twitter.com/wotaverse",
   imageUrl:"/projects/wota/cover.jpeg",
   avatarUrl:
