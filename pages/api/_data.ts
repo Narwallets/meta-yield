@@ -845,8 +845,6 @@ export const dataToVote = [
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Encourage people to perceive poker as a sport, not as gambling.</span></p>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Create a safe and transparent infrastructure for the poker clubs.</span></p>
   <p><br></p>
-  <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/hWzat5c5D3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   <br>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Consists of:</span></p>
   <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
@@ -921,12 +919,10 @@ export const dataToVote = [
      {bio:"SOCIAL MEDIA SPECIALIST", name:"DANIL LEGKOSTUP"},
      {bio: "ADVISER",name:"ALEXANDR SALOMATOV"}
   ],
-  documents:[
-    {title:"Gameplay",
-    url:"https://www.youtube.com/watch?v=hWzat5c5D3o "},
-    {title:"White Paper", url:"https://metamon.gitbook.io/metamon-whitepaper/metamon-battle-royale"},
-    {title: "Coincu Article", url:"https://news.coincu.com/83525-what-is-metamon/" }
-  ]
+  roadmap:{
+    imageUrl: '/projects/pokerspace/roadmap.png',
+    linkUrl: 'https://drive.google.com/file/d/1vxHnPYIgYJJ7L8_DO4TlvJgSf5GXERdI/view'
+  }
 },
 {
   id: 9, // key para proyectos en katherine
@@ -1213,7 +1209,6 @@ documents:[
   ],
   roadmap:{
     imageUrl: '/projects/zomland/roadmap.png',
-    linkUrl: "/projects/zomland/roadmap.png"
   },
 documents:[
   {title:"Whitepaper",
