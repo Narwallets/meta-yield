@@ -829,7 +829,7 @@ export const dataToVote = [
   id: 8, // key para proyectos en katherine
   slug: "pokerspace", // unique friendly identifier per project. katherine smart contract would retrieve this field
   name: "Poker Space",
-  motto: "Unique NFT collection with in game utilities based on P2E model.",
+  motto: "Innovative free-to-play poker room build on P2E with unique NFT collection.",
   projectUrl: "http://pokerspace.io/",
   twitter: "https://twitter.com/Poker__Space",
   imageUrl:"/projects/pokerspace/cover.png",
@@ -839,14 +839,8 @@ export const dataToVote = [
   verified: true,
   tags: ["Gaming"],
   campaignHtml: `<h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><a href="http://pokerspace.io/" style="text-decoration:none;"><span style="font-size:11pt;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space</span></a><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp;is a blockchain platform where anyone can play poker and, even more importantly, try themselves as the founder of a community: unite your friends and acquaintances around a common hobby, set new trends, and unlimited use of classic and caste games.</span></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp;Poker Space is a galaxy Free-to-Play platform based on Play-to-Earn, Social-to-Earn and Work-to-Earn model, with a traditional WEB 2.0 gaming mobile app with a WEB 3.0 overlay build on NEAR Protocol. In our platform anyone can play poker and, even more importantly, try themselves as the founder of a community: unite your friends and acquaintances around a common hobby, set new trends, and unlimited use of classic and caste games.</span></p>
   <p><br></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Mission:</span></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Encourage people to perceive poker as a sport, not as gambling.</span></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Create a safe and transparent infrastructure for the poker clubs.</span></p>
-  <p><br></p>
-  <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/hWzat5c5D3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   <br>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Consists of:</span></p>
   <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
@@ -892,11 +886,11 @@ export const dataToVote = [
       </li>
   </ul>
   <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">What&apos;s special about our NFT?</span></h2>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The poker clubs will be NFTs, and the ownership of the club will be assigned to the owner of the NFT.</span></p>
-  <p><br></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">VIP membership in our network, which gives every NFT owner rakeback, creation of clubs, alliances, and access to tournaments.</span></p>
-  <p><br></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Opportunity to bet on any of your NFTs and get exclusive remuneration by the DAO, depending on the rank of your NFT.</span></p>
+  <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+  <li><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The poker clubs will be NFTs, and the ownership of the club will be assigned to the owner of the NFT.</span></li>
+  <li><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">VIP membership in our network, which gives every NFT owner rakeback, creation of clubs, alliances, and access to tournaments.</span></li>
+  <li><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Opportunity to bet on any of your NFTs and get exclusive remuneration by the DAO, depending on the rank of your NFT.</span></li>
+  </ul>
   <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Use of Proceeds</span></h2>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Keep developing, more listing contracts, marketing campaigns.&nbsp;</span></p>
   <h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Backers</span></h1>
@@ -905,7 +899,10 @@ export const dataToVote = [
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NFT&rsquo;s are for sale in 2step rounds.&nbsp;</span></p>
   <p><br></p>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">But exclusively &nbsp;we think that we can give some equity too, but it&rsquo;s not a fund story, that&rsquo;s more for investor. Which can give to us not only money, or taking allocation, that&rsquo;s something more. Like support on different sides : poker, crypto, international legal entity support and etc.</span></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ns.</span></p>`,
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ns.</span></p>
+  <p><br></p>
+  <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/VS9uwYtGKbI" title="Poker Space Game Play" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
   team: [
     {
       name: "VASILY SINYUGIN",
@@ -919,14 +916,19 @@ export const dataToVote = [
      },
      {bio: "HEAD OF ANALYTICS", name: "DARKHAN NURAKHMETOV"},
      {bio:"SOCIAL MEDIA SPECIALIST", name:"DANIL LEGKOSTUP"},
-     {bio: "ADVISER",name:"ALEXANDR SALOMATOV"}
+     {bio: "ADVISOR",name:"ALEXANDR SALOMATOV"}
   ],
-  documents:[
-    {title:"Gameplay",
-    url:"https://www.youtube.com/watch?v=hWzat5c5D3o "},
-    {title:"White Paper", url:"https://metamon.gitbook.io/metamon-whitepaper/metamon-battle-royale"},
-    {title: "Coincu Article", url:"https://news.coincu.com/83525-what-is-metamon/" }
+  roadmap:{
+    imageUrl: '/projects/pokerspace/roadmap.png',
+    linkUrl: 'https://drive.google.com/file/d/1xahzngGeKjR0P9vPa5qPrKnAg3qG8iNH/view'
+  },
+  documents: [
+    {
+      title: 'Light Paper', url: 'https://drive.google.com/file/d/1NKoNuviKn-uqXlfDIgILmHp_G-cqGqDZ/view'
+    },
+    {title: 'Roadmap', url: 'https://drive.google.com/file/d/1xahzngGeKjR0P9vPa5qPrKnAg3qG8iNH/view'}
   ]
+
 },
 {
   id: 9, // key para proyectos en katherine
@@ -990,9 +992,9 @@ documents:[
 {
   id: 10, // key para proyectos en katherine
   slug: "wota", // unique friendly identifier per project. katherine smart contract would retrieve this field
-  name: "World of the Abyss",
+  name: "World of the Abyss (WOTA)",
   motto: "A true hardcore mobile MMORPG with a free2play core & Web3-component",
-  projectUrl: "https://www.worldoftheabyss.com/",
+  projectUrl: "http://mewota.com/",
   twitter: "https://twitter.com/wotaverse",
   imageUrl:"/projects/wota/cover.jpeg",
   avatarUrl:
@@ -1165,37 +1167,42 @@ documents:[
     "Is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.",
   verified: true,
   tags: ["Gaming"],
-  campaignHtml: `<p>&nbsp;</p>
-  <p><a href="https://zomland.com/">ZomLand</a> is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.&nbsp;</p>
-  <p>You take on the leader&apos;s role of the army of zombies and monsters to battle with other users all over the world.&nbsp;</p>
-  <p>The game combines elements of strategy that helps you to achieve maximum profit and earn more.&nbsp;</p>
-  <p>Collecting, Battles, land discovery, collaboration with users in your clan - are the main features of the ZomLand game</p>
-  <p>&nbsp;</p>
-  <p>Website:&nbsp;<a href="https://zomland.com/">https://zomland.com/</a>&nbsp;</p>
-  <p>&nbsp;</p>
-  <h1>Use of Proceeds</h1>
-  <p>ZomLand team needs fundings to achieve such goals as:&nbsp;</p>
-  <ul>
+  campaignHtml: `<h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:20pt;margin-bottom:0pt;padding:0pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><a href="https://zomland.com/" style="text-decoration:none;"><span style="font-size:11pt;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ZomLand</span></a><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp;is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.&nbsp;</span></p>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">You take on the leader&apos;s role of the army of zombies and monsters to battle with other users all over the world.&nbsp;</span></p>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The game combines elements of strategy that helps you to achieve maximum profit and earn more.&nbsp;</span></p>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Collecting, Battles, land discovery, collaboration with users in your clan - are the main features of the ZomLand game</span></p>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Website</span><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">:&nbsp;</span><a href="https://zomland.com/" style="text-decoration:none;"><span style="font-size:11pt;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">https://zomland.com/</span></a><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp;</span></p>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+  <h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:20pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Use of Proceeds</span></h1>
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ZomLand team needs fundings to achieve such goals as:&nbsp;</span></p>
+  <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
       <li>
-          <p>complete gamify logic (battle arena)&nbsp;</p>
+          <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">complete gamify logic (battle arena)&nbsp;</span></p>
       </li>
       <li>
-          <p>to do successful marketing&nbsp;</p>
+          <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">to do successful marketing&nbsp;</span></p>
       </li>
       <li>
-          <p>token release (dex platforms, exchanges)&nbsp;</p>
+          <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#222222;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">token release (dex platforms, exchanges)&nbsp;</span></p>
       </li>
   </ul>
-  <p>&nbsp;</p>
-  <h1>Rewards for Backers</h1>
-  <p>Backers will be rewarded with $ZML tokens</p>`,
+  <p dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;">&nbsp;</p>
+  <h1 dir="ltr" style="line-height:1.38;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Backers</span></h1>
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Backers will be rewarded with $ZML tokens</span></p>
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></p>
+  <h1 dir="ltr" style="line-height:1.38;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay Video</span></h1>
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></p>
+  <iframe src="https://drive.google.com/file/d/1G10M7MhVyEsI6lVxK7hFFd8YXo3ldAUN/preview" width="640" height="480" allow="autoplay"></iframe>`,
   team: [
     {
-      name: "Vlodkow (co-owner, developer, project coordinator)",
+      name: "Vlodkow",
       bio: "Volodymyr is co-founder ZomLand game. I'm a web & blockchain developer from Ukraine with 14+ years experience. Last year I decided to switch from web to blockchain development because I like new technologies and decentralisation.",
     },
     {
-      name: "Andriy (co-owner, developer, community manager)",
+      name: "Andriy",
       bio: "Andrii is a second co-founder of ZomLand game. In parallel - a software engineer with 10y of experience. Most of them are in web 2.0 and last few years in web 3.0 development. Team & Technical leader."
     },
     {
@@ -1212,18 +1219,8 @@ documents:[
     }
   ],
   roadmap:{
-    imageUrl: '/projects/zomland/roadmap.png',
-    linkUrl: "/projects/zomland/roadmap.png"
+    imageUrl: '/projects/zomland/roadmap2.png',
   },
-  about: `PembRock couples lenders and yield farmers who are rewarded for providing liquidity within the NEAR ecosystem. On launch, we will support two base assets — NEAR and USDT — and integrate our leveraged farming with Ref Finance.‌ <br><br>
-  <br><br>The lender deposits their NEAR and earns interest from the borrowing fees paid by yield farmers.
-  <br><br><b>Leveraged Farmer</b>
-  <br><br>The yield farmer opens a leveraged yield farming position on a trading pair, borrowing NEAR from the vault and joining the farming pool with leverage. The yield farmer gets higher returns due to the larger stake, but pays a 10% premium for the privilege of using borrowed funds.
-  <br><br><b>Liquidator bot</b>
-  <br><br>The liquidator bot monitors all yield farming positions, liquidating those that become too risky. If a leveraged yield farming position does get liquidated, 5% of the position’s fee goes to the protocol, and is then distributed among those who have staked the PEM token.
-  <br><br> 
-  <img alt src="https://res.cloudinary.com/metayield/image/upload/v1652215639/Pembrock/How_It_Works_omx6dw.png">
-  `,
 documents:[
   {title:"Whitepaper",
   url:"https://zomland.gitbook.io/zomland-whitepaper/"},

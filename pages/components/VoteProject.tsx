@@ -97,7 +97,7 @@ const VoteProject = (props: { data: any, position: number }) => {
         borderRadius={'20px'}
         spacing={5}>
         <Text fontSize={{base: 'lg', md:'24px'}} color="emphasized">
-          <b>{yton(projectData.votes)} </b>
+          <b>{yton(projectData.votes).toFixed(2)} </b>
         </Text>
         <Text  fontSize={"12px"} color={'#9CA3AF'} fontWeight="700">
           VOTES
