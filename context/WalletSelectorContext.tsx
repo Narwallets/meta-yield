@@ -14,7 +14,7 @@ import {
 } from "@near-wallet-selector/near-wallet";
 import { setupMathWallet } from "@near-wallet-selector/math-wallet";
 // import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
-// import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
+import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
 import { setupNightly } from "@near-wallet-selector/nightly";
 import { setupLedger } from "@near-wallet-selector/ledger";
 import { CONTRACT_ID, METAPOOL_CONTRACT_ID, NETWORK_ID } from "../lib/near";
@@ -54,7 +54,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);
-  const DEFAULT_ENABLE_WALLETS = ["near", "math", "nightly"];
+  const DEFAULT_ENABLE_WALLETS = ["near", "math", "nightly", "walletconnect"];
 
   const setupWallets = () => {
     let modules: any[] = [];
@@ -82,21 +82,21 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         case Wallets.Nightly: {
           modules.push(setupNightly());
         }
-        // case Wallets.WalletConnect: {
-        //   modules.push(
-        //     setupWalletConnect({
-        //       projectId: "c4f79cc...",
-        //       metadata: {
-        //         name: "NEAR Wallet Selector for Meta Yield",
-        //         description: "Wallet Connect integration on Wallet Selector for Meta Yield",
-        //         url: "https://github.com/near/wallet-selector",
-        //         icons: ["https://avatars.githubusercontent.com/u/37784886"],
-        //       },
-        //       chainId: "near:testnet",
-        //       iconUrl: "/assets/wallet-connect-icon.png",
-        //     })
-        //   );
-        // }
+        case Wallets.WalletConnect: { 
+          modules.push(
+            setupWalletConnect({
+              projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "3ec2226fd3f38b6fb82e789fcfc232bf",
+              metadata: {
+                name: "NEAR Wallet Selector for Meta Yield",
+                description: "Wallet Connect integration on Wallet Selector for Meta Yield",
+                url: "https://metayield.app/",
+                icons: ["https://avatars.githubusercontent.com/u/37784886"],
+              },
+              chainId: `near:${NETWORK_ID}`,
+              iconUrl: "/assets/wallet-connect-icon.png",
+            })
+          );
+        }
         // case Wallets.NightlyConnect: {
         //   modules.push(
         //     setupNightlyConnect({
