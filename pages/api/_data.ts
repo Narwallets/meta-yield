@@ -829,7 +829,7 @@ export const dataToVote = [
   id: 8, // key para proyectos en katherine
   slug: "pokerspace", // unique friendly identifier per project. katherine smart contract would retrieve this field
   name: "Poker Space",
-  motto: "Unique NFT collection with in game utilities based on P2E model.",
+  motto: "Innovative free-to-play poker room build on P2E with unique NFT collection.",
   projectUrl: "http://pokerspace.io/",
   twitter: "https://twitter.com/Poker__Space",
   imageUrl:"/projects/pokerspace/cover.png",
@@ -839,11 +839,7 @@ export const dataToVote = [
   verified: true,
   tags: ["Gaming"],
   campaignHtml: `<h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><a href="http://pokerspace.io/" style="text-decoration:none;"><span style="font-size:11pt;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space</span></a><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp;is a blockchain platform where anyone can play poker and, even more importantly, try themselves as the founder of a community: unite your friends and acquaintances around a common hobby, set new trends, and unlimited use of classic and caste games.</span></p>
-  <p><br></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Mission:</span></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Encourage people to perceive poker as a sport, not as gambling.</span></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Create a safe and transparent infrastructure for the poker clubs.</span></p>
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">&nbsp;Poker Space is a galaxy Free-to-Play platform based on Play-to-Earn, Social-to-Earn and Work-to-Earn model, with a traditional WEB 2.0 gaming mobile app with a WEB 3.0 overlay build on NEAR Protocol. In our platform anyone can play poker and, even more importantly, try themselves as the founder of a community: unite your friends and acquaintances around a common hobby, set new trends, and unlimited use of classic and caste games.</span></p>
   <p><br></p>
   <br>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Poker Space Consists of:</span></p>
@@ -890,11 +886,11 @@ export const dataToVote = [
       </li>
   </ul>
   <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">What&apos;s special about our NFT?</span></h2>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The poker clubs will be NFTs, and the ownership of the club will be assigned to the owner of the NFT.</span></p>
-  <p><br></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">VIP membership in our network, which gives every NFT owner rakeback, creation of clubs, alliances, and access to tournaments.</span></p>
-  <p><br></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Opportunity to bet on any of your NFTs and get exclusive remuneration by the DAO, depending on the rank of your NFT.</span></p>
+  <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+  <li><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The poker clubs will be NFTs, and the ownership of the club will be assigned to the owner of the NFT.</span></li>
+  <li><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">VIP membership in our network, which gives every NFT owner rakeback, creation of clubs, alliances, and access to tournaments.</span></li>
+  <li><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Opportunity to bet on any of your NFTs and get exclusive remuneration by the DAO, depending on the rank of your NFT.</span></li>
+  </ul>
   <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Use of Proceeds</span></h2>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Keep developing, more listing contracts, marketing campaigns.&nbsp;</span></p>
   <h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Backers</span></h1>
@@ -903,7 +899,10 @@ export const dataToVote = [
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NFT&rsquo;s are for sale in 2step rounds.&nbsp;</span></p>
   <p><br></p>
   <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">But exclusively &nbsp;we think that we can give some equity too, but it&rsquo;s not a fund story, that&rsquo;s more for investor. Which can give to us not only money, or taking allocation, that&rsquo;s something more. Like support on different sides : poker, crypto, international legal entity support and etc.</span></p>
-  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ns.</span></p>`,
+  <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ns.</span></p>
+  <p><br></p>
+  <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Gameplay</span></h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/VS9uwYtGKbI" title="Poker Space Game Play" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
   team: [
     {
       name: "VASILY SINYUGIN",
@@ -917,12 +916,19 @@ export const dataToVote = [
      },
      {bio: "HEAD OF ANALYTICS", name: "DARKHAN NURAKHMETOV"},
      {bio:"SOCIAL MEDIA SPECIALIST", name:"DANIL LEGKOSTUP"},
-     {bio: "ADVISER",name:"ALEXANDR SALOMATOV"}
+     {bio: "ADVISOR",name:"ALEXANDR SALOMATOV"}
   ],
   roadmap:{
     imageUrl: '/projects/pokerspace/roadmap.png',
-    linkUrl: 'https://drive.google.com/file/d/1vxHnPYIgYJJ7L8_DO4TlvJgSf5GXERdI/view'
-  }
+    linkUrl: 'https://drive.google.com/file/d/1xahzngGeKjR0P9vPa5qPrKnAg3qG8iNH/view'
+  },
+  documents: [
+    {
+      title: 'Light Paper', url: 'https://drive.google.com/file/d/1NKoNuviKn-uqXlfDIgILmHp_G-cqGqDZ/view'
+    },
+    {title: 'Roadmap', url: 'https://drive.google.com/file/d/1xahzngGeKjR0P9vPa5qPrKnAg3qG8iNH/view'}
+  ]
+
 },
 {
   id: 9, // key para proyectos en katherine
@@ -1213,7 +1219,7 @@ documents:[
     }
   ],
   roadmap:{
-    imageUrl: '/projects/zomland/roadmap.png',
+    imageUrl: '/projects/zomland/roadmap2.png',
   },
 documents:[
   {title:"Whitepaper",
