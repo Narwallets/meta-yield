@@ -803,6 +803,8 @@ export const dataToVote = [
     <p><br></p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/hWzat5c5D3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <p><br></p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/w1M2Uh2TBu4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p><br></p>
     <h2 dir="ltr" style="line-height:1.3800000000000001;margin-top:18pt;margin-bottom:6pt;"><span style="font-size:16pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Metamon Battle Royale</span></h2>
     <p dir="ltr" style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The Metamon Battle Royale game pits players against each other on an alien world. You land on this new world with only your Gauntlet and your 3 most reliable Metamon forms. Players must battle each other, collect valuable resources and win the game to earn. A novel format for Battle Royale, which opens up new game dynamics for players.&nbsp;</span></p>
     <p><br></p>
