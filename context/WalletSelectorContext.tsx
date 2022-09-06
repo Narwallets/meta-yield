@@ -94,6 +94,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
               },
               chainId: `near:${NETWORK_ID}`,
               iconUrl: "/assets/wallet-connect-icon.png",
+              relayUrl: "wss://relay.walletconnect.com"
             })
           );
         }
