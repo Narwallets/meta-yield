@@ -62,10 +62,10 @@ const VotingStatusCard = (props: { project: any }) => {
 
   useEffect(() => {
     (async () => {
-      if(selector?.isSignedIn() ) {
+    
         const id = project.id + '|'+project.slug;
-        const myVotes = await getVotes(id);
-        setVotes(myVotes);
+        const currentVotes = await getVotes(id);
+        setVotes(currentVotes);
 
         if(selector?.isSignedIn() ) {
           const myVotesInPrj = await getMyVotesByProject(id);
@@ -77,7 +77,7 @@ const VotingStatusCard = (props: { project: any }) => {
           const myVotinPowerInUse = await getInUseVotingPower();
           setVotingPowerInUse(myVotinPowerInUse);
         }
-      }
+
     })();
   }, [project, selector]);
 
