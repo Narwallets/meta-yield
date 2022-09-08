@@ -7,6 +7,7 @@ import {
   fetchFinishedProjects,
   fetchComingSoonProjects,
   fetchVotedProjects,
+  fetchProjectsVotes,
 } from "../queries/projects";
 
 export const useGetProjects = () => {
@@ -23,8 +24,7 @@ export const useGetProjectDetails = (id: number, votingMode?: boolean) => {
     onError: (err) => {
       console.error(err);
     },
-  }
-  );
+  });
 };
 
 export const useGetActiveProjects = () => {
@@ -50,7 +50,7 @@ export const useGetFinishedProjects = () => {
     },
   });
 };
-    export const useGetProjectsToVote = () => {
+export const useGetProjectsToVote = () => {
   return useQuery("vote-projects", () => fetchVotedProjects(), {
     onError: (err) => {
       console.error(err);
@@ -68,4 +68,17 @@ export const useGetSupportedProjects = (account_id: string) => {
       },
     }
   );
+};
+
+export const useGetProjectsVotes = () => {
+  // get votes refetch interval from env var, if does not exits set 5 seconds as default
+  const refetchInterval = process.env.NEXT_PUBLIC_VOTES_REFETCH_INTERVAL
+    ? parseInt(process.env.NEXT_PUBLIC_VOTES_REFETCH_INTERVAL)
+    : 5000;
+  return useQuery("projects-votes", () => fetchProjectsVotes(), {
+    onError: (err) => {
+      console.error(err);
+    },
+    refetchInterval: refetchInterval,
+  });
 };
