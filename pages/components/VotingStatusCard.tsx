@@ -90,7 +90,7 @@ const VotingStatusCard = (props: { project: any }) => {
               <Text fontSize={{ base: "xs", md: "xs" }} mb={4} color="gray.400" fontWeight="700">
                 PROJECT VOTES
               </Text>
-              <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" lineHeight="8">
+              <Text fontSize={{ base: "2xl", md: "2xl" }} fontWeight="bold" lineHeight="8">
                 {yton(votes).toFixed(2)}
               </Text>
             </Box>
@@ -98,7 +98,7 @@ const VotingStatusCard = (props: { project: any }) => {
               <Text fontSize={{ base: "xs", md: "xs" }} mb={4} color="gray.400" fontWeight="700">
                 YOUR VOTE
               </Text>
-              <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" lineHeight="8">
+              <Text fontSize={{ base: "2xl", md: "2xl" }} fontWeight="bold" lineHeight="8">
                 {yton(myVotesInThisProject).toFixed(2)}
               </Text>
             </Box>)}
@@ -107,7 +107,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 ENDS IN
               </Text>
               <Text
-                fontSize={{ base: "2xl", md: "4xl" }}
+                fontSize={{ base: "2xl", md: "2xl" }}
                 fontWeight="bold"
                 lineHeight="8"
               >
