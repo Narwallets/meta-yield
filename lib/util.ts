@@ -67,9 +67,12 @@ export const yoctoToDollarStr = (
  * @param decimals decimals to truncate result value. default to 2
  */
 export const formatToLocaleNear = (value: number, decimals: number = 4) => {
-  return value.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 })
-}
-export const timeLeftToFund = (time: any, formatDHM? : boolean) => {
+  return value.toLocaleString(undefined, {
+    maximumFractionDigits: decimals,
+    minimumFractionDigits: 0,
+  });
+};
+export const timeLeftToFund = (time: any, formatDHM?: boolean) => {
   if (!time || moment(time).diff(moment.utc()) < 0) {
     return "";
   }
@@ -78,29 +81,29 @@ export const timeLeftToFund = (time: any, formatDHM? : boolean) => {
   const now = moment.utc();
 
   if (formatDHM) {
-    const duration = moment.duration(timeMoment.diff(now));  
-    return `${duration.days() > 0 ? duration.days() + 'd' : ''} ${duration.hours() > 0 ? duration.hours() + 'h' : ''} ${duration.minutes()}m`
+    const duration = moment.duration(timeMoment.diff(now));
+    return `${duration.days() > 0 ? duration.days() + "d" : ""} ${
+      duration.hours() > 0 ? duration.hours() + "h" : ""
+    } ${duration.minutes()}m`;
   } else {
     return timeMoment.diff(now, "days") > 0
-    ? `${timeMoment.diff(now, "days")} Days`
-    : timeMoment.diff(now, "hours") >= 1
-    ? `${timeMoment.diff(now, "hours")} hours`
-    : timeMoment.diff(now, "seconds") < 60
-    ? `${timeMoment.diff(now, "seconds")} seconds`
-    : `${timeMoment.diff(now, "minutes")} minutes`;
+      ? `${timeMoment.diff(now, "days")} Days`
+      : timeMoment.diff(now, "hours") >= 1
+      ? `${timeMoment.diff(now, "hours")} hours`
+      : timeMoment.diff(now, "seconds") < 60
+      ? `${timeMoment.diff(now, "seconds")} seconds`
+      : `${timeMoment.diff(now, "minutes")} minutes`;
   }
 };
 
-
-
 export const isOpenPeriod = (kickstarter: any) => {
   return getPeriod(kickstarter) === PERIOD.OPEN;
-}
+};
 
 export enum PERIOD {
   NOT_OPEN,
   OPEN,
-  CLOSE
+  CLOSE,
 }
 
 export const getPeriod = (kickstarter: any) => {
@@ -112,11 +115,14 @@ export const getPeriod = (kickstarter: any) => {
     return PERIOD.NOT_OPEN;
   }
 
-  if ( kickstarter.open_timestamp <= nowDate && nowDate <= kickstarter.close_timestamp) {
+  if (
+    kickstarter.open_timestamp <= nowDate &&
+    nowDate <= kickstarter.close_timestamp
+  ) {
     return PERIOD.OPEN;
   }
 
-  if ( nowDate > kickstarter.close_timestamp) {
+  if (nowDate > kickstarter.close_timestamp) {
     return PERIOD.CLOSE;
   }
 
@@ -128,25 +134,21 @@ export const getPeriod = (kickstarter: any) => {
     return PERIOD.OPEN;
   }
   return PERIOD.CLOSE; */
-}
+};
 
 export const getMyProjectsFounded = async (id: string) => {
   const account_id = window.account_id;
-  const projectsFounded: any[] = await getSupportedKickstarters(
-    account_id
-  );
+  const projectsFounded: any[] = await getSupportedKickstarters(account_id);
   if (!projectsFounded) {
     return null;
   }
   return projectsFounded.find((val: any) => val.kickstarter_id === id);
 };
 
-export const getEndVotingPeriod = ()=> {
-  return timeLeftToFund(VOTE_CONFIGS.END_VOTE_PERIOD, true)
-   // return moment(VOTE_CONFIGS.END_VOTE_PERIOD ).format('MM-DD-YYYY')
-}
-
-
+export const getEndVotingPeriod = () => {
+  return timeLeftToFund(VOTE_CONFIGS.END_VOTE_PERIOD, true);
+  // return moment(VOTE_CONFIGS.END_VOTE_PERIOD ).format('MM-DD-YYYY')
+};
 
 export const getCurrentFundingGoal = (goals: any, total_deposited: any) => {
   const [currentFundingGoal] = goals.filter(
@@ -159,8 +161,8 @@ export const getCurrentFundingGoal = (goals: any, total_deposited: any) => {
 };
 
 export const getWinnerGoal = (kickstarter: any) => {
-  if ( kickstarter.successful) {
-    return kickstarter.goals[kickstarter.winner_goal_id] ;
+  if (kickstarter.successful) {
+    return kickstarter.goals[kickstarter.winner_goal_id];
   }
   return null;
 };
@@ -217,7 +219,7 @@ export const getPanicError = (txResult: any) => {
   }
 };
 
-export const getPanicErrorFromText  = (text: string) => {
+export const getPanicErrorFromText = (text: string) => {
   let result = text;
   const KEY = "panicked at ";
   const kl = KEY.length;
@@ -231,7 +233,7 @@ export const getPanicErrorFromText  = (text: string) => {
     }
   }
   return result;
-}
+};
 
 export const formatJSONErr = (obj: any) => {
   let text = JSON.stringify(obj);
@@ -260,6 +262,17 @@ export const formatJSONErr = (obj: any) => {
 
   //if panicked-at: return relevant info only
   //debug: console.error(text); //show info in the console before removing extra info
-  text = getPanicErrorFromText(text)
+  text = getPanicErrorFromText(text);
   return text;
 };
+
+export const sortByVotes = (projects: any) =>
+  projects.sort(function (a: any, b: any) {
+    if (yton(a.votes) > yton(b.votes)) {
+      return -1;
+    }
+    if (yton(a.votes) < yton(b.votes)) {
+      return 1;
+    }
+    return 0;
+  });

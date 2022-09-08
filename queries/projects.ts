@@ -11,11 +11,15 @@ export const fetchProjectDetails = async (id: number, votingMode?: boolean) => {
     const response = await fetch(`/api/projects/${id}`);
     return await response.json();
   }
-  
 };
 
 export const fetchVotedProjects = async () => {
   const response = await fetch("/api/projects/vote");
+  return await response.json();
+};
+
+export const fetchProjectsVotes = async () => {
+  const response = await fetch("/api/projects/votes");
   return await response.json();
 };
 
@@ -34,7 +38,7 @@ export const fetchFinishedProjects = async () => {
   return await response.json();
 };
 
-export const fetchSupportedProjects = async(supporterId: string) => {
+export const fetchSupportedProjects = async (supporterId: string) => {
   const response = await fetch(`/api/projects/supported/${supporterId}`);
   return await response.json();
-}
+};
