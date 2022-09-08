@@ -129,7 +129,7 @@ const Hero = () => {
                   Fund
                 </Heading>
                 <Text  textAlign={'center'} w={'70%'} opacity={0.5}>Financially support NEAR projects with you stNEAR tokens and get rewards</Text>
-                <Link  href="/#vote" w={'100%'} >
+                <Link  href="/#fund" w={'100%'} >
                   <Button mt={'20px'} borderColor={'indigo.500'}  borderRadius={5} fontWeight={600} colorScheme={'indigo'} w={'100%'}  py={6} variant={'solid'}  >
                     Projects to Fund
                   </Button>
