@@ -24,6 +24,7 @@ import {
   MenuItem,
   MenuList,
   IconButton,
+  Spinner,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
@@ -52,6 +53,7 @@ const Header: React.FC<ButtonProps> = (props) => {
   const nearConfig = getNearConfig();
   const { selector, modal, accounts, accountId } = useWalletSelector();
   const [account, setAccount] = useState<Account | null>(null);
+  const [isSigningOut, setIsSigningOut] = useState<boolean>(false);
 
   const handleSignIn = () => {
     modal.show();
@@ -63,15 +65,22 @@ const Header: React.FC<ButtonProps> = (props) => {
 
   const handleSignOut = async () => {
     const wallet = await selector.wallet();
+    setIsSigningOut(true);
 
-    wallet.signOut().catch((err) => {
-      console.log("Failed to sign out");
-      console.error(err);
-    });
+    wallet
+      .signOut()
+      .then((e) => {
+        setIsSigningOut(false);
+      })
+      .catch((err) => {
+        console.log("Failed to sign out");
+        console.error(err);
+        setIsSigningOut(false);
+      });
   };
   const updateBalance = () => {
     (async () => {
-      if (selector.isSignedIn()) {
+      if (selector.isSignedIn() && !isSigningOut) {
         const balance = await getBalance();
         setBalance(balance);
       }
@@ -164,44 +173,57 @@ const Header: React.FC<ButtonProps> = (props) => {
                     </LinkOverlay>
                   </Button>
                 </Show>
-                <Menu>
-                  {isDesktop ? (
-                    <MenuButton px={4} py={2}>
-                      {truncateAccountId(accountId!, 24)} <ChevronDownIcon />
-                    </MenuButton>
-                  ) : (
-                    <MenuButton
-                      as={IconButton}
-                      icon={<HamburgerIcon h="22px" />}
-                      variant="none"
+                {!isSigningOut ? (
+                  <Menu>
+                    {isDesktop ? (
+                      <MenuButton px={4} py={2}>
+                        {truncateAccountId(accountId!, 24)} <ChevronDownIcon />
+                      </MenuButton>
+                    ) : (
+                      <MenuButton
+                        as={IconButton}
+                        icon={<HamburgerIcon h="22px" />}
+                        variant="none"
+                      />
+                    )}
+                    <MenuList>
+                      <MenuItem
+                        as={"a"}
+                        href={`${nearConfig.explorerUrl}/accounts/${accountId}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        My dashboard
+                      </MenuItem>
+                      <MenuItem onClick={() => handleSignOut()}>
+                        Disconnect
+                      </MenuItem>
+                      <Show below="lg">
+                        <MenuDivider />
+                        <MenuItem onClick={() => router.push("/#projects")}>
+                          Projects
+                        </MenuItem>
+                        <MenuItem onClick={() => router.push("/#how-it-works")}>
+                          How it works
+                        </MenuItem>
+                        <MenuItem onClick={() => router.push("/#faq")}>
+                          FAQ
+                        </MenuItem>
+                      </Show>
+                    </MenuList>
+                  </Menu>
+                ) : (
+                  <Stack direction="row" spacing={4}>
+                    <p>Disconnecting from Wallet...</p>
+                    <Spinner
+                      thickness="4px"
+                      speed="0.3s"
+                      emptyColor="gray.200"
+                      color="blue"
+                      size="lg"
                     />
-                  )}
-                  <MenuList>
-                    <MenuItem
-                      as={"a"}
-                      href={`${nearConfig.explorerUrl}/accounts/${accountId}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      My dashboard
-                    </MenuItem>
-                    <MenuItem onClick={() => handleSignOut()}>
-                      Disconnect
-                    </MenuItem>
-                    <Show below="lg">
-                      <MenuDivider />
-                      <MenuItem onClick={() => router.push("/#projects")}>
-                        Projects
-                      </MenuItem>
-                      <MenuItem onClick={() => router.push("/#how-it-works")}>
-                        How it works
-                      </MenuItem>
-                      <MenuItem onClick={() => router.push("/#faq")}>
-                        FAQ
-                      </MenuItem>
-                    </Show>
-                  </MenuList>
-                </Menu>
+                  </Stack>
+                )}
               </>
             ) : (
               <Button
