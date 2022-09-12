@@ -82,18 +82,21 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         case Wallets.Nightly: {
           modules.push(setupNightly());
         }
-        case Wallets.WalletConnect: { 
+        case Wallets.WalletConnect: {
           modules.push(
             setupWalletConnect({
-              projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "3ec2226fd3f38b6fb82e789fcfc232bf",
+              projectId:
+                process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID ||
+                "3ec2226fd3f38b6fb82e789fcfc232bf",
               metadata: {
                 name: "NEAR Wallet Selector for Meta Yield",
-                description: "Wallet Connect integration on Wallet Selector for Meta Yield",
+                description:
+                  "Wallet Connect integration on Wallet Selector for Meta Yield",
                 url: "https://metayield.app/",
                 icons: ["https://avatars.githubusercontent.com/u/37784886"],
               },
               chainId: `near:${NETWORK_ID}`,
-              iconUrl: "/assets/wallet-connect-icon.png"
+              iconUrl: "/assets/wallet-connect-icon.png",
             })
           );
         }
@@ -160,6 +163,10 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         console.log("Accounts Update", nextAccounts);
 
         setAccounts(nextAccounts);
+
+        window.account_id = nextAccounts.find(
+          (account) => account.active
+        )?.accountId!;
       });
 
     return () => subscription.unsubscribe();
