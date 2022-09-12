@@ -276,3 +276,7 @@ export const sortByVotes = (projects: any) =>
     }
     return 0;
   });
+// truncate {account} and add "..." for accounts with more than {long} characters
+export function truncateAccountId(account: string, long: number) : string{
+  return account.length > long ? account.substring(0, long-3) + "..." : account;
+}

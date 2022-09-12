@@ -39,7 +39,7 @@ import { formatToLocaleNear } from "../../lib/util";
 import { useWalletSelector } from "../../context/WalletSelectorContext";
 import { providers } from "near-api-js";
 import { AccountView } from "near-api-js/lib/providers/provider";
-
+import { truncateAccountId } from "../../lib/util";
 export type Account = AccountView & {
   account_id: string;
 };
@@ -167,7 +167,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                 <Menu>
                   {isDesktop ? (
                     <MenuButton px={4} py={2}>
-                      {accountId} <ChevronDownIcon />
+                      {truncateAccountId(accountId!, 24)} <ChevronDownIcon />
                     </MenuButton>
                   ) : (
                     <MenuButton
