@@ -31,6 +31,7 @@ const VotingStatusCard = (props: { project: any }) => {
     AMOUNT_ZERO: 'The amount to vote must be greater than 0',
     NOT_ENOUGH: 'You dont have enough Voting Power'
   }
+  const REFETCH_INTERVAL:number = process.env.NEXT_PUBLIC_VOTES_REFETCH_INTERVAL ? parseInt(process.env.NEXT_PUBLIC_VOTES_REFETCH_INTERVAL) : 5000
 
   const onMaxClick = async (event: any) =>
     formikVote.setFieldValue("amount", yton(votingPower));
@@ -60,26 +61,33 @@ const VotingStatusCard = (props: { project: any }) => {
     },
   });
 
+  const updateVoteData = async () => {
+    const id = project.id + '|'+project.slug;
+    const currentVotes = await getVotes(id);
+    setVotes(currentVotes);
+
+    if(selector?.isSignedIn() ) {
+      const myVotesInPrj = await getMyVotesByProject(id);
+      setMyVotes(myVotesInPrj);
+
+      const myVotinPower = await getAvailableVotingPower();
+      setVotingPower(myVotinPower);
+
+      const myVotinPowerInUse = await getInUseVotingPower();
+      setVotingPowerInUse(myVotinPowerInUse);
+    }
+  }
+  
+
   useEffect(() => {
-    (async () => {
-    
-        const id = project.id + '|'+project.slug;
-        const currentVotes = await getVotes(id);
-        setVotes(currentVotes);
-
-        if(selector?.isSignedIn() ) {
-          const myVotesInPrj = await getMyVotesByProject(id);
-          setMyVotes(myVotesInPrj);
-  
-          const myVotinPower = await getAvailableVotingPower();
-          setVotingPower(myVotinPower);
-  
-          const myVotinPowerInUse = await getInUseVotingPower();
-          setVotingPowerInUse(myVotinPowerInUse);
-        }
-
-    })();
+   updateVoteData()
   }, [project, selector]);
+
+  useEffect(() => {
+    setInterval(async () => {
+      updateVoteData();
+    }, REFETCH_INTERVAL);
+  }, []);
 
   return (
     <>

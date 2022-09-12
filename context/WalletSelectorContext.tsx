@@ -13,6 +13,10 @@ import {
   setupNearWallet,
 } from "@near-wallet-selector/near-wallet";
 import { setupMathWallet } from "@near-wallet-selector/math-wallet";
+// import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
+import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
+import { setupNightly } from "@near-wallet-selector/nightly";
+import { setupLedger } from "@near-wallet-selector/ledger";
 import { CONTRACT_ID, METAPOOL_CONTRACT_ID, NETWORK_ID } from "../lib/near";
 import { getConfig } from "../config";
 declare global {
@@ -45,12 +49,12 @@ const WalletSelectorContext =
   React.createContext<WalletSelectorContextValue | null>(null);
 
 export const WalletSelectorContextProvider: React.FC = ({ children }) => {
-  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || 'production';
+  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || "production";
   const nearConfig = getConfig(env);
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);
-  const DEFAULT_ENABLE_WALLETS = ["near", "math"];
+  const DEFAULT_ENABLE_WALLETS = ["near", "math", "nightly", "walletconnect"];
 
   const setupWallets = () => {
     let modules: any[] = [];
@@ -60,17 +64,57 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         case Wallets.Near: {
           modules.push(
             setupNearWallet({
-              walletUrl: nearConfig.walletUrl, 
+              walletUrl: nearConfig.walletUrl,
               iconUrl: "/assets/near-wallet-icon.png",
-             
             })
           );
           break;
         }
         case Wallets.Math: {
-          modules.push(setupMathWallet({iconUrl: "/assets/math-wallet-icon.png"}));
+          modules.push(
+            setupMathWallet({ iconUrl: "/assets/math-wallet-icon.png" })
+          );
           break;
         }
+        case Wallets.Ledger: {
+          modules.push(setupLedger());
+        }
+        case Wallets.Nightly: {
+          modules.push(setupNightly());
+        }
+        case Wallets.WalletConnect: {
+          modules.push(
+            setupWalletConnect({
+              projectId:
+                process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID ||
+                "3ec2226fd3f38b6fb82e789fcfc232bf",
+              metadata: {
+                name: "NEAR Wallet Selector for Meta Yield",
+                description:
+                  "Wallet Connect integration on Wallet Selector for Meta Yield",
+                url: "https://metayield.app/",
+                icons: ["https://avatars.githubusercontent.com/u/37784886"],
+              },
+              chainId: `near:${NETWORK_ID}`,
+              iconUrl: "/assets/wallet-connect-icon.png",
+            })
+          );
+        }
+        // case Wallets.NightlyConnect: {
+        //   modules.push(
+        //     setupNightlyConnect({
+        //       url: "wss://ncproxy.nightly.app/app",
+        //       iconUrl: '/assets/nightly-connect-png',
+        //       appMetadata: {
+        //         additionalInfo: "",
+        //         application: "NEAR Wallet Selector for Meta Yield",
+        //         description:
+        //           "Nightly Connect integration on Wallet Selector for Meta Yield",
+        //         icon: "https://near.org/wp-content/uploads/2020/09/cropped-favicon-192x192.png",
+        //       },
+        //     })
+        //   );
+        // }
       }
     });
     return modules;
@@ -119,6 +163,10 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         console.log("Accounts Update", nextAccounts);
 
         setAccounts(nextAccounts);
+
+        window.account_id = nextAccounts.find(
+          (account) => account.active
+        )?.accountId!;
       });
 
     return () => subscription.unsubscribe();
