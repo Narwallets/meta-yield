@@ -25,7 +25,15 @@ declare global {
     modal: WalletSelectorModal;
     account_id: string | null;
     wallet: Wallet | null;
+    selectedWalletId: WALLETID
   }
+}
+
+enum WALLETID {
+  NearWallet = 'near-wallet',
+  MathWallet = 'math-wallet',
+  Nightly =  'nightly',
+  WalletConnect = 'wallet-connect'
 }
 
 interface WalletSelectorContextValue {
@@ -130,7 +138,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
     const _modal = setupModal(_selector, { contractId: CONTRACT_ID || "" });
     const state = _selector.store.getState();
     setAccounts(state.accounts);
-
+    window.selectedWalletId = state.selectedWalletId! as WALLETID; 
     window.selector = _selector;
     window.modal = _modal;
     window.account_id = _selector.isSignedIn()

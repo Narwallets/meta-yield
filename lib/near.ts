@@ -36,7 +36,7 @@ import {
   yton,
 } from "./util";
 import { AccountView } from "near-api-js/lib/providers/provider";
-
+import {blockerStore} from "../stores/pageBlocker"
 export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID =
   process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
@@ -226,7 +226,8 @@ export const fundToKickstarter = async (
     amount: ntoy(amountOnStNear),
     msg: kickstarter_id.toString(),
   };
-
+ 
+  blockerStore.setState({isActive: true})
   const result = await wallet!
     .signAndSendTransaction({
       signerId: account_id!,
@@ -247,6 +248,8 @@ export const fundToKickstarter = async (
       console.log("Failed to fund to kickstarter");
      
       throw getPanicErrorFromText(err.message);
+    }).finally(()=> {
+      blockerStore.setState({isActive: false})
     });
     if (result instanceof Object) {
       return result;
@@ -374,6 +377,7 @@ const getStorageBalanceBounds = async (contract: string) => {
 };
 
 const callChangeKatherineMethod = async (method: string, args: any) => {
+  blockerStore.setState({isActive: true})
   const wallet = window.wallet;
   const account_id = window.account_id;
   const result = await wallet!
@@ -396,6 +400,9 @@ const callChangeKatherineMethod = async (method: string, args: any) => {
         `Failed to call katherine contract -- method: ${method} - error message: ${err.message}`
       );
       throw getPanicErrorFromText(err.message);
+    }).
+    finally(()=> {
+      blockerStore.setState({isActive: false})
     });
   if (result instanceof Object) {
     return result;
@@ -448,6 +455,7 @@ const callChangeMetavoteMethod = async (
 ) => {
   const wallet = window.wallet;
   const account_id = window.account_id;
+  blockerStore.setState({isActive: true})
   const result = await wallet!
     .signAndSendTransaction({
       signerId: account_id!,
@@ -469,6 +477,8 @@ const callChangeMetavoteMethod = async (
         `Failed to call meta vote contract -- method: ${method} - error message: ${err.message}`
       );
       throw getPanicErrorFromText(err.message);
+    }).finally(()=> {
+      blockerStore.setState({isActive: false})
     });
   if (result instanceof Object) {
     return result;
