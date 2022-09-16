@@ -51,7 +51,6 @@ import {
   getBalanceOfTokenForSupporter,
   getStNearPrice,
   getSupporterEstimatedStNear,
-  getWallet,
   storageDepositOfTokenForSupporter,
   withdrawAll,
 } from "../../lib/near";
@@ -258,7 +257,6 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   };
 
   const isReadyForClaimPToken = async () => {
-    const tempWallet = await getWallet();
     return await getBalanceOfTokenForSupporter(
       project.kickstarter.token_contract_address
     );
