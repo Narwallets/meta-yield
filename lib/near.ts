@@ -59,21 +59,6 @@ export const getNearConfig = () => {
   return nearConfig;
 };
 
-export const getAccount = async () => {
-  const accountId = window.account_id;
-  const account = provider
-    .query<Account>({
-      request_type: "view_account",
-      finality: "final",
-      account_id: accountId,
-    })
-    .then((data) => ({
-      ...data,
-      account_id: accountId,
-    }));
-  return account;
-};
-
 export const getTotalKickstarters = async () => {
   return callViewKatherineMethod(katherineViewMethods.getTotalKickstarters, {});
 };
