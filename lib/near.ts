@@ -59,53 +59,6 @@ export const getNearConfig = () => {
   return nearConfig;
 };
 
-export const getConnection = async () => {
-  const connectConfig: ConnectConfig = {
-    ...nearConfig,
-    headers: {},
-    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-  };
-  const nearConnection = await connect(connectConfig);
-  return nearConnection;
-};
-
-export const getAccount = async () => {
-  const accountId = window.account_id;
-  const account = provider
-    .query<Account>({
-      request_type: "view_account",
-      finality: "final",
-      account_id: accountId,
-    })
-    .then((data) => ({
-      ...data,
-      account_id: accountId,
-    }));
-  return account;
-};
-
-export const getWallet = async () => {
-  const connectConfig: ConnectConfig = {
-    ...nearConfig,
-    headers: {},
-    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-  };
-  const near = await connect(connectConfig);
-  const wallet = new WalletConnection(near, "katherine");
-  return wallet;
-};
-
-export const signInWallet = async () => {
-  const wallet = await getWallet();
-  wallet.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
-  return wallet;
-};
-
-export const signOutWallet = async () => {
-  const wallet = await getWallet();
-  wallet!.signOut();
-};
-
 export const getTotalKickstarters = async () => {
   return callViewKatherineMethod(katherineViewMethods.getTotalKickstarters, {});
 };
