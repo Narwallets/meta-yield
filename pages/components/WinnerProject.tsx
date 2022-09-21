@@ -41,7 +41,7 @@ const WinnerProject = (props: { data: ProjectProps }) => {
         pb={{ base: "12", md: "24" }}
       >
         <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-          No Active Project
+          No Project Data Provided ...
         </Text>
       </Box>
     );
