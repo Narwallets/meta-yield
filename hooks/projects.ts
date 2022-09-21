@@ -8,6 +8,7 @@ import {
   fetchComingSoonProjects,
   fetchVotedProjects,
   fetchProjectsVotes,
+  fetchWinnerProject,
 } from "../queries/projects";
 
 export const useGetProjects = () => {
@@ -50,8 +51,17 @@ export const useGetFinishedProjects = () => {
     },
   });
 };
+
 export const useGetProjectsToVote = () => {
   return useQuery("vote-projects", () => fetchVotedProjects(), {
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+};
+
+export const useGetWinnerVotedProjects = () => {
+  return useQuery("winner-projects", () => fetchWinnerProject(), {
     onError: (err) => {
       console.error(err);
     },

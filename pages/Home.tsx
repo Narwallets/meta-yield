@@ -22,6 +22,7 @@ import {
   useGetFinishedProjects,
   useGetProjectsToVote,
   useGetProjectsVotes,
+  useGetWinnerVotedProjects,
 } from "./../hooks/projects";
 import ErrorHandlerHash from "./components/ErrorHandlerHash";
 import PageLoading from "./components/PageLoading";
@@ -32,6 +33,7 @@ import { useEffect, useState } from "react";
 import { getVotes } from "../lib/near";
 import { getEndVotingPeriod, yton } from "../lib/util";
 import Marquee from "react-fast-marquee";
+import WinnerProject from "./components/WinnerProject";
 
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
@@ -43,6 +45,10 @@ const Home = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const { data: comingSoon, isLoading: comingSoonFinished } =
     useComingSoonProjects();
+  
+  const { data: winner, isLoading: winnerFinished } =
+    useGetWinnerVotedProjects();
+    
 
   if (isLoading && isLoadingFinished && isLoadingVote) return <PageLoading />;
   return (
@@ -73,6 +79,23 @@ const Home = () => {
                 </div>
               ))}
             </Stack>
+          )}
+
+          {winner && winner.length > 0 && (
+            <Box
+              p={{ base: 5, md: 30 }}
+              id="projects"
+              as="section"
+            >
+              <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
+                Coming soon ...
+              </Text>
+              {winner.map((p: any, index: number) => (
+                <div key={index}>
+                  <WinnerProject data={p} />
+                </div>
+              ))}
+            </Box>
           )}
 
           {projectsToVote && projectsToVote.length > 0 && (
@@ -185,6 +208,7 @@ const Home = () => {
               </Stack>
             </Stack>
           )}
+          
           {comingSoon && comingSoon.length > 0 && (
             <Box
               p={{ base: 5, md: 30 }}

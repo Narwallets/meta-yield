@@ -11,14 +11,7 @@ export default async function handler(
 
   const promises: Array<Promise<any>> = [];
   if (dataToVote) {
-    dataToVote.filter((project: any)=> !project.winner).map((project: any) => {
-      promises.push(getVotes(project.id + "|" + project.slug));
-    });
-    const votesList = await Promise.all(promises);
-    const dataWithVotes = dataToVote.filter((project: any)=> !project.winner).map((p: any, i: number) => {
-      return { ...p, votes: votesList[i] };
-    });
-    result = sortByVotes(dataWithVotes);
+    result = dataToVote.filter((project: any)=> project.winner);
   }
 
   res.status(200).json(result);
