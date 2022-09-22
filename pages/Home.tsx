@@ -87,7 +87,7 @@ const Home = () => {
             >
               <VStack align={"flex-start"}>
                 <Text fontSize={"16px"} color={"#120E28"}>
-                  METAVOTE
+                  META VOTE
                 </Text>
                 <Text
                   w={{ base: "100%", md: "50%" }}
