@@ -35,16 +35,15 @@ import Marquee from "react-fast-marquee";
 
 const Home = () => {
   const { data, isLoading } = useGetActiveProjects();
-  const { data: dataFinished, isLoading: isLoadingFinished } =
+  const { data: dataFinished, isLoading: isLoadingFinishedProjects } =
     useGetFinishedProjects();
-  const { data: dataToVote, isLoading: isLoadingVote } = useGetProjectsToVote();
   const { data: projectsToVote, isLoading: isLoadingVotes } =
     useGetProjectsVotes();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const { data: comingSoon, isLoading: comingSoonFinished } =
     useComingSoonProjects();
 
-  if (isLoading && isLoadingFinished && isLoadingVote) return <PageLoading />;
+  if (isLoading || isLoadingFinishedProjects || isLoadingVotes) return <PageLoading />;
   return (
     <>
       <Hero />
