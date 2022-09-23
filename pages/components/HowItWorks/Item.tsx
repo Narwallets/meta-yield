@@ -14,6 +14,7 @@ const HowItWorks = ({ title, description, icon }: Props) => (
       fontSize={{ base: "lg", md: "2xl" }}
       lineHeight={{ base: "5", md: "8" }}
       fontWeight="semibold"
+      maxW={{ base: "inherit", md: "150px" }}
     >
       {title}
     </Text>
