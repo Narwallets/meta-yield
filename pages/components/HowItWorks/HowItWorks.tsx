@@ -24,7 +24,7 @@ const HowItWorks = () => (
       <Stack spacing={{ base: "8", md: "10" }} align="center">
         <Flex flexDirection={"column"} alignItems={"center"} mb={"50px"}>
           <Text fontSize="xl" lineHeight="7" fontWeight="semibold">
-            How It Works
+            How it Works
           </Text>
           <Text
             fontSize={{ base: "4xl", md: "6xl" }}
@@ -48,8 +48,7 @@ const HowItWorks = () => (
           <Item
             title={
               <>
-                Fund crypto
-                <br /> projects
+                Fund crypto projects
               </>
             }
             description="Use the staking rewards to fund new projects. You keep ownership

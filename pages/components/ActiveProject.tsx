@@ -112,7 +112,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
             )} */}
         </Stack>
         <Text noOfLines={{base: 2 , md: 10}} mt="2">{projectData.description}</Text>
-        <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor}>
+        <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor} justify="center">
           {projectData.tags &&
             projectData.tags.map((tag: string) => (
               <Tag key={tag} variant={'outline'} colorScheme="indigo"  px="3">
