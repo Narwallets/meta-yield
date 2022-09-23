@@ -15,8 +15,6 @@ import {
   Spacer,
   Square,
   Image,
-  useToast,
-  Stack,
   Show,
   Menu,
   MenuButton,
@@ -28,19 +26,16 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
-  getWallet,
   getBalance,
-  METAPOOL_CONTRACT_ID,
   getNearConfig,
 } from "../../lib/near";
-import { colors } from "../../constants/colors";
 import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
 import { formatToLocaleNear } from "../../lib/util";
 import { useWalletSelector } from "../../context/WalletSelectorContext";
-import { providers } from "near-api-js";
 import { AccountView } from "near-api-js/lib/providers/provider";
 import { truncateAccountId } from "../../lib/util";
+import {blockerStore} from "../../stores/pageBlocker"
 export type Account = AccountView & {
   account_id: string;
 };
@@ -49,11 +44,8 @@ const Header: React.FC<ButtonProps> = (props) => {
   const { balance, setBalance } = useBalance();
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const router = useRouter();
-  const toast = useToast();
   const nearConfig = getNearConfig();
   const { selector, modal, accounts, accountId } = useWalletSelector();
-  const [account, setAccount] = useState<Account | null>(null);
-  const [isSigningOut, setIsSigningOut] = useState<boolean>(false);
 
   const handleSignIn = () => {
     modal.show();
@@ -65,22 +57,20 @@ const Header: React.FC<ButtonProps> = (props) => {
 
   const handleSignOut = async () => {
     const wallet = await selector.wallet();
-    setIsSigningOut(true);
-
+    
+    blockerStore.setState({isActive: true})
     wallet
       .signOut()
-      .then((e) => {
-        setIsSigningOut(false);
-      })
       .catch((err) => {
         console.log("Failed to sign out");
         console.error(err);
-        setIsSigningOut(false);
+      }).finally(()=> {
+        blockerStore.setState({isActive: false})
       });
   };
   const updateBalance = () => {
     (async () => {
-      if (selector.isSignedIn() && !isSigningOut) {
+      if (selector.isSignedIn()) {
         const balance = await getBalance();
         setBalance(balance);
       }
@@ -173,7 +163,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                     </LinkOverlay>
                   </Button>
                 </Show>
-                {!isSigningOut ? (
+                
                   <Menu>
                     {isDesktop ? (
                       <MenuButton px={4} py={2}>
@@ -212,18 +202,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                       </Show>
                     </MenuList>
                   </Menu>
-                ) : (
-                  <Stack direction="row" spacing={4}>
-                    <p>Disconnecting from Wallet...</p>
-                    <Spinner
-                      thickness="4px"
-                      speed="0.3s"
-                      emptyColor="gray.200"
-                      color="blue"
-                      size="lg"
-                    />
-                  </Stack>
-                )}
+                
               </>
             ) : (
               <Button

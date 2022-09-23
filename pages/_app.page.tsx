@@ -15,6 +15,7 @@ import NextHead from "next/head";
 import "@near-wallet-selector/modal-ui/styles.css";
 import "../styles/nprogress.css";
 import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
+import PageBlocker from "./components/PageBlocker";
 
 const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
 function App({ Component, pageProps }: AppProps) {
@@ -49,8 +50,10 @@ function App({ Component, pageProps }: AppProps) {
             <title>  Meta Yield - Allow any project to bootstrap liquidity through staking
               on Meta Pool.</title>
           </NextHead>
+          <PageBlocker />
           <Header />
           <Component {...pageProps} />
+         
           <Footer />
           {/* enable analytics script only for production */}
           {isProduction && (

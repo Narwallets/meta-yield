@@ -36,7 +36,7 @@ import {
   yton,
 } from "./util";
 import { AccountView } from "near-api-js/lib/providers/provider";
-
+import {blockerStore} from "../stores/pageBlocker"
 export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID =
   process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
@@ -57,53 +57,6 @@ export type Account = AccountView & {
 };
 export const getNearConfig = () => {
   return nearConfig;
-};
-
-export const getConnection = async () => {
-  const connectConfig: ConnectConfig = {
-    ...nearConfig,
-    headers: {},
-    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-  };
-  const nearConnection = await connect(connectConfig);
-  return nearConnection;
-};
-
-export const getAccount = async () => {
-  const accountId = window.account_id;
-  const account = provider
-    .query<Account>({
-      request_type: "view_account",
-      finality: "final",
-      account_id: accountId,
-    })
-    .then((data) => ({
-      ...data,
-      account_id: accountId,
-    }));
-  return account;
-};
-
-export const getWallet = async () => {
-  const connectConfig: ConnectConfig = {
-    ...nearConfig,
-    headers: {},
-    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-  };
-  const near = await connect(connectConfig);
-  const wallet = new WalletConnection(near, "katherine");
-  return wallet;
-};
-
-export const signInWallet = async () => {
-  const wallet = await getWallet();
-  wallet.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
-  return wallet;
-};
-
-export const signOutWallet = async () => {
-  const wallet = await getWallet();
-  wallet!.signOut();
 };
 
 export const getTotalKickstarters = async () => {
@@ -226,7 +179,8 @@ export const fundToKickstarter = async (
     amount: ntoy(amountOnStNear),
     msg: kickstarter_id.toString(),
   };
-
+ 
+  blockerStore.setState({isActive: true})
   const result = await wallet!
     .signAndSendTransaction({
       signerId: account_id!,
@@ -247,6 +201,8 @@ export const fundToKickstarter = async (
       console.log("Failed to fund to kickstarter");
      
       throw getPanicErrorFromText(err.message);
+    }).finally(()=> {
+      blockerStore.setState({isActive: false})
     });
     if (result instanceof Object) {
       return result;
@@ -374,6 +330,7 @@ const getStorageBalanceBounds = async (contract: string) => {
 };
 
 const callChangeKatherineMethod = async (method: string, args: any) => {
+  blockerStore.setState({isActive: true})
   const wallet = window.wallet;
   const account_id = window.account_id;
   const result = await wallet!
@@ -396,6 +353,9 @@ const callChangeKatherineMethod = async (method: string, args: any) => {
         `Failed to call katherine contract -- method: ${method} - error message: ${err.message}`
       );
       throw getPanicErrorFromText(err.message);
+    }).
+    finally(()=> {
+      blockerStore.setState({isActive: false})
     });
   if (result instanceof Object) {
     return result;
@@ -448,6 +408,7 @@ const callChangeMetavoteMethod = async (
 ) => {
   const wallet = window.wallet;
   const account_id = window.account_id;
+  blockerStore.setState({isActive: true})
   const result = await wallet!
     .signAndSendTransaction({
       signerId: account_id!,
@@ -469,6 +430,8 @@ const callChangeMetavoteMethod = async (
         `Failed to call meta vote contract -- method: ${method} - error message: ${err.message}`
       );
       throw getPanicErrorFromText(err.message);
+    }).finally(()=> {
+      blockerStore.setState({isActive: false})
     });
   if (result instanceof Object) {
     return result;

@@ -107,7 +107,8 @@ const VoteProject = (props: { data: any, position: number }) => {
       <Button
           px={'40px'}
           py={'10px'}
-          w={{base: '100%', md: 'inherit'}}
+          minW={{base: '100%', md: '140px'}}
+          w={{base: '100%', md: '140px'}}
           colorScheme={"indigo"}
           onClick={() => router.push(`/vote/${projectData.id}`)}
         >
