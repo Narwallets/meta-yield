@@ -24,16 +24,15 @@ import { useGetProjectDetails } from "../../hooks/projects";
 import { useRouter } from "next/router";
 import moment from "moment";
 import { fundToKickstarter, getBalance } from "../../lib/near";
-import { useStore } from "./../../stores/wallet";
 import { getCurrentFundingGoal, yton } from "../../lib/util";
 import { useFormik } from "formik";
 import fundKickstarterSchema from "../../validation/fundSchemaValidation";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
 
 const FundingSummary = (props: { id: any }) => {
   const kickstarter_id: number = props.id;
   const router = useRouter();
-  const { wallet } = useStore();
-
+  const { selector, modal, accounts, accountId } = useWalletSelector();
   const { isLoading, data: project } = useGetProjectDetails(kickstarter_id);
   const [amount, setamount] = useState<number>(0);
   const [fundingNeeded, setFundingNeeded] = useState<number | undefined>(
@@ -49,7 +48,7 @@ const FundingSummary = (props: { id: any }) => {
   const handleChange = (event: any) => setamount(event.target.value);
 
   const onMaxClick = async (event: any) =>
-    formik.setFieldValue("amount", await getBalance(wallet!));
+    formik.setFieldValue("amount", await getBalance());
 
   const initialValues: any = {
     amount: 0,
@@ -64,7 +63,6 @@ const FundingSummary = (props: { id: any }) => {
     validateOnChange: true,
     onSubmit: async (values: any) => {
       const result = await fundToKickstarter(
-        wallet!,
         kickstarter_id,
         values.amount
       );
@@ -100,7 +98,7 @@ const FundingSummary = (props: { id: any }) => {
 
   useEffect(() => {
     async function setBalance() {
-      formik.setFieldValue("balance", await getBalance(wallet!));
+      formik.setFieldValue("balance", await getBalance());
     }
 
     setBalance();
@@ -279,7 +277,7 @@ const FundingSummary = (props: { id: any }) => {
                 disabled={!formik.isValid}
               >
                 Invest {formik.values.amount} stNEAR from{" "}
-                {wallet?.getAccountId()}
+                {accountId}
               </Button>
             </Stack>
           </Stack>

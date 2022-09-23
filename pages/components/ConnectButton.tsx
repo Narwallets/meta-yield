@@ -3,25 +3,22 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import { useState } from "react";
-import { signInWallet } from "../../lib/near";
-import { useStore } from "../../stores/wallet";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
 
 interface Props {
-  text: string;
+  text?: string;
 }
 
 const ConnectButton = (props: Props) => {
-  const { wallet, setWallet } = useStore();
-  const [connected, setconnected] = useState(false)
+  const { selector, modal, accounts, accountId } = useWalletSelector();
 
-  const onConnect = async () => {
-    const wallet = await signInWallet()
-    setWallet(wallet);
+  const handleSignIn = () => {
+    modal.show();
   };
 
   return (
     <>
-      <Button width={'100%'} colorScheme="indigo" onClick={() => onConnect()}>
+      <Button colorScheme="indigo" onClick={() => handleSignIn()}>
         {props && props.text ? props.text : 'Connect Wallet'}
       </Button>
     </>

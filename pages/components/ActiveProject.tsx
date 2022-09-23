@@ -111,11 +111,11 @@ const ActiveProject = (props: { data: ProjectProps }) => {
               />
             )} */}
         </Stack>
-        <Text mt="2">{projectData.description}</Text>
-        <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor}>
+        <Text noOfLines={{base: 2 , md: 10}} mt="2">{projectData.description}</Text>
+        <Wrap shouldWrapChildren mt="5" fontWeight={700} color={tagColor} justify="center">
           {projectData.tags &&
             projectData.tags.map((tag: string) => (
-              <Tag key={tag} color="inherit" px="3">
+              <Tag key={tag} variant={'outline'} colorScheme="indigo"  px="3">
                 {tag}
               </Tag>
             ))}
@@ -126,8 +126,7 @@ const ActiveProject = (props: { data: ProjectProps }) => {
           <VStack
             align={{ base: "center", lg: "flex-start" }}
             spacing="1"
-            w="full"
-          >
+            w="full">
             {getPeriod(projectData.kickstarter) === PERIOD.OPEN &&
               timeLeftToFund(projectData.kickstarter?.close_timestamp) && (
                 <Stack

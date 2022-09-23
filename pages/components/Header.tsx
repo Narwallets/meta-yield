@@ -15,8 +15,6 @@ import {
   Spacer,
   Square,
   Image,
-  useToast,
-  Stack,
   Show,
   Menu,
   MenuButton,
@@ -24,79 +22,79 @@ import {
   MenuItem,
   MenuList,
   IconButton,
+  Spinner,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
-  getWallet,
   getBalance,
-  METAPOOL_CONTRACT_ID,
   getNearConfig,
 } from "../../lib/near";
-import { colors } from "../../constants/colors";
-import { useStore as useWallet } from "../../stores/wallet";
 import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
 import { formatToLocaleNear } from "../../lib/util";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
+import { AccountView } from "near-api-js/lib/providers/provider";
+import { truncateAccountId } from "../../lib/util";
+import {blockerStore} from "../../stores/pageBlocker"
+export type Account = AccountView & {
+  account_id: string;
+};
 
 const Header: React.FC<ButtonProps> = (props) => {
-  const { wallet, isLogin, setWallet, setLogin } = useWallet();
   const { balance, setBalance } = useBalance();
-  const [signInAccountId, setSignInAccountId] = useState(null);
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const router = useRouter();
-  const toast = useToast();
   const nearConfig = getNearConfig();
-  const onConnect = async () => {
-    try {
-      wallet!.requestSignIn(METAPOOL_CONTRACT_ID, "Metapool contract");
-    } catch (e) {
-      console.log("error", e);
-    }
+  const { selector, modal, accounts, accountId } = useWalletSelector();
+
+  const handleSignIn = () => {
+    modal.show();
   };
 
-  const logout = async () => {
-    await wallet!.signOut();
-    setLogin(wallet && wallet.getAccountId() ? true : false);
-    const tempWallet = await getWallet();
-    setWallet(tempWallet);
+  const handleSwitchWallet = () => {
+    modal.show();
   };
 
-  useEffect(() => {
+  const handleSignOut = async () => {
+    const wallet = await selector.wallet();
+    
+    blockerStore.setState({isActive: true})
+    wallet
+      .signOut()
+      .catch((err) => {
+        console.log("Failed to sign out");
+        console.error(err);
+      }).finally(()=> {
+        blockerStore.setState({isActive: false})
+      });
+  };
+  const updateBalance = () => {
     (async () => {
-      if (wallet) {
+      if (selector.isSignedIn()) {
+        const balance = await getBalance();
+        setBalance(balance);
       }
     })();
-  }, [setLogin, wallet, isLogin]);
+  };
 
   useEffect(() => {
     (async () => {
       try {
-        const tempWallet = await getWallet();
-        if (!wallet) {
-          setWallet(tempWallet);
-        }
-        if (tempWallet && tempWallet.getAccountId()) {
-          setSignInAccountId(tempWallet.getAccountId());
-          setBalance(await getBalance(tempWallet!));
-        }
-
-        setLogin(tempWallet && tempWallet.getAccountId() ? true : false);
+        updateBalance();
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     })();
+  }, [selector]);
 
+  useEffect(() => {
     setInterval(async () => {
-      const tempWallet = await getWallet();
-      if (tempWallet && tempWallet.getAccountId()) {
-        const balance = await getBalance(tempWallet);
-        setBalance(balance);
-      }
+      updateBalance();
     }, 5000);
   }, []);
 
   return (
-    <Box as="section" pb={{ base: "12", md: "24" }}>
+    <Box as="section" position={"relative"} zIndex={99}>
       <Box as="nav" alignContent="flex-end">
         <Container maxW="container.2xl" py={{ base: "3", lg: "4" }}>
           <HStack justify="space-between">
@@ -105,28 +103,17 @@ const Header: React.FC<ButtonProps> = (props) => {
               cursor="pointer"
               alignItems="center"
             >
-              <Image 
-              objectFit="cover" 
-              src="/logo.svg" 
-              alt="logo" 
-              width={{ base: "126px", md: "184px" }}
-              height={{ base: "22px", md: "32px" }}/>
+              <Image
+                objectFit="cover"
+                src="/logo.svg"
+                alt="logo"
+                width={{ base: "126px", md: "184px" }}
+                height={{ base: "22px", md: "32px" }}
+              />
             </Flex>
             <Spacer />
-            { isDesktop && (
-              <ButtonGroup variant="link"  alignItems="flex-end">
-                <Link href="/#projects">
-                  <Button
-                    fontWeight={600}
-                    fontSize={"md"}
-                    color={colors.indigo[500]}
-                    aria-current="page"
-                    variant="nav"
-                  >
-                    {" "}
-                    Projects{" "}
-                  </Button>
-                </Link>
+            {isDesktop && (
+              <ButtonGroup variant="link" alignItems="flex-end">
                 <Link href="/#how-it-works">
                   <Button fontWeight={600} fontSize={"16px"} variant="nav">
                     {" "}
@@ -139,11 +126,25 @@ const Header: React.FC<ButtonProps> = (props) => {
                     FAQ{" "}
                   </Button>
                 </Link>
+                <Link href="/#completed">
+                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                    {" "}
+                    Funded projects{" "}
+                  </Button>
+                </Link>
+                {/* 
+                    <Link href="/vote">
+                      <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                        {" "}
+                        Votes{" "}
+                      </Button>
+                    </Link>
+                  */}
               </ButtonGroup>
             )}
 
             <Spacer />
-            {isLogin ? (
+            {selector?.isSignedIn() ? (
               <>
                 <Show above="lg">
                   <Square minW="30px">
@@ -162,49 +163,53 @@ const Header: React.FC<ButtonProps> = (props) => {
                     </LinkOverlay>
                   </Button>
                 </Show>
-                <Menu>
-                  {isDesktop ? (
-                    <MenuButton px={4} py={2}>
-                      {signInAccountId} <ChevronDownIcon />
-                    </MenuButton>
-                  ) : (
-                    <MenuButton
-                      as={IconButton}
-                      icon={<HamburgerIcon h="22px" />}
-                      variant="none"
-                    />
-                  )}
-                  <MenuList>
-                    <MenuItem
-                      as={"a"}
-                      href={`${nearConfig.explorerUrl}/accounts/${signInAccountId}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      My dashboard
-                    </MenuItem>
-                    <MenuItem onClick={() => logout()}>Disconnect</MenuItem>
-                    <Show below="lg">
-                      <MenuDivider />
-                      <MenuItem onClick={() => router.push("/#projects")}>
-                        Projects
+                
+                  <Menu>
+                    {isDesktop ? (
+                      <MenuButton px={4} py={2}>
+                        {truncateAccountId(accountId!, 24)} <ChevronDownIcon />
+                      </MenuButton>
+                    ) : (
+                      <MenuButton
+                        as={IconButton}
+                        icon={<HamburgerIcon h="22px" />}
+                        variant="none"
+                      />
+                    )}
+                    <MenuList>
+                      <MenuItem
+                        as={"a"}
+                        href={`${nearConfig.explorerUrl}/accounts/${accountId}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        My dashboard
                       </MenuItem>
-                      <MenuItem onClick={() => router.push("/#how-it-works")}>
-                        How it works
+                      <MenuItem onClick={() => handleSignOut()}>
+                        Disconnect
                       </MenuItem>
-                      <MenuItem onClick={() => router.push("/#faq")}>
-                        FAQ
-                      </MenuItem>
-                    </Show>
-                  </MenuList>
-                </Menu>
+                      <Show below="lg">
+                        <MenuDivider />
+                        <MenuItem onClick={() => router.push("/#projects")}>
+                          Projects
+                        </MenuItem>
+                        <MenuItem onClick={() => router.push("/#how-it-works")}>
+                          How it works
+                        </MenuItem>
+                        <MenuItem onClick={() => router.push("/#faq")}>
+                          FAQ
+                        </MenuItem>
+                      </Show>
+                    </MenuList>
+                  </Menu>
+                
               </>
             ) : (
               <Button
                 color="blue"
                 borderColor="blue"
                 variant="outline"
-                onClick={() => onConnect()}
+                onClick={() => handleSignIn()}
               >
                 Connect Wallet
               </Button>

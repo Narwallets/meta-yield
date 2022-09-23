@@ -33,8 +33,8 @@ import {
   ModalFooter,
   ModalHeader,
   Modal,
-  Center,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import {
   KickstarterGoalProps,
@@ -51,7 +51,6 @@ import {
   getBalanceOfTokenForSupporter,
   getStNearPrice,
   getSupporterEstimatedStNear,
-  getWallet,
   storageDepositOfTokenForSupporter,
   withdrawAll,
 } from "../../lib/near";
@@ -66,8 +65,6 @@ import {
 
 import RewardsEstimated from "./RewardsEstimated";
 import ConnectButton from "./ConnectButton";
-
-import { useStore } from "../../stores/wallet";
 import Funding from "./Funding";
 import FAQ from "./FAQ";
 import Documents from "./Documents";
@@ -75,7 +72,11 @@ import PageLoading from "./PageLoading";
 import { colors } from "../../constants/colors";
 import { ArrowSquareOut, Link as LinkI, TwitterLogo } from "phosphor-react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import VotingStatusCard from "./VotingStatusCard";
 import { useRouter } from "next/router";
+import { useWalletSelector } from "../../context/WalletSelectorContext";
+import { FinalExecutionOutcome } from "@near-wallet-selector/core";
+import TxErrorHandler from "./TxErrorHandler";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -88,8 +89,13 @@ export enum ProjectStatus {
   UNSUCCESS,
 }
 
-const ProjectDetails = (props: { id: any }) => {
-  const { isLoading, data: project } = useGetProjectDetails(parseInt(props.id));
+const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
+  const {
+    isLoading,
+    data: project,
+    isRefetching,
+    refetch,
+  } = useGetProjectDetails(parseInt(props.id), props.votingMode);
   const tagsColor = useColorModeValue("gray.600", "gray.300");
   const isMobile = useBreakpointValue({ base: true, md: false });
   const router = useRouter();
@@ -103,6 +109,7 @@ const ProjectDetails = (props: { id: any }) => {
     useState<boolean>(false);
 
   const [status, setStatus] = useState<ProjectStatus>(ProjectStatus.NOT_LOGGIN);
+
   const [ammountClaim, setRewards] = useState<any>(0);
   const [lockupDate, setLockupDate] = useState<any>();
   const [endDate, setEndDate] = useState<any>();
@@ -111,10 +118,12 @@ const ProjectDetails = (props: { id: any }) => {
 
   const [myProjectFounded, setMyProjectFounded] = useState<any>();
   const [ammountWithdraw, setAmmountWithdraw] = useState(0);
-
-  const { wallet, isLogin } = useStore();
+  const [finalExecutionOutcome, setFinalExecutionOutcome] =
+    useState<FinalExecutionOutcome | null>(null);
+  const [isTxInProgress, setIsTxInProgress] = useState(false);
+  const { selector, modal, accounts, accountId } = useWalletSelector();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
-
+  const toast = useToast();
   const onCloseModal = () => {
     onClose();
     router.push("/");
@@ -131,28 +140,45 @@ const ProjectDetails = (props: { id: any }) => {
   });
 
   const withdrawAllStnear = async () => {
-    // call to contract for withdraw
-    const tempWallet = await getWallet();
-    withdrawAll(tempWallet, parseInt(props.id)).then((val) => {
-      console.log("Return withdrawAll", val);
-    });
+    setIsTxInProgress(true);
+    await withdrawAll(parseInt(props.id))
+      .then((result) => {
+        refetch();
+        setIsTxInProgress(false);
+        setFinalExecutionOutcome(result);
+      })
+      .catch((error) => {
+        setIsTxInProgress(false);
+        toast({
+          title: "Transaction error.",
+          description: error,
+          status: "error",
+          duration: 9000,
+          position: "top-right",
+          isClosable: true,
+        });
+      });
+  };
+
+  const onActioninished = () => {
+    refetch();
   };
 
   const claim = async () => {
-    const tempWallet = await getWallet();
     const readyToClaim = await isReadyForClaimPToken();
     if (!readyToClaim) {
       storageDepositOfTokenForSupporter(
-        tempWallet,
         project.kickstarter.token_contract_address
       );
     } else {
-      claimAll(tempWallet, parseInt(props.id));
+      const result = await claimAll(parseInt(props.id));
+      refetch();
+      setFinalExecutionOutcome(result);
     }
   };
 
   const refreshStatus = (project: any, thisProjectFounded: any) => {
-    if (isLogin) {
+    if (selector?.isSignedIn()) {
       setStatus(ProjectStatus.LOGGIN);
       if (isOpenPeriod(project.kickstarter)) {
         if (project.kickstarter.active) {
@@ -185,8 +211,13 @@ const ProjectDetails = (props: { id: any }) => {
     }
   };
 
-  const getWithdrawAmmount = async (wallet: any, id: number, price: string) =>
-    getSupporterEstimatedStNear(wallet, id, price);
+  const getWithdrawAmmount = async (id: number, price: string) =>
+    getSupporterEstimatedStNear(id, price);
+
+  const evaluateShowAproveButton = async () => {
+    const isApproved = await isReadyForClaimPToken();
+    setShowApprove(isApproved === null);
+  }
 
   const calculateAmmountToWithdraw = async () => {
     if (
@@ -199,11 +230,7 @@ const ProjectDetails = (props: { id: any }) => {
       const amount =
         parseInt(project.kickstarter.stnear_price_at_unfreeze) > 0
           ? project.kickstarter.stnear_price_at_unfreeze
-          : await getWithdrawAmmount(
-              wallet,
-              parseInt(props.id),
-              price.toString()
-            );
+          : await getWithdrawAmmount(parseInt(props.id), price.toString());
       if (amount) {
         setAmmountWithdraw(yton(amount));
       }
@@ -230,9 +257,7 @@ const ProjectDetails = (props: { id: any }) => {
   };
 
   const isReadyForClaimPToken = async () => {
-    const tempWallet = await getWallet();
     return await getBalanceOfTokenForSupporter(
-      tempWallet,
       project.kickstarter.token_contract_address
     );
   };
@@ -272,6 +297,7 @@ const ProjectDetails = (props: { id: any }) => {
         calculateAmmountToWithdraw();
         setShowFund(true);
         setShowRewardsEstimated(true);
+        evaluateShowAproveButton();
         break;
 
       case ProjectStatus.SUCCESS:
@@ -298,54 +324,59 @@ const ProjectDetails = (props: { id: any }) => {
   }, [project]);
   useEffect(() => {
     (async () => {
-      if (project && isLogin) {
+      if (project && selector?.isSignedIn()) {
         const thisProjectFounded = await getMyProjectsFounded(
-          project.kickstarter.id,
-          wallet
+          project.kickstarter.id
         );
         setMyProjectFounded(thisProjectFounded);
         refreshStatus(project, thisProjectFounded);
-        const isApproved = await isReadyForClaimPToken();
-        setShowApprove(isApproved === null);
       }
     })();
-  }, [wallet, props, project]);
+  }, [props, project, selector]);
 
-  if (isLoading) return <PageLoading />;
+  useEffect(() => {
+    // Initial fetch
+    refetch();
+  }, []);
+
+  if (!project || isLoading || isRefetching) return <PageLoading />;
 
   return (
-    <> {project.projectDisabled && 
-      (<Modal
-        closeOnOverlayClick={false}
-        isOpen={isOpen}
-        onClose={() => onCloseModal()}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{project.projectDisabled.title}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <Stack fontSize={"xl"} textAlign="center">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: project.projectDisabled.bodyHtml,
-                }}
-              ></div>
-            </Stack>
-          </ModalBody>
+    <>
+      <TxErrorHandler finalExecutionOutcome={finalExecutionOutcome} />{" "}
+      {project.projectDisabled && (
+        <Modal
+          closeOnOverlayClick={false}
+          isOpen={isOpen}
+          onClose={() => onCloseModal()}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>{project.projectDisabled.title}</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <Stack fontSize={"xl"} textAlign="center">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: project.projectDisabled.bodyHtml,
+                  }}
+                ></div>
+              </Stack>
+            </ModalBody>
 
-          <ModalFooter>
-            <Button
-              onClick={() => {
-                onCloseModal();
-              }}
-            >
-              Back to projets
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>)}
-      <Container maxW="container.xl">
+            <ModalFooter>
+              <Button
+                onClick={() => {
+                  onCloseModal();
+                }}
+              >
+                Back to projets
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      )}
+      <Container mt={50} maxW="container.xl">
         <Grid
           as="section"
           templateRows={{ base: "1fr", lg: "1fr" }}
@@ -434,6 +465,8 @@ const ProjectDetails = (props: { id: any }) => {
             />
           </GridItem>
           <GridItem rowSpan={{ base: 0, lg: 2 }}>
+            { /* **********FUNDING SIDEBAR ***************/}
+          { !props.votingMode && (
             <Box
               px={{ base: "0", md: "6" }}
               py={{ base: "0", md: "6" }}
@@ -448,13 +481,13 @@ const ProjectDetails = (props: { id: any }) => {
                       kickstarter={project?.kickstarter}
                     />
                   )}
-                {showRewardEstimated && isLogin && (
+                {showRewardEstimated && selector.isSignedIn() && (
                   <RewardsEstimated
                     kickstarter={project?.kickstarter}
                   ></RewardsEstimated>
                 )}
                 <Stack w={"100%"}>
-                  {isLogin && (showFund || showWithdraw) && (
+                  {selector?.isSignedIn() && (showFund || showWithdraw) && (
                     <Funding
                       project={project}
                       showOnlyWithdraw={showWithdraw}
@@ -463,15 +496,18 @@ const ProjectDetails = (props: { id: any }) => {
                           ? yton(myProjectFounded.supporter_deposit)
                           : 0
                       }
+                      onActioninished={onActioninished}
+                      isTxInProgress={isTxInProgress}
+                      setIsTxInProgress={setIsTxInProgress}
                     ></Funding>
                   )}
-                  {!isLogin && (
+                  {!selector.isSignedIn() && (
                     <ConnectButton
                       text={"Connect wallet to fund"}
                     ></ConnectButton>
                   )}
 
-                  {showClaim && isLogin && (
+                  {showClaim && selector?.isSignedIn() && (
                     <>
                       <Stack w={"100%"}>
                         {myProjectFounded &&
@@ -661,14 +697,22 @@ const ProjectDetails = (props: { id: any }) => {
                           )
                         }
                       </Stack>
-                    </>
+                      </>
+                    )}
+                  </Stack>
+                  {showRewardsCalculator && (
+                    <RewardsCalculator kickstarter={project?.kickstarter} />
                   )}
                 </Stack>
-                {showRewardsCalculator && (
-                  <RewardsCalculator kickstarter={project?.kickstarter} />
-                )}
-              </Stack>
-            </Box>
+              </Box>
+            )
+          }
+          { props.votingMode && ( 
+            <VotingStatusCard project={project}></VotingStatusCard>
+            )
+          }
+          
+
           </GridItem>
           <GridItem>
             <Tabs>
@@ -680,15 +724,16 @@ const ProjectDetails = (props: { id: any }) => {
                 minW={{ base: "0", lg: "0" }}
                 maxW={{ base: "none", lg: "none" }}
               >
-                <Tab>Campaign</Tab>
-                <Tab>Team</Tab>
-                <Tab>FAQ</Tab>
-                <Tab>Roadmap</Tab>
-                <Tab>Documents</Tab>
-                <Tab>About</Tab>
+                { project?.campaignHtml  && (<Tab>Campaign</Tab> )}
+                { project?.team  && (<Tab>Team</Tab> )}
+                { project?.faq  && (<Tab>FAQ</Tab> )}
+                { project?.roadmap  && (<Tab>Roadmap</Tab> )}
+                { project?.documents  && (<Tab>Documents</Tab> )}
+                { project?.about  && (<Tab>About</Tab> )}
               </TabList>
 
               <TabPanels minHeight="580px">
+              { project?.campaignHtml  && (
                 <TabPanel>
                   <Text fontSize="sm" fontWeight="subtle">
                     CAMPAIGN
@@ -701,33 +746,45 @@ const ProjectDetails = (props: { id: any }) => {
                     ></div>
                   </Stack>
                 </TabPanel>
+                )}
+                { project?.team  && (
                 <TabPanel>
                   <Team team={project?.team} />
                 </TabPanel>
+                )}
+                { project?.faq  && (
                 <TabPanel>
                   <FAQ data={project?.faq} />
                 </TabPanel>
+                )}
+                { project?.roadmap  && (
                 <TabPanel>
                   <Box>
                     <Text fontSize="sm" fontWeight="subtle">
                       ROADMAP
                     </Text>
                     <Stack mt={5}>
+                    { project?.roadmap.imageUrl  && (
                       <Image
-                        src={project?.roadmap.imageUrl}
+                        src={project?.roadmap?.imageUrl}
                         alt="project"
                         width="400"
                         objectFit="cover"
-                      />
-                      <Link href={project?.roadmap.linkUrl} isExternal>
+                      />)}
+                      { project?.roadmap.linkUrl  && (
+                      <Link href={project?.roadmap?.linkUrl} isExternal>
                         Full Roadmap <ExternalLinkIcon mx="2px" />
-                      </Link>
+                      </Link>)}
                     </Stack>
                   </Box>
                 </TabPanel>
+                )}
+                { project?.documents  && (
                 <TabPanel>
                   <Documents data={project?.documents} />
                 </TabPanel>
+                )}
+                { project?.about  && (
                 <TabPanel>
                   <Text fontSize="sm" fontWeight="subtle">
                     ABOUT
@@ -738,6 +795,7 @@ const ProjectDetails = (props: { id: any }) => {
                     ></div>
                   </Stack>
                 </TabPanel>
+                )}
               </TabPanels>
             </Tabs>
           </GridItem>
@@ -755,7 +813,7 @@ const Team = (props: { team: TeamMemberProps[] }) => {
         TEAM
       </Text>
       <Stack divider={<StackDivider />} spacing="4" mt="5">
-        {team.map((member, index) => (
+        {team?.map((member, index) => (
           <Stack key={index} fontSize="sm" px="4" spacing="4">
             <Stack direction="row" justify="space-between" spacing="4">
               <HStack spacing="3">

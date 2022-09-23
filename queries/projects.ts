@@ -3,8 +3,23 @@ export const fetchProjects = async () => {
   return await response.json();
 };
 
-export const fetchProjectDetails = async (id: number) => {
-  const response = await fetch(`/api/projects/${id}`);
+export const fetchProjectDetails = async (id: number, votingMode?: boolean) => {
+  if (votingMode) {
+    const response = await fetch(`/api/projects/vote/${id}`);
+    return await response.json();
+  } else {
+    const response = await fetch(`/api/projects/${id}`);
+    return await response.json();
+  }
+};
+
+export const fetchVotedProjects = async () => {
+  const response = await fetch("/api/projects/vote");
+  return await response.json();
+};
+
+export const fetchProjectsVotes = async () => {
+  const response = await fetch("/api/projects/votes");
   return await response.json();
 };
 
@@ -23,7 +38,7 @@ export const fetchFinishedProjects = async () => {
   return await response.json();
 };
 
-export const fetchSupportedProjects = async(supporterId: string) => {
+export const fetchSupportedProjects = async (supporterId: string) => {
   const response = await fetch(`/api/projects/supported/${supporterId}`);
   return await response.json();
-}
+};
