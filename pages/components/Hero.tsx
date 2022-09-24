@@ -47,7 +47,7 @@ const Hero = () => {
               maxW="2xl"
               textAlign="center"
               fontSize="24px">
-              Why participate in an IDO, when you can <Text as={'b'}>support</Text> crypto projects & mint native tokens or NFTs <Text as={'b'}>with your staking rewards, not your crypto assets</Text> .
+              Why participate in an IDO, when you can <Text as={'b'}>support</Text> crypto projects & mint native tokens or NFTs <Text as={'b'}>with your staking rewards, not your crypto assets</Text>.
             </Text>
           </Stack>
           {/* <Stack
