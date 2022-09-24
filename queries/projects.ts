@@ -18,6 +18,11 @@ export const fetchVotedProjects = async () => {
   return await response.json();
 };
 
+export const fetchWinnerProject = async () => {
+  const response = await fetch("/api/projects/votes/winner");
+  return await response.json();
+};
+
 export const fetchProjectsVotes = async () => {
   const response = await fetch("/api/projects/votes");
   return await response.json();

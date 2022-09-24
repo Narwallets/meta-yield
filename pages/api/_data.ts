@@ -831,13 +831,14 @@ export const dataToVote = [
   id: 8, // key para proyectos en katherine
   slug: "pokerspace", // unique friendly identifier per project. katherine smart contract would retrieve this field
   name: "Poker Space",
+  winner: true,
   motto: "Innovative free-to-play poker room build on P2E with unique NFT collection.",
   projectUrl: "http://pokerspace.io/",
   twitter: "https://twitter.com/Poker__Space",
   imageUrl:"/projects/pokerspace/cover.png",
   avatarUrl:"/projects/pokerspace/icon.jpeg",
   description:
-    ``,
+    `Poker Space is a galaxy Free-to-Play platform based on Play-to-Earn, Social-to-Earn and Work-to-Earn model, with a traditional WEB 2.0 gaming mobile app with a WEB 3.0 overlay build on NEAR Protocol. In our platform anyone can play poker and, even more importantly, try themselves as the founder of a community: unite your friends and acquaintances around a common hobby, set new trends, and unlimited use of classic and caste games.`,
   verified: true,
   tags: ["Gaming"],
   campaignHtml: `<h1 dir="ltr" style="line-height:1.3800000000000001;margin-top:20pt;margin-bottom:6pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
@@ -1159,6 +1160,7 @@ documents:[
   id: 11, // key para proyectos en katherine
   slug: "zomland", // unique friendly identifier per project. katherine smart contract would retrieve this field
   name: "ZomLand",
+  winner: true,
   motto: "Play-To-Earn NFT Collectible Game.",
   projectUrl: "https://zomland.com",
   twitter: "https://twitter.com/Zomland_Game",
@@ -1166,7 +1168,7 @@ documents:[
   avatarUrl:
     "/projects/zomland/icon.jpeg",
   description:
-    "Is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.",
+    "Is an interactive NFT, Play-to-Earn collectable game with exciting gameplay and a lot of fun.",
   verified: true,
   tags: ["Gaming"],
   campaignHtml: `<h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:20pt;margin-bottom:0pt;padding:0pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
