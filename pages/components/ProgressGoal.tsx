@@ -42,9 +42,6 @@ const ProgressGoal = (props: ProgressGoalProps) => {
     ...stackProps
   } = props as ProgressGoalProps;
 
-
-
-
   if (!props) return <></>;
   return (
     <Progress h={'9px'} colorScheme={colorBar && colorBar.colorScheme} variant={colorBar && colorBar.variant}  ml={10} mt={1} mb={6} value={progress} />

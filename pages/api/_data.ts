@@ -1160,6 +1160,7 @@ documents:[
   id: 11, // key para proyectos en katherine
   slug: "zomland", // unique friendly identifier per project. katherine smart contract would retrieve this field
   name: "ZomLand",
+  winner: true,
   motto: "Play-To-Earn NFT Collectible Game.",
   projectUrl: "https://zomland.com",
   twitter: "https://twitter.com/Zomland_Game",
