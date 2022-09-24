@@ -1168,7 +1168,7 @@ documents:[
   avatarUrl:
     "/projects/zomland/icon.jpeg",
   description:
-    "Is an interactive NFT &amp; Play-to-Earn collectable game with exciting gameplay and a lot of fun.",
+    "Is an interactive NFT, Play-to-Earn collectable game with exciting gameplay and a lot of fun.",
   verified: true,
   tags: ["Gaming"],
   campaignHtml: `<h1 dir="ltr" style="line-height:1.38;background-color:#ffffff;margin-top:20pt;margin-bottom:0pt;padding:0pt 0pt 6pt 0pt;"><span style="font-size:20pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Project Description</span></h1>
