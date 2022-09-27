@@ -707,11 +707,10 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
               </Box>
             )
           }
-          { props.votingMode && ( 
+          { props.votingMode && !project?.winner && ( 
             <VotingStatusCard project={project}></VotingStatusCard>
             )
           }
-          
 
           </GridItem>
           <GridItem>
