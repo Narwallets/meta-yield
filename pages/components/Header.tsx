@@ -108,7 +108,6 @@ const Header: React.FC<ButtonProps> = (props) => {
                 src="/logo.svg"
                 alt="logo"
                 width={{ base: "126px", md: "184px" }}
-                height={{ base: "22px", md: "32px" }}
               />
             </Flex>
             <Spacer />
