@@ -1,7 +1,7 @@
 import create from "zustand/vanilla";
-interface PageBlockerState {
-  message: string;
-  isActive: boolean;
-}
+import type { PageBlockerState } from "@meta-pool/meta-shared-components";
 
-export const blockerStore = create<PageBlockerState>(() => ({  message: "Confirm this action in your wallet", isActive: false }));
+export const blockerStore = create<PageBlockerState>(() => ({
+  message: "Confirm this action in your wallet",
+  isActive: false,
+}));
