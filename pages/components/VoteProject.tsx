@@ -14,7 +14,8 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { yton } from "../../lib/util";
+import { formatToLocaleNear, yton } from "../../lib/util";
+import Link from "next/link";
 
 const VoteProject = (props: { data: any, position: number }) => {
   const projectData = props.data;
@@ -97,23 +98,25 @@ const VoteProject = (props: { data: any, position: number }) => {
         borderRadius={'20px'}
         spacing={5}>
         <Text fontSize={{base: 'lg', md:'24px'}} color="emphasized">
-          <b>{yton(projectData.votes).toFixed(2)} </b>
+          <b>{formatToLocaleNear(yton(projectData.votes), 0)} </b>
         </Text>
         <Text  fontSize={"12px"} color={'#9CA3AF'} fontWeight="700">
           VOTES
         </Text>
       </HStack>
-            
-      <Button
-          px={'40px'}
-          py={'10px'}
-          minW={{base: '100%', md: '140px'}}
-          w={{base: '100%', md: '140px'}}
-          colorScheme={"indigo"}
-          onClick={() => router.push(`/vote/${projectData.id}`)}
-        >
-          Vote now
-      </Button>
+      
+      <Link passHref  href={`/vote/${projectData.id}`}>
+        <Button
+            px={'40px'}
+            py={'10px'}
+            minW={{base: '100%', md: '140px'}}
+            w={{base: '100%', md: '140px'}}
+            colorScheme={"indigo"}
+          >
+            Vote now
+        </Button>
+      </Link>
+      
     </Stack>
   );
 };

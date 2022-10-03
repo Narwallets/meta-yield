@@ -3,6 +3,7 @@ import {  Stack, Text, Spacer, Box, VStack, Button, InputGroup, Input, InputLeft
 import Card from "./Card";
 import { CaretRight } from "phosphor-react";
 import {
+  formatToLocaleNear,
   getEndVotingPeriod,
   ntoy,
   yton,
@@ -99,7 +100,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 PROJECT VOTES
               </Text>
               <Text fontSize={{ base: "2xl", md: "2xl" }} fontWeight="bold" lineHeight="8">
-                {yton(votes).toFixed(2)}
+                {formatToLocaleNear(yton(votes), 0 )}
               </Text>
             </Box>
             { selector?.isSignedIn() && (<Box>
@@ -107,7 +108,7 @@ const VotingStatusCard = (props: { project: any }) => {
                 YOUR VOTE
               </Text>
               <Text fontSize={{ base: "2xl", md: "2xl" }} fontWeight="bold" lineHeight="8">
-                {yton(myVotesInThisProject).toFixed(2)}
+                {formatToLocaleNear(yton(myVotesInThisProject), 0 )}
               </Text>
             </Box>)}
             <Box>
@@ -201,7 +202,7 @@ const VotingStatusCard = (props: { project: any }) => {
                   Total
                 </Text>
                 <Text fontSize={{ base: "xl", md: "xl" }} fontWeight="bold" lineHeight="8">
-                  {(yton(votingPower) + yton(votingPowerInUse)).toFixed(2)}
+                  {formatToLocaleNear((yton(votingPower) + yton(votingPowerInUse)), 0)}
                 </Text>
               </HStack>
               <HStack align={'center'}>
@@ -213,7 +214,7 @@ const VotingStatusCard = (props: { project: any }) => {
                   fontWeight="bold"
                   lineHeight="8"
                 >
-                  {yton(votingPowerInUse).toFixed(2)}
+                  {formatToLocaleNear(yton(votingPowerInUse), 0)}
                 </Text>
               </HStack>
               <HStack  align={'center'}>
@@ -226,7 +227,7 @@ const VotingStatusCard = (props: { project: any }) => {
                   fontWeight="bold"
                   lineHeight="8"
                 >
-                  {yton(votingPower).toFixed(2)}
+                  {formatToLocaleNear(yton(votingPower), 0)}
                 </Text>
               </HStack>
             </HStack>
