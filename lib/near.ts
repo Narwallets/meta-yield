@@ -1,17 +1,6 @@
-import {
-  keyStores,
-  Near,
-  connect,
-  WalletConnection,
-  utils,
-  Contract,
-  providers,
-  ConnectConfig,
-} from "near-api-js";
-import { parseRpcError } from "near-api-js/lib/utils/rpc_errors";
+import {  providers } from "near-api-js";
 import {
   FinalExecutionOutcome,
-  FinalExecutionStatus,
   getTransactionLastResult,
 } from "near-api-js/lib/providers";
 const BN = require("bn.js");
@@ -36,7 +25,8 @@ import {
   yton,
 } from "./util";
 import { AccountView } from "near-api-js/lib/providers/provider";
-import {blockerStore} from "../stores/pageBlocker"
+import { blockerStore } from "../stores/pageBlocker";
+import { Wallet } from "@near-wallet-selector/core";
 export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID =
   process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
@@ -57,6 +47,18 @@ export type Account = AccountView & {
 };
 export const getNearConfig = () => {
   return nearConfig;
+};
+
+export const signOutWallet = async (wallet: Wallet) => {
+  blockerStore.setState({isActive: true})
+  wallet
+    .signOut()
+    .catch((err) => {
+      console.log("Failed to sign out");
+      console.error(err);
+    }).finally(()=> {
+      blockerStore.setState({isActive: false})
+    });
 };
 
 export const getTotalKickstarters = async () => {
