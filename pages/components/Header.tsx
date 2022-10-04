@@ -28,6 +28,7 @@ import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   getBalance,
   getNearConfig,
+  signOutWallet
 } from "../../lib/near";
 import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
@@ -57,17 +58,9 @@ const Header: React.FC<ButtonProps> = (props) => {
 
   const handleSignOut = async () => {
     const wallet = await selector.wallet();
-    
-    blockerStore.setState({isActive: true})
-    wallet
-      .signOut()
-      .catch((err) => {
-        console.log("Failed to sign out");
-        console.error(err);
-      }).finally(()=> {
-        blockerStore.setState({isActive: false})
-      });
+    signOutWallet(wallet);
   };
+  
   const updateBalance = () => {
     (async () => {
       if (selector.isSignedIn()) {
