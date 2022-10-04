@@ -30,14 +30,15 @@ import { Wallet } from "@near-wallet-selector/core";
 export const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID;
 export const METAPOOL_CONTRACT_ID =
   process.env.NEXT_PUBLIC_METAPOOL_CONTRACT_ID;
-export const NETWORK_ID = process.env.NEXT_PUBLIC_VERCEL_ENV == 'production' ? 'mainnet' : 'testnet';
+export const NETWORK_ID =
+  process.env.NEXT_PUBLIC_VERCEL_ENV == "production" ? "mainnet" : "testnet";
 export const CONTRACT_ADDRESS_METAVOTE =
   process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_METAVOTE;
 export const METAVOTE_CONTRACT_ID =
   process.env.NEXT_PUBLIC_METAVOTE_CONTRACT_ID;
 export const GAS = "200000000000000";
 export const DEPOSIT = "1";
-const env = process.env.NEXT_PUBLIC_VERCEL_ENV || 'production';
+const env = process.env.NEXT_PUBLIC_VERCEL_ENV || "production";
 console.log("@env", env);
 const nearConfig = getConfig(env);
 const provider = new providers.JsonRpcProvider({ url: nearConfig.nodeUrl });
@@ -181,8 +182,8 @@ export const fundToKickstarter = async (
     amount: ntoy(amountOnStNear),
     msg: kickstarter_id.toString(),
   };
- 
-  blockerStore.setState({isActive: true})
+
+  blockerStore.setState({ isActive: true });
   const result = await wallet!
     .signAndSendTransaction({
       signerId: account_id!,
@@ -201,15 +202,16 @@ export const fundToKickstarter = async (
     })
     .catch((err) => {
       console.log("Failed to fund to kickstarter");
-     
+
       throw getPanicErrorFromText(err.message);
-    }).finally(()=> {
-      blockerStore.setState({isActive: false})
+    })
+    .finally(() => {
+      blockerStore.setState({ isActive: false });
     });
-    if (result instanceof Object) {
-      return result;
-    }
-    return null;
+  if (result instanceof Object) {
+    return result;
+  }
+  return null;
 };
 
 export const getTxStatus = async (
@@ -332,7 +334,7 @@ const getStorageBalanceBounds = async (contract: string) => {
 };
 
 const callChangeKatherineMethod = async (method: string, args: any) => {
-  blockerStore.setState({isActive: true})
+  blockerStore.setState({ isActive: true });
   const wallet = window.wallet;
   const account_id = window.account_id;
   const result = await wallet!
@@ -355,9 +357,9 @@ const callChangeKatherineMethod = async (method: string, args: any) => {
         `Failed to call katherine contract -- method: ${method} - error message: ${err.message}`
       );
       throw getPanicErrorFromText(err.message);
-    }).
-    finally(()=> {
-      blockerStore.setState({isActive: false})
+    })
+    .finally(() => {
+      blockerStore.setState({ isActive: false });
     });
   if (result instanceof Object) {
     return result;
@@ -410,34 +412,44 @@ const callChangeMetavoteMethod = async (
 ) => {
   const wallet = window.wallet;
   const account_id = window.account_id;
-  blockerStore.setState({isActive: true})
-  const result = await wallet!
-    .signAndSendTransaction({
-      signerId: account_id!,
-      receiverId: METAVOTE_CONTRACT_ID,
-      actions: [
-        {
-          type: "FunctionCall",
-          params: {
-            methodName: method,
-            args: args,
-            gas: GAS,
-            deposit: deposit ? deposit : "",
+  blockerStore.setState({ isActive: true });
+  try {
+    const result = await wallet!
+      .signAndSendTransaction({
+        signerId: account_id!,
+        receiverId: METAVOTE_CONTRACT_ID,
+        actions: [
+          {
+            type: "FunctionCall",
+            params: {
+              methodName: method,
+              args: args,
+              gas: GAS,
+              deposit: deposit ? deposit : "",
+            },
           },
-        },
-      ],
-    })
-    .catch((err) => {
-      console.log(
-        `Failed to call meta vote contract -- method: ${method} - error message: ${err.message}`
-      );
-      throw getPanicErrorFromText(err.message);
-    }).finally(()=> {
-      blockerStore.setState({isActive: false})
-    });
-  if (result instanceof Object) {
-    return result;
+        ],
+      })
+      .catch((err) => {
+        console.log(
+          `Failed to call meta vote contract -- method: ${method} - error message: ${err.message}`
+        );
+        throw getPanicErrorFromText(err.message);
+      })
+      .finally(() => {
+        blockerStore.setState({ isActive: false });
+      });
+    if (result instanceof Object) {
+      return result;
+    }
+  } catch (ex) {
+    blockerStore.setState({ isActive: false });
+    console.log(
+      `Failed to signAndSendTransaction -- method ${method} - error message: ${ex}`
+    );
+    throw ex;
   }
+
   return null;
 };
 
