@@ -15,11 +15,9 @@ import NextHead from "next/head";
 import "@near-wallet-selector/modal-ui/styles.css";
 import "../styles/nprogress.css";
 import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
-import {
-  PageBlocker,
-  PageBlockerState,
-} from "@meta-pool/meta-shared-components";
+import { PageBlockerState } from "./components/PageBlocker/pageblocker.types";
 import { blockerStore } from "../stores/pageBlocker";
+import PageBlocker from "./components/PageBlocker";
 const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
 const queryClient = new QueryClient();
 function App({ Component, pageProps }: AppProps) {

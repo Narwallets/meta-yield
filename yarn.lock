@@ -861,15 +861,6 @@
   resolved "https://registry.npmjs.org/@ledgerhq/logs/-/logs-6.10.0.tgz"
   integrity sha512-lLseUPEhSFUXYTKj6q7s2O3s2vW2ebgA11vMAlKodXGf5AFw4zUoEbTz9CoFOC9jS6xY4Qr8BmRnxP/odT4Uuw==
 
-"@meta-pool/meta-shared-components@^0.0.2":
-  version "0.0.2"
-  resolved "https://npm.pkg.github.com/download/@meta-pool/meta-shared-components/0.0.2/d0c2365152a889959570d4eee85ab26ca0dcb261#d0c2365152a889959570d4eee85ab26ca0dcb261"
-  integrity sha512-50Mo4l49kFgjQP5jO6vpZszXF6ToQnCEnBfkjJCtIgqommDtvxm0HSQo7sGkpAO6K5LIpX77VJe7okSgrO9pkQ==
-  dependencies:
-    "@chakra-ui/react" "^1.8.6"
-    "@emotion/styled" "^11.8.1"
-    "@fontsource/inter" "^4.5.5"
-
 "@near-wallet-selector/core@7.0.3", "@near-wallet-selector/core@^7.0.3":
   version "7.0.3"
   resolved "https://registry.npmjs.org/@near-wallet-selector/core/-/core-7.0.3.tgz"
