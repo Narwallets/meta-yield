@@ -15,9 +15,9 @@ import NextHead from "next/head";
 import "@near-wallet-selector/modal-ui/styles.css";
 import "../styles/nprogress.css";
 import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
-import { PageBlockerState } from "./components/PageBlocker/pageblocker.types";
+import { PageBlockerState } from "@meta-pool-apps/meta-shared-components";
 import { blockerStore } from "../stores/pageBlocker";
-import PageBlocker from "./components/PageBlocker";
+import {PageBlocker} from "@meta-pool-apps/meta-shared-components";
 const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
 const queryClient = new QueryClient();
 function App({ Component, pageProps }: AppProps) {
@@ -68,7 +68,10 @@ function App({ Component, pageProps }: AppProps) {
               staking on Meta Pool.
             </title>
           </NextHead>
-          <PageBlocker isActive={pageBlocerState.isActive} message={pageBlocerState.message} />
+          <PageBlocker
+            isActive={pageBlocerState.isActive}
+            message={pageBlocerState.message}
+          />
           <Header />
           <Component {...pageProps} />
 
