@@ -71,11 +71,11 @@ const VotingStatusCard = (props: { project: any }) => {
       const myVotesInPrj = await getMyVotesByProject(id);
       setMyVotes(myVotesInPrj);
 
-      const myVotinPower = await getAvailableVotingPower();
-      setVotingPower(myVotinPower);
+      const myVotingPower = await getAvailableVotingPower();
+      setVotingPower(myVotingPower);
 
-      const myVotinPowerInUse = await getInUseVotingPower();
-      setVotingPowerInUse(myVotinPowerInUse);
+      const myVotingPowerInUse = await getInUseVotingPower();
+      setVotingPowerInUse(myVotingPowerInUse);
     }
   }
   
