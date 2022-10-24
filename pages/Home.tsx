@@ -100,6 +100,7 @@ const Home = () => {
 
           {projectsToVote && projectsToVote.length > 0 && (
             <Stack
+              hidden={true}
               id="vote"
               p={{ base: 5, md: 30 }}
               w={"100%"}
