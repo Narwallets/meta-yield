@@ -781,6 +781,7 @@ export const dataToVote = [
     id: 7, // key para proyectos en katherine
     slug: "metamon", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "Metamon",
+    winner: true,
     motto: "Battle-and-earn Royale",
     projectUrl: "https://www.metamon.gg/",
     twitter: "https://www.twitter.com/metamonapp",
