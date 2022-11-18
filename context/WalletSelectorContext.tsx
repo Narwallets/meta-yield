@@ -17,6 +17,7 @@ import { setupLedger } from "@near-wallet-selector/ledger";
 import { CONTRACT_ID, METAPOOL_CONTRACT_ID, NETWORK_ID } from "../lib/near";
 import { getConfig } from "../config";
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
+import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
 declare global {
   interface Window {
     selector: WalletSelector;
@@ -50,18 +51,20 @@ enum Wallets {
   NightlyConnect = "nightlyconnect",
   Ledger = "ledger",
   Here = "here",
+  Meteor = "meteor"
 }
 
 const WalletSelectorContext =
   React.createContext<WalletSelectorContextValue | null>(null);
 
 export const WalletSelectorContextProvider: React.FC = ({ children }) => {
-  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || "production";
+  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || "development";
   const nearConfig = getConfig(env);
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);
   const DEFAULT_ENABLE_WALLETS = [
+    "meteor",
     "near",
     "mynearwallet",
     "math",
@@ -75,6 +78,9 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
     const enableWallets = DEFAULT_ENABLE_WALLETS;
     enableWallets.forEach((w: string) => {
       switch (w) {
+        case Wallets.Meteor: {
+          modules.push(setupMeteorWallet());
+        }
         case Wallets.Near: {
           modules.push(
             setupNearWallet({
