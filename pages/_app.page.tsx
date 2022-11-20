@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import theme from "../theme/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Router, { useRouter } from "next/router";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as gtag from "../lib/gtag";
 import Script from "next/script";
 import NProgress from "nprogress";
@@ -15,12 +15,27 @@ import NextHead from "next/head";
 import "@near-wallet-selector/modal-ui/styles.css";
 import "../styles/nprogress.css";
 import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
-import PageBlocker from "./components/PageBlocker";
-
-const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
+import { PageBlockerState } from "@meta-pool-apps/meta-shared-components";
+import { blockerStore } from "../stores/pageBlocker";
+import {PageBlocker} from "@meta-pool-apps/meta-shared-components";
+const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
+const queryClient = new QueryClient();
 function App({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
   const router = useRouter();
+  const [pageBlocerState, setPageBlockerState] = useState<PageBlockerState>({
+    isActive: false,
+    message: "",
+  });
+  useEffect(
+    () =>
+      blockerStore.subscribe((state) => {
+        setPageBlockerState({
+          isActive: state.isActive,
+          message: state.message,
+        });
+      }),
+    []
+  );
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
@@ -47,13 +62,19 @@ function App({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           <NextHead>
             <meta charSet="UTF-8" />
-            <title>  Meta Yield - Allow any project to bootstrap liquidity through staking
-              on Meta Pool.</title>
+            <title>
+              {" "}
+              Meta Yield - Allow any project to bootstrap liquidity through
+              staking on Meta Pool.
+            </title>
           </NextHead>
-          <PageBlocker />
+          <PageBlocker
+            isActive={pageBlocerState.isActive}
+            message={pageBlocerState.message}
+          />
           <Header />
           <Component {...pageProps} />
-         
+
           <Footer />
           {/* enable analytics script only for production */}
           {isProduction && (

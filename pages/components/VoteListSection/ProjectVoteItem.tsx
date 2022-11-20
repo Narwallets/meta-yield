@@ -8,6 +8,7 @@ import {
   HStack,
   VStack,
   Button,
+  useToast
 } from "@chakra-ui/react";
 import * as React from "react";
 import { getVotes, voteProject } from "../../../lib/near";
@@ -21,9 +22,23 @@ interface Props {
 const ProjectVoteItem = (props: Props) => {
   const { project } = props;
   const [votes, setVotes] = useState("0");
-
+  const toast = useToast();
   const vote = (slug: string, amount?: any) => {
-    voteProject(slug, ntoy(1));
+    voteProject(slug, ntoy(1)).then((result)=> {
+      setVotes("0");
+      setFinalExecutionOutcome(result);
+    })  
+    .catch((error) => {
+      toast({
+        title: "Transaction error.",
+        description: error,
+        status: "error",
+        duration: 9000,
+        position: "top-right",
+        isClosable: true,
+      });
+      setVotes("0");
+    });
   };
 
   useEffect(() => {
@@ -56,3 +71,7 @@ const ProjectVoteItem = (props: Props) => {
 };
 
 export default ProjectVoteItem;
+function setFinalExecutionOutcome(result: import("@near-wallet-selector/core").FinalExecutionOutcome | null) {
+  throw new Error("Function not implemented.");
+}
+

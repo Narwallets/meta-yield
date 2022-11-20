@@ -28,6 +28,7 @@ import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   getBalance,
   getNearConfig,
+  signOutWallet
 } from "../../lib/near";
 import { useStore as useBalance } from "../../stores/balance";
 import { useRouter } from "next/router";
@@ -57,17 +58,9 @@ const Header: React.FC<ButtonProps> = (props) => {
 
   const handleSignOut = async () => {
     const wallet = await selector.wallet();
-    
-    blockerStore.setState({isActive: true})
-    wallet
-      .signOut()
-      .catch((err) => {
-        console.log("Failed to sign out");
-        console.error(err);
-      }).finally(()=> {
-        blockerStore.setState({isActive: false})
-      });
+    signOutWallet(wallet);
   };
+  
   const updateBalance = () => {
     (async () => {
       if (selector.isSignedIn()) {
@@ -131,14 +124,12 @@ const Header: React.FC<ButtonProps> = (props) => {
                     Funded projects{" "}
                   </Button>
                 </Link>
-                {/* 
-                    <Link href="/vote">
-                      <Button fontWeight={600} fontSize={"16px"} variant="nav">
-                        {" "}
-                        Votes{" "}
-                      </Button>
-                    </Link>
-                  */}
+                <Link href="/#vote">
+                  <Button fontWeight={600} fontSize={"16px"} variant="nav">
+                    {" "}
+                    Votes{" "}
+                  </Button>
+                </Link>
               </ButtonGroup>
             )}
 
@@ -182,7 +173,7 @@ const Header: React.FC<ButtonProps> = (props) => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        My dashboard
+                        View in Explorer
                       </MenuItem>
                       <MenuItem onClick={() => handleSignOut()}>
                         Disconnect
@@ -197,6 +188,9 @@ const Header: React.FC<ButtonProps> = (props) => {
                         </MenuItem>
                         <MenuItem onClick={() => router.push("/#faq")}>
                           FAQ
+                        </MenuItem>
+                        <MenuItem onClick={() => router.push("/#vote")}>
+                          Vote
                         </MenuItem>
                       </Show>
                     </MenuList>

@@ -8,33 +8,31 @@ import {
 import type { WalletSelector, AccountState } from "@near-wallet-selector/core";
 import { setupModal } from "@near-wallet-selector/modal-ui";
 import type { WalletSelectorModal } from "@near-wallet-selector/modal-ui";
-import {
-  NearWalletParams,
-  setupNearWallet,
-} from "@near-wallet-selector/near-wallet";
+import { setupNearWallet } from "@near-wallet-selector/near-wallet";
 import { setupMathWallet } from "@near-wallet-selector/math-wallet";
-// import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
 import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
+import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupNightly } from "@near-wallet-selector/nightly";
 import { setupLedger } from "@near-wallet-selector/ledger";
 import { CONTRACT_ID, METAPOOL_CONTRACT_ID, NETWORK_ID } from "../lib/near";
 import { getConfig } from "../config";
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
+import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
 declare global {
   interface Window {
     selector: WalletSelector;
     modal: WalletSelectorModal;
     account_id: string | null;
     wallet: Wallet | null;
-    selectedWalletId: WALLETID
+    selectedWalletId: WALLETID;
   }
 }
 
 enum WALLETID {
-  NearWallet = 'near-wallet',
-  MathWallet = 'math-wallet',
-  Nightly =  'nightly',
-  WalletConnect = 'wallet-connect'
+  NearWallet = "near-wallet",
+  MathWallet = "math-wallet",
+  Nightly = "nightly",
+  WalletConnect = "wallet-connect",
 }
 
 interface WalletSelectorContextValue {
@@ -52,24 +50,37 @@ enum Wallets {
   WalletConnect = "walletconnect",
   NightlyConnect = "nightlyconnect",
   Ledger = "ledger",
+  Here = "here",
+  Meteor = "meteor"
 }
 
 const WalletSelectorContext =
   React.createContext<WalletSelectorContextValue | null>(null);
 
 export const WalletSelectorContextProvider: React.FC = ({ children }) => {
-  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || "production";
+  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || "development";
   const nearConfig = getConfig(env);
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);
-  const DEFAULT_ENABLE_WALLETS = ["near", "mynearwallet", "math", "nightly", "walletconnect"];
+  const DEFAULT_ENABLE_WALLETS = [
+    "meteor",
+    "near",
+    "mynearwallet",
+    "math",
+    "nightly",
+    "walletconnect",
+    "here",
+  ];
 
   const setupWallets = () => {
     let modules: any[] = [];
     const enableWallets = DEFAULT_ENABLE_WALLETS;
     enableWallets.forEach((w: string) => {
       switch (w) {
+        case Wallets.Meteor: {
+          modules.push(setupMeteorWallet());
+        }
         case Wallets.Near: {
           modules.push(
             setupNearWallet({
@@ -118,6 +129,9 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
             })
           );
         }
+        case Wallets.Here: {
+          modules.push(setupHereWallet());
+        }
         // case Wallets.NightlyConnect: {
         //   modules.push(
         //     setupNightlyConnect({
@@ -148,7 +162,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
     const _modal = setupModal(_selector, { contractId: CONTRACT_ID || "" });
     const state = _selector.store.getState();
     setAccounts(state.accounts);
-    window.selectedWalletId = state.selectedWalletId! as WALLETID; 
+    window.selectedWalletId = state.selectedWalletId! as WALLETID;
     window.selector = _selector;
     window.modal = _modal;
     window.account_id = _selector.isSignedIn()
