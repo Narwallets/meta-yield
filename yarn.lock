@@ -972,10 +972,26 @@
     hey-listen "^1.0.8"
     tslib "^2.3.1"
 
+"@near-wallet-selector/coin98-wallet@^7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/coin98-wallet/-/coin98-wallet-7.2.1.tgz#b1465431b107f451d7d9582d2f25e1cd18ab3337"
+  integrity sha512-1KcKPM3j2dbf1YGDbTMoS5wlgT7jiF6iJRny4E6E8A1hQnJKpIht7aZAKZH5XCB7UqLgvs3xlbThJjqaSmkYmg==
+  dependencies:
+    "@near-wallet-selector/core" "7.2.1"
+    "@near-wallet-selector/wallet-utils" "7.2.1"
+    is-mobile "^3.1.1"
+
 "@near-wallet-selector/core@7.2.0", "@near-wallet-selector/core@^7.0.3":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@near-wallet-selector/core/-/core-7.2.0.tgz#18317b1c3fdf622df07d8d4302c8def15c1c4c35"
   integrity sha512-AfJOoTeQwzF+qNsvwq4MnB2ChJReKhRpf5w5zF5W9f1kl0S0nZB2hbHQr8WZRD2t2dmjHJ96tNvtt3/BpkXp6Q==
+  dependencies:
+    rxjs "^7.5.7"
+
+"@near-wallet-selector/core@7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/core/-/core-7.2.1.tgz#cd18f39036776aacf4ba7df2b884e1a322248b0d"
+  integrity sha512-v7oCDAb9eZkSsRKEoTDZbTbWrxfgZ9nbHLfWJQeQvuMYZ5W5dnjCTJJq7hYxDgF4FGYzs0Uk2AJl6FfkVBHNlg==
   dependencies:
     rxjs "^7.5.7"
 
@@ -1079,6 +1095,14 @@
   integrity sha512-B8hZO9snqwOr6V8oPbIAGaBLhtibPXc9ebUpHMgWJGpC/hU8RgVOw0XY9d/FOKAOPe1T6h1Wh4ppV/LQRlZbeA==
   dependencies:
     "@near-wallet-selector/core" "7.2.0"
+    bn.js "^5.2.0"
+
+"@near-wallet-selector/wallet-utils@7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/wallet-utils/-/wallet-utils-7.2.1.tgz#91c76c3c6caa10ccf614ab067c7a42450f8b8eb3"
+  integrity sha512-Wk471D4ZUj39JEv1DsFfnjscw5aL45j+VLYxh1v7nr2xXerISCKto8wWGZlZVuqpGt3Ili49rxzIsBBe+Vj1Vw==
+  dependencies:
+    "@near-wallet-selector/core" "7.2.1"
     bn.js "^5.2.0"
 
 "@next/env@12.1.0":
