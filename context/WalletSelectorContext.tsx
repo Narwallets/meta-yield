@@ -18,6 +18,7 @@ import { CONTRACT_ID, METAPOOL_CONTRACT_ID, NETWORK_ID } from "../lib/near";
 import { getConfig } from "../config";
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
+import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
 declare global {
   interface Window {
     selector: WalletSelector;
@@ -51,7 +52,8 @@ enum Wallets {
   NightlyConnect = "nightlyconnect",
   Ledger = "ledger",
   Here = "here",
-  Meteor = "meteor"
+  Meteor = "meteor",
+  Coin98 = "coin98"
 }
 
 const WalletSelectorContext =
@@ -71,6 +73,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
     "nightly",
     "walletconnect",
     "here",
+    "coin98",
   ];
 
   const setupWallets = () => {
@@ -131,6 +134,9 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         }
         case Wallets.Here: {
           modules.push(setupHereWallet());
+        }
+        case Wallets.Coin98: {
+          modules.push(setupCoin98Wallet());
         }
         // case Wallets.NightlyConnect: {
         //   modules.push(
