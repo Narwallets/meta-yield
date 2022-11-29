@@ -196,7 +196,7 @@ export const data = [
     ],
   },
   {
-    id: 1, // key para proyectos en katherine
+    id: 2, // key para proyectos en katherine
     slug: "zomland", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "ZomLand",
     winner: true,

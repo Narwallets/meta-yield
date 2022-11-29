@@ -81,22 +81,26 @@ const Home = () => {
             </Stack>
           )}
 
-          {winner && winner.length > 0 && (
-            <Box
-              p={{ base: 5, md: 30 }}
-              id="fund"
-              as="section"
-            >
-              <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
-                Coming soon ...
-              </Text>
-              {winner.map((p: any, index: number) => (
-                <div key={index}>
-                  <WinnerProject data={p} />
-                </div>
-              ))}
-            </Box>
-          )}
+          {/* 
+            ****************************
+            DISABLED UNTIL NEXT CAMPAING
+            ****************************
+            winner && winner.length > 0 && (
+              <Box
+                p={{ base: 5, md: 30 }}
+                id="fund"
+                as="section"
+              >
+                <Text fontSize="4xl" lineHeight="10" fontWeight="bold">
+                  Coming soon ...
+                </Text>
+                {winner.map((p: any, index: number) => (
+                  <div key={index}>
+                    <WinnerProject data={p} />
+                  </div>
+                ))}
+              </Box>
+              )*/}
 
           {projectsToVote && projectsToVote.length > 0 && (
             <Stack
