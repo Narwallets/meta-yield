@@ -11,9 +11,17 @@ export default async function handler(
   if (!project) {
     res.status(404).json({ message: "Project not found" });
   }
-  const projectOnChain = await getProjectDetails(parseInt(id));
-  const tokenProjectMetadata = await getContractMetadata(
-    projectOnChain.token_contract_address
-  );
-  res.status(200).json({ ...project, kickstarter: {...projectOnChain, project_token_symbol: tokenProjectMetadata.symbol, project_token_icon:tokenProjectMetadata.icon }});
-}
+  try {
+    const projectOnChain = await getProjectDetails(parseInt(id));
+    /*const tokenProjectMetadata = await getContractMetadata(
+      projectOnChain.token_contract_address
+    );*/
+    res.status(200).json({ ...project, kickstarter: {...projectOnChain, project_token_symbol: 'PEM', project_token_icon: ''}});
+  
+  } catch (error) {
+    console.log("id", id)
+
+    console.log("error", error)
+    res.status(500).json(error)
+  }
+ }

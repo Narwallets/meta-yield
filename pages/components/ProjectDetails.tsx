@@ -314,6 +314,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   }, [status]);
 
   useEffect(() => {
+    console.log("project", project)
     if (
       project &&
       project.projectDisabled &&
@@ -474,8 +475,8 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
             >
               <Stack spacing={{ base: "3", md: "3" }}>
                 <FundingStatusCard kickstarter={project?.kickstarter} />
-                {project?.kickstarter.goals &&
-                  project?.kickstarter.goals.length > 0 && (
+                {project?.kickstarter?.goals &&
+                  project?.kickstarter?.goals.length > 0 && (
                     <GoalsProgressCard
                       projectStatus={status}
                       kickstarter={project?.kickstarter}
