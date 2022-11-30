@@ -81,7 +81,9 @@ const Home = () => {
             </Stack>
           )}
 
-          {winner && winner.length > 0 && (
+          {
+          /* DISABLED UNTIL THE ZOOMLAND CAMPAING START */
+          /* winner && winner.length > 0 && (
             <Box
               p={{ base: 5, md: 30 }}
               id="fund"
@@ -96,7 +98,7 @@ const Home = () => {
                 </div>
               ))}
             </Box>
-          )}
+              )*/}
 
           {projectsToVote && projectsToVote.length > 0 && (
             <Stack
