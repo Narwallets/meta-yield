@@ -596,7 +596,6 @@ export const data = [
     id: 4, // key para proyectos en katherine
     slug: "zomland", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "ZomLand",
-    winner: true,
     motto: "Play-To-Earn NFT Collectible Game.",
     projectUrl: "https://zomland.com",
     twitter: "https://twitter.com/Zomland_Game",
@@ -640,17 +639,17 @@ export const data = [
     team: [
       {
         name: "Vlodkow",
-        avatar: "/projects/zomland/avatar/3.JPG",
+        avatar: "/projects/zomland/avatar/1.JPG",
         bio: "Volodymyr is co-founder ZomLand game. I'm a web & blockchain developer from Ukraine with 14+ years experience. Last year I decided to switch from web to blockchain development because I like new technologies and decentralisation.",
       },
       {
         name: "Andriy",
-        avatar: "/projects/zomland/avatar/1.JPG",
+        avatar: "/projects/zomland/avatar/2.JPG",
         bio: "Andrii is a second co-founder of ZomLand game. In parallel - a software engineer with 10y of experience. Most of them are in web 2.0 and last few years in web 3.0 development. Team & Technical leader."
       },
       {
         name: "Maria",
-        avatar: "/projects/zomland/avatar/2.JPG",
+        avatar: "/projects/zomland/avatar/3.JPG",
         bio: "Designer with 7y of experience. Mostly working as a digital graphic designer. Interest in crypto and NFT.",
       },
       {
@@ -659,6 +658,7 @@ export const data = [
       },
       {
         name: "Lana",
+        avatar: "/projects/zomland/avatar/4.JPG",
         bio: "QA & SMM manager.",
       }
     ],
