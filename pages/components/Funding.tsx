@@ -261,7 +261,7 @@ const Funding = (props: {
               <Button
                 colorScheme="indigo"
                 size="lg"
-                disabled={!formikDeposit.isValid || props.isTxInProgress}
+                disabled={project.hidden || !formikDeposit.isValid || props.isTxInProgress}
                 onClick={(e: any) => formikDeposit.handleSubmit(e)}
               >
                 Deposit
