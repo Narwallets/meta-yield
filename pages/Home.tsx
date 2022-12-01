@@ -74,7 +74,7 @@ const Home = () => {
                 Funding Now!
               </Text>
               {data.map((p: any) => (
-                <div key={p.kickstarter.id}>
+                <div hidden={p.hidden} key={p.kickstarter.id}>
                   <ActiveProject data={p} />
                 </div>
               ))}
@@ -98,7 +98,8 @@ const Home = () => {
                 </div>
               ))}
             </Box>
-              )*/}
+              )*/
+          }
 
           {projectsToVote && projectsToVote.length > 0 && (
             <Stack
@@ -223,9 +224,9 @@ const Home = () => {
                 Coming soon
               </Text>
               {comingSoon.map((p: any) => (
-                <div key={p.kickstarter.id}>
+                <Box hidden={p.hidden} key={p.kickstarter.id}>
                   <ActiveProject data={p} />
-                </div>
+                </Box>
               ))}
             </Box>
           )}
@@ -240,9 +241,9 @@ const Home = () => {
                 Funding Completed
               </Text>
               {dataFinished.map((p: any) => (
-                <div key={p.kickstarter.id}>
+                <Box hidden={p.hidden} key={p.kickstarter.id}>
                   <ActiveProject data={p} />
-                </div>
+                </Box>
               ))}
             </Box>
           )}
