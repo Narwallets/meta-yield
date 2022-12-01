@@ -592,7 +592,7 @@ export const data = [
       },
     ],
   },
-  {
+  /*{
     id: 4, // key para proyectos en katherine
     slug: "zomland", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "ZomLand",
@@ -669,7 +669,7 @@ export const data = [
       {title:"Whitepaper",
       url:"https://zomland.gitbook.io/zomland-whitepaper/"},
     ]
-  }
+  }*/
 ];
 
 export const dataToVote = [
