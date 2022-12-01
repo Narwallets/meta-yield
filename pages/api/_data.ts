@@ -592,8 +592,8 @@ export const data = [
       },
     ],
   },
-  /*{
-    id: 4, // key para proyectos en katherine
+  {
+    id: 5, // key para proyectos en katherine
     slug: "zomland", // unique friendly identifier per project. katherine smart contract would retrieve this field
     name: "ZomLand",
     motto: "Play-To-Earn NFT Collectible Game.",
@@ -663,13 +663,16 @@ export const data = [
       }
     ],
     roadmap:{
-      imageUrl: '/projects/zomland/roadmap2.png',
+      imageUrl: '/projects/zomland/roadmap.jpg',
     },
     documents:[
       {title:"Whitepaper",
-      url:"https://zomland.gitbook.io/zomland-whitepaper/"},
+      url:"https://zomland.gitbook.io/zomland-whitepaper/"}, {
+        title: "FAQ",
+        url: "https://zomland.com/faq"
+      }
     ]
-  }*/
+  }
 ];
 
 export const dataToVote = [
