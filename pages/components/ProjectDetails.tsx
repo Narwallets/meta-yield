@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -17,7 +17,6 @@ import {
   TabPanel,
   Avatar,
   Circle,
-  Flex,
   VStack,
   Grid,
   GridItem,
@@ -35,6 +34,12 @@ import {
   Modal,
   useDisclosure,
   useToast,
+  AlertDialog,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/react";
 import {
   KickstarterGoalProps,
@@ -89,7 +94,7 @@ export enum ProjectStatus {
   UNSUCCESS,
 }
 
-const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
+const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
   const {
     isLoading,
     data: project,
@@ -124,6 +129,11 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   const { selector, modal, accounts, accountId } = useWalletSelector();
   const totalRaisedColor = useColorModeValue("green.500", "green.500");
   const toast = useToast();
+  const {
+    isOpen: isOpenDialog,
+    onOpen: onOpenDialog,
+    onClose: onCloseDialog,
+  } = useDisclosure();
   const onCloseModal = () => {
     onClose();
     router.push("/");
@@ -217,7 +227,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
   const evaluateShowAproveButton = async () => {
     const isApproved = await isReadyForClaimPToken();
     setShowApprove(isApproved === null);
-  }
+  };
 
   const calculateAmmountToWithdraw = async () => {
     if (
@@ -274,7 +284,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
     const now = Date.now();
     return now > winnerGoal.cliff_timestamp;
   };
-
+  const okDialogRef: any = useRef();
   useEffect(() => {
     setShowWithdraw(false);
     setShowClaim(false);
@@ -339,10 +349,70 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
     refetch();
   }, []);
 
+  useEffect(() => {
+    if (project && !isLoading && !isRefetching) {
+      if (project.id == 4) {
+        onOpenDialog();
+      }
+    }
+  }, [project]);
+
   if (!project || isLoading || isRefetching) return <PageLoading />;
 
   return (
     <>
+      <AlertDialog
+        isOpen={isOpenDialog}
+        onClose={onCloseDialog}
+        leastDestructiveRef={okDialogRef}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Zomland Campaing
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              <VStack spacing={4}>
+                <Text>
+                  Are you looking to support ZomLand? Well, the project is in
+                  another link: Go here to support{" "}
+                  <Link color={"indigo.600"} href="/project/5">
+                    Zomland
+                  </Link>
+                </Text>
+
+                <Text>
+                  Were you here because you want to follow up on your support?
+                  Send us a message, we’ve been looking for you.
+                </Text>
+                <HStack spacing={2}>
+                  <Link
+                    color={"indigo.600"}
+                    href="https://t.me/MetaPoolOfficialGroup"
+                    isExternal
+                  >
+                    Telegram <ExternalLinkIcon />
+                  </Link>{" "}
+                  <Link
+                    color={"indigo.600"}
+                    href="https://discord.com/invite/tG4XJzRtdQ"
+                    isExternal
+                  >
+                    Discord <ExternalLinkIcon />
+                  </Link>
+                </HStack>
+              </VStack>
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={okDialogRef} onClick={onCloseDialog}>
+                Ok
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
       <TxErrorHandler finalExecutionOutcome={finalExecutionOutcome} />{" "}
       {project.projectDisabled && (
         <Modal
@@ -465,58 +535,150 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
             />
           </GridItem>
           <GridItem rowSpan={{ base: 0, lg: 2 }}>
-            { /* **********FUNDING SIDEBAR ***************/}
-          { !props.votingMode && (
-            <Box
-              px={{ base: "0", md: "6" }}
-              py={{ base: "0", md: "6" }}
-              borderRadius="lg"
-            >
-              <Stack spacing={{ base: "3", md: "3" }}>
-                <FundingStatusCard kickstarter={project?.kickstarter} />
-                {project?.kickstarter.goals &&
-                  project?.kickstarter.goals.length > 0 && (
-                    <GoalsProgressCard
-                      projectStatus={status}
+            {/* **********FUNDING SIDEBAR ***************/}
+            {!props.votingMode && (
+              <Box
+                px={{ base: "0", md: "6" }}
+                py={{ base: "0", md: "6" }}
+                borderRadius="lg"
+              >
+                <Stack spacing={{ base: "3", md: "3" }}>
+                  <FundingStatusCard kickstarter={project?.kickstarter} />
+                  {project?.kickstarter.goals &&
+                    project?.kickstarter.goals.length > 0 && (
+                      <GoalsProgressCard
+                        projectStatus={status}
+                        kickstarter={project?.kickstarter}
+                      />
+                    )}
+                  {showRewardEstimated && selector.isSignedIn() && (
+                    <RewardsEstimated
                       kickstarter={project?.kickstarter}
-                    />
+                    ></RewardsEstimated>
                   )}
-                {showRewardEstimated && selector.isSignedIn() && (
-                  <RewardsEstimated
-                    kickstarter={project?.kickstarter}
-                  ></RewardsEstimated>
-                )}
-                <Stack w={"100%"}>
-                  {selector?.isSignedIn() && (showFund || showWithdraw) && (
-                    <Funding
-                      project={project}
-                      showOnlyWithdraw={showWithdraw}
-                      supportedDeposited={
-                        myProjectFounded && myProjectFounded.supporter_deposit
-                          ? yton(myProjectFounded.supporter_deposit)
-                          : 0
-                      }
-                      onActioninished={onActioninished}
-                      isTxInProgress={isTxInProgress}
-                      setIsTxInProgress={setIsTxInProgress}
-                    ></Funding>
-                  )}
-                  {!selector.isSignedIn() && (
-                    <ConnectButton
-                      text={"Connect wallet to fund"}
-                    ></ConnectButton>
-                  )}
+                  <Stack w={"100%"}>
+                    {selector?.isSignedIn() && (showFund || showWithdraw) && (
+                      <Funding
+                        project={project}
+                        showOnlyWithdraw={showWithdraw}
+                        supportedDeposited={
+                          myProjectFounded && myProjectFounded.supporter_deposit
+                            ? yton(myProjectFounded.supporter_deposit)
+                            : 0
+                        }
+                        onActioninished={onActioninished}
+                        isTxInProgress={isTxInProgress}
+                        setIsTxInProgress={setIsTxInProgress}
+                      ></Funding>
+                    )}
+                    {!selector.isSignedIn() && (
+                      <ConnectButton
+                        text={"Connect wallet to fund"}
+                      ></ConnectButton>
+                    )}
 
-                  {showClaim && selector?.isSignedIn() && (
-                    <>
-                      <Stack w={"100%"}>
-                        {myProjectFounded &&
-                          (myProjectFounded.supporter_deposit > 0 ||
-                            myProjectFounded.rewards > 0) && <Text>BONDS</Text>}
-                        {
-                          // show if there are deposits left to claim
-                          myProjectFounded &&
-                            myProjectFounded.supporter_deposit > 0 && (
+                    {showClaim && selector?.isSignedIn() && (
+                      <>
+                        <Stack w={"100%"}>
+                          {myProjectFounded &&
+                            (myProjectFounded.supporter_deposit > 0 ||
+                              myProjectFounded.rewards > 0) && (
+                              <Text>BONDS</Text>
+                            )}
+                          {
+                            // show if there are deposits left to claim
+                            myProjectFounded &&
+                              myProjectFounded.supporter_deposit > 0 && (
+                                <Stack
+                                  direction={{ base: "column", md: "row" }}
+                                  spacing={"1rem"}
+                                  p={3}
+                                  boxShadow="lg"
+                                  justifyContent={"space-between"}
+                                  alignItems={"center"}
+                                >
+                                  <Stack
+                                    direction={"row"}
+                                    w={{ base: "full", md: "auto" }}
+                                    justifyContent={{
+                                      base: "space-around",
+                                      md: "space-between",
+                                    }}
+                                    alignItems="center"
+                                  >
+                                    <Image
+                                      boxSize={{ base: "80px", md: "40px" }}
+                                      objectFit="cover"
+                                      src="/near_icon.svg"
+                                      alt="near"
+                                    />
+                                    <VStack h={"80px"}>
+                                      <Text
+                                        color={"grey"}
+                                        fontSize={"xxs"}
+                                        fontWeight={700}
+                                      >
+                                        NEAR{" "}
+                                      </Text>
+                                      <Text color={"black"} fontWeight={700}>
+                                        {yton(myProjectFounded.deposit_in_near)}{" "}
+                                      </Text>
+                                      <Text>{} </Text>
+                                    </VStack>
+                                  </Stack>
+                                  <Stack
+                                    direction={"row"}
+                                    w={{ base: "full", md: "auto" }}
+                                    justifyContent={{
+                                      base: "space-around",
+                                      md: "space-between",
+                                    }}
+                                    alignItems="center"
+                                  >
+                                    <VStack h={"80px"}>
+                                      <Text
+                                        color={"grey"}
+                                        fontSize={"xxs"}
+                                        fontWeight={700}
+                                      >
+                                        BOND DUE
+                                      </Text>
+                                      <Text fontWeight={700} fontSize={"14px"}>
+                                        {lockupDate}
+                                      </Text>
+                                    </VStack>
+                                    <VStack h={"80px"}>
+                                      <Text
+                                        color={"grey"}
+                                        fontSize={"xxs"}
+                                        fontWeight={700}
+                                      >
+                                        AVAILABLE{" "}
+                                      </Text>
+                                      <Text>
+                                        {yton(myProjectFounded.deposit_in_near)}{" "}
+                                      </Text>
+                                    </VStack>
+                                  </Stack>
+                                  <Button
+                                    disabled={
+                                      !isUnfreeze() ||
+                                      myProjectFounded.deposit_in_near <= 0
+                                    }
+                                    colorScheme="blue"
+                                    size="lg"
+                                    onClick={withdrawAllStnear}
+                                    w={{ base: "full", md: "min-content" }}
+                                  >
+                                    Claim
+                                  </Button>
+                                </Stack>
+                              )
+                          }
+
+                          {
+                            // show if there are pending rewards tokens to claim
+                            myProjectFounded && myProjectFounded.rewards > 0 && (
                               <Stack
                                 direction={{ base: "column", md: "row" }}
                                 spacing={"1rem"}
@@ -537,21 +699,24 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                                   <Image
                                     boxSize={{ base: "80px", md: "40px" }}
                                     objectFit="cover"
-                                    src="/near_icon.svg"
-                                    alt="near"
+                                    src={project.kickstarter.project_token_icon}
+                                    alt="ptoken"
                                   />
-                                  <VStack h={"80px"}>
+                                  <VStack h={"80px"} justify={"space-between"}>
                                     <Text
                                       color={"grey"}
                                       fontSize={"xxs"}
                                       fontWeight={700}
                                     >
-                                      NEAR{" "}
+                                      {project.kickstarter.project_token_symbol}{" "}
                                     </Text>
-                                    <Text color={"black"} fontWeight={700}>
-                                      {yton(myProjectFounded.deposit_in_near)}{" "}
+                                    <Text
+                                      color={"black"}
+                                      fontSize={"xxs"}
+                                      fontWeight={700}
+                                    >
+                                      {yton(myProjectFounded.rewards)}{" "}
                                     </Text>
-                                    <Text>{} </Text>
                                   </VStack>
                                 </Stack>
                                 <Stack
@@ -563,7 +728,7 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                                   }}
                                   alignItems="center"
                                 >
-                                  <VStack h={"80px"}>
+                                  <VStack h={"80px"} justify={"space-between"}>
                                     <Text
                                       color={"grey"}
                                       fontSize={"xxs"}
@@ -572,10 +737,10 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                                       BOND DUE
                                     </Text>
                                     <Text fontWeight={700} fontSize={"14px"}>
-                                      {lockupDate}
+                                      {cliffDate} TO <br></br> {endDate}{" "}
                                     </Text>
                                   </VStack>
-                                  <VStack h={"80px"}>
+                                  <VStack h={"80px"} justify={"space-between"}>
                                     <Text
                                       color={"grey"}
                                       fontSize={"xxs"}
@@ -584,119 +749,26 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                                       AVAILABLE{" "}
                                     </Text>
                                     <Text>
-                                      {yton(myProjectFounded.deposit_in_near)}{" "}
+                                      {yton(myProjectFounded.available_rewards)}{" "}
                                     </Text>
                                   </VStack>
                                 </Stack>
                                 <Button
                                   disabled={
-                                    !isUnfreeze() ||
-                                    myProjectFounded.deposit_in_near <= 0
+                                    !isCliffOpen ||
+                                    myProjectFounded.available_rewards <= 0
                                   }
                                   colorScheme="blue"
                                   size="lg"
-                                  onClick={withdrawAllStnear}
+                                  onClick={claim}
                                   w={{ base: "full", md: "min-content" }}
                                 >
-                                  Claim
+                                  {showApprove ? "Approve" : "Claim"}
                                 </Button>
                               </Stack>
                             )
-                        }
-
-                        {
-                          // show if there are pending rewards tokens to claim
-                          myProjectFounded && myProjectFounded.rewards > 0 && (
-                            <Stack
-                              direction={{ base: "column", md: "row" }}
-                              spacing={"1rem"}
-                              p={3}
-                              boxShadow="lg"
-                              justifyContent={"space-between"}
-                              alignItems={"center"}
-                            >
-                              <Stack
-                                direction={"row"}
-                                w={{ base: "full", md: "auto" }}
-                                justifyContent={{
-                                  base: "space-around",
-                                  md: "space-between",
-                                }}
-                                alignItems="center"
-                              >
-                                <Image
-                                  boxSize={{ base: "80px", md: "40px" }}
-                                  objectFit="cover"
-                                  src={project.kickstarter.project_token_icon}
-                                  alt="ptoken"
-                                />
-                                <VStack h={"80px"} justify={"space-between"}>
-                                  <Text
-                                    color={"grey"}
-                                    fontSize={"xxs"}
-                                    fontWeight={700}
-                                  >
-                                    {project.kickstarter.project_token_symbol}{" "}
-                                  </Text>
-                                  <Text
-                                    color={"black"}
-                                    fontSize={"xxs"}
-                                    fontWeight={700}
-                                  >
-                                    {yton(myProjectFounded.rewards)}{" "}
-                                  </Text>
-                                </VStack>
-                              </Stack>
-                              <Stack
-                                direction={"row"}
-                                w={{ base: "full", md: "auto" }}
-                                justifyContent={{
-                                  base: "space-around",
-                                  md: "space-between",
-                                }}
-                                alignItems="center"
-                              >
-                                <VStack h={"80px"} justify={"space-between"}>
-                                  <Text
-                                    color={"grey"}
-                                    fontSize={"xxs"}
-                                    fontWeight={700}
-                                  >
-                                    BOND DUE
-                                  </Text>
-                                  <Text fontWeight={700} fontSize={"14px"}>
-                                    {cliffDate} TO <br></br> {endDate}{" "}
-                                  </Text>
-                                </VStack>
-                                <VStack h={"80px"} justify={"space-between"}>
-                                  <Text
-                                    color={"grey"}
-                                    fontSize={"xxs"}
-                                    fontWeight={700}
-                                  >
-                                    AVAILABLE{" "}
-                                  </Text>
-                                  <Text>
-                                    {yton(myProjectFounded.available_rewards)}{" "}
-                                  </Text>
-                                </VStack>
-                              </Stack>
-                              <Button
-                                disabled={
-                                  !isCliffOpen ||
-                                  myProjectFounded.available_rewards <= 0
-                                }
-                                colorScheme="blue"
-                                size="lg"
-                                onClick={claim}
-                                w={{ base: "full", md: "min-content" }}
-                              >
-                                {showApprove ? "Approve" : "Claim"}
-                              </Button>
-                            </Stack>
-                          )
-                        }
-                      </Stack>
+                          }
+                        </Stack>
                       </>
                     )}
                   </Stack>
@@ -705,13 +777,10 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                   )}
                 </Stack>
               </Box>
-            )
-          }
-          { props.votingMode && !project?.winner && ( 
-            <VotingStatusCard project={project}></VotingStatusCard>
-            )
-          }
-
+            )}
+            {props.votingMode && !project?.winner && (
+              <VotingStatusCard project={project}></VotingStatusCard>
+            )}
           </GridItem>
           <GridItem>
             <Tabs>
@@ -723,77 +792,79 @@ const ProjectDetails = (props: { id: any, votingMode?: boolean }) => {
                 minW={{ base: "0", lg: "0" }}
                 maxW={{ base: "none", lg: "none" }}
               >
-                { project?.campaignHtml  && (<Tab>Campaign</Tab> )}
-                { project?.team  && (<Tab>Team</Tab> )}
-                { project?.faq  && (<Tab>FAQ</Tab> )}
-                { project?.roadmap  && (<Tab>Roadmap</Tab> )}
-                { project?.documents  && (<Tab>Documents</Tab> )}
-                { project?.about  && (<Tab>About</Tab> )}
+                {project?.campaignHtml && <Tab>Campaign</Tab>}
+                {project?.team && <Tab>Team</Tab>}
+                {project?.faq && <Tab>FAQ</Tab>}
+                {project?.roadmap && <Tab>Roadmap</Tab>}
+                {project?.documents && <Tab>Documents</Tab>}
+                {project?.about && <Tab>About</Tab>}
               </TabList>
 
               <TabPanels minHeight="580px">
-              { project?.campaignHtml  && (
-                <TabPanel>
-                  <Text fontSize="sm" fontWeight="subtle">
-                    CAMPAIGN
-                  </Text>
-                  <Stack mt={5}>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: project?.campaignHtml,
-                      }}
-                    ></div>
-                  </Stack>
-                </TabPanel>
-                )}
-                { project?.team  && (
-                <TabPanel>
-                  <Team team={project?.team} />
-                </TabPanel>
-                )}
-                { project?.faq  && (
-                <TabPanel>
-                  <FAQ data={project?.faq} />
-                </TabPanel>
-                )}
-                { project?.roadmap  && (
-                <TabPanel>
-                  <Box>
+                {project?.campaignHtml && (
+                  <TabPanel>
                     <Text fontSize="sm" fontWeight="subtle">
-                      ROADMAP
+                      CAMPAIGN
                     </Text>
                     <Stack mt={5}>
-                    { project?.roadmap.imageUrl  && (
-                      <Image
-                        src={project?.roadmap?.imageUrl}
-                        alt="project"
-                        width="400"
-                        objectFit="cover"
-                      />)}
-                      { project?.roadmap.linkUrl  && (
-                      <Link href={project?.roadmap?.linkUrl} isExternal>
-                        Full Roadmap <ExternalLinkIcon mx="2px" />
-                      </Link>)}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: project?.campaignHtml,
+                        }}
+                      ></div>
                     </Stack>
-                  </Box>
-                </TabPanel>
+                  </TabPanel>
                 )}
-                { project?.documents  && (
-                <TabPanel>
-                  <Documents data={project?.documents} />
-                </TabPanel>
+                {project?.team && (
+                  <TabPanel>
+                    <Team team={project?.team} />
+                  </TabPanel>
                 )}
-                { project?.about  && (
-                <TabPanel>
-                  <Text fontSize="sm" fontWeight="subtle">
-                    ABOUT
-                  </Text>
-                  <Stack mt={5}>
-                    <div
-                      dangerouslySetInnerHTML={{ __html: project?.about }}
-                    ></div>
-                  </Stack>
-                </TabPanel>
+                {project?.faq && (
+                  <TabPanel>
+                    <FAQ data={project?.faq} />
+                  </TabPanel>
+                )}
+                {project?.roadmap && (
+                  <TabPanel>
+                    <Box>
+                      <Text fontSize="sm" fontWeight="subtle">
+                        ROADMAP
+                      </Text>
+                      <Stack mt={5}>
+                        {project?.roadmap.imageUrl && (
+                          <Image
+                            src={project?.roadmap?.imageUrl}
+                            alt="project"
+                            width="400"
+                            objectFit="cover"
+                          />
+                        )}
+                        {project?.roadmap.linkUrl && (
+                          <Link href={project?.roadmap?.linkUrl} isExternal>
+                            Full Roadmap <ExternalLinkIcon mx="2px" />
+                          </Link>
+                        )}
+                      </Stack>
+                    </Box>
+                  </TabPanel>
+                )}
+                {project?.documents && (
+                  <TabPanel>
+                    <Documents data={project?.documents} />
+                  </TabPanel>
+                )}
+                {project?.about && (
+                  <TabPanel>
+                    <Text fontSize="sm" fontWeight="subtle">
+                      ABOUT
+                    </Text>
+                    <Stack mt={5}>
+                      <div
+                        dangerouslySetInnerHTML={{ __html: project?.about }}
+                      ></div>
+                    </Stack>
+                  </TabPanel>
                 )}
               </TabPanels>
             </Tabs>
