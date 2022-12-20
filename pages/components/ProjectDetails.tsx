@@ -662,7 +662,7 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                                       </Text>
                                     </VStack>
                                   </Stack>
-                                  { (isUnfreeze() &&  myProjectFounded.deposit_in_near > 0) && (
+                                  { isUnfreeze() &&  myProjectFounded.deposit_in_near > 0 && (
                                         <Link href={nearConfig.metabondUrl} isExternal>
                                           Claim in Meta Bond <ExternalLinkIcon mx="2px" />
                                         </Link>)
@@ -748,7 +748,7 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                                     </Text>
                                   </VStack>
                                 </Stack>
-                                { (isCliffOpen() && myProjectFounded.available_rewards > 0) && (
+                                { isCliffOpen() && myProjectFounded.available_rewards > 0 && (
                                         <Link href={nearConfig.metabondUrl} isExternal>
                                           Claim in Meta Bond <ExternalLinkIcon mx="2px" />
                                         </Link>)
