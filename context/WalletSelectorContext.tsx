@@ -53,7 +53,7 @@ enum Wallets {
   Ledger = "ledger",
   Here = "here",
   Meteor = "meteor",
-  Coin98 = "coin98"
+  Coin98 = "coin98",
 }
 
 const WalletSelectorContext =
@@ -96,7 +96,6 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         case Wallets.MyNearWallet: {
           modules.push(
             setupMyNearWallet({
-              walletUrl: nearConfig.walletUrl,
               iconUrl: "/assets/my-near-wallet-icon.png",
             })
           );
@@ -138,21 +137,6 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         case Wallets.Coin98: {
           modules.push(setupCoin98Wallet());
         }
-        // case Wallets.NightlyConnect: {
-        //   modules.push(
-        //     setupNightlyConnect({
-        //       url: "wss://ncproxy.nightly.app/app",
-        //       iconUrl: '/assets/nightly-connect-png',
-        //       appMetadata: {
-        //         additionalInfo: "",
-        //         application: "NEAR Wallet Selector for Meta Yield",
-        //         description:
-        //           "Nightly Connect integration on Wallet Selector for Meta Yield",
-        //         icon: "https://near.org/wp-content/uploads/2020/09/cropped-favicon-192x192.png",
-        //       },
-        //     })
-        //   );
-        // }
       }
     });
     return modules;
