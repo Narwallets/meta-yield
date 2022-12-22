@@ -661,10 +661,7 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                                     </VStack>
                                   </Stack>
                                   <Button
-                                    disabled={
-                                      !isUnfreeze() ||
-                                      myProjectFounded.deposit_in_near <= 0
-                                    }
+                                    disabled={true}
                                     colorScheme="blue"
                                     size="lg"
                                     onClick={withdrawAllStnear}
@@ -754,10 +751,7 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                                   </VStack>
                                 </Stack>
                                 <Button
-                                  disabled={
-                                    !isCliffOpen ||
-                                    myProjectFounded.available_rewards <= 0
-                                  }
+                                  disabled={true}
                                   colorScheme="blue"
                                   size="lg"
                                   onClick={claim}
