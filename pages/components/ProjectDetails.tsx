@@ -82,6 +82,7 @@ import { useRouter } from "next/router";
 import { useWalletSelector } from "../../context/WalletSelectorContext";
 import { FinalExecutionOutcome } from "@near-wallet-selector/core";
 import TxErrorHandler from "./TxErrorHandler";
+import { getConfig } from "../../config";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -113,6 +114,7 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
   const [showRewardEstimated, setShowRewardsEstimated] =
     useState<boolean>(false);
 
+  const nearConfig = getConfig(process.env.NEXT_PUBLIC_VERCEL_ENV || 'production');
   const [status, setStatus] = useState<ProjectStatus>(ProjectStatus.NOT_LOGGIN);
 
   const [ammountClaim, setRewards] = useState<any>(0);
@@ -660,15 +662,11 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                                       </Text>
                                     </VStack>
                                   </Stack>
-                                  <Button
-                                    disabled={true}
-                                    colorScheme="blue"
-                                    size="lg"
-                                    onClick={withdrawAllStnear}
-                                    w={{ base: "full", md: "min-content" }}
-                                  >
-                                    Claim
-                                  </Button>
+                                  { isUnfreeze() &&  myProjectFounded.deposit_in_near > 0 && (
+                                        <Link href={nearConfig.metabondUrl} isExternal>
+                                          Claim in Meta Bond <ExternalLinkIcon mx="2px" />
+                                        </Link>)
+                                   }
                                 </Stack>
                               )
                           }
@@ -750,15 +748,11 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                                     </Text>
                                   </VStack>
                                 </Stack>
-                                <Button
-                                  disabled={true}
-                                  colorScheme="blue"
-                                  size="lg"
-                                  onClick={claim}
-                                  w={{ base: "full", md: "min-content" }}
-                                >
-                                  {showApprove ? "Approve" : "Claim"}
-                                </Button>
+                                { isCliffOpen() && myProjectFounded.available_rewards > 0 && (
+                                        <Link href={nearConfig.metabondUrl} isExternal>
+                                          Claim in Meta Bond <ExternalLinkIcon mx="2px" />
+                                        </Link>)
+                                   }
                               </Stack>
                             )
                           }
