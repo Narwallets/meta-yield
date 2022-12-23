@@ -27,7 +27,7 @@ export const getConfig = (env: string) => {
         explorerUrl: "https://explorer.testnet.near.org",
         metapoolUrl: "https://metapool.app/dapp/testnet/meta",
         metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/",
-        metabondUrl: "https://test.metabondmarket.app"
+        metabondUrl: "https://test.metabondmarket.app/my-bonds"
       };
     case "betanet":
       return {
@@ -49,7 +49,7 @@ export const getConfig = (env: string) => {
         walletUrl: "http://localhost:4000/wallet",
         metapoolUrl: "https://metapool.app/dapp/testnet/meta",
         metavoteUrl: "https://meta-vote-git-dev-narwallets.vercel.app/",
-        metabondUrl: "https://test.metabondmarket.app",
+        metabondUrl: "https://test.metabondmarket.app/my-bonds",
         contractName: CONTRACT_NAME,
       };
     case "test":
