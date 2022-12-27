@@ -46,7 +46,6 @@ import {
   TeamMemberProps,
 } from "../../types/project.types";
 import { useGetProjectDetails } from "../../hooks/projects";
-import parse from "html-react-parser";
 import RewardsCalculator from "./RewardsCalculator";
 import GoalsProgressCard from "./GoalsProgressCard";
 import FundingStatusCard from "./FundingStatusCard";
@@ -74,8 +73,7 @@ import Funding from "./Funding";
 import FAQ from "./FAQ";
 import Documents from "./Documents";
 import PageLoading from "./PageLoading";
-import { colors } from "../../constants/colors";
-import { ArrowSquareOut, Link as LinkI, TwitterLogo } from "phosphor-react";
+import { Link as LinkI, TwitterLogo } from "phosphor-react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import VotingStatusCard from "./VotingStatusCard";
 import { useRouter } from "next/router";
@@ -108,13 +106,14 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
   const [showFund, setShowFund] = useState<boolean>(true);
   const [showWithdraw, setShowWithdraw] = useState<boolean>(false);
   const [showClaim, setShowClaim] = useState<boolean>(false);
-  const [showApprove, setShowApprove] = useState<boolean>(false);
   const [showRewardsCalculator, setShowRewardsCalculator] =
     useState<boolean>(true);
   const [showRewardEstimated, setShowRewardsEstimated] =
     useState<boolean>(false);
 
-  const nearConfig = getConfig(process.env.NEXT_PUBLIC_VERCEL_ENV || 'production');
+  const nearConfig = getConfig(
+    process.env.NEXT_PUBLIC_VERCEL_ENV || "production"
+  );
   const [status, setStatus] = useState<ProjectStatus>(ProjectStatus.NOT_LOGGIN);
 
   const [ammountClaim, setRewards] = useState<any>(0);
@@ -226,11 +225,6 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
   const getWithdrawAmmount = async (id: number, price: string) =>
     getSupporterEstimatedStNear(id, price);
 
-  const evaluateShowAproveButton = async () => {
-    const isApproved = await isReadyForClaimPToken();
-    setShowApprove(isApproved === null);
-  };
-
   const calculateAmmountToWithdraw = async () => {
     if (
       project.kickstarter.successful &&
@@ -309,7 +303,6 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
         calculateAmmountToWithdraw();
         setShowFund(true);
         setShowRewardsEstimated(true);
-        evaluateShowAproveButton();
         break;
 
       case ProjectStatus.SUCCESS:
@@ -649,24 +642,32 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                                         {lockupDate}
                                       </Text>
                                     </VStack>
-                                    <VStack h={"80px"}>
-                                      <Text
-                                        color={"grey"}
-                                        fontSize={"xxs"}
-                                        fontWeight={700}
-                                      >
-                                        AVAILABLE{" "}
-                                      </Text>
-                                      <Text>
-                                        {yton(myProjectFounded.deposit_in_near)}{" "}
-                                      </Text>
-                                    </VStack>
+                                    {isUnfreeze() && (
+                                      <VStack h={"80px"}>
+                                        <Text
+                                          color={"grey"}
+                                          fontSize={"xxs"}
+                                          fontWeight={700}
+                                        >
+                                          AVAILABLE{" "}
+                                        </Text>
+                                        <Text>
+                                          {yton(
+                                            myProjectFounded.deposit_in_near
+                                          )}{" "}
+                                        </Text>
+                                      </VStack>
+                                    )}
                                   </Stack>
-                                  { isUnfreeze() &&  myProjectFounded.deposit_in_near > 0 && (
-                                        <Link href={nearConfig.metabondUrl} isExternal>
-                                          Claim in Meta Bond <ExternalLinkIcon mx="2px" />
-                                        </Link>)
-                                   }
+                                  {myProjectFounded.deposit_in_near > 0 && (
+                                    <Link
+                                      href={nearConfig.metabondUrl}
+                                      isExternal
+                                    >
+                                      Claim in Meta Bond{" "}
+                                      <ExternalLinkIcon mx="2px" />
+                                    </Link>
+                                  )}
                                 </Stack>
                               )
                           }
@@ -748,11 +749,15 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                                     </Text>
                                   </VStack>
                                 </Stack>
-                                { isCliffOpen() && myProjectFounded.available_rewards > 0 && (
-                                        <Link href={nearConfig.metabondUrl} isExternal>
-                                          Claim in Meta Bond <ExternalLinkIcon mx="2px" />
-                                        </Link>)
-                                   }
+                                {myProjectFounded.available_rewards > 0 && (
+                                  <Link
+                                    href={nearConfig.metabondUrl}
+                                    isExternal
+                                  >
+                                    Claim in Meta Bond{" "}
+                                    <ExternalLinkIcon mx="2px" />
+                                  </Link>
+                                )}
                               </Stack>
                             )
                           }
