@@ -36,7 +36,7 @@ const Bonds = ({
           <Text>BONDS</Text>
         )}
         {
-        // show if there are deposits left to claim
+          // show if there are deposits left to claim
           yton(supporter_deposit) > 0 ? (
             <Stack
               direction={{ base: "column", md: "row" }}
@@ -88,14 +88,13 @@ const Bonds = ({
                     {lockupDate}
                   </Text>
                 </VStack>
-                {isUnfreeze && (
-                  <VStack h={"80px"}>
-                    <Text color={"grey"} fontSize={"xxs"} fontWeight={700}>
-                      AVAILABLE{" "}
-                    </Text>
-                    <Text>{yton(deposit_in_near)} </Text>
-                  </VStack>
-                )}
+
+                <VStack h={"80px"}>
+                  <Text color={"grey"} fontSize={"xxs"} fontWeight={700}>
+                    AVAILABLE{" "}
+                  </Text>
+                  <Text>{isUnfreeze ? yton(deposit_in_near) : 0} </Text>
+                </VStack>
               </Stack>
             </Stack>
           ) : null
