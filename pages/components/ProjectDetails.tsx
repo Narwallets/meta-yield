@@ -81,6 +81,7 @@ import { useWalletSelector } from "../../context/WalletSelectorContext";
 import { FinalExecutionOutcome } from "@near-wallet-selector/core";
 import TxErrorHandler from "./TxErrorHandler";
 import { getConfig } from "../../config";
+import Bonds from "./Bonds";
 
 export enum ProjectStatus {
   NOT_LOGGIN,
@@ -572,198 +573,21 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                       ></ConnectButton>
                     )}
 
-                    {showClaim && selector?.isSignedIn() && (
-                      <>
-                        <Stack w={"100%"}>
-                          {myProjectFounded &&
-                            (myProjectFounded.supporter_deposit > 0 ||
-                              myProjectFounded.rewards > 0) && (
-                              <Text>BONDS</Text>
-                            )}
-                          {
-                            // show if there are deposits left to claim
-                            myProjectFounded &&
-                              myProjectFounded.supporter_deposit > 0 && (
-                                <Stack
-                                  direction={{ base: "column", md: "row" }}
-                                  spacing={"1rem"}
-                                  p={3}
-                                  boxShadow="lg"
-                                  justifyContent={"space-between"}
-                                  alignItems={"center"}
-                                >
-                                  <Stack
-                                    direction={"row"}
-                                    w={{ base: "full", md: "auto" }}
-                                    justifyContent={{
-                                      base: "space-around",
-                                      md: "space-between",
-                                    }}
-                                    alignItems="center"
-                                  >
-                                    <Image
-                                      boxSize={{ base: "80px", md: "40px" }}
-                                      objectFit="cover"
-                                      src="/near_icon.svg"
-                                      alt="near"
-                                    />
-                                    <VStack h={"80px"}>
-                                      <Text
-                                        color={"grey"}
-                                        fontSize={"xxs"}
-                                        fontWeight={700}
-                                      >
-                                        NEAR{" "}
-                                      </Text>
-                                      <Text color={"black"} fontWeight={700}>
-                                        {yton(myProjectFounded.deposit_in_near)}{" "}
-                                      </Text>
-                                      <Text>{} </Text>
-                                    </VStack>
-                                  </Stack>
-                                  <Stack
-                                    direction={"row"}
-                                    w={{ base: "full", md: "auto" }}
-                                    justifyContent={{
-                                      base: "space-around",
-                                      md: "space-between",
-                                    }}
-                                    alignItems="center"
-                                  >
-                                    <VStack h={"80px"}>
-                                      <Text
-                                        color={"grey"}
-                                        fontSize={"xxs"}
-                                        fontWeight={700}
-                                      >
-                                        BOND DUE
-                                      </Text>
-                                      <Text fontWeight={700} fontSize={"14px"}>
-                                        {lockupDate}
-                                      </Text>
-                                    </VStack>
-                                    {isUnfreeze() && (
-                                      <VStack h={"80px"}>
-                                        <Text
-                                          color={"grey"}
-                                          fontSize={"xxs"}
-                                          fontWeight={700}
-                                        >
-                                          AVAILABLE{" "}
-                                        </Text>
-                                        <Text>
-                                          {yton(
-                                            myProjectFounded.deposit_in_near
-                                          )}{" "}
-                                        </Text>
-                                      </VStack>
-                                    )}
-                                  </Stack>
-                                  {myProjectFounded.deposit_in_near > 0 && (
-                                    <Link
-                                      href={nearConfig.metabondUrl}
-                                      isExternal
-                                    >
-                                      Claim in Meta Bond{" "}
-                                      <ExternalLinkIcon mx="2px" />
-                                    </Link>
-                                  )}
-                                </Stack>
-                              )
-                          }
-
-                          {
-                            // show if there are pending rewards tokens to claim
-                            myProjectFounded && myProjectFounded.rewards > 0 && (
-                              <Stack
-                                direction={{ base: "column", md: "row" }}
-                                spacing={"1rem"}
-                                p={3}
-                                boxShadow="lg"
-                                justifyContent={"space-between"}
-                                alignItems={"center"}
-                              >
-                                <Stack
-                                  direction={"row"}
-                                  w={{ base: "full", md: "auto" }}
-                                  justifyContent={{
-                                    base: "space-around",
-                                    md: "space-between",
-                                  }}
-                                  alignItems="center"
-                                >
-                                  <Image
-                                    boxSize={{ base: "80px", md: "40px" }}
-                                    objectFit="cover"
-                                    src={project.kickstarter.project_token_icon}
-                                    alt="ptoken"
-                                  />
-                                  <VStack h={"80px"} justify={"space-between"}>
-                                    <Text
-                                      color={"grey"}
-                                      fontSize={"xxs"}
-                                      fontWeight={700}
-                                    >
-                                      {project.kickstarter.project_token_symbol}{" "}
-                                    </Text>
-                                    <Text
-                                      color={"black"}
-                                      fontSize={"xxs"}
-                                      fontWeight={700}
-                                    >
-                                      {yton(myProjectFounded.rewards)}{" "}
-                                    </Text>
-                                  </VStack>
-                                </Stack>
-                                <Stack
-                                  direction={"row"}
-                                  w={{ base: "full", md: "auto" }}
-                                  justifyContent={{
-                                    base: "space-around",
-                                    md: "space-between",
-                                  }}
-                                  alignItems="center"
-                                >
-                                  <VStack h={"80px"} justify={"space-between"}>
-                                    <Text
-                                      color={"grey"}
-                                      fontSize={"xxs"}
-                                      fontWeight={700}
-                                    >
-                                      BOND DUE
-                                    </Text>
-                                    <Text fontWeight={700} fontSize={"14px"}>
-                                      {cliffDate} TO <br></br> {endDate}{" "}
-                                    </Text>
-                                  </VStack>
-                                  <VStack h={"80px"} justify={"space-between"}>
-                                    <Text
-                                      color={"grey"}
-                                      fontSize={"xxs"}
-                                      fontWeight={700}
-                                    >
-                                      AVAILABLE{" "}
-                                    </Text>
-                                    <Text>
-                                      {yton(myProjectFounded.available_rewards)}{" "}
-                                    </Text>
-                                  </VStack>
-                                </Stack>
-                                {myProjectFounded.available_rewards > 0 && (
-                                  <Link
-                                    href={nearConfig.metabondUrl}
-                                    isExternal
-                                  >
-                                    Claim in Meta Bond{" "}
-                                    <ExternalLinkIcon mx="2px" />
-                                  </Link>
-                                )}
-                              </Stack>
-                            )
-                          }
-                        </Stack>
-                      </>
-                    )}
+                    {showClaim &&
+                      selector?.isSignedIn() &&
+                      myProjectFounded && (
+                        <Bonds
+                          supporter_deposit={myProjectFounded.supporter_deposit}
+                          rewards={myProjectFounded.rewards}
+                          available_rewards={myProjectFounded.available_rewards}
+                          deposit_in_near={myProjectFounded.deposit_in_near}
+                          isUnfreeze={isUnfreeze()}
+                          lockupDate={lockupDate}
+                          project={project}
+                          cliffDate={cliffDate}
+                          endDate={endDate}
+                        />
+                      )}
                   </Stack>
                   {showRewardsCalculator && (
                     <RewardsCalculator kickstarter={project?.kickstarter} />
