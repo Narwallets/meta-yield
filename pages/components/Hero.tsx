@@ -146,8 +146,7 @@ const Hero = () => {
                 Vote
               </Heading>
               <Text textAlign={"center"} w={"70%"} opacity={0.5}>
-                Vote for your favorite project to help it kickstart a
-                fundraising campaign with 20,000 stNEAR
+                Vote for your favorite project and help them start their campaign with an extra boost.
               </Text>
               <Link href="/#vote" w={"100%"}>
                 <Button
