@@ -17,7 +17,7 @@
     "@fontsource/inter": "^4.5.5",
     "@near-wallet-selector/coin98-wallet": "^7.2.1",
     "@near-wallet-selector/core": "^7.0.3",
-    "@near-wallet-selector/here-wallet": "^7.1.0",
+    "@near-wallet-selector/here-wallet": "^7.4.0",
     "@near-wallet-selector/ledger": "^7.0.3",
     "@near-wallet-selector/math-wallet": "^7.0.3",
     "@near-wallet-selector/meteor-wallet": "^7.2.0",
