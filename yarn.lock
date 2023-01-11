@@ -792,6 +792,14 @@
   resolved "https://registry.yarnpkg.com/@hapi/bourne/-/bourne-2.1.0.tgz#66aff77094dc3080bd5df44ec63881f2676eb020"
   integrity sha512-i1BpaNDVLJdRBEKeJWkVO6tYX6DMFBuwMhSuWqLsY4ufeTKGVuV5rBsUhxPayXqnnWHgXUAmWK16H/ykO5Wj4Q==
 
+"@here-wallet/core@^1.1.0":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@here-wallet/core/-/core-1.2.1.tgz#b1dd2ec95c7ffd0a8c4511f3956bf74db869185f"
+  integrity sha512-Ml+Uku7iUuPrQKMS1cRk9KuDNeVn8/kTe6hCveYuNCWUYbBYSDt6kztjo08apJW8UUuVJNDr+vgR2CBWliz79g==
+  dependencies:
+    sha1 "^1.1.1"
+    uuid4 "2.0.3"
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"
@@ -995,13 +1003,20 @@
   dependencies:
     rxjs "^7.5.7"
 
-"@near-wallet-selector/here-wallet@^7.1.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@near-wallet-selector/here-wallet/-/here-wallet-7.2.0.tgz#91bd1bffd7fb0cbc82ea2e0d5f3cbde3fd9393f9"
-  integrity sha512-IWpHIVr7OvZc6N3XoqPIDBuMPiM/Fe2YjCiEvOHf3YqGcK19VNhwPytOcQvlgNwOojGDHUKNKFtQIrsfYpPcdg==
+"@near-wallet-selector/core@7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/core/-/core-7.4.0.tgz#4a898f9ba5f7c07723b78b4f3a16d37713055cb8"
+  integrity sha512-7dq8MTgJ5nQjxK06L+r95E1qvEjBqyBgHK0Mt0aJf8EaQff+U7AhI3WyjXhLN4/f0q/qxthWuV7cjrDYFojZ5Q==
   dependencies:
-    "@near-wallet-selector/core" "7.2.0"
-    "@near-wallet-selector/wallet-utils" "7.2.0"
+    rxjs "^7.5.7"
+
+"@near-wallet-selector/here-wallet@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/here-wallet/-/here-wallet-7.4.0.tgz#06dbff35db1e4ae1601187dcd627545dd1e96392"
+  integrity sha512-CtMytmrMKuT6euOqebdgUSMgKWGLlDgkEf7ilt/yjVpf4ZhmV2g6CJNI40TRVYMCOcMjs/fvDqc+/f3tJ2pvDQ==
+  dependencies:
+    "@here-wallet/core" "^1.1.0"
+    "@near-wallet-selector/core" "7.4.0"
     bn.js "^5.2.0"
 
 "@near-wallet-selector/ledger@^7.0.3":
@@ -2231,6 +2246,11 @@ chalk@^4.0.0, chalk@^4.1.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+"charenc@>= 0.0.1":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
+  integrity sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==
+
 chownr@^1.1.1:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
@@ -2327,6 +2347,11 @@ cross-spawn@^7.0.2:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
+
+"crypt@>= 0.0.1":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/crypt/-/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
+  integrity sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==
 
 css-box-model@1.2.1:
   version "1.2.1"
@@ -4681,6 +4706,14 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
+sha1@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/sha1/-/sha1-1.1.1.tgz#addaa7a93168f393f19eb2b15091618e2700f848"
+  integrity sha512-dZBS6OrMjtgVkopB1Gmo4RQCDKiZsqcpAQpkV/aaj+FCrCg8r4I4qMkDPQjBgLIxlmu9k4nUbWq6ohXahOneYA==
+  dependencies:
+    charenc ">= 0.0.1"
+    crypt ">= 0.0.1"
+
 shebang-command@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-2.0.0.tgz#ccd0af4f8835fbdc265b82461aaf0c36663f34ea"
@@ -5124,6 +5157,11 @@ util-deprecate@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
+
+uuid4@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/uuid4/-/uuid4-2.0.3.tgz#241e5dfe1704a79c52e2aa40e7e581a5e7b01ab4"
+  integrity sha512-CTpAkEVXMNJl2ojgtpLXHgz23dh8z81u6/HEPiQFOvBc/c2pde6TVHmH4uwY0d/GLF3tb7+VDAj4+2eJaQSdZQ==
 
 uuid@^8.3.2:
   version "8.3.2"

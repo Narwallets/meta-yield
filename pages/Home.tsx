@@ -127,6 +127,7 @@ const Home = () => {
                   Campaign
                 </Text>
               </VStack>
+              {/* The Marquee was hidden until resuming the campaing */}
               <Box
                 borderTop={"1px solid #000000"}
                 borderBottom={"1px solid #000000"}
