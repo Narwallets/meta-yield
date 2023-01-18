@@ -34,8 +34,9 @@ import { getVotes } from "../lib/near";
 import { getEndVotingPeriod, yton } from "../lib/util";
 import Marquee from "react-fast-marquee";
 import WinnerProject from "./components/WinnerProject";
+import LatestNews from "./components/LatestNews";
 
-const Home = () => {
+const Home = ({news}: any) => {
   const { data, isLoading } = useGetActiveProjects();
   const { data: dataFinished, isLoading: isLoadingFinished } =
     useGetFinishedProjects();
@@ -48,7 +49,8 @@ const Home = () => {
   
   const { data: winner, isLoading: winnerFinished } =
     useGetWinnerVotedProjects();
-    
+  
+  console.log("news", news)
 
   if (isLoading && isLoadingFinished && isLoadingVote) return <PageLoading />;
   return (
@@ -249,8 +251,8 @@ const Home = () => {
             </Box>
           )}
         </VStack>
-
         <HowItWorks />
+        {news && <LatestNews news={news}></LatestNews>}
         <FrequentlyAskQuestion shortVersion={true} />
       </Box>
     </>
