@@ -164,7 +164,7 @@ const Bonds = ({
         {yton(supporter_deposit) > 0 || yton(rewards) > 0 ? (
           <Stack alignItems="flex-end">
             <Link href={nearConfig.metabondUrl} isExternal>
-              See and manage your bonds in Meta Bond Market{" "}
+              See and manage your bonds in Meta Bonds{" "}
               <ExternalLinkIcon mx="2px" />
             </Link>
           </Stack>
