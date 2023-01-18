@@ -1,0 +1,1 @@
+export const METAYIELD_FEED_URL = 'https://blog.metapool.app/category/meta-yield/feed/';
