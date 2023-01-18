@@ -57,6 +57,7 @@ const Funding = (props: {
   const [currentFundingGoal, setCurrentFundingGoal] =
     useState<KickstarterGoalProps>();
   const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
+  const [minEstimatedRewards, setMinEstimatedRewards] = useState<number>(0);
   const [finalExecutionOutcome, setFinalExecutionOutcome] =
     useState<FinalExecutionOutcome | null>(null);
   const handleChangeDeposit = (event: any) =>
@@ -201,8 +202,9 @@ const Funding = (props: {
       const tokenAwardPerStnear: string =
         currentFundingGoal.tokens_to_release_per_stnear;
       setEstimatedRewards(yton(tokenAwardPerStnear) * amountDeposit);
+      setMinEstimatedRewards(yton(project.kickstarter.goals[0].tokens_to_release_per_stnear) * amountDeposit)
     }
-  }, [amountDeposit, currentFundingGoal]);
+  }, [amountDeposit, currentFundingGoal, project]);
 
   useEffect(() => {
     formikDeposit.setFieldValue("balance", balance);
@@ -218,7 +220,6 @@ const Funding = (props: {
           <Tab isDisabled={props.showOnlyWithdraw}>Deposit</Tab>
           <Tab isDisabled={!isWithdrawEnabled}>Withdraw</Tab>
         </TabList>
-
         <TabPanels>
           <TabPanel>
             <HStack>
@@ -287,12 +288,12 @@ const Funding = (props: {
                   ESTIMATED REWARDS:
                 </Text>
                 <Text
-                  fontSize="sm"
+                  fontSize="xs"
                   lineHeight="6"
-                  fontWeight="semibold"
+                  fontWeight="500"
                   color="gray.600"
                 >
-                  {estimatedRewards} {project.kickstarter.project_token_symbol}
+                  You will get between {minEstimatedRewards} and {estimatedRewards} {project.kickstarter.project_token_symbol} rewards.  
                 </Text>
               </HStack>
             </Stack>
