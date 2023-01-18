@@ -1,23 +1,27 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import "@fontsource/inter/variable.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import theme from "../theme/theme";
+import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
+import { PageBlockerState } from "../common/components/PageBlocker";
+import { blockerStore } from "../stores/pageBlocker";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Router, { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import PageBlocker from "../common/components/PageBlocker";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import theme from "../theme/theme";
+
 import * as gtag from "../lib/gtag";
 import Script from "next/script";
 import NProgress from "nprogress";
 import NextHead from "next/head";
+
+import "@fontsource/inter/variable.css";
 import "@near-wallet-selector/modal-ui/styles.css";
 import "../styles/nprogress.css";
-import { WalletSelectorContextProvider } from "../context/WalletSelectorContext";
-import { PageBlockerState } from "../common/components/PageBlocker";
-import { blockerStore } from "../stores/pageBlocker";
-import PageBlocker from "../common/components/PageBlocker";
+
 const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
 const queryClient = new QueryClient();
 function App({ Component, pageProps }: AppProps) {
