@@ -149,7 +149,7 @@ const Home = ({news}: any) => {
               <Flex
                 align={"center"}
                 direction={{ base: "column", md: "row" }}
-                justify={{ base: "center", md: "space-between" }}
+                justify={{ base: "center", md: "flex-end" }}
               >
                 <Text hidden={true} w={{ base: "100%", md: "439px" }} fontSize={"16px"}>
                   The Project in the Leaderboard with the most votes will become
