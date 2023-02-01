@@ -141,7 +141,7 @@ const Home = ({news}: any) => {
               >
                 <Marquee gradient={false}>
                   <Text fontWeight={500}>
-                    - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gest 20,000 stNEAR 📣 - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gest 20,000 stNEAR 📣 - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gest 20,000 stNEAR 📣
+                    - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gets 20,000 stNEAR 📣 - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gets 20,000 stNEAR 📣 - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gets 20,000 stNEAR 📣
                   </Text>
                 </Marquee>
               </Box>
