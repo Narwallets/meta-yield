@@ -1322,7 +1322,72 @@ documents:[
   {title:"NFT/Blockchain component Roadmap & details",
   url:"https://www.mewota.com"},
 ]
-}
+},
+{
+  id: 11, // key para proyectos en katherine
+  slug: "nearhub", // unique friendly identifier per project. katherine smart contract would retrieve this field
+  name: "NEAR HUB",
+  motto: "Your gateway to the NEARverse",
+  projectUrl: "https://nearhub.club",
+  twitter: " https://twitter.com/NEARHub_online",
+  imageUrl:"/projects/nearhub/cover.jpeg",
+  avatarUrl:
+    "/projects/nearhub/icon.jpeg",
+  description:
+    "NEAR Hub Online is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.",
+  verified: true,
+  tags: ["Gaming"],
+  campaignHtml: `<p>NEAR Hub Online is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.&nbsp;</p>
+  <p><br></p>
+  <p><strong>Why should you vote for them?</strong></p>
+  <p>They are committed to creating a vibrant and welcoming space for the NEAR community to connect and collaborate. Their virtual platform offers a variety of resources and tools, such as tutorials, articles, and workshops, to help members learn more about the NEAR blockchain. They stay up to date with the latest news and updates in the blockchain space and actively promote our platform at conferences and hackathons. Ultimately, they are dedicated to growing and expanding their platform to foster meaningful connections and collaborations.&nbsp;</p>`,
+  team: [
+    {
+      name: "Jeff Gold",
+      bio: "Co-founder of NEAR Hub and Tamago, and a passionate software developer. Started creating on web3 in early 2020s. With a strong thirst for knowledge and a desire to push the boundaries of technology, Jeff is committed to using his expertise to help build a better future.",
+    },
+    {
+      name: "Marco Torello",
+      bio: "Computer engineer with 20+ years work experience in many fields as defense, telecommunication, consulting and finance. Has both coding and infrastructure experience and currently manages an international team located all over the world."
+    },
+    {
+      name: "Ryan Cloke",
+      bio: "He has 27 years of experience developing software for projects of all types, building hundreds of projects and enjoys pushing the boundaries of what is possible by taking calculated risks and creating innovative solutions.",
+    },
+    {
+      name: "Rebecca Hallquist - Advisor",
+      bio: "Arts administrator and event marketer turned blockchain community builder. She truly believes them to be a thought and technical leader for metaverse and AI within the broader ecosystem, so she's happy to be along for the ride.",
+    },
+    {
+      name: "Tabea Fuhrer - Community Manager",
+      bio: "Tabea is an active member of the NEAR ecosystem since March 2021. She is passionate about educating people about the tools of web3 in creative and tangible ways. Additionally, she is dedicated to supporting communities by leveraging her good communication skills, hands-on mentality, and creative thinking.",
+    },
+    {
+      name: "Dean Yeager - Lead Designer",
+      bio: "Creative professional with extensive project experience from concept to development. Leverages strategic vision, business acumen, and artistic talent to deliver high-impact digital marketing projects.",
+    },
+    {
+      name: "Arpit Tiwari (ikhimaz) - 3d artist/Metaverse Experience Creator",
+      bio: "Currently pursuing a Master of Science in Visual Communication while working for NEAR Hub. He has created Metaverses that provide realistic and stylized experiences.",
+    },
+    {
+      name: "Sammy Flores Aka Samtoshi_F_Baby",
+      bio: "Currently pursuing a Master of Science in Visual Communication while working for NEAR Hub. He has created Metaverses that provide realistic and stylized experiences.",
+    },
+    {
+      name: "Steven Caicedo - Social Marketing",
+      bio: "A native New Yorker excelling in Audio/Film/Video Game/Virtual Reality Production. He has presented Virtual Reality products to major media corporations, and consulted on School; a program that combines VR with gameplay to inspire young indigenous minds to learn.",
+    },
+  ],
+documents:[
+  {title:"Site",
+  url:"https://nearhub.club"},
+  {title:"Twitter",
+  url:"https://twitter.com/NEARHub_online"},
+  {title:"Discord",
+  url:"discord.gg/nearhub"},
+]
+},
 ];
 
 export type ElementType<T extends ReadonlyArray<unknown>> =

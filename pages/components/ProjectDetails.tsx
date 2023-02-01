@@ -609,12 +609,12 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                 minW={{ base: "0", lg: "0" }}
                 maxW={{ base: "none", lg: "none" }}
               >
-                {project?.campaignHtml && <Tab>Campaign</Tab>}
+                {project?.campaignHtml && <Tab>{props.votingMode ? 'About': 'Campaign'}</Tab>}
                 {project?.team && <Tab>Team</Tab>}
                 {project?.faq && <Tab>FAQ</Tab>}
                 {project?.roadmap && <Tab>Roadmap</Tab>}
                 {project?.documents && <Tab>Documents</Tab>}
-                {project?.about && <Tab>About</Tab>}
+                {project?.about && !props.votingMode && <Tab>About</Tab>}
               </TabList>
 
               <TabPanels minHeight="580px">

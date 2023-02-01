@@ -105,7 +105,7 @@ const Home = ({news}: any) => {
 
           {projectsToVote && projectsToVote.length > 0 && (
             <Stack
-              hidden={true}
+              hidden={false}
               id="vote"
               p={{ base: 5, md: 30 }}
               w={"100%"}
@@ -138,14 +138,14 @@ const Home = ({news}: any) => {
                 w={"110vw"}
                 position={"relative"}
                 left={-10}
-                hidden={true} 
+                hidden={false} 
               >
                 <Marquee gradient={false}>
                   <Text fontWeight={500}>
-                    - 💰 Winner starts with 20,000 stNEAR 📣 - 💰 Winner starts
-                    with 20,000 stNEAR 📣 - 💰 Winner starts with 20,000 stNEAR
-                    📣 - 💰 Winner starts with 20,000 stNEAR 📣 - 💰 Winner
-                    starts with 20,000 stNEAR 📣 -
+                    - 💰 Winner starts with 50,000 stNEAR 📣 - 💰 Winner starts
+                    with 50,000 stNEAR 📣 - 💰 Winner starts with 50,000 stNEAR
+                    📣 - 💰 Winner starts with 50,000 stNEAR 📣 - 💰 Winner
+                    starts with 50,000 stNEAR 📣 -
                   </Text>
                 </Marquee>
               </Box>
