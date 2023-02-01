@@ -719,12 +719,6 @@ const Team = (props: { team: TeamMemberProps[] }) => {
             </Stack>
             <Text
               color="muted"
-              sx={{
-                "-webkit-box-orient": "vertical",
-                "-webkit-line-clamp": "2",
-                overflow: "hidden",
-                display: "-webkit-box",
-              }}
             >
               {member.bio}
             </Text>

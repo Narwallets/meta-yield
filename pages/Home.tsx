@@ -151,7 +151,7 @@ const Home = ({news}: any) => {
                 direction={{ base: "column", md: "row" }}
                 justify={{ base: "center", md: "space-between" }}
               >
-                <Text w={{ base: "100%", md: "439px" }} fontSize={"16px"}>
+                <Text hidden={true} w={{ base: "100%", md: "439px" }} fontSize={"16px"}>
                   The Project in the Leaderboard with the most votes will become
                   an active Fundraising Campaign.
                 </Text>
@@ -235,8 +235,7 @@ const Home = ({news}: any) => {
                 textAlign={{ base: "center", md: "start" }}
                 fontSize={{ base: "2xl", md: "4xl" }}
                 lineHeight="10"
-                fontWeight="bold"
-              >
+                fontWeight="bold">
                 Funding Completed
               </Text>
               {dataFinished.map((p: any) => (
