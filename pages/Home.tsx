@@ -149,11 +149,11 @@ const Home = ({news}: any) => {
               <Flex
                 align={"center"}
                 direction={{ base: "column", md: "row" }}
-                justify={{ base: "center", md: "flex-end" }}
+                justify={{ base: "center", md: "space-between" }}
               >
-                <Text hidden={true} w={{ base: "100%", md: "439px" }} fontSize={"16px"}>
-                  The Project in the Leaderboard with the most votes will become
-                  an active Fundraising Campaign.
+                <Text w={{ base: "100%", md: "439px" }} fontSize={"16px"}>
+                Remember: It is important to know the projects, their value proposition and the people behind them. Once you do, choose your favorite and VOTE
+
                 </Text>
                 <VStack mr={200}>
                   <Text
