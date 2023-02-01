@@ -774,7 +774,7 @@ export const dataToVote = [
   description:
     "NEAR Hub Online is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.",
   verified: true,
-  tags: ["Crypto"],
+  tags: ["Community","Forum","Collaboration","Learning","Virtual"],
   campaignHtml: `<p><strong>NEAR Hub Online</strong>  is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.&nbsp;</p>
   <p><br></p>
   <p><strong>Why should you vote for them?</strong></p>
@@ -839,7 +839,7 @@ documents:[
       `Jump DeFi is the first one-stop platform on NEAR Protocol; lowering the barrier of entry to decentralized finance for users and developers. The platform features a suite of no-code developer applications that help Web3 Startups go from 0 to 1 faster and cheaper! Jump DeFi onboards users to decentralized finance on NEAR easier than ever before with access to all key applications, connected on one platform. 
       Jump DeFi is an ecosystem of revenue generating protocols including the Jump DEX Automated Market Maker, Jump Pad Token Launchpad, Jump NFT Staking Platform and Jump Token Laboratory; the first no-code contract deployer on NEAR.	`,
     verified: true,
-    tags: ["DeFi"],
+    tags: ["DeFi", "Web3", "No-code", "DEX", "All-in-one"],
     campaignHtml: `<p><strong>Jump DeFi </strong>is the first one-stop platform on NEAR Protocol; lowering the barrier of entry to decentralized finance for users and developers. The platform features a suite of no-code developer applications that help Web3 Startups go from 0 to 1 faster and cheaper! Jump DeFi onboards users to decentralized finance on NEAR easier than ever before with access to all key applications, connected on one platform.&nbsp;</p>
     <p><strong>Jump DeFi</strong> is an ecosystem of revenue generating protocols including the Jump DEX Automated Market Maker, Jump Pad Token Launchpad, Jump NFT Staking Platform and Jump Token Laboratory; the first no-code contract deployer on NEAR. &nbsp; &nbsp; &nbsp; &nbsp;</p>
     <p><br></p>
