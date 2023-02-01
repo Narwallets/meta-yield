@@ -477,13 +477,13 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                 {project?.name}
               </Text>
               {/* {project?.verified && (
-              <Image
-                src={"/check.svg"}
-                alt="check"
-                width={"16px"}
-                height={"16px"}
-              />
-            )} */}
+                  <Image
+                    src={"/check.svg"}
+                    alt="check"
+                    width={"16px"}
+                    height={"16px"}
+                  />
+                )} */}
             </HStack>
             <Text display={isMobile ? "none" : "initial"} mt="2">
               {project?.motto}
@@ -621,7 +621,7 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                 {project?.campaignHtml && (
                   <TabPanel>
                     <Text fontSize="sm" fontWeight="subtle">
-                      CAMPAIGN
+                      {props.votingMode ? 'ABOUT': 'CAMPAING'}
                     </Text>
                     <Stack mt={5}>
                       <div

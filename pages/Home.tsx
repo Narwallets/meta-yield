@@ -125,8 +125,7 @@ const Home = ({news}: any) => {
                   lineHeight="10"
                   fontWeight="bold"
                 >
-                  Vote for your Favorite Project to Launch a Fundraising
-                  Campaign
+                  Vote for your favorite project and help it start its campaign with a boost!
                 </Text>
               </VStack>
               {/* The Marquee was hidden until resuming the campaing */}
@@ -142,10 +141,7 @@ const Home = ({news}: any) => {
               >
                 <Marquee gradient={false}>
                   <Text fontWeight={500}>
-                    - 💰 Winner starts with 50,000 stNEAR 📣 - 💰 Winner starts
-                    with 50,000 stNEAR 📣 - 💰 Winner starts with 50,000 stNEAR
-                    📣 - 💰 Winner starts with 50,000 stNEAR 📣 - 💰 Winner
-                    starts with 50,000 stNEAR 📣 -
+                    - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gest20,000 stNEAR 📣 - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gest20,000 stNEAR 📣 - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gest20,000 stNEAR 📣
                   </Text>
                 </Marquee>
               </Box>
