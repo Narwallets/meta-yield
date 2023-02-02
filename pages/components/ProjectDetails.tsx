@@ -477,13 +477,13 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                 {project?.name}
               </Text>
               {/* {project?.verified && (
-              <Image
-                src={"/check.svg"}
-                alt="check"
-                width={"16px"}
-                height={"16px"}
-              />
-            )} */}
+                  <Image
+                    src={"/check.svg"}
+                    alt="check"
+                    width={"16px"}
+                    height={"16px"}
+                  />
+                )} */}
             </HStack>
             <Text display={isMobile ? "none" : "initial"} mt="2">
               {project?.motto}
@@ -609,19 +609,19 @@ const ProjectDetails = (props: { id: any; votingMode?: boolean }) => {
                 minW={{ base: "0", lg: "0" }}
                 maxW={{ base: "none", lg: "none" }}
               >
-                {project?.campaignHtml && <Tab>Campaign</Tab>}
+                {project?.campaignHtml && <Tab>{props.votingMode ? 'About': 'Campaign'}</Tab>}
                 {project?.team && <Tab>Team</Tab>}
                 {project?.faq && <Tab>FAQ</Tab>}
                 {project?.roadmap && <Tab>Roadmap</Tab>}
                 {project?.documents && <Tab>Documents</Tab>}
-                {project?.about && <Tab>About</Tab>}
+                {project?.about && !props.votingMode && <Tab>About</Tab>}
               </TabList>
 
               <TabPanels minHeight="580px">
                 {project?.campaignHtml && (
                   <TabPanel>
                     <Text fontSize="sm" fontWeight="subtle">
-                      CAMPAIGN
+                      {props.votingMode ? 'ABOUT': 'CAMPAING'}
                     </Text>
                     <Stack mt={5}>
                       <div
@@ -719,12 +719,6 @@ const Team = (props: { team: TeamMemberProps[] }) => {
             </Stack>
             <Text
               color="muted"
-              sx={{
-                "-webkit-box-orient": "vertical",
-                "-webkit-line-clamp": "2",
-                overflow: "hidden",
-                display: "-webkit-box",
-              }}
             >
               {member.bio}
             </Text>
