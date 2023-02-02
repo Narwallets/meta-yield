@@ -43,7 +43,7 @@ const VoteProject = (props: { data: any, position: number }) => {
       minW= {{base: '100%' ,md: '100%'}}
       maxW= {{base: '100%' ,md: '100%'}}
       p={5}
-      transform={props.position === 0 ? 'scale(1.03)' : ''}
+      // transform={props.position === 0 ? 'scale(1.03)' : ''}
       boxShadow="sm"
       border={'1px'}
       borderColor={'lightgray'}

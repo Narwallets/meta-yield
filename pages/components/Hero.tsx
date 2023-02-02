@@ -94,7 +94,7 @@ const Hero = () => {
                 </Link>
               </HStack>
               <Text color={"white"} opacity={0.5}>
-                Vote which project can be eligible to get funded.
+                Vote for your favorite project and help them start their campaign with an extra boost.
               </Text>
             </Stack>
             <Stack

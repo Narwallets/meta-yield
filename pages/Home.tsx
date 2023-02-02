@@ -105,7 +105,7 @@ const Home = ({news}: any) => {
 
           {projectsToVote && projectsToVote.length > 0 && (
             <Stack
-              hidden={true}
+              hidden={false}
               id="vote"
               p={{ base: 5, md: 30 }}
               w={"100%"}
@@ -125,8 +125,7 @@ const Home = ({news}: any) => {
                   lineHeight="10"
                   fontWeight="bold"
                 >
-                  Vote for your Favorite Project to Launch a Fundraising
-                  Campaign
+                  Vote for your favorite project and help it start its campaign with a boost!
                 </Text>
               </VStack>
               {/* The Marquee was hidden until resuming the campaing */}
@@ -138,14 +137,11 @@ const Home = ({news}: any) => {
                 w={"110vw"}
                 position={"relative"}
                 left={-10}
-                hidden={true} 
+                hidden={false} 
               >
                 <Marquee gradient={false}>
                   <Text fontWeight={500}>
-                    - 💰 Winner starts with 20,000 stNEAR 📣 - 💰 Winner starts
-                    with 20,000 stNEAR 📣 - 💰 Winner starts with 20,000 stNEAR
-                    📣 - 💰 Winner starts with 20,000 stNEAR 📣 - 💰 Winner
-                    starts with 20,000 stNEAR 📣 -
+                    - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gets 20,000 stNEAR 📣 - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gets 20,000 stNEAR 📣 - 💰 1st place: gets 50,000 stNEAR  📣 - 💰 2nd place: gets 20,000 stNEAR 📣
                   </Text>
                 </Marquee>
               </Box>
@@ -156,8 +152,8 @@ const Home = ({news}: any) => {
                 justify={{ base: "center", md: "space-between" }}
               >
                 <Text w={{ base: "100%", md: "439px" }} fontSize={"16px"}>
-                  The Project in the Leaderboard with the most votes will become
-                  an active Fundraising Campaign.
+                Remember: It is important to know the projects, their value proposition and the people behind them. Once you do, choose your favorite and VOTE
+
                 </Text>
                 <VStack mr={200}>
                   <Text
@@ -239,8 +235,7 @@ const Home = ({news}: any) => {
                 textAlign={{ base: "center", md: "start" }}
                 fontSize={{ base: "2xl", md: "4xl" }}
                 lineHeight="10"
-                fontWeight="bold"
-              >
+                fontWeight="bold">
                 Funding Completed
               </Text>
               {dataFinished.map((p: any) => (
