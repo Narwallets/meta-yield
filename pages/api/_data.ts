@@ -785,6 +785,10 @@ export const dataToVote = [
       bio: "Co-founder of NEAR Hub and Tamago, and a passionate software developer. Started creating on web3 in early 2020s. With a strong thirst for knowledge and a desire to push the boundaries of technology, Jeff is committed to using his expertise to help build a better future.",
     },
     {
+      name: "Jordan Gray",
+      bio: "Co-Founder of CODAME ART+TECH non-profit running 12+ years. Co-Founder TENK NFT Studio with 3M+ primary volume. Creative Commons Audio Visual Producer & Qigong Shifu.",
+    },
+    {
       name: "Marco Torello",
       bio: "Computer engineer with 20+ years work experience in many fields as defense, telecommunication, consulting and finance. Has both coding and infrastructure experience and currently manages an international team located all over the world."
     },
