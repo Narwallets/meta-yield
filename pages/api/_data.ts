@@ -765,6 +765,7 @@ export const dataToVote = [
   id: 11, // key para proyectos en katherine
   slug: "nearhub", // unique friendly identifier per project. katherine smart contract would retrieve this field
   name: "NEAR HUB",
+winner: true,
   motto: "Your gateway to the NEARverse",
   projectUrl: "https://nearhub.club",
   twitter: " https://twitter.com/NEARHub_online",
