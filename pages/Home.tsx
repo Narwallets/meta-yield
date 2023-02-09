@@ -105,7 +105,7 @@ const Home = ({news}: any) => {
 
           {projectsToVote && projectsToVote.length > 0 && (
             <Stack
-              hidden={false}
+              hidden={true}
               id="vote"
               p={{ base: 5, md: 30 }}
               w={"100%"}
