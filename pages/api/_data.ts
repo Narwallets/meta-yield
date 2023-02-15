@@ -941,7 +941,7 @@ export const data = [
       },
       {
         name: "Sammy Flores Aka Samtoshi_F_Baby",
-        bio: "Currently pursuing a Master of Science in Visual Communication while working for NEAR Hub. He has created Metaverses that provide realistic and stylized experiences.",
+        bio: "Graphic designer and comic book artist Co-Founder of NEARxPublish, illustrator of the NEAR Hub Comics PFP NFT collection, illustrator for Whack-A-HRMS NEAR Hub Game, and colorist for the Bob Boom! comic at Paras Comic. Sam was part of the first 100 creators on the Paras platform and is an advocate for autism awareness.",
       },
       {
         name: "Steven Caicedo - Social Marketing",
