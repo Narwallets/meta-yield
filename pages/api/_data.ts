@@ -982,7 +982,7 @@ export const data = [
     {title:"Twitter",
     url:"https://twitter.com/NEARHub_online"},
     {title:"Discord",
-    url:"discord.gg/nearhub"},
+    url:"https://discord.gg/nearhub"},
     ]},
 ];
 
@@ -1005,7 +1005,7 @@ winner: true,
   campaignHtml: `<p><strong>NEAR Hub Online</strong>  is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.&nbsp;</p>
   <p><br></p>
   <p><strong>Why should you vote for them?</strong></p>
-  <p>They are committed to creating a vibrant and welcoming space for the NEAR community to connect and collaborate. Their virtual platform offers a variety of resources and tools, such as tutorials, articles, and workshops, to help members learn more about the NEAR blockchain. They stay up to date with the latest news and updates in the blockchain space and actively promote our platform at conferences and hackathons. Ultimately, they are dedicated to growing and expanding their platform to foster meaningful connections and collaborations.&nbsp;</p>`,
+  <p>They are committed to creating a vibrant and welcoming space for the NEAR community to connect and collaborate. Their virtual platform offers a variety of resources and tools, such as tutorials, articles, and workshops, to help members learn more about the NEAR blockchain. <br> They stay up to date with the latest news and updates in the blockchain space and actively promote our platform at conferences and hackathons. Ultimately, they are dedicated to growing and expanding their platform to foster meaningful connections and collaborations.&nbsp;</p><br>`,
   team: [
     {
       name: "Jeff Gold",
