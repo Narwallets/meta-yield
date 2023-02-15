@@ -84,9 +84,10 @@ const Home = ({news}: any) => {
           )}
 
           {
-          /* DISABLED UNTIL THE ZOOMLAND CAMPAING START */
+          /* DISABLED UNTIL THE WINNER CAMPAING START */
           winner && winner.length > 0 && (
             <Box
+              hidden={true}
               p={{ base: 5, md: 30 }}
               id="fund"
               as="section"
