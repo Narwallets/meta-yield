@@ -49,7 +49,7 @@ const RewardsEstimated = (props: { kickstarter: KickstarterProps }) => {
             yton(supportedProject.supporter_deposit);
           setRewards(ntoy(myRewards));
           setLockupTime(
-            moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
+            moment.utc(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
           );
         }
         setInvested(yton(supportedProject.supporter_deposit).toString());

@@ -54,7 +54,7 @@ const FundingSuccess = (props: { id: any }) => {
           const rewards = yton(rewardsInt.toString());
           setRewards(rewards.toString());
           setLockupTime(
-            moment(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
+            moment.utc(winnerGoal.unfreeze_timestamp).format("MMMM Do, YYYY")
           );
         }
         setInvested(
