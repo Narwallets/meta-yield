@@ -757,7 +757,233 @@ export const data = [
         url: "https://zomland.com/faq"
       }
     ]
-  }
+  },
+  {
+    id: 6, // key para proyectos en katherine
+    slug: "nearhub", // unique friendly identifier per project. katherine smart contract would retrieve this field
+    name: "NEAR HUB",
+    motto: "Your gateway to the NEARverse",
+    projectUrl: "https://nearhub.club",
+    twitter: " https://twitter.com/NEARHub_online",
+    imageUrl:"/projects/nearhub/cover.png",
+    avatarUrl:
+      "/projects/nearhub/icon.png",
+    description:
+      "<b>NEAR Hub Online</b> is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.",
+    verified: true,
+    tags: ["Community","Forum","Collaboration","Learning","Virtual"],
+    campaignHtml: `
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><b>NEAR Hub</b> is committed to creating a vibrant and welcoming space for the NEAR community to connect and collaborate. Their virtual platform offers a variety of resources and tools, such as tutorials, articles, and workshops, to help members learn more about the NEAR blockchain.&nbsp;</span><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><br></span><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">They stay up to date with the latest news and updates in the blockchain space and actively promote their platform at conferences and hackathons. They believe that <b> NEAR Hub Online</b> is an essential resource for the NEAR community and they are dedicated to growing and expanding our platform to foster meaningful connections and collaborations.&nbsp;</span></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The <b>NEAR Hub</b> team wants you to get onboard with this campaign so they can continue with their plan to grow the <b>NEAR Hub Online </b>platform and expand their reach to more members of the NEAR community. They&rsquo;re planning on adding new features and resources to the platform, such as interactive tools, games, and events.&nbsp;</span></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The rewards you can get from this campaign are:&nbsp;</span></p>
+    <p><br></p>
+    <div align="left" dir="ltr" style="margin-left:0pt;">
+        <table style="border:none;border-collapse:collapse;table-layout:fixed;width:451.27559055118115pt;">
+            <tbody>
+                <tr style="height:0pt;">
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 1: From 0 to 40.000 stNEAR</span></p>
+                    </td>
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">6 $ESTATE tokens for every stNEAR</span></p>
+                    </td>
+                </tr>
+                <tr style="height:0pt;">
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 2: From 40.001 to 200.000 stNEAR</span></p>
+                    </td>
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">7 $ESTATE tokens for every stNEAR</span></p>
+                    </td>
+                </tr>
+                <tr style="height:0pt;">
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 3: From 200.001 to 350.000 stNEAR</span></p>
+                    </td>
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">8 $ESTATE tokens for every stNEAR</span></p>
+                    </td>
+                </tr>
+                <tr style="height:0pt;">
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 4: From 350.001 to 400.000 stNEAR</span></p>
+                    </td>
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">9,6 $ESTATE tokens for every stNEAR</span></p>
+                    </td>
+                </tr>
+                <tr style="height:0pt;">
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 5: From 400.001 to 500.000 stNEAR</span></p>
+                    </td>
+                    <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                        <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">9,6 $ESTATE tokens for every stNEAR</span></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><br></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span class="Apple-tab-span" style="white-space:pre;">&nbsp; &nbsp;&nbsp;</span></span><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span class="Apple-tab-span" style="white-space:pre;">&nbsp; &nbsp;&nbsp;</span></span><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span class="Apple-tab-span" style="white-space:pre;">&nbsp; &nbsp;</span></span></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span class="Apple-tab-span" style="white-space:pre;">&nbsp; &nbsp;&nbsp;</span></span><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span class="Apple-tab-span" style="white-space:pre;">&nbsp; &nbsp;&nbsp;</span></span><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span class="Apple-tab-span" style="white-space:pre;">&nbsp;&nbsp;</span></span></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Roadmap</span></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><b>Q1 2023:</b>&nbsp;</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Launch of the NEAR Hub Estates</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Launch of ESTATEhub token</span></p>
+        </li>
+    </ul>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;"><b>Q2 2023:</b></span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Introduction of the first virtual properties for purchase within the NEAR Hub Estates</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NEAR Hub Estates Marketplace</span></p>
+        </li>
+    </ul>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><b>Q3 2023:</b></span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Expansion of the NEAR Hub Estates to include: virtual events and experiences</span></p>
+        </li>
+    </ul>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><b>Q4 2023:</b>&nbsp;</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Launch of governance features for ESTATEhub token holders</span></p>
+        </li>
+    </ul>
+    <br>
+    <br>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Tokenomics</span></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The NEAR Hub ESTATE Token (ESTATEhub) is a utility token that powers the NEAR Hub Estates. It provides access to exclusive virtual experiences, events, and special perks within the NEAR Hub. The total supply of ESTATEhub tokens is fixed at 50 million and will never increase.</span></p>
+    <p><br></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Distribution:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">10% through Metayield campaign stage</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">10% rewards</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">25% reserved for community development and marketing</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">15% design and development</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">15% for liquidity</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">25% reserved for the team and advisors</span></p>
+        </li>
+    </ul>
+    <p><br></p>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards for Token Holders:</span></p>
+    <p dir="ltr" style="line-height:1.38;text-indent: 36pt;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ESTATEhub token holders receive:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;margin-left: 36pt;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">5% off new land sales</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;margin-left: 36pt;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">2.5% off secondary sales.&nbsp;</span></p>
+        </li>
+    </ul>
+    <p dir="ltr" style="line-height:1.38;margin-left: 36pt;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">These rewards can be increased by using ESTATEhub tokens to purchase property within the NEAR Hub Estates,</span></p>
+    <p dir="ltr" style="line-height:1.38;margin-left: 36pt;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ESTATE land token holders receive:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;margin-left: 36pt;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">10% off new land sales</span></p>
+        </li>
+        <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;margin-left: 36pt;">
+            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">5% off secondary sales.</span></p>
+        </li>
+    </ul>
+    <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Rewards are distributed to a pool based ESTATEhub tokens and land tokens registered in their respective pools.</span></p>`,
+    team: [
+      {
+        name: "Jeff Gold",
+        bio: "Co-founder of NEAR Hub and Tamago, and a passionate software developer. Started creating on web3 in early 2020s. With a strong thirst for knowledge and a desire to push the boundaries of technology, Jeff is committed to using his expertise to help build a better future.",
+      },
+      {
+        name: "Jordan Gray",
+        bio: "Co-Founder of CODAME ART+TECH non-profit running 12+ years. Co-Founder TENK NFT Studio with 3M+ primary volume. Creative Commons Audio Visual Producer & Qigong Shifu.",
+      },
+      {
+        name: "Marco Torello",
+        bio: "Computer engineer with 20+ years work experience in many fields as defense, telecommunication, consulting and finance. Has both coding and infrastructure experience and currently manages an international team located all over the world."
+      },
+      {
+        name: "Ryan Cloke",
+        bio: "He has 27 years of experience developing software for projects of all types, building hundreds of projects and enjoys pushing the boundaries of what is possible by taking calculated risks and creating innovative solutions.",
+      },
+      {
+        name: "Rebecca Hallquist - Advisor",
+        bio: "Arts administrator and event marketer turned blockchain community builder. She truly believes them to be a thought and technical leader for metaverse and AI within the broader ecosystem, so she's happy to be along for the ride.",
+      },
+      {
+        name: "Tabea Fuhrer - Community Manager",
+        bio: "Tabea is an active member of the NEAR ecosystem since March 2021. She is passionate about educating people about the tools of web3 in creative and tangible ways. Additionally, she is dedicated to supporting communities by leveraging her good communication skills, hands-on mentality, and creative thinking.",
+      },
+      {
+        name: "Dean Yeager - Lead Designer",
+        bio: "Creative professional with extensive project experience from concept to development. Leverages strategic vision, business acumen, and artistic talent to deliver high-impact digital marketing projects.",
+      },
+      {
+        name: "Arpit Tiwari (ikhimaz) - 3d artist/Metaverse Experience Creator",
+        bio: "Currently pursuing a Master of Science in Visual Communication while working for NEAR Hub. He has created Metaverses that provide realistic and stylized experiences.",
+      },
+      {
+        name: "Sammy Flores Aka Samtoshi_F_Baby",
+        bio: "Currently pursuing a Master of Science in Visual Communication while working for NEAR Hub. He has created Metaverses that provide realistic and stylized experiences.",
+      },
+      {
+        name: "Steven Caicedo - Social Marketing",
+        bio: "A native New Yorker excelling in Audio/Film/Video Game/Virtual Reality Production. He has presented Virtual Reality products to major media corporations, and consulted on School; a program that combines VR with gameplay to inspire young indigenous minds to learn.",
+      },
+    ],
+    faq: [
+      {
+        title: "What is ESTATEhub?",
+        content: `ESTATEhub is a utility token that powers the NEAR Hub metaverse. It provides access to exclusive virtual experiences, events, and special perks within the NEAR Hub metaverse.`,
+      },
+      {
+        title: "How many ESTATEhub tokens will be in circulation?",
+        content: `The total supply of ESTATEhub tokens is fixed at 50 million and will never increase.`,
+      },
+      {
+        title: "What can I do with ESTATEhub tokens?",
+        content: `With ESTATEhub tokens, you'll have the power to unlock a world of exciting possibilities within the NEAR Hub metaverse! You can use them to purchase virtual properties, attend virtual events, access exclusive perks, purchase event tickets, trade in unique NFTs, get your hands on exclusive merchandise, and even customise your avatar.`,
+      },
+      {
+        title: "Can ESTATEhub tokens be traded?",
+        content: `Yes, ESTATEhub tokens will be tradeable on supported cryptocurrency exchanges.`,
+      },
+      {
+        title: "What is the benefit of holding ESTATEhub tokens?",
+        content: `Holding ESTATEhub tokens gives you access to exclusive virtual experiences, events, and special perks within the NEAR Hub Estates.
+        Plus, as a token holder, you'll get 5% off new land sales and 2.5% off secondary sales, 
+        and be able to purchase property in the NEAR Hub Estates that earns:
+        10% off new land sales and 5% off secondary sales.
+        <br><br>
+        All sale percentages go to a pool that distributes the tokens based on the percentage of tokens/land held out of the total amount in the pool.
+        `,
+      },
+    ],
+  documents:[
+    {title:"Site",
+    url:"https://nearhub.club"},
+    {title:"Twitter",
+    url:"https://twitter.com/NEARHub_online"},
+    {title:"Discord",
+    url:"discord.gg/nearhub"},
+    ]},
 ];
 
 export const dataToVote = [
@@ -773,7 +999,7 @@ winner: true,
   avatarUrl:
     "/projects/nearhub/icon.png",
   description:
-    "NEAR Hub Online is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.",
+    "<strong>NEAR Hub Online </strong> is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.",
   verified: true,
   tags: ["Community","Forum","Collaboration","Learning","Virtual"],
   campaignHtml: `<p><strong>NEAR Hub Online</strong>  is a virtual platform designed to connect the global NEAR community. It provides a forum for developers, entrepreneurs, and enthusiasts working with the NEAR blockchain to share resources, exchange ideas, and collaborate on projects.&nbsp;</p>
