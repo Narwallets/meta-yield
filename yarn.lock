@@ -1010,6 +1010,13 @@
   dependencies:
     rxjs "^7.5.7"
 
+"@near-wallet-selector/core@7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/core/-/core-7.8.0.tgz#690a9f20deb20dbcfb40074933a4fbcd280662e6"
+  integrity sha512-hFYbWE4aUwhaCqYHXQ7eyhu2dZQl5EIi1TFwkaEcaaQirHBhLda8vpHARAzrZ9H5po2yUhqxv1lw/5O6uAcF4Q==
+  dependencies:
+    rxjs "^7.8.0"
+
 "@near-wallet-selector/here-wallet@^7.4.0":
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@near-wallet-selector/here-wallet/-/here-wallet-7.4.0.tgz#06dbff35db1e4ae1601187dcd627545dd1e96392"
@@ -1068,6 +1075,14 @@
     "@near-wallet-selector/core" "7.2.0"
     "@near-wallet-selector/wallet-utils" "7.2.0"
 
+"@near-wallet-selector/narwallets@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/narwallets/-/narwallets-7.8.0.tgz#d617b745bdc8d79325413cdf9a2d2e659c07ff2d"
+  integrity sha512-SGlh559fAUYGLqIIA4T+1GwTmuMgqgYv4W9h0AsARAyu1HmwJJ0CYSCE1nHplWMlbLYMri+2LBxpfgCQ4QT2xg==
+  dependencies:
+    "@near-wallet-selector/core" "7.8.0"
+    is-mobile "^3.1.1"
+
 "@near-wallet-selector/near-wallet@^7.0.3":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@near-wallet-selector/near-wallet/-/near-wallet-7.2.0.tgz#86e2cb767754f8a47c134ac81f77a27b05dba250"
@@ -1119,6 +1134,14 @@
   dependencies:
     "@near-wallet-selector/core" "7.2.1"
     bn.js "^5.2.0"
+
+"@near-wallet-selector/xdefi@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/xdefi/-/xdefi-7.8.0.tgz#529d4c3e9640fe885875f6b98e8ed741b4953f06"
+  integrity sha512-6qjNBZ9XURzNo2NmlskFoepIGdrNOF+I09A4Fs+No6KkW2uG+JIQ1nWQngnzlQ4weJxPadIzSr24bGiawx0ZyA==
+  dependencies:
+    "@near-wallet-selector/core" "7.8.0"
+    is-mobile "^3.1.1"
 
 "@next/env@12.1.0":
   version "12.1.0"
@@ -2082,10 +2105,10 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-better-sqlite3@^7.6.2:
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/better-sqlite3/-/better-sqlite3-7.6.2.tgz#47cd8cad5b9573cace535f950ac321166bc31384"
-  integrity sha512-S5zIU1Hink2AH4xPsN0W43T1/AJ5jrPh7Oy07ocuW/AKYYY02GWzz9NH0nbSMn/gw6fDZ5jZ1QsHt1BXAwJ6Lg==
+better-sqlite3@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/better-sqlite3/-/better-sqlite3-8.1.0.tgz#a0039c5dfdc04b733cac3c8dbe1b71f3e5fc62d3"
+  integrity sha512-p1m09H+Oi8R9TPj810pdNswMFuVgRNgCJEWypp6jlkOgSwMIrNyuj3hW78xEuBRGok5RzeaUW8aBtTWF3l/TQA==
   dependencies:
     bindings "^1.5.0"
     prebuild-install "^7.1.0"
@@ -4758,6 +4781,13 @@ rxjs@^7.5.6, rxjs@^7.5.7:
   version "7.5.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.7.tgz#2ec0d57fdc89ece220d2e702730ae8f1e49def39"
   integrity sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==
+  dependencies:
+    tslib "^2.1.0"
+
+rxjs@^7.8.0:
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.0.tgz#90a938862a82888ff4c7359811a595e14e1e09a4"
+  integrity sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==
   dependencies:
     tslib "^2.1.0"
 

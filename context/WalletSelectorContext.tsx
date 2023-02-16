@@ -19,6 +19,9 @@ import { getConfig } from "../config";
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
 import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
+import { setupXDEFI } from "@near-wallet-selector/xdefi";
+import { setupNarwallets } from "@near-wallet-selector/narwallets";
+
 declare global {
   interface Window {
     selector: WalletSelector;
@@ -43,6 +46,7 @@ interface WalletSelectorContextValue {
   accountId: string | null;
 }
 enum Wallets {
+  Narwallets = "narwallets",
   Near = "near",
   MyNearWallet = "mynearwallet",
   Sender = "sender",
@@ -54,6 +58,7 @@ enum Wallets {
   Here = "here",
   Meteor = "meteor",
   Coin98 = "coin98",
+  XDefi = "xdefi",
 }
 
 const WalletSelectorContext =
@@ -66,6 +71,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);
   const DEFAULT_ENABLE_WALLETS = [
+    "narwallets",
     "meteor",
     "near",
     "mynearwallet",
@@ -74,6 +80,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
     "walletconnect",
     "here",
     "coin98",
+    "xdefi",
   ];
 
   const setupWallets = () => {
@@ -81,6 +88,9 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
     const enableWallets = DEFAULT_ENABLE_WALLETS;
     enableWallets.forEach((w: string) => {
       switch (w) {
+        case Wallets.Narwallets: {
+          modules.push(setupNarwallets());
+        }
         case Wallets.Meteor: {
           modules.push(setupMeteorWallet());
         }
@@ -136,6 +146,9 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         }
         case Wallets.Coin98: {
           modules.push(setupCoin98Wallet());
+        }
+        case Wallets.XDefi: {
+          modules.push(setupXDEFI());
         }
       }
     });
