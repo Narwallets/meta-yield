@@ -1075,6 +1075,14 @@
     "@near-wallet-selector/core" "7.2.0"
     "@near-wallet-selector/wallet-utils" "7.2.0"
 
+"@near-wallet-selector/narwallets@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/narwallets/-/narwallets-7.8.0.tgz#d617b745bdc8d79325413cdf9a2d2e659c07ff2d"
+  integrity sha512-SGlh559fAUYGLqIIA4T+1GwTmuMgqgYv4W9h0AsARAyu1HmwJJ0CYSCE1nHplWMlbLYMri+2LBxpfgCQ4QT2xg==
+  dependencies:
+    "@near-wallet-selector/core" "7.8.0"
+    is-mobile "^3.1.1"
+
 "@near-wallet-selector/near-wallet@^7.0.3":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@near-wallet-selector/near-wallet/-/near-wallet-7.2.0.tgz#86e2cb767754f8a47c134ac81f77a27b05dba250"
