@@ -19,6 +19,8 @@ import { getConfig } from "../config";
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
 import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
+import { setupXDEFI } from "@near-wallet-selector/xdefi";
+
 declare global {
   interface Window {
     selector: WalletSelector;
@@ -54,6 +56,7 @@ enum Wallets {
   Here = "here",
   Meteor = "meteor",
   Coin98 = "coin98",
+  XDefi = "xdefi",
 }
 
 const WalletSelectorContext =
@@ -74,6 +77,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
     "walletconnect",
     "here",
     "coin98",
+    "xdefi",
   ];
 
   const setupWallets = () => {
@@ -136,6 +140,9 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         }
         case Wallets.Coin98: {
           modules.push(setupCoin98Wallet());
+        }
+        case Wallets.XDefi: {
+          modules.push(setupXDEFI());
         }
       }
     });
