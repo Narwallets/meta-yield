@@ -989,7 +989,7 @@ export const data = [
       slug: "jumpdefi", // unique friendly identifier per project. katherine smart contract would retrieve this field
       name: "JUMP DEFI",
       motto: "Jump DeFi is a one-stop platform that lowers the barrier of entry to decentralized finance for users and developers.",
-      projectUrl: "https://nearhub.club",
+      projectUrl: "https://www.jumpdefi.xyz/",
       twitter: "https://twitter.com/JumpDeFi ",
       imageUrl:"/projects/jumpdefi/cover.png",
       avatarUrl:
