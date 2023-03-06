@@ -1100,7 +1100,7 @@ export const data = [
         },
       ],
       roadmap:{
-        imageUrl: '/projects/jumpdefi/roadmap.jpg',
+        imageUrl: '/projects/jumpdefi/roadmap.png',
       },
     documents:[
       {title:"Site",
