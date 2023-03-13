@@ -1045,6 +1045,9 @@ export const data = [
           </table>
       </div>
       <p><br></p>
+      <p>*Remember backers give away their rewards only, not their tokens.<p>
+      <p><br></p>
+      <p><br></p>
       <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">$JUMP tokens will be distributed using a 3 months linear release after the 6 months locking period ends.</span></p><br><br><p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Why should you vote for them?</span></p>
       <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Because of their unique Value Proposition: Unlocking DeFi for users and developers on NEAR:</span></p>
       <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
