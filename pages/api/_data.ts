@@ -984,6 +984,132 @@ export const data = [
     {title:"Discord",
     url:"https://discord.gg/nearhub"},
     ]},
+    {
+      id: 8, // key para proyectos en katherine
+      slug: "jumpdefi", // unique friendly identifier per project. katherine smart contract would retrieve this field
+      name: "JUMP DEFI",
+      motto: "Jump DeFi is a one-stop platform that lowers the barrier of entry to decentralized finance for users and developers.",
+      projectUrl: "https://www.jumpdefi.xyz/",
+      twitter: "https://twitter.com/JumpDeFi ",
+      imageUrl:"/projects/jumpdefi/cover.png",
+      avatarUrl:
+        "/projects/jumpdefi/icon.png",
+      description:
+        `Jump DeFi is the first one-stop platform on NEAR Protocol; lowering the barrier of entry to decentralized finance for users and developers. The platform features a suite of no-code developer applications that help Web3 Startups go from 0 to 1 faster and cheaper! Jump DeFi onboards users to decentralized finance on NEAR easier than ever before with access to all key applications, connected on one platform. 
+        Jump DeFi is an ecosystem of revenue generating protocols including the Jump DEX Automated Market Maker, Jump Pad Token Launchpad, Jump NFT Staking Platform and Jump Token Laboratory; the first no-code contract deployer on NEAR.	`,
+      verified: true,
+      tags: ["DeFi", "Web3", "No-code", "DEX", "All-in-one"],
+      campaignHtml: `<p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Jump DeFi is the first one-stop platform on NEAR Protocol; lowering the barrier of entry to decentralized finance for users and developers. The platform features a suite of no-code developer applications that help Web3 Startups go from 0 to 1 faster and cheaper! Jump DeFi onboards users to decentralized finance on NEAR easier than ever before with access to all key applications, connected on one platform.&nbsp;</span></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Jump DeFi is an ecosystem of revenue generating protocols including the Jump DEX Automated Market Maker, Jump Pad Token Launchpad, Jump NFT Staking Platform and Jump Token Laboratory; the first no-code contract deployer on NEAR.</span></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Jump DeFi is raising funds for the continued development required to launch their Phase 2, which includes the Jump DEX automated market maker and proprietary auto-router. The funds raised will go toward development costs for the above mentioned items as well as towards a fully comprehensive security audit from a reputable firm.</span></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span class="Apple-tab-span" style="white-space:pre;">&nbsp; &nbsp;&nbsp;</span></span></p>
+      <p dir="ltr" style="line-height:1.656;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The rewards you can get from this campaign are:&nbsp;</span></p>
+      <div align="left" dir="ltr" style="margin-left:0pt;">
+          <table style="border:none;border-collapse:collapse;">
+              <tbody>
+                  <tr style="height:14.25pt;">
+                      <td style="border-left:solid #000000 0.6818182500000001pt;border-right:solid #000000 0.6818182500000001pt;border-bottom:solid #000000 0.6818182500000001pt;border-top:solid #000000 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                          <p dir="ltr" style="line-height:1.656;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 1: From 0 to 30.000 stNEAR</span></p>
+                      </td>
+                      <td style="border-left:solid #000000 0.6818182500000001pt;border-right:solid #000000 0.6818182500000001pt;border-bottom:solid #000000 0.6818182500000001pt;border-top:solid #000000 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                          <p dir="ltr" style="line-height:1.656;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3,1 $JUMP tokens for every stNEAR</span></p>
+                      </td>
+                  </tr>
+                  <tr style="height:14.25pt;">
+                      <td style="border-left:solid #000000 0.6818182500000001pt;border-right:solid #000000 0.6818182500000001pt;border-bottom:solid #000000 0.6818182500000001pt;border-top:solid #000000 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                          <p dir="ltr" style="line-height:1.656;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 2: From 30.001 to 50.000 stNEAR</span></p>
+                      </td>
+                      <td style="border-left:solid #000000 0.6818182500000001pt;border-right:solid #000000 0.6818182500000001pt;border-bottom:solid #000000 0.6818182500000001pt;border-top:solid #000000 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                          <p dir="ltr" style="line-height:1.656;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3.4 $JUMP tokens for every stNEAR</span></p>
+                      </td>
+                  </tr>
+                  <tr style="height:14.25pt;">
+                      <td style="border-left:solid #000000 0.6818182500000001pt;border-right:solid #000000 0.6818182500000001pt;border-bottom:solid #000000 0.6818182500000001pt;border-top:solid #000000 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                          <p dir="ltr" style="line-height:1.656;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 3: From 50.001 to 75.000 stNEAR</span></p>
+                      </td>
+                      <td style="border-left:solid #000000 0.6818182500000001pt;border-right:solid #000000 0.6818182500000001pt;border-bottom:solid #000000 0.6818182500000001pt;border-top:solid #000000 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                          <p dir="ltr" style="line-height:1.656;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3,75 $JUMP tokens for every stNEAR</span></p>
+                      </td>
+                  </tr>
+                  <tr style="height:14.25pt;">
+                      <td style="border-left:solid #000000 0.6818182500000001pt;border-right:solid #000000 0.6818182500000001pt;border-bottom:solid #000000 0.6818182500000001pt;border-top:solid #000000 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                          <p dir="ltr" style="line-height:1.656;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 4: From 75.001 to 100.000 stNEAR</span></p>
+                      </td>
+                      <td style="border-left:solid #000000 0.6818182500000001pt;border-right:solid #000000 0.6818182500000001pt;border-bottom:solid #000000 0.6818182500000001pt;border-top:solid #000000 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                          <p dir="ltr" style="line-height:1.656;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3,75 $JUMP tokens for every stNEAR</span></p>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <p><br></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">$JUMP tokens will be distributed using a 3 months linear release after the 6 months locking period ends.</span></p><br><br><p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Why should you vote for them?</span></p>
+      <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Because of their unique Value Proposition: Unlocking DeFi for users and developers on NEAR:</span></p>
+      <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+          <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+              <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">One-stop platform offers more revenue sources than competitors</span></p>
+          </li>
+          <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+              <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Every tool required to take Web3 Projects from 0 to 1; faster and cheaper!</span></p>
+          </li>
+          <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+              <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Jump DEX aggregates the best pricing on trades in a simple swap experience</span></p>
+          </li>
+          <li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+              <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Creators of NEKO; Hub of Web3 content creation and one of the largest NEAR communities&nbsp;</span></p>
+          </li>
+      </ul>`,
+      team: [
+        {
+          name: "David Leer - CEO",
+          bio: "Co-Founder and CEO with a professional background in project management and expertise in decentralized finance. Former medical construction engineer with experience managing diverse groups of people and scopes of work valued at $20+ million dollars.",
+        },
+        {
+          name: "BRANDON CANTU - COO",
+          bio: "Co-Founder and COO with years of experience managing and scaling startup operations. Former Laboratory Manager with experience building teams and ensuring overall business efficiency and effectiveness."
+        },
+        {
+          name: "JOÃO VEIGA - CTO",
+          bio: "CTO and Co-Founder of Hack-a-Chain. Seasoned entrepreneur founded and exited vacation rental management startup Anfitrioes de Aluguel. João is an experienced developer and technical team manager focused on a business centric development approach.",
+        },
+        {
+          name: "Rafael Borges - Hack-a-Chain CMO / Advisor",
+          bio: "Co-Founder and CMO at Hack-a-Chain, over 6 years of experience with sales, marketing and growth for startups and tech companies.",
+        },
+        {
+          name: "Pedro Destri - Project Manager",
+          bio: "Co-founder & Engineer at Hack-a-Chain, with a fintech background and experience in project management and software development.",
+        },
+        {
+          name: "Mateus - Full Stack Developer",
+          bio: "Web3 enthusiast and full stack developer for Hackachain.",
+        },
+        {
+          name: "AaronAbyss - Social Media Manager",
+          bio: "Social Media Management and Marketing Specialist. SMMA Owner, Content Creator, and Entrepreneur. Heavily involved in the Jump DeFi and NEAR Ecosystem.",
+        },
+        {
+          name: "Noah Major - Public Relations Manager",
+          bio: "Lead Public Relations Specialist and content creator. Social media team manager and WEB3 value investor.",
+        },
+        {
+          name: "Morgan Castle - Lead Graphic Designer",
+          bio: "Graphic designer and artist with over 10 years experience. Bringing creativity and informed design to Near with thanks to Trove Labs and their chain-leading projects. Inspired by nature and all its forms.",
+        },
+      ],
+      roadmap:{
+        imageUrl: '/projects/jumpdefi/roadmap.png',
+      },
+    documents:[
+      {title:"Site",
+      url:"https://www.jumpdefi.xyz/"},
+      {title:"Twitter",
+      url:"https://twitter.com/JumpDeFi "},
+      {title:"Discord",
+      url:"https://discord.gg/TPBAA7EcH7 "},
+      ]},
 ];
 
 export const dataToVote = [
