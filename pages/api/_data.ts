@@ -1187,7 +1187,7 @@ export const data = [
         <p><br></p>
         <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Tokenomics</span></p>
         <p><br></p>
-        <img alt='tokenomics' src="/projects/nearstarter/tokenomics.png"/>
+        <img alt='tokenomics' src="/projects/nearstarter/tokenomic.png"/>
         <br>
         <div align="left" dir="ltr" style="margin-left:0pt;">
             <table style="border:none;border-collapse:collapse;">
