@@ -1113,6 +1113,207 @@ export const data = [
       {title:"Discord",
       url:"https://discord.gg/TPBAA7EcH7 "},
       ]},
+      {
+        id: 9, // key para proyectos en katherine
+        slug: "nearstarter", // unique friendly identifier per project. katherine smart contract would retrieve this field
+        name: "NEARstarter",
+        motto: "NEARStarter is an incubator and launchpad. This means it focuses on incubation, acceleration, and funding system for projects deployed on the NEAR Protocol and Aurora.",
+        projectUrl: "https://nearstarter.fi",
+        twitter: "https://twitter.com/nearstarter_fi",
+        imageUrl:"/projects/nearstarter/cover.jpg",
+        avatarUrl: "/projects/nearstarter/logo.jpg",
+        description:
+          `NEARStarter is an incubator and launchpad. This means it focuses on incubation, acceleration, and funding system for projects deployed on the NEAR Protocol and Aurora.`,
+        verified: true,
+        tags: ["Launchpad", "DeFi", "Index Pool", "NEAR"],
+        campaignHtml: `
+        <p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NEARStarter is an incubator and launchpad. This means it focuses on incubation, acceleration, and funding system for projects deployed on the NEAR Protocol and Aurora.</span></p>
+        <p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Its incubation process includes Legal Set-up, Product formulation, Whitepaper and Documentation, Tokenomics, Captable management, Secondary Market and Liquidity Management, Treasury Management, Audit, Listing, Partnerships, etc.&nbsp;</span></p>
+        <p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">All projects launching with NEARStarter are subject to comprehensive due diligence &mdash; this maximizes the chances of success during its early stages.</span></p>
+        <p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NEARStarter manages NEARIA, an Index Pool of NEAR and Aurora ecosystem. All incubated projects, as well as major partners of NEARStarter, have their tokens included in the Index Pool.</span></p>
+        <p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The proceeds from this campaign will be split as follows:</span></p>
+        <p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">- 50% will be staked into stNEAR and added to $NEARIA Index Pool</span></p>
+        <p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">- 50% will be dedicated to the project (server and tech &amp; infra expenses, salaries...)</span></p>
+        <p><br></p>
+        <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">The rewards you can get from this campaign are:&nbsp;</span></p>
+        <div align="left" dir="ltr" style="margin-left:0pt;">
+            <table style="border:none;border-collapse:collapse;table-layout:fixed;width:451.27559055118115pt;">
+                <tbody>
+                    <tr style="height:0pt;">
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 1: From 0 to 40.000 stNEAR</span></p>
+                        </td>
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">No rewards&nbsp;</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:0pt;">
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 2: From 40.001 to 100.000 stNEAR</span></p>
+                        </td>
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">10 $NEARIA per stNEAR&nbsp;</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:0pt;">
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 3: From 100.001 to 250.000 stNEAR</span></p>
+                        </td>
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">13 $NEARIA per stNEAR&nbsp;</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:0pt;">
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 4: From 250.001 to 350.000 stNEAR</span></p>
+                        </td>
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">15 $NEARIA per stNEAR&nbsp;</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:0pt;">
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Goal 5: From 350.001 to 500.000 stNEAR</span></p>
+                        </td>
+                        <td style="border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:10pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">19.2 $NEARIA per stNEAR&nbsp;</span></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><br></p>
+        <p><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">You can&rsquo;t miss this opportunity.&nbsp;</span><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">With 6 incubations and 1 launch in the pipeline, plus several partnerships with renowned projects of the ecosystem, NEARIA is getting the pool depth and diversification of assets necessary to make it an excellent diversification play.</span></p>
+        <p><br></p>
+        <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Tokenomics</span></p>
+        <p><br></p>
+        <img alt='tokenomics' src="/projects/nearstarter/tokenomics.png"/>
+        <br>
+        <div align="left" dir="ltr" style="margin-left:0pt;">
+            <table style="border:none;border-collapse:collapse;">
+                <tbody>
+                    <tr style="height:15pt;">
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Total Supply</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">100,000,000</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;"><br></td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;"><br></td>
+                    </tr>
+                    <tr style="height:15pt;">
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;"><br></td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;"><br></td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;"><br></td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;"><br></td>
+                    </tr>
+                    <tr style="height:26.25pt;">
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;"><br></td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">% of Total supply</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Cliff</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Vesting (months)</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:15pt;">
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Farming Rewards to NSTART stakers</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">66%</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">0</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">120</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:15pt;">
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Ecosystem, Liquidity, Community</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">14%</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">36</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:15pt;">
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ISPO</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">10%</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">0</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:15pt;">
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Team &amp; DAO Contributors</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">10%</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">12</span></p>
+                        </td>
+                        <td style="border-left:solid #cccccc 0.6818182500000001pt;border-right:solid #cccccc 0.6818182500000001pt;border-bottom:solid #cccccc 0.6818182500000001pt;border-top:solid #cccccc 0.6818182500000001pt;vertical-align:bottom;padding:0pt 2pt 0pt 2pt;overflow:hidden;overflow-wrap:break-word;">
+                            <p dir="ltr" style="line-height:1.38;text-align: right;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:'Space Grotesk',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">12</span></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>`,
+        team: [
+          {
+            name: "Ramiro - Head of Incubation",
+            bio: "A decade of experience working with Web2 startups and clients. Leveraging that knowledge with Web3 counterparts since 2020.",
+          },
+          {
+            name: "Adam - Sr Incubator Consultant.",
+            bio: "Helping DeFi, NFT, and GameFi companies scale since 2020."
+          },
+          {
+            name: "Antonio - Head of Ecosystem Growth.",
+            bio: "Working on NEAR ecosystem since 2021. A 360-view of NEAR and Aurora ecosystems thanks to his activity fostering growth of South East Asian Guilds (Near Malaysia, Near Singapore, NEAR Thailand, NEAR Cambodia).",
+          },
+          {
+            name: "Sadek - Head of Community and Social Media.",
+            bio: "Not only he is a Discord, Telegram, and Twitter Wizard: he leverages any new Web3 social tool to his advantage, from Crew3 to Lens !",
+          },
+          {
+            name: "Mstr - Head of Marketing.",
+            bio: "The man, the myth, the legend. Thank him for the cypherpunk vibes you get whenever you type 'nearstarter.fi' in your computer!",
+          }
+        ],
+        roadmap:{
+          imageUrl: '/projects/nearstarter/roadmap.jpg',
+        },
+      documents:[
+        {title:"FAQ",
+        url:"https://hackmd.io/@NEARStarter/HJUVLyJ3q"},
+        {title:"Deck",
+        url:"https://docsend.com/view/2snj5japeg2xhthb"},
+        {title:"Discord",
+        url:"https://discord.gg/nearstarter"},
+        {title:"Telegram",
+        url:"https://t.me/NEARStarterCommunity"},
+        ]},
 ];
 
 export const dataToVote = [
